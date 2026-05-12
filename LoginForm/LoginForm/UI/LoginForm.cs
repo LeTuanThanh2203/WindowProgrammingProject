@@ -26,88 +26,198 @@ namespace LoginForm
         }
         private void bt_Login_Click(object sender, EventArgs e)
         {
+            if (txt_UserName.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter username!");
 
-          My_DB db = new My_DB();  
+                txt_UserName.Focus();
+
+                return;
+            }
+
+            if (txt_Password.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter password!");
+
+                txt_Password.Focus();
+
+                return;
+            }
+            My_DB db = new My_DB();
+
+            string username = txt_UserName.Text.Trim();
+            string password = txt_Password.Text.Trim();
+
             string query = @"
-                SELECT *
-                FROM DataLoginForm
-                WHERE UserName = @user
-                AND Password = @pass";
+    SELECT *
+    FROM DataLoginForm
+    WHERE UserName = @user";
 
             SqlCommand command =
                 new SqlCommand(query, db.getConnection);
 
             command.Parameters.Add("@user",
-                SqlDbType.VarChar).Value =
-                txt_UserName.Text.Trim();
+                SqlDbType.VarChar).Value = username;
 
-            command.Parameters.Add("@pass",
-                SqlDbType.VarChar).Value =
-                txt_Password.Text.Trim();
             db.openConnection();
+
             SqlDataReader reader =
                 command.ExecuteReader();
 
-            // TÌM THẤY ACCOUNT
+            // TÌM USER
             if (reader.Read())
             {
-                // LẤY ROLE
-                string role =
-                    reader["RoleName"].ToString();
+                bool isLocked = false;
 
-                // LẤY TRẠNG THÁI DUYỆT
-                bool isApproved =
-                    Convert.ToBoolean(
-                        reader["IsApproved"]);
+                if (reader["IsLocked"] != DBNull.Value)
+                {
+                    isLocked =
+                        Convert.ToBoolean(reader["IsLocked"]);
+                }
 
-                // CHECK ĐÃ DUYỆT CHƯA
-                if (isApproved == false)
+                int attempts = 0;
+
+                if (reader["LoginAttempts"] != DBNull.Value)
+                {
+                    attempts =
+                        Convert.ToInt32(reader["LoginAttempts"]);
+                }
+
+                bool isApproved = false;
+
+                if (reader["IsApproved"] != DBNull.Value)
+                {
+                    isApproved =
+                        Convert.ToBoolean(reader["IsApproved"]);
+                }
+
+                // CHECK KHÓA
+                if (isLocked)
                 {
                     MessageBox.Show(
-                        "Account is waiting for approval!");
+                        "Account has been locked!");
 
+                    reader.Close();
+                    db.closeConnection();
                     return;
                 }
 
-                MessageBox.Show(
-                    "Login successful!");
+                string dbPassword =
+                    reader["Password"].ToString();
 
-                // PHÂN QUYỀN
-                if (role == "Admin")
+                // PASSWORD ĐÚNG
+                if (dbPassword == password)
                 {
-                    Approve approveForm = new Approve();
+                    string role =
+                        reader["RoleName"].ToString();
 
-                    approveForm.Show();
-                }
-                else if (role == "Manager")
-                {
-                    AddStudent addStudent = new AddStudent();
+                    // RESET SỐ LẦN SAI
+                    reader.Close();
 
-                    addStudent.Show();
+                    SqlCommand resetCmd =
+                        new SqlCommand(
+                            @"UPDATE DataLoginForm
+                SET LoginAttempts = 0
+                WHERE UserName = @user",
+                            db.getConnection);
+
+                    resetCmd.Parameters.AddWithValue(
+                        "@user", username);
+
+                    resetCmd.ExecuteNonQuery();
+
+                    // CHECK DUYỆT
+                    if (isApproved == false)
+                    {
+                        MessageBox.Show(
+                            "Account is waiting for approval!");
+
+                        db.closeConnection();
+                        return;
+                    }
+
+                    MessageBox.Show(
+                        "Login successful!");
+
+                    // PHÂN QUYỀN
+                    if (role == "Admin")
+                    {
+                        Approve approveForm =
+                            new Approve();
+
+                        approveForm.Show();
+                    }
+                    else if (role == "Manager")
+                    {
+                        AddStudent addStudent =
+                            new AddStudent();
+
+                        addStudent.Show();
+                    }
+                    else if (role == "User")
+                    {
+
+                    }
+
+                    this.Hide();
                 }
                 else
                 {
+                    reader.Close();
+
+                    attempts++;
+
+                    // KHÓA NẾU >= 3
+                    if (attempts >= 3)
+                    {
+                        SqlCommand lockCmd =
+                            new SqlCommand(
+                                @"UPDATE DataLoginForm
+                SET LoginAttempts = @attempts,
+                    IsLocked = 1
+                WHERE UserName = @user",
+                                db.getConnection);
+
+                        lockCmd.Parameters.AddWithValue(
+                            "@attempts", attempts);
+
+                        lockCmd.Parameters.AddWithValue(
+                            "@user", username);
+
+                        lockCmd.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            "Account has been locked!");
+                    }
+                    else
+                    {
+                        SqlCommand updateCmd =
+                            new SqlCommand(
+                                @"UPDATE DataLoginForm
+                SET LoginAttempts = @attempts
+                WHERE UserName = @user",
+                                db.getConnection);
+
+                        updateCmd.Parameters.AddWithValue(
+                            "@attempts", attempts);
+
+                        updateCmd.Parameters.AddWithValue(
+                            "@user", username);
+
+                        updateCmd.ExecuteNonQuery();
+
+                        MessageBox.Show(
+                            $"Wrong password! Attempt {attempts}/3");
+                    }
+
+                    txt_Password.Clear();
+                    txt_Password.Focus();
                 }
 
-                this.Hide();
+                db.closeConnection();
             }
-            else
-            {
-                MessageBox.Show(
-                    "Your account or password is wrong!",
-                    "Login Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+        }   
 
-                txt_Password.Clear();
-                txt_Password.Focus();
-            }
-
-            reader.Close();
-
-            db.closeConnection();
-        }
-        
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
