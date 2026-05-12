@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ProjectMonHoc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using System.Data;
 using ValidationLibrary;
 
 namespace LoginForm
@@ -88,18 +89,10 @@ namespace LoginForm
                 return;
             }
 
-            string connStr =
-            @"Data Source=.\SQLEXPRESS;
-    Initial Catalog=DataUser;
-    Integrated Security=True;
-    TrustServerCertificate=True";
+            My_DB db = new My_DB();
+            db.openConnection();
 
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
-            {
-                conn.Open();
-
-                string query = @"
+            string query = @"
         INSERT INTO Student
         (
             MSSV,
@@ -126,7 +119,7 @@ namespace LoginForm
         )";
 
                 SqlCommand cmd =
-                    new SqlCommand(query, conn);
+                    new SqlCommand(query, db.getConnection);
 
                 cmd.Parameters.Add("@mssv",
                     SqlDbType.VarChar).Value =

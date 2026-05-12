@@ -27,7 +27,7 @@ namespace LoginForm
         private void bt_Login_Click(object sender, EventArgs e)
         {
 
-            My_DB db = new My_DB();
+          My_DB db = new My_DB();  
             string query = @"
                 SELECT *
                 FROM DataLoginForm
