@@ -27,5 +27,25 @@ namespace ValidationLibrary
         {
             return dob <= DateTime.Now;
         }
+        public static bool IsValidMSSV(string mssv)
+        {
+            return Regex.IsMatch(mssv, @"^[a-zA-Z0-9]+$");
+        }
+
+        // Họ tên / Tên: chỉ chứa chữ cái và khoảng trắng (hỗ trợ tiếng Việt)
+        public static bool IsValidName(string name)
+        {
+            return Regex.IsMatch(name, @"^[\p{L}\s]+$");
+        }
+
+        // Số điện thoại: chỉ chứa số
+        public static bool IsValidPhone(string phone)
+        {
+            return Regex.IsMatch(phone, @"^[0-9]+$");
+        }
+        public static bool IsEmpty(string text)
+        {
+            return string.IsNullOrWhiteSpace(text);
+        }
     }
 }

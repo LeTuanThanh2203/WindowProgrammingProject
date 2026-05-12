@@ -1,11 +1,12 @@
-﻿using System.Data.SqlClient;
-using System.Data;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
+using ProjectMonHoc;
 
 public class Student
 {
     My_DB db = new My_DB();
 
-    public int MSSV { get; set; }
+    public string MSSV { get; set; }
     public string Fname { get; set; }
     public string Lname { get; set; }
     public DateTime Dob { get; set; }
@@ -16,39 +17,110 @@ public class Student
     public string Email { get; set; }
     public byte[] Picture { get; set; }
 
-    //Constructor
-    public Student(int mssv, string fname, string lname, DateTime dob,
-        string gender, string phone, string address, string hometown,
-        string email, byte[] picture)
+    public Student(string mssv,
+        string fname,
+        string lname,
+        DateTime dob,
+        string gender,
+        string phone,
+        string address,
+        string hometown,
+        string email,
+        byte[] picture)
     {
-        MSSV = mssv; Fname = fname; Lname = lname; Dob = dob;
-        Gender = gender; Phone = phone; Address = address;
-        Hometown = hometown; Email = email; Picture = picture;
+        MSSV = mssv;
+        Fname = fname;
+        Lname = lname;
+        Dob = dob;
+        Gender = gender;
+        Phone = phone;
+        Address = address;
+        Hometown = hometown;
+        Email = email;
+        Picture = picture;
     }
-
+    public Student()
+    {
+    }
     public bool AddStudent()
     {
         try
         {
             db.openConnection();
-            string query = "INSERT INTO Student VALUES " +
-                "(@mssv, @fname, @lname, @dob, @gder, @phone, @addr, @htown, @email, @pic)";
-            SqlCommand cmd = new SqlCommand(query, db.conn);
-            cmd.Parameters.AddWithValue("@mssv", MSSV);
-            cmd.Parameters.AddWithValue("@fname", Fname);
-            cmd.Parameters.AddWithValue("@lname", Lname);
-            cmd.Parameters.AddWithValue("@dob", Dob);
-            cmd.Parameters.AddWithValue("@gder", Gender);
-            cmd.Parameters.AddWithValue("@phone", Phone);
-            cmd.Parameters.AddWithValue("@addr", Address);
-            cmd.Parameters.AddWithValue("@htown", Hometown);
-            cmd.Parameters.AddWithValue("@email", Email);
-            cmd.Parameters.AddWithValue("@pic", (object)Picture ?? DBNull.Value);
 
-            int rows = cmd.ExecuteNonQuery();
-            return rows > 0;
+            string query = @"
+    INSERT INTO Student
+    (
+        MSSV,
+        FirstName,
+        LastName,
+        Dob,
+        Gender,
+        Phone,
+        Address,
+        HomeTown,
+        Email,
+        Picture
+    )
+    VALUES
+    (
+        @mssv,
+        @fname,
+        @lname,
+        @dob,
+        @gender,
+        @phone,
+        @address,
+        @hometown,
+        @email,
+        @picture
+    )";
+
+            SqlCommand cmd =
+                new SqlCommand(query, db.getConnection);
+
+            cmd.Parameters.Add("@mssv",
+                SqlDbType.Int).Value = MSSV;
+
+            cmd.Parameters.Add("@fname",
+                SqlDbType.NVarChar).Value = Fname;
+
+            cmd.Parameters.Add("@lname",
+                SqlDbType.NVarChar).Value = Lname;
+
+            cmd.Parameters.Add("@dob",
+                SqlDbType.Date).Value = Dob;
+
+            cmd.Parameters.Add("@gender",
+                SqlDbType.NVarChar).Value = Gender;
+
+            cmd.Parameters.Add("@phone",
+                SqlDbType.VarChar).Value = Phone;
+
+            cmd.Parameters.Add("@address",
+                SqlDbType.NVarChar).Value = Address;
+
+            cmd.Parameters.Add("@hometown",
+                SqlDbType.NVarChar).Value = Hometown;
+
+            cmd.Parameters.Add("@email",
+                SqlDbType.VarChar).Value = Email;
+
+            cmd.Parameters.Add("@picture",
+                SqlDbType.Image).Value =
+                (object)Picture ?? DBNull.Value;
+
+            int result = cmd.ExecuteNonQuery();
+
+            return result > 0;
         }
-        catch { return false; }
-        finally { db.closeConnection(); }
+        catch
+        {
+            return false;
+        }
+        finally
+        {
+            db.closeConnection();
+        }
     }
 }

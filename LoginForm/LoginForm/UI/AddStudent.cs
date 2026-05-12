@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -59,109 +58,140 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            // VALIDATE MSSV
-            if (!ValidateData.IsNumber(
-                txtMSSV.Text))
-            {
-                MessageBox.Show(
-                    "MSSV must be number!");
+            ValidateInput();
+            // Tạo đối tượng Student và gán giá trị
+            Student student = new Student();
+            student.MSSV = txtMSSV.Text.Trim();
+            student.Fname = txtFname.Text.Trim();
+            student.Lname = txtLname.Text.Trim();
+            student.Dob = dtpDob.Value.Date;
+            student.Gender = cboGender.Text;
+            student.Phone = txtPhone.Text.Trim();
+            student.Address = txtAddress.Text.Trim();
+            student.Hometown = txtHometown.Text.Trim();
+            student.Email = txtEmail.Text.Trim();
 
-                return;
-            }
+            // Gọi method Add()
+            bool result = student.AddStudent();
 
-            // VALIDATE EMAIL
-            if (!ValidateData.IsValidEmail(
-                txtEmail.Text))
-            {
-                MessageBox.Show(
-                    "Invalid email format!");
-
-                return;
-            }
-
-            // VALIDATE DATE
-            if (!ValidateData.IsValidBirthDay(
-                dtpDob.Value))
-            {
-                MessageBox.Show(
-                    "Date of birth is invalid!");
-
-                return;
-            }
-
-            My_DB db = new My_DB();
-            db.openConnection();
-
-            string query = @"
-        INSERT INTO Student
-        (
-            MSSV,
-            FirstName,
-            LastName,
-            Dob,
-            Gender,
-            Phone,
-            Address,
-            HomeTown,
-            Email
-        )
-        VALUES
-        (
-            @mssv,
-            @fname,
-            @lname,
-            @dob,
-            @gender,
-            @phone,
-            @address,
-            @hometown,
-            @email
-        )";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, db.getConnection);
-
-                cmd.Parameters.Add("@mssv",
-                    SqlDbType.VarChar).Value =
-                    txtMSSV.Text.Trim();
-
-                cmd.Parameters.Add("@fname",
-                    SqlDbType.NVarChar).Value =
-                    txtFname.Text.Trim();
-
-                cmd.Parameters.Add("@lname",
-                    SqlDbType.NVarChar).Value =
-                    txtLname.Text.Trim();
-
-                cmd.Parameters.Add("@dob",
-                    SqlDbType.Date).Value =
-                    dtpDob.Value.Date;
-
-                cmd.Parameters.Add("@gender",
-                    SqlDbType.NVarChar).Value =
-                    cboGender.Text;
-
-                cmd.Parameters.Add("@phone",
-                    SqlDbType.VarChar).Value =
-                    txtPhone.Text.Trim();
-
-                cmd.Parameters.Add("@address",
-                    SqlDbType.NVarChar).Value =
-                    txtAddress.Text.Trim();
-
-                cmd.Parameters.Add("@hometown",
-                    SqlDbType.NVarChar).Value =
-                    txtHometown.Text.Trim();
-
-                cmd.Parameters.Add("@email",
-                    SqlDbType.VarChar).Value =
-                    txtEmail.Text.Trim();
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show(
-                    "Add student successful!");
-            }
+            if (result)
+                MessageBox.Show("Add student successful!");
+            else
+                MessageBox.Show("Add student failed!");
         }
+
+
+        //Validate input trước khi thêm sinh viên
+        private bool ValidateInput()
+        {
+            // ---- CHECK RỖNG ----
+            if (ValidateData.IsEmpty(txtMSSV.Text))
+            {
+                MessageBox.Show("MSSV không được để trống!");
+                txtMSSV.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtFname.Text))
+            {
+                MessageBox.Show("Họ và tên đệm không được để trống!");
+                txtFname.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtLname.Text))
+            {
+                MessageBox.Show("Tên không được để trống!");
+                txtLname.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtPhone.Text))
+            {
+                MessageBox.Show("Số điện thoại không được để trống!");
+                txtPhone.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtAddress.Text))
+            {
+                MessageBox.Show("Địa chỉ không được để trống!");
+                txtAddress.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtHometown.Text))
+            {
+                MessageBox.Show("Quê quán không được để trống!");
+                txtHometown.Focus();
+                return false;
+            }
+
+            if (ValidateData.IsEmpty(txtEmail.Text))
+            {
+                MessageBox.Show("Email không được để trống!");
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (cboGender.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn giới tính!");
+                cboGender.Focus();
+                return false;
+            }
+
+            if (picStudent.Image == null)
+            {
+                MessageBox.Show("Vui lòng chọn ảnh sinh viên!");
+                return false;
+            }
+
+            // ---- CHECK ĐỊNH DẠNG ----
+            if (!ValidateData.IsValidMSSV(txtMSSV.Text))
+            {
+                MessageBox.Show("MSSV chỉ được chứa chữ và số!");
+                txtMSSV.Focus();
+                return false;
+            }
+
+            if (!ValidateData.IsValidName(txtFname.Text))
+            {
+                MessageBox.Show("Họ và tên đệm không được chứa số!");
+                txtFname.Focus();
+                return false;
+            }
+
+            if (!ValidateData.IsValidName(txtLname.Text))
+            {
+                MessageBox.Show("Tên không được chứa số!");
+                txtLname.Focus();
+                return false;
+            }
+
+            if (!ValidateData.IsValidPhone(txtPhone.Text))
+            {
+                MessageBox.Show("SĐT chỉ được nhập số!");
+                txtPhone.Focus();
+                return false;
+            }
+
+            if (!ValidateData.IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Email không hợp lệ!");
+                txtEmail.Focus();
+                return false;
+            }
+
+            // ---- CHECK LOGIC ----
+            if (!ValidateData.IsValidBirthDay(dtpDob.Value))
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ!");
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }
