@@ -7,6 +7,9 @@
     <Compile Update="UI\Approve.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\ManageStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

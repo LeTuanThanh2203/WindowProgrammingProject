@@ -82,7 +82,7 @@ namespace LoginForm
             txt_UserName.Margin = new Padding(4, 3, 4, 3);
             txt_UserName.Multiline = true;
             txt_UserName.Name = "txt_UserName";
-            txt_UserName.Size = new Size(705, 61);
+            txt_UserName.Size = new Size(705, 40);
             txt_UserName.TabIndex = 14;
             // 
             // bt_Register

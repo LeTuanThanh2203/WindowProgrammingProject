@@ -13,14 +13,16 @@ namespace LoginForm
 {
     public partial class AddStudent : Form
     {
+        // Biến toàn cục để chứa ảnh dạng byte[]
+        byte[] studentImage = null;
         public AddStudent()
         {
             InitializeComponent();
         }
         private void StudentAdd_Load(object sender, EventArgs e)
         {
-            cboGender.Items.Add("Nam");
-            cboGender.Items.Add("Nữ");
+            cboGender.Items.Add("Male");
+            cboGender.Items.Add("Female");
 
             cboGender.SelectedIndex = 0;
 
@@ -54,6 +56,37 @@ namespace LoginForm
 
             picStudent.Image = null;
         }
+        // =======================
+        // CHOOSE IMAGE
+        // =======================
+        private void btnChooseImage_Click(
+     object sender,
+     EventArgs e)
+        {
+            OpenFileDialog ofd =
+                new OpenFileDialog();
+
+            ofd.Filter =
+                "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // Đọc file thành byte[]
+                studentImage =
+                    File.ReadAllBytes(ofd.FileName);
+
+                // Hiển thị ảnh
+                MemoryStream ms =
+                    new MemoryStream(studentImage);
+
+                picStudent.Image =
+                    Image.FromStream(ms);
+
+                MessageBox.Show(
+                    "Image loaded: "
+                    + studentImage.Length);
+            }
+        }
         private void btnAdd_Click(
     object sender,
     EventArgs e)
@@ -70,9 +103,12 @@ namespace LoginForm
             student.Address = txtAddress.Text.Trim();
             student.Hometown = txtHometown.Text.Trim();
             student.Email = txtEmail.Text.Trim();
+            // Gán ảnh byte[]
+            student.Picture = studentImage;
 
             // Gọi method Add()
             bool result = student.AddStudent();
+            MessageBox.Show(student.Picture.Length.ToString());
 
             if (result)
                 MessageBox.Show("Add student successful!");
@@ -87,111 +123,112 @@ namespace LoginForm
             // ---- CHECK RỖNG ----
             if (ValidateData.IsEmpty(txtMSSV.Text))
             {
-                MessageBox.Show("MSSV không được để trống!");
+                MessageBox.Show("Student ID cannot be empty!");
                 txtMSSV.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtFname.Text))
             {
-                MessageBox.Show("Họ và tên đệm không được để trống!");
+                MessageBox.Show("First name cannot be empty!");
                 txtFname.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtLname.Text))
             {
-                MessageBox.Show("Tên không được để trống!");
+                MessageBox.Show("Last name cannot be empty!");
                 txtLname.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtPhone.Text))
             {
-                MessageBox.Show("Số điện thoại không được để trống!");
+                MessageBox.Show("Phone number cannot be empty!");
                 txtPhone.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtAddress.Text))
             {
-                MessageBox.Show("Địa chỉ không được để trống!");
+                MessageBox.Show("Address cannot be empty!");
                 txtAddress.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtHometown.Text))
             {
-                MessageBox.Show("Quê quán không được để trống!");
+                MessageBox.Show("Hometown cannot be empty!");
                 txtHometown.Focus();
                 return false;
             }
 
             if (ValidateData.IsEmpty(txtEmail.Text))
             {
-                MessageBox.Show("Email không được để trống!");
+                MessageBox.Show("Email cannot be empty!");
                 txtEmail.Focus();
                 return false;
             }
 
             if (cboGender.SelectedIndex < 0)
             {
-                MessageBox.Show("Vui lòng chọn giới tính!");
+                MessageBox.Show("Please select a gender!");
                 cboGender.Focus();
                 return false;
             }
 
             if (picStudent.Image == null)
             {
-                MessageBox.Show("Vui lòng chọn ảnh sinh viên!");
+                MessageBox.Show("Please select a student image!");
                 return false;
             }
 
-            // ---- CHECK ĐỊNH DẠNG ----
+            // ---- FORMAT CHECK ----
             if (!ValidateData.IsValidMSSV(txtMSSV.Text))
             {
-                MessageBox.Show("MSSV chỉ được chứa chữ và số!");
+                MessageBox.Show("Student ID can only contain letters and numbers!");
                 txtMSSV.Focus();
                 return false;
             }
 
             if (!ValidateData.IsValidName(txtFname.Text))
             {
-                MessageBox.Show("Họ và tên đệm không được chứa số!");
+                MessageBox.Show("First name cannot contain numbers!");
                 txtFname.Focus();
                 return false;
             }
 
             if (!ValidateData.IsValidName(txtLname.Text))
             {
-                MessageBox.Show("Tên không được chứa số!");
+                MessageBox.Show("Last name cannot contain numbers!");
                 txtLname.Focus();
                 return false;
             }
 
             if (!ValidateData.IsValidPhone(txtPhone.Text))
             {
-                MessageBox.Show("SĐT chỉ được nhập số!");
+                MessageBox.Show("Phone number must contain digits only!");
                 txtPhone.Focus();
                 return false;
             }
 
             if (!ValidateData.IsValidEmail(txtEmail.Text))
             {
-                MessageBox.Show("Email không hợp lệ!");
+                MessageBox.Show("Invalid email address!");
                 txtEmail.Focus();
                 return false;
             }
 
-            // ---- CHECK LOGIC ----
+            // ---- LOGIC CHECK ----
             if (!ValidateData.IsValidBirthDay(dtpDob.Value))
             {
-                MessageBox.Show("Ngày sinh không hợp lệ!");
+                MessageBox.Show("Invalid date of birth!");
                 return false;
             }
 
             return true;
         }
 
+     
     }
 }

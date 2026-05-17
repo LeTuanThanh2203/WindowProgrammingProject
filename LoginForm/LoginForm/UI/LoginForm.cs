@@ -149,10 +149,12 @@ namespace LoginForm
                     }
                     else if (role == "Manager")
                     {
-                        AddStudent addStudent =
-                            new AddStudent();
+                        //AddStudent addStudent =
+                        //    new AddStudent();
 
-                        addStudent.Show();
+                        //addStudent.Show();
+                        ManageStudent manageStudent = new ManageStudent();
+                        manageStudent.Show();
                     }
                     else if (role == "User")
                     {

@@ -63,29 +63,29 @@ namespace LoginForm
             label1.AutoSize = true;
             label1.Location = new Point(21, 65);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(27, 20);
             label1.TabIndex = 0;
-            label1.Text = "MSSV:";
+            label1.Text = "ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(21, 105);
             label2.Name = "label2";
-            label2.Size = new Size(110, 20);
+            label2.Size = new Size(79, 20);
             label2.TabIndex = 1;
-            label2.Text = "Họ và tên đệm:";
+            label2.Text = "Last name:";
             // 
             // txtMSSV
             // 
-            txtMSSV.Location = new Point(89, 62);
+            txtMSSV.Location = new Point(108, 62);
             txtMSSV.Name = "txtMSSV";
             txtMSSV.Size = new Size(143, 27);
             txtMSSV.TabIndex = 2;
             // 
             // txtFname
             // 
-            txtFname.Location = new Point(146, 102);
+            txtFname.Location = new Point(108, 102);
             txtFname.Name = "txtFname";
             txtFname.Size = new Size(185, 27);
             txtFname.TabIndex = 3;
@@ -93,15 +93,15 @@ namespace LoginForm
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(349, 105);
+            label3.Location = new Point(337, 105);
             label3.Name = "label3";
-            label3.Size = new Size(35, 20);
+            label3.Size = new Size(80, 20);
             label3.TabIndex = 4;
-            label3.Text = "Tên:";
+            label3.Text = "First name:";
             // 
             // txtLname
             // 
-            txtLname.Location = new Point(407, 102);
+            txtLname.Location = new Point(417, 102);
             txtLname.Name = "txtLname";
             txtLname.Size = new Size(106, 27);
             txtLname.TabIndex = 5;
@@ -118,18 +118,18 @@ namespace LoginForm
             label4.AutoSize = true;
             label4.Location = new Point(532, 105);
             label4.Name = "label4";
-            label4.Size = new Size(77, 20);
+            label4.Size = new Size(97, 20);
             label4.TabIndex = 7;
-            label4.Text = "Ngày sinh:";
+            label4.Text = "Date of birth:";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(21, 148);
             label5.Name = "label5";
-            label5.Size = new Size(68, 20);
+            label5.Size = new Size(60, 20);
             label5.TabIndex = 8;
-            label5.Text = "Giới tính:";
+            label5.Text = "Gender:";
             // 
             // cboGender
             // 
@@ -144,13 +144,13 @@ namespace LoginForm
             label6.AutoSize = true;
             label6.Location = new Point(213, 148);
             label6.Name = "label6";
-            label6.Size = new Size(39, 20);
+            label6.Size = new Size(112, 20);
             label6.TabIndex = 10;
-            label6.Text = "SĐT:";
+            label6.Text = "Number phone:";
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(267, 145);
+            txtPhone.Location = new Point(326, 145);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(185, 27);
             txtPhone.TabIndex = 11;
@@ -160,9 +160,9 @@ namespace LoginForm
             label7.AutoSize = true;
             label7.Location = new Point(21, 189);
             label7.Name = "label7";
-            label7.Size = new Size(58, 20);
+            label7.Size = new Size(65, 20);
             label7.TabIndex = 12;
-            label7.Text = "Địa chỉ:";
+            label7.Text = "Address:";
             // 
             // txtAddress
             // 
@@ -176,9 +176,9 @@ namespace LoginForm
             label8.AutoSize = true;
             label8.Location = new Point(21, 230);
             label8.Name = "label8";
-            label8.Size = new Size(76, 20);
+            label8.Size = new Size(86, 20);
             label8.TabIndex = 14;
-            label8.Text = "Quê quán:";
+            label8.Text = "Hometown:";
             // 
             // txtHometown
             // 
@@ -210,6 +210,7 @@ namespace LoginForm
             picStudent.Size = new Size(126, 150);
             picStudent.TabIndex = 18;
             picStudent.TabStop = false;
+            picStudent.Click += btnChooseImage_Click;
             // 
             // btnChooseImage
             // 
@@ -217,17 +218,18 @@ namespace LoginForm
             btnChooseImage.Name = "btnChooseImage";
             btnChooseImage.Size = new Size(177, 34);
             btnChooseImage.TabIndex = 19;
-            btnChooseImage.Text = "Tải lên từ máy tính";
+            btnChooseImage.Text = "Upload";
             btnChooseImage.UseVisualStyleBackColor = true;
+            btnChooseImage.Click += btnChooseImage_Click;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(618, 145);
+            label10.Location = new Point(642, 145);
             label10.Name = "label10";
-            label10.Size = new Size(100, 20);
+            label10.Size = new Size(51, 20);
             label10.TabIndex = 20;
-            label10.Text = "Ảnh Sinh Viên";
+            label10.Text = "Image";
             // 
             // btnAdd
             // 
@@ -235,7 +237,7 @@ namespace LoginForm
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(127, 44);
             btnAdd.TabIndex = 21;
-            btnAdd.Text = "Thêm Sinh Viên";
+            btnAdd.Text = "Add student";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
@@ -245,7 +247,7 @@ namespace LoginForm
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(136, 44);
             btnClear.TabIndex = 22;
-            btnClear.Text = "Xóa hết thông tin";
+            btnClear.Text = "Reset";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
@@ -255,11 +257,11 @@ namespace LoginForm
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(136, 44);
             btnQuit.TabIndex = 23;
-            btnQuit.Text = "Thoát";
+            btnQuit.Text = "Cancel";
             btnQuit.UseVisualStyleBackColor = true;
             btnQuit.Click += btnQuit_Click;
             // 
-            // Form1
+            // AddStudent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -288,8 +290,8 @@ namespace LoginForm
             Controls.Add(txtMSSV);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form1";
-            Text = "AddSinhVien";
+            Name = "AddStudent";
+            Text = "Add Student";
             Load += StudentAdd_Load;
             ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
             ResumeLayout(false);

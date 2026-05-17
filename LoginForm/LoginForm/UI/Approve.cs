@@ -26,10 +26,9 @@ namespace LoginForm
         {
             dataGridView_AcceptUser.Rows.Clear();
 
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
-            {
-                conn.Open();
+         
+                My_DB db = new My_DB();
+            db.openConnection();
 
                 string query = @"
                 SELECT Id, UserName
@@ -37,7 +36,7 @@ namespace LoginForm
                 WHERE IsApproved = 0";
 
                 SqlCommand cmd =
-                    new SqlCommand(query, conn);
+                    new SqlCommand(query, db.getConnection);
 
                 SqlDataReader reader =
                     cmd.ExecuteReader();
@@ -52,7 +51,8 @@ namespace LoginForm
                 }
 
                 reader.Close();
-            }
+            db.closeConnection();
+
         }
 
         // CLICK BUTTON
