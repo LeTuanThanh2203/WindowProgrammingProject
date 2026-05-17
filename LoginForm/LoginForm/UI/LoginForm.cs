@@ -12,7 +12,14 @@ namespace LoginForm
         {
             InitializeComponent();
         }
-
+        private void LoginForm_Load(
+        object sender,
+        EventArgs e)
+        {
+            txt_UserName.Text =
+                Project_Group6.Properties
+                .Settings.Default.Username;
+        }
         private void cb_isShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_isShowPassword.Checked)
@@ -214,6 +221,23 @@ namespace LoginForm
 
                     txt_Password.Clear();
                     txt_Password.Focus();
+                }
+                if (cb_RememberMe.Checked)
+                {
+                    Project_Group6.Properties
+                        .Settings.Default.Username =
+                        txt_UserName.Text;
+
+                    Project_Group6.Properties
+                        .Settings.Default.Save();
+                }
+                else
+                {
+                    Project_Group6.Properties
+                        .Settings.Default.Username = "";
+
+                    Project_Group6.Properties
+                        .Settings.Default.Save();
                 }
 
                 db.closeConnection();

@@ -72,20 +72,13 @@ namespace LoginForm
         LoginForm login = new LoginForm();
         login.Show();
         this.Close();
-<<<<<<< Updated upstream
-
-=======
-            // 4. Clear
->>>>>>> Stashed changes
 
         // 4. Clear
         txt_UserName.Clear();
         txt_Password.Clear();
-<<<<<<< Updated upstream
         txt_Email.Clear(); // có thể xóa dòng này nếu bỏ luôn textbox
-=======
-            txt_Email.Clear(); // có thể xóa dòng này nếu bỏ luôn textbox
->>>>>>> Stashed changes
+
+
     }
 }
     

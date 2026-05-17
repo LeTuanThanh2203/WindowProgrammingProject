@@ -56,12 +56,6 @@ namespace ProjectMonHoc
                 conn.Dispose();
             }
         }
-        public void Dispose()
-        {
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
-        }
+        
     }
 }

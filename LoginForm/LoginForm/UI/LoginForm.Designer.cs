@@ -37,6 +37,7 @@
             txt_Password = new TextBox();
             cb_isShowPassword = new CheckBox();
             linklbl_Register = new LinkLabel();
+            cb_RememberMe = new CheckBox();
             SuspendLayout();
             // 
             // lbl_Title
@@ -143,11 +144,24 @@
             linklbl_Register.Text = "Register";
             linklbl_Register.LinkClicked += linklbl_Register_LinkClicked;
             // 
+            // cb_RememberMe
+            // 
+            cb_RememberMe.AutoSize = true;
+            cb_RememberMe.Font = new Font("Dubai", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cb_RememberMe.Location = new Point(942, 389);
+            cb_RememberMe.Margin = new Padding(4, 3, 4, 3);
+            cb_RememberMe.Name = "cb_RememberMe";
+            cb_RememberMe.Size = new Size(110, 26);
+            cb_RememberMe.TabIndex = 11;
+            cb_RememberMe.Text = "Remember Me";
+            cb_RememberMe.UseVisualStyleBackColor = true;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(11F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1277, 696);
+            Controls.Add(cb_RememberMe);
             Controls.Add(linklbl_Register);
             Controls.Add(cb_isShowPassword);
             Controls.Add(txt_Password);
@@ -161,6 +175,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "LoginForm";
             Text = "Login Form";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,5 +191,6 @@
         private TextBox txt_Password;
         private CheckBox cb_isShowPassword;
         private LinkLabel linklbl_Register;
+        private CheckBox cb_RememberMe;
     }
 }
