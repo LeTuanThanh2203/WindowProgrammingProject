@@ -30,53 +30,55 @@ namespace LoginForm
             }
         }
         private void bt_Register_Click(object sender, EventArgs e)
+{
+    using (My_DB db = new My_DB())
+    {
+        string username = txt_UserName.Text.Trim();
+        string password = txt_Password.Text.Trim();
+
+        // 1. Check rỗng
+        if (username == "" || password == "")
         {
+            MessageBox.Show("Please enter username and password!");
+            return;
+        }
 
-            My_DB db = new My_DB();
-            string username = txt_UserName.Text.Trim();
-                string password = txt_Password.Text.Trim();
+        // 2. Check username tồn tại
+        string checkQuery = "SELECT COUNT(*) FROM DataLoginForm WHERE UserName = @user";
+        SqlCommand checkCmd = new SqlCommand(checkQuery, db.getConnection);
+        checkCmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
 
-                // 1. Check rỗng
-                if (username == "" || password == "")
-                {
-                    MessageBox.Show("Please enter username and password!");
-                    return;
-                }
+        db.openConnection();
 
-                // 2. Check username tồn tại
-                string checkQuery = "SELECT COUNT(*) FROM DataLoginForm WHERE UserName = @user";
-                SqlCommand checkCmd = new SqlCommand(checkQuery, db.getConnection);
-                checkCmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+        int count = (int)checkCmd.ExecuteScalar();
 
-                db.openConnection();
+        if (count > 0)
+        {
+            MessageBox.Show("Username already exists!");
+            return;
+        }
 
-                int count = (int)checkCmd.ExecuteScalar();
+        // 3. Insert
+        string insertQuery = "INSERT INTO DataLoginForm (UserName, Password) VALUES (@user, @pass)";
+        SqlCommand cmd = new SqlCommand(insertQuery, db.getConnection);
 
-                if (count > 0)
-                {
-                    MessageBox.Show("Username already exists!");
-                    return;
-                }
+        cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+        cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = password;
 
-                // 3. Insert
-                string insertQuery = "INSERT INTO DataLoginForm (UserName, Password) VALUES (@user, @pass)";
-                SqlCommand cmd = new SqlCommand(insertQuery, db.getConnection);
+        cmd.ExecuteNonQuery();
 
-                cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
-                cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = password;
+        MessageBox.Show("Register successful!");
 
-                cmd.ExecuteNonQuery();
+        LoginForm login = new LoginForm();
+        login.Show();
+        this.Close();
 
-                MessageBox.Show("Register successful!");
 
-                LoginForm login = new LoginForm();
-                login.Show();
-                this.Close();
-            // 4. Clear
-                db.closeConnection();
-                txt_UserName.Clear();
-                txt_Password.Clear();
-                txt_Email.Clear(); // có thể xóa dòng này nếu bỏ luôn textbox
+        // 4. Clear
+        txt_UserName.Clear();
+        txt_Password.Clear();
+        txt_Email.Clear(); // có thể xóa dòng này nếu bỏ luôn textbox
+    }
 }
     
         private void bt_Cancel_Click(object sender, EventArgs e)
