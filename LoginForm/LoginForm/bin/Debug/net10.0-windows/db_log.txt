@@ -6,3 +6,13 @@
 [17/05/2026 9:03:05 CH] Connection Closed
 [17/05/2026 9:07:11 CH] Connection Opened
 [17/05/2026 9:07:12 CH] Connection Closed
+[18/05/2026 1:44:42 SA] Connection Opened
+[18/05/2026 1:46:10 SA] Connection Opened
+[18/05/2026 1:47:35 SA] Connection Opened
+[18/05/2026 1:47:35 SA] WARNING: Connection Leak Detected
+[18/05/2026 2:17:13 SA] Connection Opened
+[18/05/2026 2:17:13 SA] WARNING: Connection Leak Detected
+[18/05/2026 2:18:34 SA] Connection Opened
+[18/05/2026 2:18:35 SA] WARNING: Connection Leak Detected
+[18/05/2026 2:22:15 SA] Connection Opened
+[18/05/2026 2:22:15 SA] WARNING: Connection Leak Detected

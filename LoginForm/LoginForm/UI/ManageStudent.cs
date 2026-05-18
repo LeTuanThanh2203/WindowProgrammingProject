@@ -17,7 +17,7 @@ namespace LoginForm
 
         public ManageStudent()
         {
-  
+
             InitializeComponent();
         }
 
@@ -65,6 +65,14 @@ namespace LoginForm
             {
                 MessageBox.Show(ex.Message);
             }
+            lblID.Text = "";
+            lblFirstname.Text = "";
+            lblLastname.Text = "";
+            lblDob.Text = "";
+            lblGender.Text = "";
+            lblPhone.Text = "";
+            lblAddress.Text = "";
+            lblEmail.Text = "";
         }
 
         // =========================
@@ -79,6 +87,33 @@ namespace LoginForm
                 DataGridViewRow row =
                     dgvStudent.Rows[e.RowIndex];
 
+                lblID.Text =
+          row.Cells["MSSV"].Value.ToString();
+
+                lblFirstname.Text =
+                    row.Cells["FirstName"].Value.ToString();
+
+                lblLastname.Text =
+                    row.Cells["LastName"].Value.ToString();
+
+                lblDob.Text =
+                    Convert.ToDateTime(
+                        row.Cells["Dob"].Value)
+                        .ToString("dd/MM/yyyy");
+
+                lblGender.Text =
+                    row.Cells["Gender"].Value.ToString();
+
+                lblPhone.Text =
+                    row.Cells["Phone"].Value.ToString();
+
+                lblAddress.Text =
+                    row.Cells["Address"].Value.ToString();
+
+                lblEmail.Text =
+                    row.Cells["Email"].Value.ToString();
+
+                // Hien thi anh neu co, neu khong co thi xoa anh cu
                 if (row.Cells["Picture"].Value
                     != DBNull.Value)
                 {
@@ -120,7 +155,7 @@ namespace LoginForm
         {
             this.Close();
         }
-  
+
         private void btnAdd_Click(
          object sender,
          EventArgs e)
@@ -130,6 +165,8 @@ namespace LoginForm
 
             addStudent.Show();
         }
+
+      
     }
 
 

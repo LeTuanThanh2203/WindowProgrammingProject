@@ -70,9 +70,9 @@
             lbl_Username.Location = new Point(111, 211);
             lbl_Username.Margin = new Padding(4, 0, 4, 0);
             lbl_Username.Name = "lbl_Username";
-            lbl_Username.Size = new Size(181, 32);
+            lbl_Username.Size = new Size(173, 32);
             lbl_Username.TabIndex = 4;
-            lbl_Username.Text = "USER NAME";
+            lbl_Username.Text = "USERNAME";
             // 
             // bt_Cancel
             // 
@@ -102,7 +102,7 @@
             // 
             // txt_UserName
             // 
-            txt_UserName.Location = new Point(353, 211);
+            txt_UserName.Location = new Point(353, 210);
             txt_UserName.Margin = new Padding(4, 3, 4, 3);
             txt_UserName.Multiline = true;
             txt_UserName.Name = "txt_UserName";
