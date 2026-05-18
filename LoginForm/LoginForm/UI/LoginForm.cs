@@ -165,7 +165,7 @@ namespace LoginForm
                         else if (role == "Manager")
                         {
  
-                            ManageStudent manageStudent = new ManageStudent();
+                            f_ListStudent manageStudent = new f_ListStudent();
                             manageStudent.Show();
                         }
                         else if (role == "User")

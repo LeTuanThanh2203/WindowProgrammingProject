@@ -16,3 +16,41 @@
 [18/05/2026 2:18:35 SA] WARNING: Connection Leak Detected
 [18/05/2026 2:22:15 SA] Connection Opened
 [18/05/2026 2:22:15 SA] WARNING: Connection Leak Detected
+[18/05/2026 1:33:37 CH] Connection Opened
+[18/05/2026 1:35:37 CH] Connection Opened
+[18/05/2026 1:36:22 CH] Connection Opened
+[18/05/2026 1:36:22 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:39:11 CH] Connection Opened
+[18/05/2026 1:39:12 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:41:00 CH] Connection Opened
+[18/05/2026 1:41:00 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:43:12 CH] Connection Opened
+[18/05/2026 1:43:12 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:45:19 CH] Connection Opened
+[18/05/2026 1:45:20 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:45:22 CH] Connection Opened
+[18/05/2026 1:45:22 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:49:09 CH] Connection Opened
+[18/05/2026 1:49:09 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:52:11 CH] Connection Opened
+[18/05/2026 1:52:11 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:53:09 CH] Connection Opened
+[18/05/2026 1:53:10 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:56:16 CH] Connection Opened
+[18/05/2026 1:56:16 CH] WARNING: Connection Leak Detected
+[18/05/2026 1:58:27 CH] Connection Opened
+[18/05/2026 1:58:27 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:01:09 CH] Connection Opened
+[18/05/2026 2:01:09 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:02:50 CH] Connection Opened
+[18/05/2026 2:02:50 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:03:10 CH] Connection Opened
+[18/05/2026 2:03:10 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:06:53 CH] Connection Opened
+[18/05/2026 2:06:53 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:07:18 CH] Connection Opened
+[18/05/2026 2:07:18 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:07:53 CH] Connection Opened
+[18/05/2026 2:07:53 CH] WARNING: Connection Leak Detected
+[18/05/2026 2:08:20 CH] Connection Opened
+[18/05/2026 2:08:20 CH] WARNING: Connection Leak Detected
