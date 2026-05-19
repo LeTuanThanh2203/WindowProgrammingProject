@@ -1,4 +1,6 @@
-﻿using ProjectMonHoc;
+﻿using Microsoft.Data.SqlClient;
+using Project_Group6.UI;
+using ProjectMonHoc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +8,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace LoginForm
 {
@@ -287,6 +288,16 @@ namespace LoginForm
             }
 
             LoadData();
+        }
+        private void btnEdit_Click(
+          object sender,
+        EventArgs e)
+        {
+            f_EditDeleteStudent editdeleteStudent =
+              new f_EditDeleteStudent();
+
+            editdeleteStudent.ShowDialog();
+        
         }
 
 

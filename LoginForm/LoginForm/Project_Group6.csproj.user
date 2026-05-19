@@ -1,22 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="UI\f_EditDeleteStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\f_ForgetPass.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\Approve.cs">
+    <Compile Update="UI\f_Approve.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_ListStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\LoginForm.cs">
+    <Compile Update="UI\f_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\RegisterForm.cs">
+    <Compile Update="UI\f_LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\f_Overview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\f_RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

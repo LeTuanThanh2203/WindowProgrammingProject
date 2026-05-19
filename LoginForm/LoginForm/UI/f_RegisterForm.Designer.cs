@@ -2,7 +2,7 @@
 
 namespace LoginForm
 {
-    public partial class RegisterForm
+    public partial class f_RegisterForm
     {
         /// <summary>
         ///  Required designer variable.

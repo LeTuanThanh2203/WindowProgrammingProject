@@ -12,9 +12,9 @@ namespace LoginForm
     using Microsoft.Data.SqlClient;
     using ProjectMonHoc;
     using System.Data;
-    public partial class RegisterForm : Form
+    public partial class f_RegisterForm : Form
     {
-        public RegisterForm()
+        public f_RegisterForm()
         {
             InitializeComponent();
         }
@@ -69,7 +69,7 @@ namespace LoginForm
 
         MessageBox.Show("Register successful!");
 
-        LoginForm login = new LoginForm();
+        f_LoginForm login = new f_LoginForm();
         login.Show();
         this.Close();
 
@@ -84,7 +84,7 @@ namespace LoginForm
     
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
-            LoginForm login = new LoginForm();
+            f_LoginForm login = new f_LoginForm();
             login.Show();
             this.Close();
         }

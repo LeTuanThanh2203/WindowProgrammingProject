@@ -13,7 +13,7 @@ namespace LoginForm
 {
     public partial class f_ForgetPass : Form
     {
-        f_OTP otpManager = new f_OTP();
+        OTP otpManager = new OTP();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         public f_ForgetPass()
         {
@@ -184,7 +184,7 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            LoginForm login = new LoginForm();
+            f_LoginForm login = new f_LoginForm();
             login.Show();
             this.Close();
         }

@@ -3,12 +3,12 @@ using ProjectMonHoc;
 using System.Configuration;
 namespace LoginForm
 {
-    public partial class Approve : Form
+    public partial class f_Approve : Form
     {
         string connStr =
        ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
 
-        public Approve()
+        public f_Approve()
         {
             InitializeComponent();
 
@@ -122,7 +122,7 @@ namespace LoginForm
 
         private void bt_Quit_Click(object sender, EventArgs e)
         {
-            LoginForm login = new LoginForm();
+            f_LoginForm login = new f_LoginForm();
             login.Show();
             this.Close();
         }

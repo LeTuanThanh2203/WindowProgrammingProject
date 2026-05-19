@@ -63,6 +63,7 @@
             lblIDInfo = new Label();
             picStudent = new PictureBox();
             pnFunction = new Panel();
+            btnEdit = new Button();
             lblTotal = new Label();
             btnClose = new Button();
             btnRefresh = new Button();
@@ -80,6 +81,7 @@
             dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudent.Location = new Point(351, 46);
             dgvStudent.Name = "dgvStudent";
+            dgvStudent.ReadOnly = true;
             dgvStudent.RowHeadersVisible = false;
             dgvStudent.RowHeadersWidth = 51;
             dgvStudent.Size = new Size(1150, 584);
@@ -151,7 +153,7 @@
             // 
             // btAdd
             // 
-            btAdd.Location = new Point(909, 13);
+            btAdd.Location = new Point(797, 13);
             btAdd.Name = "btAdd";
             btAdd.Size = new Size(124, 40);
             btAdd.TabIndex = 1;
@@ -394,6 +396,7 @@
             // 
             // pnFunction
             // 
+            pnFunction.Controls.Add(btnEdit);
             pnFunction.Controls.Add(lblTotal);
             pnFunction.Controls.Add(btnClose);
             pnFunction.Controls.Add(btnRefresh);
@@ -403,6 +406,16 @@
             pnFunction.Name = "pnFunction";
             pnFunction.Size = new Size(1504, 157);
             pnFunction.TabIndex = 3;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Location = new Point(929, 13);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(124, 40);
+            btnEdit.TabIndex = 5;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // lblTotal
             // 
@@ -501,5 +514,6 @@
         private ComboBox cboSort;
         private TextBox txtSearch;
         private Label lblTotal;
+        private Button btnEdit;
     }
 }

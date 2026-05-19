@@ -8,9 +8,9 @@ namespace LoginForm
     using ProjectMonHoc;
     using System.Data;
 
-    public partial class LoginForm : Form
+    public partial class f_LoginForm : Form
     {
-        public LoginForm()
+        public f_LoginForm()
         {
             InitializeComponent();
         }
@@ -152,28 +152,35 @@ namespace LoginForm
                                 "Account is waiting for approval!");
                             return;
                         }
+                        f_Main mainForm =
+                        new f_Main();
 
-
-                        // PHÂN QUYỀN
-                        if (role == "Admin")
-                        {
-                            Approve approveForm =
-                                new Approve();
-
-                            approveForm.Show();
-                        }
-                        else if (role == "Manager")
-                        {
-
-                            f_ListStudent manageStudent = new f_ListStudent();
-                            manageStudent.Show();
-                        }
-                        else if (role == "User")
-                        {
-
-                        }
+                        mainForm.Show();
 
                         this.Hide();
+
+                        //// PHÂN QUYỀN
+                        //if (role == "Admin")
+                        //{
+                        //    //f_Approve approveForm =
+                        //    //    new f_Approve();
+
+                        //    //approveForm.Show();
+                        //    f_Main mainForm = new f_Main();
+
+                        //}
+                        //else if (role == "Manager")
+                        //{
+
+                        //    f_ListStudent manageStudent = new f_ListStudent();
+                        //    manageStudent.Show();
+                        //}
+                        //else if (role == "User")
+                        //{
+
+                        //}
+
+                        //this.Hide();
                     }
                     else
                     {
@@ -258,7 +265,7 @@ namespace LoginForm
         }
         private void linklbl_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegisterForm registerForm = new RegisterForm();
+            f_RegisterForm registerForm = new f_RegisterForm();
             registerForm.Show();
             this.Hide();
         }

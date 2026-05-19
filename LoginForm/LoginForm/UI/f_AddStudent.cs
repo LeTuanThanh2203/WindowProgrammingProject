@@ -33,10 +33,7 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            LoginForm login =
-        new LoginForm();
 
-            login.Show();
 
             this.Hide();
         }

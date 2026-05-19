@@ -1,6 +1,6 @@
 ﻿namespace LoginForm
 {
-    partial class Approve
+    partial class f_Approve
     {
         /// <summary>
         /// Required designer variable.

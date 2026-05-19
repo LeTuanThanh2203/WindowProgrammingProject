@@ -5,7 +5,7 @@ using System.Net.Mail;
 
 namespace ProjectMonHoc
 {
-    internal class f_OTP
+    internal class OTP
     {
         // Gmail gửi OTP
         private readonly MailAddress fromAddress =
