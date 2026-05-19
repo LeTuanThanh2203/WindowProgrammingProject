@@ -38,6 +38,7 @@
             cb_isShowPassword = new CheckBox();
             linklbl_Register = new LinkLabel();
             cb_RememberMe = new CheckBox();
+            linklbl_ForgotPassword = new LinkLabel();
             SuspendLayout();
             // 
             // lbl_Title
@@ -102,6 +103,7 @@
             // 
             // txt_UserName
             // 
+            txt_UserName.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_UserName.Location = new Point(353, 210);
             txt_UserName.Margin = new Padding(4, 3, 4, 3);
             txt_UserName.Multiline = true;
@@ -111,10 +113,11 @@
             // 
             // txt_Password
             // 
+            txt_Password.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_Password.Location = new Point(353, 337);
             txt_Password.Margin = new Padding(4, 3, 4, 3);
             txt_Password.Name = "txt_Password";
-            txt_Password.Size = new Size(705, 28);
+            txt_Password.Size = new Size(705, 33);
             txt_Password.TabIndex = 8;
             txt_Password.UseSystemPasswordChar = true;
             // 
@@ -148,7 +151,7 @@
             // 
             cb_RememberMe.AutoSize = true;
             cb_RememberMe.Font = new Font("Dubai", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cb_RememberMe.Location = new Point(942, 389);
+            cb_RememberMe.Location = new Point(948, 389);
             cb_RememberMe.Margin = new Padding(4, 3, 4, 3);
             cb_RememberMe.Name = "cb_RememberMe";
             cb_RememberMe.Size = new Size(110, 26);
@@ -156,11 +159,26 @@
             cb_RememberMe.Text = "Remember Me";
             cb_RememberMe.UseVisualStyleBackColor = true;
             // 
+            // linklbl_ForgotPassword
+            // 
+            linklbl_ForgotPassword.AutoSize = true;
+            linklbl_ForgotPassword.Font = new Font("Microsoft PhagsPa", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linklbl_ForgotPassword.LinkColor = Color.Fuchsia;
+            linklbl_ForgotPassword.Location = new Point(788, 592);
+            linklbl_ForgotPassword.Margin = new Padding(4, 0, 4, 0);
+            linklbl_ForgotPassword.Name = "linklbl_ForgotPassword";
+            linklbl_ForgotPassword.Size = new Size(270, 44);
+            linklbl_ForgotPassword.TabIndex = 12;
+            linklbl_ForgotPassword.TabStop = true;
+            linklbl_ForgotPassword.Text = "Forgot Password";
+            linklbl_ForgotPassword.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(11F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1277, 696);
+            Controls.Add(linklbl_ForgotPassword);
             Controls.Add(cb_RememberMe);
             Controls.Add(linklbl_Register);
             Controls.Add(cb_isShowPassword);
@@ -192,5 +210,6 @@
         private CheckBox cb_isShowPassword;
         private LinkLabel linklbl_Register;
         private CheckBox cb_RememberMe;
+        private LinkLabel linklbl_ForgotPassword;
     }
 }

@@ -149,11 +149,11 @@ namespace LoginForm
                         if (isApproved == false)
                         {
                             MessageBox.Show(
-                                "Account is waiting for approval!");                 
+                                "Account is waiting for approval!");
                             return;
                         }
 
-                     
+
                         // PHÂN QUYỀN
                         if (role == "Admin")
                         {
@@ -164,7 +164,7 @@ namespace LoginForm
                         }
                         else if (role == "Manager")
                         {
- 
+
                             f_ListStudent manageStudent = new f_ListStudent();
                             manageStudent.Show();
                         }
@@ -229,7 +229,7 @@ namespace LoginForm
                     }
 
                     // NHỚ TÀI KHOẢN
-                    if (cb_RememberMe.Checked)     
+                    if (cb_RememberMe.Checked)
                     {
                         Project_Group6.Properties
                             .Settings.Default.Username =
@@ -247,7 +247,7 @@ namespace LoginForm
                             .Settings.Default.Save();
                     }
 
-                
+
                 }
             }
         }
@@ -260,6 +260,13 @@ namespace LoginForm
         {
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
+            this.Hide();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            f_ForgetPass forgetPass = new f_ForgetPass();
+            forgetPass.Show();
             this.Hide();
         }
     }

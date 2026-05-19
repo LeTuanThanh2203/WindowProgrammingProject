@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project_Group6
+namespace LoginForm
 {
     internal class Globals
     {
