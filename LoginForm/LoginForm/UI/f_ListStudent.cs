@@ -301,6 +301,21 @@ namespace LoginForm
         }
 
 
+        public void OpenAddStudent()
+        {
+            f_AddStudent add =
+                new f_AddStudent();
+
+            add.ShowDialog();
+        }
+        public void OpenEditStudent()
+        {
+            f_EditDeleteStudent edit =
+                new f_EditDeleteStudent();
+
+            edit.ShowDialog();
+        }
+
     }
 
 

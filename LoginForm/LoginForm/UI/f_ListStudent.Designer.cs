@@ -79,12 +79,12 @@
             // 
             dgvStudent.BackgroundColor = SystemColors.Control;
             dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudent.Location = new Point(351, 46);
+            dgvStudent.Location = new Point(291, 43);
             dgvStudent.Name = "dgvStudent";
             dgvStudent.ReadOnly = true;
             dgvStudent.RowHeadersVisible = false;
             dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(1150, 584);
+            dgvStudent.Size = new Size(935, 584);
             dgvStudent.TabIndex = 0;
             dgvStudent.CellClick += dgvStudent_CellClick;
             // 
@@ -153,7 +153,7 @@
             // 
             // btAdd
             // 
-            btAdd.Location = new Point(797, 13);
+            btAdd.Location = new Point(560, 13);
             btAdd.Name = "btAdd";
             btAdd.Size = new Size(124, 40);
             btAdd.TabIndex = 1;
@@ -171,13 +171,13 @@
             pnMainDataGridView.Dock = DockStyle.Top;
             pnMainDataGridView.Location = new Point(0, 0);
             pnMainDataGridView.Name = "pnMainDataGridView";
-            pnMainDataGridView.Size = new Size(1504, 630);
+            pnMainDataGridView.Size = new Size(1232, 630);
             pnMainDataGridView.TabIndex = 2;
             // 
             // cboGender
             // 
             cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(476, 12);
+            cboGender.Location = new Point(406, 12);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(97, 28);
             cboGender.TabIndex = 5;
@@ -186,7 +186,7 @@
             // cboSort
             // 
             cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(351, 11);
+            cboSort.Location = new Point(296, 11);
             cboSort.Name = "cboSort";
             cboSort.Size = new Size(101, 28);
             cboSort.TabIndex = 4;
@@ -194,9 +194,10 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(606, 12);
+            txtSearch.Location = new Point(513, 12);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(804, 27);
+            txtSearch.PlaceholderText = "Search";
+            txtSearch.Size = new Size(713, 27);
             txtSearch.TabIndex = 3;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -223,7 +224,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(345, 630);
+            panel1.Size = new Size(285, 630);
             panel1.TabIndex = 2;
             // 
             // label1
@@ -265,7 +266,7 @@
             // lblEmail
             // 
             lblEmail.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmail.Location = new Point(152, 517);
+            lblEmail.Location = new Point(76, 517);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(190, 69);
             lblEmail.TabIndex = 14;
@@ -388,7 +389,7 @@
             // 
             // picStudent
             // 
-            picStudent.Location = new Point(49, 21);
+            picStudent.Location = new Point(26, 21);
             picStudent.Name = "picStudent";
             picStudent.Size = new Size(200, 226);
             picStudent.TabIndex = 1;
@@ -404,12 +405,12 @@
             pnFunction.Dock = DockStyle.Bottom;
             pnFunction.Location = new Point(0, 636);
             pnFunction.Name = "pnFunction";
-            pnFunction.Size = new Size(1504, 157);
+            pnFunction.Size = new Size(1232, 157);
             pnFunction.TabIndex = 3;
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(929, 13);
+            btnEdit.Location = new Point(692, 13);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(124, 40);
             btnEdit.TabIndex = 5;
@@ -420,7 +421,7 @@
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(352, 13);
+            lblTotal.Location = new Point(294, 13);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(100, 20);
             lblTotal.TabIndex = 4;
@@ -428,7 +429,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(1203, 13);
+            btnClose.Location = new Point(966, 13);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(124, 40);
             btnClose.TabIndex = 3;
@@ -438,7 +439,7 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(1059, 13);
+            btnRefresh.Location = new Point(822, 13);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(124, 40);
             btnRefresh.TabIndex = 2;
@@ -455,7 +456,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1504, 793);
+            ClientSize = new Size(1232, 793);
             Controls.Add(pnFunction);
             Controls.Add(pnMainDataGridView);
             Name = "f_ListStudent";

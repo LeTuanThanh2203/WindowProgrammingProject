@@ -79,7 +79,7 @@
             // cboGender
             // 
             cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(125, 4);
+            cboGender.Location = new Point(129, 4);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(111, 28);
             cboGender.TabIndex = 9;
@@ -87,15 +87,16 @@
             // cboSort
             // 
             cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(0, 3);
+            cboSort.Location = new Point(13, 4);
             cboSort.Name = "cboSort";
             cboSort.Size = new Size(111, 28);
             cboSort.TabIndex = 8;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(245, 3);
+            txtSearch.Location = new Point(245, 5);
             txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search";
             txtSearch.Size = new Size(428, 27);
             txtSearch.TabIndex = 7;
             // 
@@ -113,7 +114,7 @@
             // 
             // btnQuit
             // 
-            btnQuit.Location = new Point(473, 614);
+            btnQuit.Location = new Point(398, 614);
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(136, 44);
             btnQuit.TabIndex = 47;
@@ -123,7 +124,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(308, 614);
+            btnDelete.Location = new Point(233, 614);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(136, 44);
             btnDelete.TabIndex = 46;
@@ -133,7 +134,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(144, 614);
+            btnUpdate.Location = new Point(69, 614);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(127, 44);
             btnUpdate.TabIndex = 45;
@@ -144,7 +145,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(119, 12);
+            label10.Location = new Point(120, 12);
             label10.Name = "label10";
             label10.Size = new Size(51, 20);
             label10.TabIndex = 44;
@@ -152,7 +153,7 @@
             // 
             // btnChooseImage
             // 
-            btnChooseImage.Location = new Point(56, 206);
+            btnChooseImage.Location = new Point(57, 206);
             btnChooseImage.Name = "btnChooseImage";
             btnChooseImage.Size = new Size(177, 34);
             btnChooseImage.TabIndex = 43;
@@ -162,7 +163,7 @@
             // 
             // picStudent
             // 
-            picStudent.Location = new Point(79, 38);
+            picStudent.Location = new Point(80, 38);
             picStudent.Name = "picStudent";
             picStudent.Size = new Size(126, 150);
             picStudent.TabIndex = 42;
@@ -322,16 +323,16 @@
             panel2.Controls.Add(btnChooseImage);
             panel2.Controls.Add(btnUpdate);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(679, 0);
+            panel2.Location = new Point(682, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(690, 707);
+            panel2.Size = new Size(585, 707);
             panel2.TabIndex = 48;
             // 
             // f_EditDeleteStudent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1369, 707);
+            ClientSize = new Size(1267, 707);
             Controls.Add(panel1);
             Controls.Add(txtMSSV);
             Controls.Add(label1);
