@@ -396,15 +396,24 @@ public class Student
 
         return table;
     }
-    public double totalStudent()
+    public int TotalStudent()
     {
-        SqlCommand command =
-            new SqlCommand(
-                "SELECT COUNT(*) FROM Student");
+        using (My_DB db = new My_DB())
+        {
 
-        return Convert.ToDouble(
-            getStudents(command)
-            .Rows.Count);
+            SqlCommand command =
+                new SqlCommand(
+                    "SELECT COUNT(*) FROM Student",
+                    db.getConnection);
+
+            db.openConnection();
+
+            int total =
+                Convert.ToInt32(
+                    command.ExecuteScalar());
+
+            return total;
+        }
     }
     public double totalMaleStudent()
     {

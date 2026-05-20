@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
-            btnOverview = new Button();
             pnMenu = new Panel();
+            progressAI = new ProgressBar();
+            btnOverview = new Button();
+            lblAIStatus = new Label();
             label1 = new Label();
             btnAskAI = new Button();
             txtAI = new TextBox();
@@ -40,10 +43,11 @@
             btnStudent = new Button();
             pnLogo = new Panel();
             pnBody = new Panel();
-            lblAIStatus = new Label();
-            progressAI = new ProgressBar();
+            pictureBox1 = new PictureBox();
             pnSidebar.SuspendLayout();
             pnMenu.SuspendLayout();
+            pnLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnSidebar
@@ -55,19 +59,6 @@
             pnSidebar.Name = "pnSidebar";
             pnSidebar.Size = new Size(311, 775);
             pnSidebar.TabIndex = 0;
-            // 
-            // btnOverview
-            // 
-            btnOverview.BackColor = Color.Transparent;
-            btnOverview.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOverview.ForeColor = Color.Black;
-            btnOverview.Location = new Point(0, 3);
-            btnOverview.Name = "btnOverview";
-            btnOverview.Size = new Size(298, 81);
-            btnOverview.TabIndex = 0;
-            btnOverview.Text = "Overview";
-            btnOverview.UseVisualStyleBackColor = false;
-            btnOverview.Click += btnOverview_Click;
             // 
             // pnMenu
             // 
@@ -85,6 +76,36 @@
             pnMenu.Name = "pnMenu";
             pnMenu.Size = new Size(304, 622);
             pnMenu.TabIndex = 1;
+            // 
+            // progressAI
+            // 
+            progressAI.Location = new Point(8, 442);
+            progressAI.Name = "progressAI";
+            progressAI.Size = new Size(281, 10);
+            progressAI.TabIndex = 0;
+            progressAI.Visible = false;
+            // 
+            // btnOverview
+            // 
+            btnOverview.BackColor = Color.Transparent;
+            btnOverview.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOverview.ForeColor = Color.Black;
+            btnOverview.Location = new Point(0, 3);
+            btnOverview.Name = "btnOverview";
+            btnOverview.Size = new Size(301, 81);
+            btnOverview.TabIndex = 0;
+            btnOverview.Text = "Overview";
+            btnOverview.UseVisualStyleBackColor = false;
+            btnOverview.Click += btnOverview_Click;
+            // 
+            // lblAIStatus
+            // 
+            lblAIStatus.AutoSize = true;
+            lblAIStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAIStatus.Location = new Point(7, 455);
+            lblAIStatus.Name = "lblAIStatus";
+            lblAIStatus.Size = new Size(0, 20);
+            lblAIStatus.TabIndex = 0;
             // 
             // label1
             // 
@@ -118,6 +139,7 @@
             // 
             // lblRole
             // 
+            lblRole.Anchor = AnchorStyles.Bottom;
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.Location = new Point(11, 564);
@@ -128,6 +150,7 @@
             // 
             // lblUser
             // 
+            lblUser.Anchor = AnchorStyles.Bottom;
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUser.Location = new Point(11, 538);
@@ -164,6 +187,7 @@
             // 
             // pnLogo
             // 
+            pnLogo.Controls.Add(pictureBox1);
             pnLogo.Location = new Point(3, 3);
             pnLogo.Name = "pnLogo";
             pnLogo.Size = new Size(301, 141);
@@ -171,28 +195,21 @@
             // 
             // pnBody
             // 
-            pnBody.Dock = DockStyle.Right;
-            pnBody.Location = new Point(313, 0);
+            pnBody.Dock = DockStyle.Fill;
+            pnBody.Location = new Point(311, 0);
             pnBody.Name = "pnBody";
-            pnBody.Size = new Size(1169, 775);
+            pnBody.Size = new Size(1171, 775);
             pnBody.TabIndex = 1;
             // 
-            // lblAIStatus
+            // pictureBox1
             // 
-            lblAIStatus.AutoSize = true;
-            lblAIStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAIStatus.Location = new Point(7, 455);
-            lblAIStatus.Name = "lblAIStatus";
-            lblAIStatus.Size = new Size(0, 20);
-            lblAIStatus.TabIndex = 0;
-            // 
-            // progressAI
-            // 
-            progressAI.Location = new Point(8, 442);
-            progressAI.Name = "progressAI";
-            progressAI.Size = new Size(281, 10);
-            progressAI.TabIndex = 0;
-            progressAI.Visible = false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(93, 9);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 111);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // f_Main
             // 
@@ -207,6 +224,8 @@
             pnSidebar.ResumeLayout(false);
             pnMenu.ResumeLayout(false);
             pnMenu.PerformLayout();
+            pnLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -226,5 +245,6 @@
         private Label label1;
         private ProgressBar progressAI;
         private Label lblAIStatus;
+        private PictureBox pictureBox1;
     }
 }

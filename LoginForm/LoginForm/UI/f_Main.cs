@@ -49,6 +49,7 @@ namespace LoginForm
                 btnStudent.Visible = true;
 
                 btnStudent.Visible = true;
+                OpenForm(new f_Overview());
             }
 
             // MANAGER
@@ -57,6 +58,7 @@ namespace LoginForm
                 btnOverview.Visible = true;
 
                 btnStudent.Visible = true;
+                OpenForm(new f_Overview());
             }
 
             // USER
@@ -219,6 +221,10 @@ namespace LoginForm
               
             }
         }
+
+
+
+
     }
 
 }

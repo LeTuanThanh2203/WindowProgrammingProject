@@ -180,9 +180,9 @@
             lbl_ReenterPass.Location = new Point(116, 515);
             lbl_ReenterPass.Margin = new Padding(4, 0, 4, 0);
             lbl_ReenterPass.Name = "lbl_ReenterPass";
-            lbl_ReenterPass.Size = new Size(319, 32);
+            lbl_ReenterPass.Size = new Size(316, 32);
             lbl_ReenterPass.TabIndex = 30;
-            lbl_ReenterPass.Text = "REENTER PASSWORD";
+            lbl_ReenterPass.Text = "CONFIRM PASSWORD";
             // 
             // lbl_Time
             // 

@@ -46,8 +46,20 @@ namespace LoginForm
                             {
                                 role = "system",
 
+                                //content =
+                                //"Return only: add_student,edit_student,approve_account,overview,list_students,help,exit"
                                 content =
-                                "Return only: add_student,edit_student,approve_account,overview,list_students,help,exit"
+                                @"VN command mapping:
+
+                                thêm sinh viên=add_student
+                                sửa sinh viên=edit_student
+                                duyệt tài khoản=approve_account
+                                tổng quan=overview
+                                danh sách sinh viên=list_students
+                                trợ giúp=help
+                                thoát=exit
+
+                                Only return command."
                             },
 
                             new
