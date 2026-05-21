@@ -107,16 +107,10 @@ namespace ProjectMonHoc
         // Gửi OTP bằng UserName
         // =========================
         public bool SendOTP(
-            string username)
+            string email)
         {
             try
             {
-                // Tìm email
-                string email =
-                    GetEmailByUsername(
-                        username);
-                MessageBox.Show(email);
-
                 // Không tìm thấy username
                 if (string.IsNullOrEmpty(email))
                 {

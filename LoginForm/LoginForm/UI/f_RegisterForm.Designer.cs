@@ -40,6 +40,10 @@ namespace LoginForm
             lbl_Password = new Label();
             txt_Email = new TextBox();
             lbl_Email = new Label();
+            lbl_Time = new Label();
+            bt_OTP = new Button();
+            txt_OTP = new TextBox();
+            lbl_OTP = new Label();
             SuspendLayout();
             // 
             // lbl_Title
@@ -58,7 +62,7 @@ namespace LoginForm
             // 
             cb_isShowPassword.AutoSize = true;
             cb_isShowPassword.Font = new Font("Dubai", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cb_isShowPassword.Location = new Point(237, 539);
+            cb_isShowPassword.Location = new Point(237, 670);
             cb_isShowPassword.Margin = new Padding(4, 3, 4, 3);
             cb_isShowPassword.Name = "cb_isShowPassword";
             cb_isShowPassword.Size = new Size(116, 26);
@@ -69,7 +73,7 @@ namespace LoginForm
             // 
             // txt_Password
             // 
-            txt_Password.Location = new Point(237, 486);
+            txt_Password.Location = new Point(237, 617);
             txt_Password.Margin = new Padding(4, 3, 4, 3);
             txt_Password.Name = "txt_Password";
             txt_Password.Size = new Size(705, 27);
@@ -89,7 +93,7 @@ namespace LoginForm
             // 
             bt_Register.BackColor = Color.Lime;
             bt_Register.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bt_Register.Location = new Point(690, 594);
+            bt_Register.Location = new Point(690, 725);
             bt_Register.Margin = new Padding(4, 3, 4, 3);
             bt_Register.Name = "bt_Register";
             bt_Register.Size = new Size(252, 58);
@@ -102,7 +106,7 @@ namespace LoginForm
             // 
             bt_Cancel.BackColor = Color.Red;
             bt_Cancel.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bt_Cancel.Location = new Point(237, 594);
+            bt_Cancel.Location = new Point(237, 725);
             bt_Cancel.Margin = new Padding(4, 3, 4, 3);
             bt_Cancel.Name = "bt_Cancel";
             bt_Cancel.Size = new Size(252, 58);
@@ -126,7 +130,7 @@ namespace LoginForm
             // 
             lbl_Password.AutoSize = true;
             lbl_Password.Font = new Font("Arial", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Password.Location = new Point(237, 435);
+            lbl_Password.Location = new Point(237, 566);
             lbl_Password.Margin = new Padding(4, 0, 4, 0);
             lbl_Password.Name = "lbl_Password";
             lbl_Password.Size = new Size(178, 32);
@@ -152,11 +156,52 @@ namespace LoginForm
             lbl_Email.TabIndex = 17;
             lbl_Email.Text = "Your Email";
             // 
-            // RegisterForm
+            // lbl_Time
+            // 
+            lbl_Time.AutoSize = true;
+            lbl_Time.Location = new Point(725, 519);
+            lbl_Time.Name = "lbl_Time";
+            lbl_Time.Size = new Size(0, 20);
+            lbl_Time.TabIndex = 36;
+            // 
+            // bt_OTP
+            // 
+            bt_OTP.Location = new Point(816, 489);
+            bt_OTP.Name = "bt_OTP";
+            bt_OTP.Size = new Size(126, 27);
+            bt_OTP.TabIndex = 35;
+            bt_OTP.Text = "Send";
+            bt_OTP.UseVisualStyleBackColor = true;
+            bt_OTP.Click += bt_OTP_Click;
+            // 
+            // txt_OTP
+            // 
+            txt_OTP.Location = new Point(237, 489);
+            txt_OTP.Margin = new Padding(4, 3, 4, 3);
+            txt_OTP.Name = "txt_OTP";
+            txt_OTP.Size = new Size(564, 27);
+            txt_OTP.TabIndex = 34;
+            // 
+            // lbl_OTP
+            // 
+            lbl_OTP.AutoSize = true;
+            lbl_OTP.Font = new Font("Arial", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_OTP.Location = new Point(237, 437);
+            lbl_OTP.Margin = new Padding(4, 0, 4, 0);
+            lbl_OTP.Name = "lbl_OTP";
+            lbl_OTP.Size = new Size(157, 32);
+            lbl_OTP.TabIndex = 33;
+            lbl_OTP.Text = "SEND OTP";
+            // 
+            // f_RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1277, 696);
+            ClientSize = new Size(1264, 953);
+            Controls.Add(lbl_Time);
+            Controls.Add(bt_OTP);
+            Controls.Add(txt_OTP);
+            Controls.Add(lbl_OTP);
             Controls.Add(txt_Email);
             Controls.Add(lbl_Email);
             Controls.Add(cb_isShowPassword);
@@ -167,8 +212,9 @@ namespace LoginForm
             Controls.Add(lbl_Username);
             Controls.Add(lbl_Password);
             Controls.Add(lbl_Title);
-            Name = "RegisterForm";
+            Name = "f_RegisterForm";
             Text = "Register Form";
+            Load += f_Register_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -184,5 +230,9 @@ namespace LoginForm
         private Label lbl_Password;
         private TextBox txt_Email;
         private Label lbl_Email;
+        private Label lbl_Time;
+        private Button bt_OTP;
+        private TextBox txt_OTP;
+        private Label lbl_OTP;
     }
 }

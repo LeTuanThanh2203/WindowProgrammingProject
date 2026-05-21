@@ -150,9 +150,9 @@
             lbl_Title.Location = new Point(233, 58);
             lbl_Title.Margin = new Padding(4, 0, 4, 0);
             lbl_Title.Name = "lbl_Title";
-            lbl_Title.Size = new Size(447, 54);
+            lbl_Title.Size = new Size(453, 54);
             lbl_Title.TabIndex = 19;
-            lbl_Title.Text = "ACCOUNT REGISTER";
+            lbl_Title.Text = "Forget Password";
             // 
             // bt_OTP
             // 
@@ -187,7 +187,7 @@
             // lbl_Time
             // 
             lbl_Time.AutoSize = true;
-            lbl_Time.Location = new Point(626, 329);
+            lbl_Time.Location = new Point(604, 382);
             lbl_Time.Name = "lbl_Time";
             lbl_Time.Size = new Size(0, 20);
             lbl_Time.TabIndex = 32;

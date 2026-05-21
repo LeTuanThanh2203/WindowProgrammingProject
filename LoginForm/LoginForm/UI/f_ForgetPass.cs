@@ -49,13 +49,10 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            string username =
-                txt_UserName.Text.Trim();
-
             // Lấy email
             string email =
                 otpManager.GetEmailByUsername(
-                    username);
+                    txt_UserName.Text.Trim());
 
             // Không tồn tại username
             if (string.IsNullOrEmpty(email))
@@ -81,7 +78,7 @@ namespace LoginForm
             if (result == DialogResult.Yes)
             {
                 bool sent =
-                    otpManager.SendOTP(username);
+                    otpManager.SendOTP(email);
 
                 if (sent)
                 {
@@ -170,7 +167,8 @@ namespace LoginForm
                 {
                     MessageBox.Show(
                         "Password Changed!");
-
+                    f_LoginForm login = new f_LoginForm();
+                    login.Show();
                     this.Close();
                 }
                 else
