@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using System.Configuration;
+using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 namespace LoginForm
 {
     using Microsoft.Data.SqlClient;
@@ -10,9 +11,15 @@ namespace LoginForm
 
     public partial class f_LoginForm : Form
     {
+        [DllImport("user32.DLL")]
+        private static extern void ReleaseCapture();
+
+        [DllImport("user32.DLL")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         public f_LoginForm()
         {
             InitializeComponent();
+
         }
         private void LoginForm_Load(
         object sender,
@@ -159,28 +166,6 @@ namespace LoginForm
 
                         this.Hide();
 
-                        //// PHÂN QUYỀN
-                        //if (role == "Admin")
-                        //{
-                        //    //f_Approve approveForm =
-                        //    //    new f_Approve();
-
-                        //    //approveForm.Show();
-                        //    f_Main mainForm = new f_Main();
-
-                        //}
-                        //else if (role == "Manager")
-                        //{
-
-                        //    f_ListStudent manageStudent = new f_ListStudent();
-                        //    manageStudent.Show();
-                        //}
-                        //else if (role == "User")
-                        //{
-
-                        //}
-
-                        //this.Hide();
                     }
                     else
                     {
@@ -276,5 +261,34 @@ namespace LoginForm
             forgetPass.Show();
             this.Hide();
         }
+
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
     }
 }

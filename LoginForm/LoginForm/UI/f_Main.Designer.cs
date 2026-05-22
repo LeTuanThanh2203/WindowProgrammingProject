@@ -42,12 +42,19 @@
             btnApprove = new Button();
             btnStudent = new Button();
             pnLogo = new Panel();
-            pnBody = new Panel();
             pictureBox1 = new PictureBox();
+            pnBody = new Panel();
+            pnTop = new Panel();
+            btnClose = new Button();
+            pnButtonContainer = new Panel();
+            btnMaximize = new Button();
+            btnMinimize = new Button();
             pnSidebar.SuspendLayout();
             pnMenu.SuspendLayout();
             pnLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnTop.SuspendLayout();
+            pnButtonContainer.SuspendLayout();
             SuspendLayout();
             // 
             // pnSidebar
@@ -76,6 +83,7 @@
             pnMenu.Name = "pnMenu";
             pnMenu.Size = new Size(304, 622);
             pnMenu.TabIndex = 1;
+            pnMenu.MouseDown += pnlTop_MouseDown;
             // 
             // progressAI
             // 
@@ -119,7 +127,7 @@
             // 
             // btnAskAI
             // 
-            btnAskAI.Location = new Point(195, 472);
+            btnAskAI.Location = new Point(195, 458);
             btnAskAI.Name = "btnAskAI";
             btnAskAI.Size = new Size(94, 29);
             btnAskAI.TabIndex = 0;
@@ -187,19 +195,13 @@
             // 
             // pnLogo
             // 
+            pnLogo.BackColor = Color.DodgerBlue;
             pnLogo.Controls.Add(pictureBox1);
-            pnLogo.Location = new Point(3, 3);
+            pnLogo.Location = new Point(0, 0);
             pnLogo.Name = "pnLogo";
-            pnLogo.Size = new Size(301, 141);
+            pnLogo.Size = new Size(311, 144);
             pnLogo.TabIndex = 0;
-            // 
-            // pnBody
-            // 
-            pnBody.Dock = DockStyle.Fill;
-            pnBody.Location = new Point(311, 0);
-            pnBody.Name = "pnBody";
-            pnBody.Size = new Size(1171, 775);
-            pnBody.TabIndex = 1;
+            pnLogo.MouseDown += pnlTop_MouseDown;
             // 
             // pictureBox1
             // 
@@ -211,13 +213,88 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // pnBody
+            // 
+            pnBody.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnBody.Location = new Point(311, 48);
+            pnBody.Name = "pnBody";
+            pnBody.Size = new Size(1171, 727);
+            pnBody.TabIndex = 1;
+            pnBody.MouseDown += pnlTop_MouseDown;
+            // 
+            // pnTop
+            // 
+            pnTop.Controls.Add(btnClose);
+            pnTop.Controls.Add(pnButtonContainer);
+            pnTop.Dock = DockStyle.Top;
+            pnTop.Location = new Point(311, 0);
+            pnTop.Name = "pnTop";
+            pnTop.Size = new Size(1171, 52);
+            pnTop.TabIndex = 2;
+            pnTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.Transparent;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Location = new Point(1119, 0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(49, 39);
+            btnClose.TabIndex = 15;
+            btnClose.Text = "✕";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
+            // pnButtonContainer
+            // 
+            pnButtonContainer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnButtonContainer.BackColor = Color.Transparent;
+            pnButtonContainer.Controls.Add(btnMaximize);
+            pnButtonContainer.Controls.Add(btnMinimize);
+            pnButtonContainer.Location = new Point(998, 0);
+            pnButtonContainer.Name = "pnButtonContainer";
+            pnButtonContainer.Size = new Size(173, 42);
+            pnButtonContainer.TabIndex = 16;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.BackColor = Color.Transparent;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Location = new Point(60, 0);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(56, 39);
+            btnMaximize.TabIndex = 2;
+            btnMaximize.Text = "❐";
+            btnMaximize.UseVisualStyleBackColor = false;
+            btnMaximize.Click += btnMaximize_Click;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.BackColor = Color.Transparent;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Location = new Point(4, 0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(50, 39);
+            btnMinimize.TabIndex = 1;
+            btnMinimize.Text = "─";
+            btnMinimize.UseVisualStyleBackColor = false;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
             // f_Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1482, 775);
+            Controls.Add(pnTop);
             Controls.Add(pnBody);
             Controls.Add(pnSidebar);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "f_Main";
             Text = "f_Main";
             Load += f_Main_Load;
@@ -226,6 +303,8 @@
             pnMenu.PerformLayout();
             pnLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnTop.ResumeLayout(false);
+            pnButtonContainer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -246,5 +325,10 @@
         private ProgressBar progressAI;
         private Label lblAIStatus;
         private PictureBox pictureBox1;
+        private Panel pnTop;
+        private Button btnClose;
+        private Panel pnButtonContainer;
+        private Button btnMaximize;
+        private Button btnMinimize;
     }
 }

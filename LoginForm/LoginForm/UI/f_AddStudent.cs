@@ -1,4 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using AForge.Video;
+using AForge.Video.DirectShow;
+using Microsoft.Data.SqlClient;
+using Newtonsoft.Json.Linq;
+using Project_Group6.UI;
 using ProjectMonHoc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +12,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using ValidationLibrary;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LoginForm
 {
@@ -15,12 +20,18 @@ namespace LoginForm
     {
         // Biến toàn cục để chứa ảnh dạng byte[]
         byte[] studentImage = null;
+        byte[] aiScanImage;  // ảnh CCCD/thẻ SV đưa AI
+
+
         public f_AddStudent()
         {
             InitializeComponent();
         }
         private void StudentAdd_Load(object sender, EventArgs e)
         {
+
+           
+
             cboGender.Items.Add("Male");
             cboGender.Items.Add("Female");
 
@@ -113,6 +124,55 @@ namespace LoginForm
                 MessageBox.Show("Add student failed!");
         }
 
+
+        private void btnAI_Click(
+        object sender,
+        EventArgs e)
+        {
+            f_AIAddStudent aiForm =
+                new f_AIAddStudent();
+
+            DialogResult result =
+                aiForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                txtMSSV.Text =
+                    aiForm.MSSV;
+
+                txtFname.Text =
+                    aiForm.Fname;
+
+                txtLname.Text =
+                    aiForm.Lname;
+
+                txtPhone.Text =
+                    aiForm.Phone;
+
+                txtAddress.Text =
+                    aiForm.Address;
+
+                txtHometown.Text =
+                    aiForm.Hometown;
+
+                txtEmail.Text =
+                    aiForm.Email;
+
+                cboGender.Text =
+                    aiForm.Gender;
+
+
+                if (DateTime.TryParse(
+                    aiForm.Dob,
+                    out DateTime d))
+                {
+                    dtpDob.Value = d;
+                }
+
+                MessageBox.Show(
+                    "AI data loaded");
+            }
+        }
 
         //Validate input trước khi thêm sinh viên
         private bool ValidateInput()
@@ -226,7 +286,7 @@ namespace LoginForm
             return true;
         }
 
-      
+
 
 
     }

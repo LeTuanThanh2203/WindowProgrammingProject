@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 namespace LoginForm
 {
 
@@ -16,7 +17,15 @@ namespace LoginForm
 
     public partial class f_RegisterForm : Form
     {
-        OTP otpManager = new OTP();
+
+        [DllImport("user32.DLL")]       // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
+        private static extern void ReleaseCapture();
+
+        [DllImport("user32.DLL")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
+        OTP otpManager = new OTP();         // Tạo instance của lớp OTP để quản lý việc tạo và gửi mã OTP
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         public f_RegisterForm()
         {
@@ -175,6 +184,35 @@ namespace LoginForm
             login.Show();
             this.Close();
         }
+
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
     }
 }
 

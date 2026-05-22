@@ -55,6 +55,7 @@ namespace LoginForm
             btnAdd = new Button();
             btnClear = new Button();
             btnQuit = new Button();
+            btnScan = new Button();
             ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
             SuspendLayout();
             // 
@@ -233,7 +234,7 @@ namespace LoginForm
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(146, 380);
+            btnAdd.Location = new Point(290, 379);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(127, 44);
             btnAdd.TabIndex = 21;
@@ -243,7 +244,7 @@ namespace LoginForm
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(327, 380);
+            btnClear.Location = new Point(471, 379);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(136, 44);
             btnClear.TabIndex = 22;
@@ -253,7 +254,7 @@ namespace LoginForm
             // 
             // btnQuit
             // 
-            btnQuit.Location = new Point(515, 380);
+            btnQuit.Location = new Point(659, 379);
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(136, 44);
             btnQuit.TabIndex = 23;
@@ -261,11 +262,24 @@ namespace LoginForm
             btnQuit.UseVisualStyleBackColor = true;
             btnQuit.Click += btnQuit_Click;
             // 
-            // AddStudent
+            // btnScan
+            // 
+            btnScan.BackColor = SystemColors.MenuHighlight;
+            btnScan.ForeColor = Color.Transparent;
+            btnScan.Location = new Point(41, 379);
+            btnScan.Name = "btnScan";
+            btnScan.Size = new Size(127, 44);
+            btnScan.TabIndex = 24;
+            btnScan.Text = "AI Scan";
+            btnScan.UseVisualStyleBackColor = false;
+            btnScan.Click += btnAI_Click;
+            // 
+            // f_AddStudent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(832, 445);
+            Controls.Add(btnScan);
             Controls.Add(btnQuit);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
@@ -290,7 +304,7 @@ namespace LoginForm
             Controls.Add(txtMSSV);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "AddStudent";
+            Name = "f_AddStudent";
             Text = "Add Student";
             Load += StudentAdd_Load;
             ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
@@ -324,6 +338,6 @@ namespace LoginForm
         private Button btnAdd;
         private Button btnClear;
         private Button btnQuit;
-
+        private Button btnScan;
     }
 }
