@@ -317,8 +317,4 @@ namespace LoginForm
         }
 
     }
-
-
-
-
 }

@@ -150,3 +150,9 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingPro
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.pdb
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.genruntimeconfig.cache
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\ref\Project_Group6.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\AForge.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\AForge.Video.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\AForge.Video.DirectShow.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.UI.f_AIAddStudent.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_AddCourse.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_EditDeleteCourse.resources

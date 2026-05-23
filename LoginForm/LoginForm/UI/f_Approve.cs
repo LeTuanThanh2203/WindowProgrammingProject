@@ -122,8 +122,6 @@ namespace LoginForm
 
         private void bt_Quit_Click(object sender, EventArgs e)
         {
-            f_LoginForm login = new f_LoginForm();
-            login.Show();
             this.Close();
         }
         private void bt_ApplyAcc_Click(object sender, EventArgs e)

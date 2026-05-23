@@ -36,13 +36,13 @@
             RegisterAcp = new DataGridViewButtonColumn();
             bt_ApplyAcc = new Button();
             bt_UnlockAcc = new Button();
-            bt_Quit = new Button();
             dataGridView_UnlockAcc = new DataGridView();
             txt_ID = new DataGridViewTextBoxColumn();
             txt_Name = new DataGridViewTextBoxColumn();
             txt_Role = new DataGridViewTextBoxColumn();
             bt_Unlock = new DataGridViewButtonColumn();
             bt_Delete = new DataGridViewButtonColumn();
+            bt_Quit = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView_AcceptUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_UnlockAcc).BeginInit();
             SuspendLayout();
@@ -120,16 +120,6 @@
             bt_UnlockAcc.UseVisualStyleBackColor = true;
             bt_UnlockAcc.Click += bt_UnlockAcc_Click;
             // 
-            // bt_Quit
-            // 
-            bt_Quit.Location = new Point(12, 414);
-            bt_Quit.Name = "bt_Quit";
-            bt_Quit.Size = new Size(91, 33);
-            bt_Quit.TabIndex = 3;
-            bt_Quit.Text = "Quit";
-            bt_Quit.UseVisualStyleBackColor = true;
-            bt_Quit.Click += bt_Quit_Click;
-            // 
             // dataGridView_UnlockAcc
             // 
             dataGridView_UnlockAcc.BackgroundColor = Color.White;
@@ -139,8 +129,8 @@
             dataGridView_UnlockAcc.Name = "dataGridView_UnlockAcc";
             dataGridView_UnlockAcc.RowHeadersWidth = 51;
             dataGridView_UnlockAcc.Size = new Size(684, 226);
-            dataGridView_UnlockAcc.TabIndex = 4; dataGridView_UnlockAcc.CellContentClick +=
-    dataGridView_UnlockAcc_CellContentClick;
+            dataGridView_UnlockAcc.TabIndex = 4;
+            dataGridView_UnlockAcc.CellContentClick += dataGridView_UnlockAcc_CellContentClick;
             // 
             // txt_ID
             // 
@@ -182,7 +172,17 @@
             bt_Delete.Text = "Delete";
             bt_Delete.Width = 125;
             // 
-            // Approve
+            // bt_Quit
+            // 
+            bt_Quit.Location = new Point(12, 414);
+            bt_Quit.Name = "bt_Quit";
+            bt_Quit.Size = new Size(91, 33);
+            bt_Quit.TabIndex = 3;
+            bt_Quit.Text = "Quit";
+            bt_Quit.UseVisualStyleBackColor = true;
+            bt_Quit.Click += bt_Quit_Click;
+            // 
+            // f_Approve
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -193,7 +193,7 @@
             Controls.Add(bt_UnlockAcc);
             Controls.Add(bt_ApplyAcc);
             Controls.Add(dataGridView_AcceptUser);
-            Name = "Approve";
+            Name = "f_Approve";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView_AcceptUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_UnlockAcc).EndInit();
@@ -210,12 +210,12 @@
         private DataGridViewButtonColumn RegisterAcp;
         private Button bt_ApplyAcc;
         private Button bt_UnlockAcc;
-        private Button bt_Quit;
         private DataGridView dataGridView_UnlockAcc;
         private DataGridViewTextBoxColumn txt_ID;
         private DataGridViewTextBoxColumn txt_Name;
         private DataGridViewTextBoxColumn txt_Role;
         private DataGridViewButtonColumn bt_Unlock;
         private DataGridViewButtonColumn bt_Delete;
+        private Button bt_Quit;
     }
 }

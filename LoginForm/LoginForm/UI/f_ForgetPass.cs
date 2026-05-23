@@ -1,4 +1,6 @@
-﻿using ProjectMonHoc;
+﻿using Microsoft.Data.SqlClient;
+using Project_Group6;
+using ProjectMonHoc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +9,6 @@ using System.Drawing;
 using System.Text;
 using System.Timers;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace LoginForm
 {
@@ -137,6 +138,10 @@ namespace LoginForm
 
             using (My_DB db = new My_DB())
             {
+                string username = txt_UserName.Text.Trim();
+                string password = txt_Password.Text.Trim();
+                string hashedPassword =
+                    PasswordHasher.HashPassword(password);
                 SqlCommand command =
                     new SqlCommand(
                     @"UPDATE DataLoginForm
@@ -148,13 +153,12 @@ namespace LoginForm
                 command.Parameters.Add(
                     "@pass",
                     SqlDbType.VarChar
-                ).Value = txt_Password.Text;
+                ).Value = hashedPassword;
 
                 command.Parameters.Add(
                     "@user",
                     SqlDbType.VarChar
-                ).Value =
-                    txt_UserName.Text.Trim();
+                ).Value = username;
 
                 db.openConnection();
 

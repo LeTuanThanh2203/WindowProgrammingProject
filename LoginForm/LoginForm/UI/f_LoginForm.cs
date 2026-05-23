@@ -64,6 +64,8 @@ namespace LoginForm
 
                 string username = txt_UserName.Text.Trim();
                 string password = txt_Password.Text.Trim();
+                string hashedPassword =
+                    PasswordHasher.HashPassword(password);
 
                 string query = @"
             SELECT *
@@ -123,7 +125,7 @@ namespace LoginForm
                         reader["Password"].ToString();
 
                     // PASSWORD ĐÚNG
-                    if (dbPassword == password)
+                    if (dbPassword == hashedPassword)
                     {
                         string role =
                             reader["RoleName"].ToString();

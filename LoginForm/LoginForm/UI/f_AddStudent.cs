@@ -46,7 +46,7 @@ namespace LoginForm
         {
 
 
-            this.Hide();
+            this.Close();
         }
         private void btnClear_Click(
     object sender,

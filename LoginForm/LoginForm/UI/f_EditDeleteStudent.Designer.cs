@@ -87,9 +87,9 @@
             // cboSort
             // 
             cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(13, 4);
+            cboSort.Location = new Point(3, 4);
             cboSort.Name = "cboSort";
-            cboSort.Size = new Size(111, 28);
+            cboSort.Size = new Size(121, 28);
             cboSort.TabIndex = 8;
             // 
             // txtSearch

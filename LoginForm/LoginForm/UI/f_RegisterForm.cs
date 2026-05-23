@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 using System.Text;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 namespace LoginForm
 {
 
     using Microsoft.Data.SqlClient;
+    using Project_Group6;
     using ProjectMonHoc;
     using System.Data;
     using System.Timers;
@@ -66,7 +67,7 @@ namespace LoginForm
             string email =
                     txt_Email.Text.Trim();
 
-            // Không tồn tại username
+            // Chưa nhập email
             if (string.IsNullOrEmpty(email))
             {
                 MessageBox.Show(
@@ -75,14 +76,11 @@ namespace LoginForm
                 return;
             }
 
-            // Hiển thị email đã mã hóa
-            string maskedEmail =
-                otpManager.MaskEmail(email);
 
             DialogResult result =
                 MessageBox.Show(
                     "Send OTP to:\n"
-                    + maskedEmail + " ?",
+                    + email + " ?",
                     "Confirm",
                     MessageBoxButtons.YesNo
                 );
@@ -123,12 +121,16 @@ namespace LoginForm
             {
                 string username = txt_UserName.Text.Trim();
                 string password = txt_Password.Text.Trim();
+                string hashedPassword =
+                    PasswordHasher.HashPassword(password);
                 string email = txt_Email.Text.Trim();
 
                 // 1. Check rỗng
-                if (username == "" || password == "" || email == "")
+                if (string.IsNullOrWhiteSpace(username) ||
+                string.IsNullOrWhiteSpace(password) ||
+                string.IsNullOrWhiteSpace(email))
                 {
-                    MessageBox.Show("Please enter username, password and email!");
+                    MessageBox.Show("Please enter username, if (string.IsNullOrWhiteSpace(username) ||\r\n    string.IsNullOrWhiteSpace(password) ||\r\n    string.IsNullOrWhiteSpace(email)) and email!");
                     return;
                 }
 
@@ -157,10 +159,18 @@ namespace LoginForm
                 SqlCommand cmd = new SqlCommand(insertQuery, db.getConnection);
 
                 cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
-                cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = password;
+                cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = hashedPassword;
                 cmd.Parameters.Add("@mail", SqlDbType.VarChar).Value = email;
 
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Register successful!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
                 db.closeConnection();
 
@@ -174,7 +184,7 @@ namespace LoginForm
                 // 5. Chuyển form
                 f_LoginForm login = new f_LoginForm();
                 login.Show();
-                this.Hide();
+                this.Close();
             }
         }
 

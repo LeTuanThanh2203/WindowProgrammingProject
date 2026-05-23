@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj": {}
+    "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj": {
+    "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+        "projectUniqueName": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
         "projectName": "Project_Group6",
-        "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
+        "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+        "packagesPath": "C:\\Users\\PHUOC ANH\\.nuget\\packages\\",
+        "outputPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PHUOC ANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -29,8 +34,8 @@
             "framework": "net10.0-windows7.0",
             "targetAlias": "net10.0-windows",
             "projectReferences": {
-              "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
-                "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
+              "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
+                "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
               }
             }
           }
@@ -390,17 +395,21 @@
         }
       }
     },
-    "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
+    "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+        "projectUniqueName": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
         "projectName": "ValidationLibrary",
-        "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\obj\\",
+        "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+        "packagesPath": "C:\\Users\\PHUOC ANH\\.nuget\\packages\\",
+        "outputPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PHUOC ANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -408,6 +417,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
