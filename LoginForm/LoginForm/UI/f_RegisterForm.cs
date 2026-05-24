@@ -41,7 +41,6 @@ namespace LoginForm
 
             lbl_Time.Text =
                 "Time Left: " + sec + "s";
-            timer.Start();
 
             if (sec <= 0)
             {
@@ -150,7 +149,14 @@ namespace LoginForm
                     db.closeConnection(); // thiếu
                     return;
                 }
+                // Check OTP, thêm vào vì chưa check OTP mà đã add vào data
+                string userOTP = txt_OTP.Text.Trim();
 
+                if (!otpManager.VerifyOTP(userOTP))
+                {
+                    MessageBox.Show("Invalid or Expired OTP!");
+                    return;
+                }
                 // 3. Insert
                 string insertQuery = @"INSERT INTO DataLoginForm 
                                (UserName, Password, Email) 

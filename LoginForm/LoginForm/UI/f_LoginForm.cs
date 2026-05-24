@@ -25,9 +25,17 @@ namespace LoginForm
         object sender,
         EventArgs e)
         {
+            cb_RememberMe.Checked =
+        Project_Group6.Properties
+        .Settings.Default.RememberMe;
+
             txt_UserName.Text =
                 Project_Group6.Properties
                 .Settings.Default.Username;
+
+            txt_Password.Text =
+                Project_Group6.Properties
+                .Settings.Default.Password;
         }
         private void cb_isShowPassword_CheckedChanged(object sender, EventArgs e)
         {
@@ -127,6 +135,39 @@ namespace LoginForm
                     // PASSWORD ĐÚNG
                     if (dbPassword == hashedPassword)
                     {
+                        // NHỚ TÀI KHOẢN
+                        if (cb_RememberMe.Checked)
+                        {
+                            Project_Group6.Properties
+                                .Settings.Default.Username =
+                                username;
+
+                            Project_Group6.Properties
+                                .Settings.Default.Password =
+                                password;
+
+                            Project_Group6.Properties
+                                .Settings.Default.RememberMe =
+                                true;
+
+                            Project_Group6.Properties
+                                .Settings.Default.Save();
+                        }
+                        else
+                        {
+                            Project_Group6.Properties
+                                .Settings.Default.Username = "";
+
+                            Project_Group6.Properties
+                                .Settings.Default.Password = "";
+
+                            Project_Group6.Properties
+                                .Settings.Default.RememberMe =
+                                false;
+
+                            Project_Group6.Properties
+                                .Settings.Default.Save();
+                        }
                         string role =
                             reader["RoleName"].ToString();
 
@@ -221,27 +262,14 @@ namespace LoginForm
                         txt_Password.Clear();
                         txt_Password.Focus();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Username does not exist!");
+                    txt_UserName.Clear();
+                    txt_Password.Clear();
 
-                    // NHỚ TÀI KHOẢN
-                    if (cb_RememberMe.Checked)
-                    {
-                        Project_Group6.Properties
-                            .Settings.Default.Username =
-                            txt_UserName.Text;
-
-                        Project_Group6.Properties
-                            .Settings.Default.Save();
-                    }
-                    else
-                    {
-                        Project_Group6.Properties
-                            .Settings.Default.Username = "";
-
-                        Project_Group6.Properties
-                            .Settings.Default.Save();
-                    }
-
-
+                    txt_UserName.Focus();
                 }
             }
         }

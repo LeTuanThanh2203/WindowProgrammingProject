@@ -346,9 +346,9 @@
             lbl_Title.Location = new Point(259, 44);
             lbl_Title.Margin = new Padding(4, 0, 4, 0);
             lbl_Title.Name = "lbl_Title";
-            lbl_Title.Size = new Size(222, 81);
+            lbl_Title.Size = new Size(187, 81);
             lbl_Title.TabIndex = 0;
-            lbl_Title.Text = "Sign in";
+            lbl_Title.Text = "Login";
             lbl_Title.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnLeft
