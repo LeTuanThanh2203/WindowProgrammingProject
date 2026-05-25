@@ -65,7 +65,6 @@
             pnFunction = new Panel();
             btnEdit = new Button();
             lblTotal = new Label();
-            btnClose = new Button();
             btnRefresh = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
@@ -399,7 +398,6 @@
             // 
             pnFunction.Controls.Add(btnEdit);
             pnFunction.Controls.Add(lblTotal);
-            pnFunction.Controls.Add(btnClose);
             pnFunction.Controls.Add(btnRefresh);
             pnFunction.Controls.Add(btAdd);
             pnFunction.Dock = DockStyle.Bottom;
@@ -426,16 +424,6 @@
             lblTotal.Size = new Size(100, 20);
             lblTotal.TabIndex = 4;
             lblTotal.Text = "Total Student:";
-            // 
-            // btnClose
-            // 
-            btnClose.Location = new Point(966, 13);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(124, 40);
-            btnClose.TabIndex = 3;
-            btnClose.Text = "Close";
-            btnClose.UseVisualStyleBackColor = true;
-            btnClose.Click += btnClose_Click;
             // 
             // btnRefresh
             // 
@@ -491,7 +479,6 @@
         private DataGridViewTextBoxColumn Hometown;
         private DataGridViewTextBoxColumn Email;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Button btnClose;
         private Button btnRefresh;
         private Panel panel1;
         private Label lblIDInfo;

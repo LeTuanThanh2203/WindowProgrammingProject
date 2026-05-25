@@ -83,6 +83,7 @@
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(111, 28);
             cboGender.TabIndex = 9;
+            cboGender.SelectedIndexChanged += cboGender_SelectedIndexChanged;
             // 
             // cboSort
             // 
@@ -91,6 +92,7 @@
             cboSort.Name = "cboSort";
             cboSort.Size = new Size(121, 28);
             cboSort.TabIndex = 8;
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
             // 
             // txtSearch
             // 
@@ -99,15 +101,19 @@
             txtSearch.PlaceholderText = "Search";
             txtSearch.Size = new Size(428, 27);
             txtSearch.TabIndex = 7;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // dgvStudents
             // 
+            dgvStudents.AllowUserToAddRows = false;
             dgvStudents.BackgroundColor = SystemColors.Control;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudents.Location = new Point(3, 38);
             dgvStudents.Name = "dgvStudents";
+            dgvStudents.ReadOnly = true;
             dgvStudents.RowHeadersVisible = false;
             dgvStudents.RowHeadersWidth = 51;
+            dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStudents.Size = new Size(670, 669);
             dgvStudents.TabIndex = 6;
             dgvStudents.CellClick += dgvStudents_CellClick;

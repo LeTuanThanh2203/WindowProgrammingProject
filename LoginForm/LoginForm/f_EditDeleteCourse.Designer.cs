@@ -91,17 +91,15 @@
             dgvCourse.BackgroundColor = SystemColors.Control;
             dgvCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCourse.Location = new Point(3, 38);
+            dgvCourse.MultiSelect = false;
             dgvCourse.Name = "dgvCourse";
+            dgvCourse.ReadOnly = true;
             dgvCourse.RowHeadersVisible = false;
             dgvCourse.RowHeadersWidth = 51;
+            dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCourse.Size = new Size(670, 565);
             dgvCourse.TabIndex = 6;
             dgvCourse.CellClick += dgvCourse_CellClick;
-
-            // code sửa editstudent
-            dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvCourse.MultiSelect = false;
             // 
             // panel2
             // 

@@ -47,5 +47,9 @@ namespace ValidationLibrary
         {
             return string.IsNullOrWhiteSpace(text);
         }
+        public static bool IsNull(object obj)
+        {
+            return obj == null;
+        }
     }
 }

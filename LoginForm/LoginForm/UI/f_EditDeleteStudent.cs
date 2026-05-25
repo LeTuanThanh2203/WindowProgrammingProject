@@ -106,7 +106,41 @@ namespace Project_Group6.UI
             }
         }
 
+        private void txtSearch_TextChanged(
+        object sender,
+        EventArgs e)
+        {
 
+            if (!isLoaded)
+            {
+                return;
+            }
+
+            LoadData();
+
+        }
+        private void cboGender_SelectedIndexChanged(
+    object sender,
+    EventArgs e)
+        {
+            if (!isLoaded)
+            {
+                return;
+            }
+
+            LoadData();
+        }
+        private void cboSort_SelectedIndexChanged(
+    object sender,
+    EventArgs e)
+        {
+            if (!isLoaded)
+            {
+                return;
+            }
+
+            LoadData();
+        }
         // =========================
         // CLICK ROW -> SHOW IMAGE
         // =========================
@@ -179,9 +213,6 @@ namespace Project_Group6.UI
                 picStudent.Image = null;
             }
         }
-
-
-
         private void btnDelete_Click(
     object sender,
     EventArgs e)

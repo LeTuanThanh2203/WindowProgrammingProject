@@ -42,7 +42,6 @@
             txt_Role = new DataGridViewTextBoxColumn();
             bt_Unlock = new DataGridViewButtonColumn();
             bt_Delete = new DataGridViewButtonColumn();
-            bt_Quit = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView_AcceptUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_UnlockAcc).BeginInit();
             SuspendLayout();
@@ -172,16 +171,6 @@
             bt_Delete.Text = "Delete";
             bt_Delete.Width = 125;
             // 
-            // bt_Quit
-            // 
-            bt_Quit.Location = new Point(12, 414);
-            bt_Quit.Name = "bt_Quit";
-            bt_Quit.Size = new Size(91, 33);
-            bt_Quit.TabIndex = 3;
-            bt_Quit.Text = "Quit";
-            bt_Quit.UseVisualStyleBackColor = true;
-            bt_Quit.Click += bt_Quit_Click;
-            // 
             // f_Approve
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -189,7 +178,6 @@
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(dataGridView_UnlockAcc);
-            Controls.Add(bt_Quit);
             Controls.Add(bt_UnlockAcc);
             Controls.Add(bt_ApplyAcc);
             Controls.Add(dataGridView_AcceptUser);
@@ -216,6 +204,5 @@
         private DataGridViewTextBoxColumn txt_Role;
         private DataGridViewButtonColumn bt_Unlock;
         private DataGridViewButtonColumn bt_Delete;
-        private Button bt_Quit;
     }
 }

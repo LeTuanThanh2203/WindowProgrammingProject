@@ -166,17 +166,6 @@ namespace LoginForm
             cboSort.SelectedIndex = 0;
             LoadData(); // ← thay vì LoadStudent()
         }
-
-        // =========================
-        // CLOSE BUTTON
-        // =========================
-        private void btnClose_Click(
-            object sender,
-            EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnAdd_Click(
          object sender,
          EventArgs e)
@@ -184,7 +173,7 @@ namespace LoginForm
             f_AddStudent addStudent =
               new f_AddStudent();
 
-            addStudent.Show();
+            addStudent.ShowDialog();
         }
         private void LoadData()
         {

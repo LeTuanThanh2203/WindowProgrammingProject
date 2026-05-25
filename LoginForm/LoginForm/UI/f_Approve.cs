@@ -119,11 +119,6 @@ namespace LoginForm
 
             LoadPendingUsers();
         }
-
-        private void bt_Quit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private void bt_ApplyAcc_Click(object sender, EventArgs e)
         {
             dataGridView_AcceptUser.Visible = true;

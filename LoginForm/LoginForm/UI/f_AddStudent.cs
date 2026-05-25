@@ -44,8 +44,6 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-
-
             this.Close();
         }
         private void btnClear_Click(
@@ -99,7 +97,8 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            ValidateInput();
+            if (!ValidateInput())
+                return;
             // Tạo đối tượng Student và gán giá trị
             Student student = new Student();
             student.MSSV = txtMSSV.Text.Trim();
@@ -282,12 +281,16 @@ namespace LoginForm
                 MessageBox.Show("Invalid date of birth!");
                 return false;
             }
+            if (ValidateData.IsNull(picStudent.Image))
+            {
+                MessageBox.Show(
+                    "Please select a student image!");
 
+                picStudent.Focus();
+
+                return false;
+            }
             return true;
         }
-
-
-
-
     }
 }

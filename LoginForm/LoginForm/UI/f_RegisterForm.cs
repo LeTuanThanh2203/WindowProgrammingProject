@@ -129,7 +129,7 @@ namespace LoginForm
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(email))
                 {
-                    MessageBox.Show("Please enter username, if (string.IsNullOrWhiteSpace(username) ||\r\n    string.IsNullOrWhiteSpace(password) ||\r\n    string.IsNullOrWhiteSpace(email)) and email!");
+                    MessageBox.Show("Please enter username, password and email!");
                     return;
                 }
 
