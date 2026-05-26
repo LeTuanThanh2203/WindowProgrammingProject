@@ -100,6 +100,7 @@
             btnCourseReg.TabIndex = 6;
             btnCourseReg.Text = "Course Registration";
             btnCourseReg.UseVisualStyleBackColor = false;
+            btnCourseReg.Click += btnCourseReg_Click;
             // 
             // btnCourse
             // 

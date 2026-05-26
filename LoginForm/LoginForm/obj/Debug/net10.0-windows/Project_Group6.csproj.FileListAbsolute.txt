@@ -162,3 +162,4 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingPro
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditDeleteCourse.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ManageCourse.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_Score.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_CourseRegistration.resources

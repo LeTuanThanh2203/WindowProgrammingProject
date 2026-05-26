@@ -417,7 +417,30 @@ namespace Project_Group6.Models
 
             return course;
         }
+        // THÊM: Lấy danh sách môn học cho ComboBox
+        public DataTable GetCoursesForCombo()
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                using (My_DB db = new My_DB())
+                {
+                    string query = @"
+                SELECT 
+                    CourseID,
+                    CourseCode + ' - ' + CourseName AS CourseDisplay,
+                    CreditHour
+                FROM Course
+                ORDER BY CourseCode";
 
+                    SqlCommand cmd = new SqlCommand(query, db.getConnection);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(table);
+                }
+            }
+            catch { }
+            return table;
+        }
         // SEARCH COURSE
         public DataTable SearchCourse(
             string keyword)

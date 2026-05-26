@@ -294,9 +294,8 @@ public class Student
             return false;
         }
     }
-    public static bool RegisterCourse(
-    string mssv,
-    string mamh)
+    // THAY THẾ RegisterCourse cũ (đang dùng MaMH sai)
+    public static (bool success, string message) RegisterCourse(string mssv, int courseID)
     {
         try
         {
@@ -304,38 +303,133 @@ public class Student
             {
                 db.openConnection();
 
-                string query = @"
-            INSERT INTO DKMH
-            (
-                MSSV,
-                MaMH
-            )
-            VALUES
-            (
-                @mssv,
-                @mamh
-            )";
+                // 1. Kiểm tra đã đăng ký chưa
+                SqlCommand checkCmd = new SqlCommand(
+                    "SELECT COUNT(*) FROM DKMH WHERE MSSV = @mssv AND CourseID = @courseID",
+                    db.getConnection);
+                checkCmd.Parameters.AddWithValue("@mssv", mssv);
+                checkCmd.Parameters.AddWithValue("@courseID", courseID);
 
-                SqlCommand cmd =
-                    new SqlCommand(
-                        query,
-                        db.getConnection);
+                if ((int)checkCmd.ExecuteScalar() > 0)
+                    return (false, "Student has already registered this course!");
 
-                cmd.Parameters.AddWithValue(
-                    "@mssv",
-                    mssv);
+                // 2. Lấy tín chỉ môn muốn đăng ký
+                SqlCommand creditCmd = new SqlCommand(
+                    "SELECT CreditHour FROM Course WHERE CourseID = @courseID",
+                    db.getConnection);
+                creditCmd.Parameters.AddWithValue("@courseID", courseID);
+                int newCredits = (int)creditCmd.ExecuteScalar();
 
-                cmd.Parameters.AddWithValue(
-                    "@mamh",
-                    mamh);
+                // 3. Kiểm tra tổng tín chỉ hiện tại
+                SqlCommand totalCmd = new SqlCommand(
+                    @"SELECT ISNULL(SUM(c.CreditHour), 0)
+                  FROM DKMH d INNER JOIN Course c ON d.CourseID = c.CourseID
+                  WHERE d.MSSV = @mssv",
+                    db.getConnection);
+                totalCmd.Parameters.AddWithValue("@mssv", mssv);
+                int currentCredits = (int)totalCmd.ExecuteScalar();
 
-                return cmd.ExecuteNonQuery() > 0;
+                if (currentCredits + newCredits > 24)
+                    return (false, $"Exceeded 24 credits! Current: {currentCredits}, Adding: {newCredits}");
+
+                // 4. Insert
+                SqlCommand insertCmd = new SqlCommand(
+                    "INSERT INTO DKMH (MSSV, CourseID) VALUES (@mssv, @courseID)",
+                    db.getConnection);
+                insertCmd.Parameters.AddWithValue("@mssv", mssv);
+                insertCmd.Parameters.AddWithValue("@courseID", courseID);
+                insertCmd.ExecuteNonQuery();
+
+                db.closeConnection();
+                return (true, $"Registered! Total credits: {currentCredits + newCredits}/24");
             }
         }
-        catch
+        catch (Exception ex)
         {
-            return false;
+            return (false, "Error: " + ex.Message);
         }
+    }
+
+    // THÊM: Hủy đăng ký
+    public static (bool success, string message) CancelCourse(string mssv, int courseID)
+    {
+        try
+        {
+            using (My_DB db = new My_DB())
+            {
+                db.openConnection();
+
+                SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM DKMH WHERE MSSV = @mssv AND CourseID = @courseID",
+                    db.getConnection);
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@courseID", courseID);
+
+                int rows = cmd.ExecuteNonQuery();
+                db.closeConnection();
+
+                return rows > 0
+                    ? (true, "Course cancelled successfully!")
+                    : (false, "Registration not found!");
+            }
+        }
+        catch (Exception ex)
+        {
+            return (false, "Error: " + ex.Message);
+        }
+    }
+
+    // THÊM: Lấy môn đã đăng ký của sinh viên
+    public DataTable GetRegisteredCourses(string mssv)
+    {
+        DataTable table = new DataTable();
+        try
+        {
+            using (My_DB db = new My_DB())
+            {
+                string query = @"
+                SELECT 
+                    c.CourseID,
+                    c.CourseCode,
+                    c.CourseName,
+                    c.CreditHour,
+                    c.Semester
+                FROM DKMH d
+                INNER JOIN Course c ON d.CourseID = c.CourseID
+                WHERE d.MSSV = @mssv
+                ORDER BY c.CourseCode";
+
+                SqlCommand cmd = new SqlCommand(query, db.getConnection);
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(table);
+            }
+        }
+        catch { }
+        return table;
+    }
+
+    // THÊM: Tổng tín chỉ hiện tại
+    public int GetTotalCredits(string mssv)
+    {
+        try
+        {
+            using (My_DB db = new My_DB())
+            {
+                SqlCommand cmd = new SqlCommand(
+                    @"SELECT ISNULL(SUM(c.CreditHour), 0)
+                  FROM DKMH d INNER JOIN Course c ON d.CourseID = c.CourseID
+                  WHERE d.MSSV = @mssv",
+                    db.getConnection);
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                db.openConnection();
+                int total = (int)cmd.ExecuteScalar();
+                db.closeConnection();
+                return total;
+            }
+        }
+        catch { return 0; }
     }
     public DataTable getStudents(
     SqlCommand command)
@@ -541,6 +635,55 @@ public class Student
         }
 
         return student;
+    }
+    // THÊM: Lấy môn chưa đăng ký
+    public DataTable GetUnRegisteredCourses(
+        string mssv)
+    {
+        DataTable table =
+            new DataTable();
+
+        try
+        {
+            using (My_DB db = new My_DB())
+            {
+                string query = @"
+            SELECT
+                CourseID,
+                CourseCode,
+                CourseName,
+                CreditHour,
+                Semester
+            FROM Course
+            WHERE CourseID NOT IN
+            (
+                SELECT CourseID
+                FROM DKMH
+                WHERE MSSV = @mssv
+            )
+            ORDER BY CourseCode";
+
+                SqlCommand cmd =
+                    new SqlCommand(
+                        query,
+                        db.getConnection);
+
+                cmd.Parameters.AddWithValue(
+                    "@mssv",
+                    mssv);
+
+                SqlDataAdapter adapter =
+                    new SqlDataAdapter(cmd);
+
+                adapter.Fill(table);
+            }
+        }
+        catch
+        {
+
+        }
+
+        return table;
     }
 
 }

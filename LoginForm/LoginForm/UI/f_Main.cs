@@ -5,10 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 namespace LoginForm
 {
     public partial class f_Main : Form
@@ -79,8 +79,8 @@ namespace LoginForm
             // USER
             else if (Globals.Role == "User")
             {
-             
-                btnCourseReg.Visible = true; 
+
+                btnCourseReg.Visible = true;
             }
         }
 
@@ -119,6 +119,10 @@ namespace LoginForm
             EventArgs e)
         {
             OpenForm(new f_Approve());
+        }
+        private void btnCourseReg_Click(object sender, EventArgs e)
+        {
+            OpenForm(new f_CourseRegistration());
         }
 
         private void btnOverview_Click(
@@ -269,7 +273,6 @@ namespace LoginForm
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
     }
 
 }
