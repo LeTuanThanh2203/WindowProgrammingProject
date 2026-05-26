@@ -1,102 +1,98 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\",
+  "WorkspaceRootPath": "D:\\WindowProgrammingProject\\LoginForm\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_score.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_editdeletecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addcourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_managecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|c:\\users\\lenovo\\desktop\\study\\window programming\\w3\\project\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addstudent.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addstudent.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\otp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\otp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addstudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_liststudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_score.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_editdeletecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editdeletecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|D:\\WindowProgrammingProject\\LoginForm\\loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addcourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addcourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_managecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_managecourse.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_addstudent.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_addstudent.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -106,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -115,10 +111,36 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "OTP.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\OTP.cs",
+              "RelativeDocumentMoniker": "LoginForm\\OTP.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\OTP.cs",
+              "RelativeToolTip": "LoginForm\\OTP.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAkwKQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T05:09:13.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "f_AddStudent.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T05:04:40.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "f_ListStudent.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs",
               "ViewState": "AgIAACEBAAAAAAAAAAAiwEgBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -127,62 +149,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "f_Score.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs [Design]",
-              "RelativeToolTip": "LoginForm\\UI\\f_Score.cs [Design]",
+              "DocumentIndex": 8,
+              "Title": "Score.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
+              "RelativeDocumentMoniker": "LoginForm\\Models\\Score.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
+              "RelativeToolTip": "LoginForm\\Models\\Score.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T04:28:07.32Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "f_Score.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.Designer.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.Designer.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.Designer.cs",
-              "RelativeToolTip": "LoginForm\\UI\\f_Score.Designer.cs",
-              "ViewState": "AgIAABsBAAAAAAAAAAAqwAECAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T04:27:48.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T04:26:12.632Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "f_Score.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
-              "RelativeToolTip": "LoginForm\\UI\\f_Score.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T04:27:43.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Score.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
-              "RelativeDocumentMoniker": "LoginForm\\Models\\Score.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
-              "RelativeToolTip": "LoginForm\\Models\\Score.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T04:26:12.632Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "f_ListStudent.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs [Design]",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs [Design]",
               "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T01:45:51.593Z",
@@ -190,34 +173,77 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "f_AddCourse.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddCourse.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs [Design]",
-              "RelativeToolTip": "LoginForm\\UI\\f_AddCourse.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T02:24:17.635Z",
+              "WhenOpened": "2026-05-26T02:24:17.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "f_AddStudent.cs [Design]",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs [Design]",
+              "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T18:58:08.329Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
+              "Title": "f_Score.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_Score.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T04:27:43.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "f_Score.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.Designer.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.Designer.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_Score.Designer.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAqwAECAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T04:27:48.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "f_Score.cs [Design]",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Score.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Score.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T04:28:07.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "f_ManageCourse.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ManageCourse.cs",
               "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs [Design]",
-              "RelativeToolTip": "LoginForm\\UI\\f_ManageCourse.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T01:45:42.4Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "f_AddCourse.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddCourse.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_AddCourse.cs",
               "ViewState": "AgIAAKsAAAAAAAAAAAAEwI0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -225,11 +251,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Course.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Course.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Course.cs",
               "RelativeDocumentMoniker": "LoginForm\\Models\\Course.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Course.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Course.cs",
               "RelativeToolTip": "LoginForm\\Models\\Course.cs",
               "ViewState": "AgIAAK8AAAAAAAAAAAAwwLkAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -237,11 +263,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "f_EditDeleteCourse.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_EditDeleteCourse.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_EditDeleteCourse.cs",
               "ViewState": "AgIAAPAAAAAAAAAAAAAIwAwBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -250,46 +276,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "f_EditDeleteCourse.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_EditDeleteCourse.Designer.cs",
               "ViewState": "AgIAACkBAAAAAAAAAAAkwDkBAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T02:07:29.264Z"
+              "WhenOpened": "2026-05-26T02:07:29.264Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "f_EditDeleteCourse.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_EditDeleteCourse.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs [Design]",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditDeleteCourse.cs [Design]",
               "RelativeToolTip": "LoginForm\\UI\\f_EditDeleteCourse.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T01:37:29.386Z"
+              "WhenOpened": "2026-05-26T01:37:29.386Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\App.config",
-              "RelativeDocumentMoniker": "LoginForm\\App.config",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\App.config",
-              "RelativeToolTip": "LoginForm\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-05-26T02:23:20.238Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "f_ManageCourse.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ManageCourse.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_ManageCourse.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAowB0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -297,24 +313,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "f_AddCourse.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddCourse.Designer.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.Designer.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_AddCourse.Designer.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T02:04:37.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T02:04:37.503Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "f_Main.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_Main.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_Main.cs",
               "ViewState": "AgIAACMAAAAAAAAAAADwvzAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -323,22 +338,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "f_Main.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_Main.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs [Design]",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Main.cs [Design]",
               "RelativeToolTip": "LoginForm\\UI\\f_Main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T01:56:30.368Z"
+              "WhenOpened": "2026-05-26T01:56:30.368Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "f_ManageCourse.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ManageCourse.Designer.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ManageCourse.Designer.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_ManageCourse.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -346,35 +362,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "f_RegisterForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_RegisterForm.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_RegisterForm.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_RegisterForm.cs [Design]",
-              "RelativeToolTip": "LoginForm\\UI\\f_RegisterForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T02:04:30.129Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 21,
-              "Title": "f_AddStudent.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
-              "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T19:45:42.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
               "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
               "RelativeDocumentMoniker": "LoginForm\\Models\\Student.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
               "RelativeToolTip": "LoginForm\\Models\\Student.cs",
               "ViewState": "AgIAAPoAAAAAAAAAAAAqwMoBAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -382,26 +374,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "f_AddStudent.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.cs [Design]",
-              "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T18:58:08.329Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 22,
               "Title": "f_AddStudent.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.Designer.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\W3\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.Designer.cs",
               "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.Designer.cs",
               "ViewState": "AgIAAAgBAAAAAAAAAAAAwBQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T18:57:43.526Z"
+              "WhenOpened": "2026-05-25T18:57:43.526Z",
+              "EditorCaption": ""
             }
           ]
         }

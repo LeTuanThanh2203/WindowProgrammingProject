@@ -2,6 +2,7 @@
 using AForge.Video.DirectShow;
 using Microsoft.Data.SqlClient;
 using Newtonsoft.Json.Linq;
+using Project_Group6;
 using Project_Group6.UI;
 using ProjectMonHoc;
 using System;
@@ -256,9 +257,140 @@ namespace LoginForm
             bool result = student.AddStudent();
 
             if (result)
-                MessageBox.Show("Add student successful!");
+            {
+                // Tạo tài khoản tự động sau khi thêm học sinh thành công
+                bool accountCreated = CreateStudentAccount(
+                    username: student.MSSV,
+                    email: student.Email
+                );
+
+                if (accountCreated)
+                    MessageBox.Show("Add student successful!\nAccount has been sent to: " + student.Email);
+                else
+                    MessageBox.Show("Add student successful!\nBut failed to create account.");
+            }
             else
+            {
                 MessageBox.Show("Add student failed!");
+            }
+        }
+
+        // =======================
+        // TẠO TÀI KHOẢN TỰ ĐỘNG
+        // =======================
+        private bool CreateStudentAccount(string username, string email)
+        {
+            try
+            {
+                // 1. Tạo mật khẩu ngẫu nhiên
+                string randomPassword = GenerateRandomPassword(10);
+                string hashedPassword = PasswordHasher.HashPassword(randomPassword);
+
+                // 2. Kiểm tra username đã tồn tại chưa
+                using (My_DB db = new My_DB())
+                {
+                    db.openConnection();
+
+                    string checkQuery = "SELECT COUNT(*) FROM DataLoginForm WHERE UserName = @user";
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, db.getConnection);
+                    checkCmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Account with this Student ID already exists!");
+                        db.closeConnection();
+                        return false;
+                    }
+
+                    // 3. Insert tài khoản với Role = "user"
+                    string insertQuery = @"INSERT INTO DataLoginForm 
+                                   (UserName, Password, Email, RoleName) 
+                                   VALUES (@user, @pass, @mail, @role)";
+
+                    SqlCommand cmd = new SqlCommand(insertQuery, db.getConnection);
+                    cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+                    cmd.Parameters.Add("@pass", SqlDbType.VarChar).Value = hashedPassword;
+                    cmd.Parameters.Add("@mail", SqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@role", SqlDbType.VarChar).Value = "user";
+
+                    cmd.ExecuteNonQuery();
+                    db.closeConnection();
+                }
+
+                // 4. Gửi mật khẩu về email
+                bool sent = SendPasswordEmail(email, username, randomPassword);
+                return sent;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating account: " + ex.Message);
+                return false;
+            }
+        }
+
+        // =======================
+        // GỬI EMAIL MẬT KHẨU
+        // =======================
+        private bool SendPasswordEmail(string email, string username, string password)
+        {
+            try
+            {
+                // Dùng lại OTP class vì nó đã có sẵn SMTP config
+                // Hoặc tạo method riêng nếu OTP class không hỗ trợ
+                OTP mailer = new OTP();
+
+                string subject = "Your Student Account Information";
+                string body = $@"
+Hello,
+
+Your student account has been created successfully.
+
+Username : {username}
+Password : {password}
+
+Please log in and change your password immediately.
+
+Regards,
+Student Management System
+        ";
+
+                // Gọi method gửi email — tuỳ OTP class của bạn có expose hay không
+                // Nếu OTP chỉ có SendOTP(email), bạn cần thêm method SendEmail(to, subject, body)
+                return mailer.SendEmail(email, subject, body);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send email: " + ex.Message);
+                return false;
+            }
+        }
+
+        // =======================
+        // SINH MẬT KHẨU NGẪU NHIÊN
+        // =======================
+        private string GenerateRandomPassword(int length)
+        {
+            const string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lower = "abcdefghijklmnopqrstuvwxyz";
+            const string digits = "0123456789";
+            const string special = "!@#$%^&*";
+            const string all = upper + lower + digits + special;
+
+            Random rng = new Random();
+            char[] password = new char[length];
+
+            // Đảm bảo có đủ 4 loại ký tự (giống rule validate của RegisterForm)
+            password[0] = upper[rng.Next(upper.Length)];
+            password[1] = lower[rng.Next(lower.Length)];
+            password[2] = digits[rng.Next(digits.Length)];
+            password[3] = special[rng.Next(special.Length)];
+
+            for (int i = 4; i < length; i++)
+                password[i] = all[rng.Next(all.Length)];
+
+            // Shuffle để tránh pattern cố định ở đầu
+            return new string(password.OrderBy(_ => rng.Next()).ToArray());
         }
 
         private void btnAI_Click(object sender, EventArgs e)

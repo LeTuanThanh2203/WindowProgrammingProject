@@ -9,13 +9,10 @@ namespace ProjectMonHoc
     {
         // Gmail gửi OTP
         private readonly MailAddress fromAddress =
-            new MailAddress(
-                "cutcho384@gmail.com"
-            );
+            new MailAddress("cutcho384@gmail.com");
 
         // Gmail App Password
-        private const string fromPass =
-    "ysgrsafyyodnceqo";
+        private const string fromPass = "ysgrsafyyodnceqo";
 
         // OTP hiện tại
         private string generatedOTP;
@@ -26,141 +23,53 @@ namespace ProjectMonHoc
         Random random = new Random();
 
         // =========================
+        // Tạo SmtpClient dùng chung
+        // =========================
+        private SmtpClient CreateSmtpClient()
+        {
+            return new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(
+                    fromAddress.Address,
+                    fromPass
+                ),
+                Timeout = 10000
+            };
+        }
+
+        // =========================
         // Sinh OTP
         // =========================
         private string GenerateOTP()
         {
-            generatedOTP =
-                random.Next(
-                    100000,
-                    1000000
-                ).ToString();
-
-            expireTime =
-                DateTime.Now.AddSeconds(60);
-
+            generatedOTP = random.Next(100000, 1000000).ToString();
+            expireTime = DateTime.Now.AddSeconds(60);
             return generatedOTP;
         }
 
         // =========================
-        // Lấy Email từ UserName
+        // Gửi Email tuỳ chỉnh (subject + body)
+        // Dùng cho: gửi mật khẩu tài khoản mới
         // =========================
-        public string GetEmailByUsername(
-    string username)
-        {
-            using (My_DB db = new My_DB())
-            {
-                SqlCommand command =
-                    new SqlCommand(
-                    @"SELECT Email
-              FROM DataLoginForm
-              WHERE UserName=@user",
-                    db.getConnection
-                );
-
-                command.Parameters.Add(
-                    "@user",
-                    SqlDbType.VarChar
-                ).Value = username;
-
-                db.openConnection();
-
-                object result =
-                    command.ExecuteScalar();
-
-                db.closeConnection();
-
-                if (result != null)
-                {
-                    return result.ToString().Trim();
-                }
-
-                return null;
-            }
-        }
-        public string MaskEmail(
-    string email)
-        {
-            int atIndex = email.IndexOf('@');
-
-            if (atIndex <= 3)
-            {
-                return email;
-            }
-
-            string firstPart =
-                email.Substring(0, 3);
-
-            string lastPart =
-                email.Substring(atIndex - 3, 3);
-
-            string domain =
-                email.Substring(atIndex);
-
-            return firstPart
-                   + "*****"
-                   + lastPart
-                   + domain;
-        }
-
-        // =========================
-        // Gửi OTP bằng UserName
-        // =========================
-        public bool SendOTP(
-            string email)
+        public bool SendEmail(string to, string subject, string body)
         {
             try
             {
-                // Không tìm thấy username
-                if (string.IsNullOrEmpty(email))
+                if (string.IsNullOrEmpty(to)) return false;
+
+                MailAddress toAddress = new MailAddress(to);
+
+                using (SmtpClient smtp = CreateSmtpClient())
+                using (MailMessage message = new MailMessage(fromAddress, toAddress)
                 {
-                    return false;
-                }
-
-                string otp =
-                    GenerateOTP();
-
-                MailAddress toAddress =
-                    new MailAddress(email);
-
-                var smtp =
-                    new SmtpClient
-                    {
-                        Host = "smtp.gmail.com",
-
-                        Port = 587,
-
-                        EnableSsl = true,
-
-                        DeliveryMethod =
-                            SmtpDeliveryMethod.Network,
-
-                        UseDefaultCredentials = false,
-
-                        Credentials =
-                            new NetworkCredential(
-                                fromAddress.Address,
-                                fromPass
-                            ),
-
-                        Timeout = 10000
-                    };
-
-                using (
-                    var message =
-                    new MailMessage(
-                        fromAddress,
-                        toAddress
-                    )
-                    {
-                        Subject = "OTP Code",
-
-                        Body =
-                            "Your OTP is: "
-                            + otp
-                            + "\nOTP expires in 60 seconds."
-                    }
-                )
+                    Subject = subject,
+                    Body = body
+                })
                 {
                     smtp.Send(message);
                 }
@@ -169,8 +78,68 @@ namespace ProjectMonHoc
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Send email failed: " + ex.Message);
+                return false;
+            }
+        }
 
+        // =========================
+        // Lấy Email từ UserName
+        // =========================
+        public string GetEmailByUsername(string username)
+        {
+            using (My_DB db = new My_DB())
+            {
+                SqlCommand command = new SqlCommand(
+                    @"SELECT Email FROM DataLoginForm WHERE UserName=@user",
+                    db.getConnection
+                );
+
+                command.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+
+                db.openConnection();
+                object result = command.ExecuteScalar();
+                db.closeConnection();
+
+                return result?.ToString().Trim();
+            }
+        }
+
+        // =========================
+        // Mask Email hiển thị
+        // =========================
+        public string MaskEmail(string email)
+        {
+            int atIndex = email.IndexOf('@');
+
+            if (atIndex <= 3) return email;
+
+            string firstPart = email.Substring(0, 3);
+            string lastPart = email.Substring(atIndex - 3, 3);
+            string domain = email.Substring(atIndex);
+
+            return firstPart + "*****" + lastPart + domain;
+        }
+
+        // =========================
+        // Gửi OTP qua email
+        // =========================
+        public bool SendOTP(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email)) return false;
+
+                string otp = GenerateOTP();
+
+                string body = "Your OTP is: " + otp
+                            + "\nOTP expires in 60 seconds.";
+
+                return SendEmail(email, "OTP Code", body);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -178,18 +147,10 @@ namespace ProjectMonHoc
         // =========================
         // Verify OTP
         // =========================
-        public bool VerifyOTP(
-            string inputOTP)
+        public bool VerifyOTP(string inputOTP)
         {
-            // Hết hạn
-            if (DateTime.Now > expireTime)
-            {
-                return false;
-            }
-
-            // OTP đúng
-            return generatedOTP ==
-                   inputOTP;
+            if (DateTime.Now > expireTime) return false;
+            return generatedOTP == inputOTP;
         }
 
         // =========================
@@ -197,15 +158,8 @@ namespace ProjectMonHoc
         // =========================
         public int GetRemainingSeconds()
         {
-            int remain =
-                (int)(
-                    expireTime
-                    - DateTime.Now
-                ).TotalSeconds;
-
-            return remain > 0
-                ? remain
-                : 0;
+            int remain = (int)(expireTime - DateTime.Now).TotalSeconds;
+            return remain > 0 ? remain : 0;
         }
     }
 }
