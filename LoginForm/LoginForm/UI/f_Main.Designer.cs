@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
             pnMenu = new Panel();
+            btnCourseReg = new Button();
+            btnCourse = new Button();
             progressAI = new ProgressBar();
             btnOverview = new Button();
             lblAIStatus = new Label();
@@ -64,11 +66,13 @@
             pnSidebar.Dock = DockStyle.Left;
             pnSidebar.Location = new Point(0, 0);
             pnSidebar.Name = "pnSidebar";
-            pnSidebar.Size = new Size(311, 775);
+            pnSidebar.Size = new Size(311, 854);
             pnSidebar.TabIndex = 0;
             // 
             // pnMenu
             // 
+            pnMenu.Controls.Add(btnCourseReg);
+            pnMenu.Controls.Add(btnCourse);
             pnMenu.Controls.Add(progressAI);
             pnMenu.Controls.Add(btnOverview);
             pnMenu.Controls.Add(lblAIStatus);
@@ -81,13 +85,38 @@
             pnMenu.Controls.Add(btnStudent);
             pnMenu.Location = new Point(3, 150);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(304, 622);
+            pnMenu.Size = new Size(304, 701);
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
             // 
+            // btnCourseReg
+            // 
+            btnCourseReg.BackColor = Color.Transparent;
+            btnCourseReg.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCourseReg.ForeColor = Color.Black;
+            btnCourseReg.Location = new Point(0, 337);
+            btnCourseReg.Name = "btnCourseReg";
+            btnCourseReg.Size = new Size(301, 81);
+            btnCourseReg.TabIndex = 6;
+            btnCourseReg.Text = "Course Registration";
+            btnCourseReg.UseVisualStyleBackColor = false;
+            // 
+            // btnCourse
+            // 
+            btnCourse.BackColor = Color.Transparent;
+            btnCourse.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCourse.ForeColor = Color.Black;
+            btnCourse.Location = new Point(1, 252);
+            btnCourse.Name = "btnCourse";
+            btnCourse.Size = new Size(301, 81);
+            btnCourse.TabIndex = 5;
+            btnCourse.Text = "Course";
+            btnCourse.UseVisualStyleBackColor = false;
+            btnCourse.Click += btnCourse_Click;
+            // 
             // progressAI
             // 
-            progressAI.Location = new Point(8, 442);
+            progressAI.Location = new Point(6, 592);
             progressAI.Name = "progressAI";
             progressAI.Size = new Size(281, 10);
             progressAI.TabIndex = 0;
@@ -119,7 +148,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(9, 326);
+            label1.Location = new Point(7, 476);
             label1.Name = "label1";
             label1.Size = new Size(215, 28);
             label1.TabIndex = 4;
@@ -127,7 +156,7 @@
             // 
             // btnAskAI
             // 
-            btnAskAI.Location = new Point(195, 458);
+            btnAskAI.Location = new Point(193, 608);
             btnAskAI.Name = "btnAskAI";
             btnAskAI.Size = new Size(94, 29);
             btnAskAI.TabIndex = 0;
@@ -137,7 +166,7 @@
             // 
             // txtAI
             // 
-            txtAI.Location = new Point(9, 356);
+            txtAI.Location = new Point(7, 506);
             txtAI.MaxLength = 50;
             txtAI.Multiline = true;
             txtAI.Name = "txtAI";
@@ -150,7 +179,7 @@
             lblRole.Anchor = AnchorStyles.Bottom;
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.Location = new Point(11, 564);
+            lblRole.Location = new Point(10, 670);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(62, 28);
             lblRole.TabIndex = 1;
@@ -161,7 +190,7 @@
             lblUser.Anchor = AnchorStyles.Bottom;
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(11, 538);
+            lblUser.Location = new Point(10, 644);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(65, 28);
             lblUser.TabIndex = 0;
@@ -218,7 +247,7 @@
             pnBody.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnBody.Location = new Point(311, 48);
             pnBody.Name = "pnBody";
-            pnBody.Size = new Size(1171, 727);
+            pnBody.Size = new Size(1171, 773);
             pnBody.TabIndex = 1;
             pnBody.MouseDown += pnlTop_MouseDown;
             // 
@@ -290,7 +319,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1482, 775);
+            ClientSize = new Size(1482, 854);
             Controls.Add(pnTop);
             Controls.Add(pnBody);
             Controls.Add(pnSidebar);
@@ -330,5 +359,7 @@
         private Panel pnButtonContainer;
         private Button btnMaximize;
         private Button btnMinimize;
+        private Button btnCourse;
+        private Button btnCourseReg;
     }
 }

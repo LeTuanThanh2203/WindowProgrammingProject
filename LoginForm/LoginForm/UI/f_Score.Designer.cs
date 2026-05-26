@@ -1,6 +1,6 @@
-﻿namespace LoginForm
+﻿namespace Project_Group6
 {
-    partial class f_ListStudent
+    partial class f_Score
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvStudent = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            Lastname = new DataGridViewTextBoxColumn();
-            Firstname = new DataGridViewTextBoxColumn();
-            Dob = new DataGridViewTextBoxColumn();
-            Gender = new DataGridViewTextBoxColumn();
-            Phone = new DataGridViewTextBoxColumn();
-            Address = new DataGridViewTextBoxColumn();
-            Hometown = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            btAdd = new Button();
-            pnMainDataGridView = new Panel();
-            cboGender = new ComboBox();
-            cboSort = new ComboBox();
-            txtSearch = new TextBox();
+            pnFunction = new Panel();
+            lblOverview = new Label();
+            btnEdit = new Button();
+            lblTotalScore = new Label();
+            btnRefresh = new Button();
+            dgvScore = new DataGridView();
             panel1 = new Panel();
             label1 = new Label();
             lblAddress = new Label();
@@ -53,153 +44,93 @@
             lblLastname = new Label();
             lblFirstname = new Label();
             lblID = new Label();
+            label9 = new Label();
             lblEmailInfo = new Label();
+            label8 = new Label();
             lblAddressInfo = new Label();
+            label7 = new Label();
             lblPhoneInfo = new Label();
+            label6 = new Label();
             lblGenderInfo = new Label();
+            label5 = new Label();
             lblDobInfo = new Label();
+            label4 = new Label();
             lblLastnameInfo = new Label();
+            label3 = new Label();
             lblFirstnameInfo = new Label();
+            label2 = new Label();
             lblIDInfo = new Label();
             picStudent = new PictureBox();
-            pnFunction = new Panel();
-            btnEdit = new Button();
-            lblTotal = new Label();
-            btnRefresh = new Button();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            btnViewScore = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
-            pnMainDataGridView.SuspendLayout();
+            pnMainDataGridView = new Panel();
+            cboGender = new ComboBox();
+            cboSort = new ComboBox();
+            txtSearch = new TextBox();
+            pnFunction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvScore).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
-            pnFunction.SuspendLayout();
+            pnMainDataGridView.SuspendLayout();
             SuspendLayout();
             // 
-            // dgvStudent
+            // pnFunction
             // 
-            dgvStudent.BackgroundColor = SystemColors.Control;
-            dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudent.Location = new Point(291, 43);
-            dgvStudent.Name = "dgvStudent";
-            dgvStudent.ReadOnly = true;
-            dgvStudent.RowHeadersVisible = false;
-            dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(935, 584);
-            dgvStudent.TabIndex = 0;
-            dgvStudent.CellClick += dgvStudent_CellClick;
+            pnFunction.Controls.Add(lblOverview);
+            pnFunction.Controls.Add(btnEdit);
+            pnFunction.Controls.Add(lblTotalScore);
+            pnFunction.Controls.Add(btnRefresh);
+            pnFunction.Dock = DockStyle.Bottom;
+            pnFunction.Location = new Point(0, 751);
+            pnFunction.Name = "pnFunction";
+            pnFunction.Size = new Size(1227, 106);
+            pnFunction.TabIndex = 5;
             // 
-            // ID
+            // lblOverview
             // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.Width = 125;
+            lblOverview.AutoSize = true;
+            lblOverview.Location = new Point(563, 13);
+            lblOverview.Name = "lblOverview";
+            lblOverview.Size = new Size(73, 20);
+            lblOverview.TabIndex = 6;
+            lblOverview.Text = "Overview:";
             // 
-            // Lastname
+            // btnEdit
             // 
-            Lastname.HeaderText = "Lastname";
-            Lastname.MinimumWidth = 6;
-            Lastname.Name = "Lastname";
-            Lastname.Width = 125;
+            btnEdit.Location = new Point(961, 5);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(124, 40);
+            btnEdit.TabIndex = 5;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
             // 
-            // Firstname
+            // lblTotalScore
             // 
-            Firstname.HeaderText = "Firstname";
-            Firstname.MinimumWidth = 6;
-            Firstname.Name = "Firstname";
-            Firstname.Width = 125;
+            lblTotalScore.AutoSize = true;
+            lblTotalScore.Location = new Point(294, 13);
+            lblTotalScore.Name = "lblTotalScore";
+            lblTotalScore.Size = new Size(45, 20);
+            lblTotalScore.TabIndex = 4;
+            lblTotalScore.Text = "Total:";
             // 
-            // Dob
+            // btnRefresh
             // 
-            Dob.HeaderText = "Dob";
-            Dob.MinimumWidth = 6;
-            Dob.Name = "Dob";
-            Dob.Width = 125;
+            btnRefresh.Location = new Point(1091, 5);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(124, 40);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
             // 
-            // Gender
+            // dgvScore
             // 
-            Gender.HeaderText = "Gender";
-            Gender.MinimumWidth = 6;
-            Gender.Name = "Gender";
-            Gender.Width = 125;
-            // 
-            // Phone
-            // 
-            Phone.HeaderText = "Phone";
-            Phone.MinimumWidth = 6;
-            Phone.Name = "Phone";
-            Phone.Width = 125;
-            // 
-            // Address
-            // 
-            Address.HeaderText = "Address";
-            Address.MinimumWidth = 6;
-            Address.Name = "Address";
-            Address.Width = 125;
-            // 
-            // Hometown
-            // 
-            Hometown.HeaderText = "Hometown";
-            Hometown.MinimumWidth = 6;
-            Hometown.Name = "Hometown";
-            Hometown.Width = 125;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.Width = 250;
-            // 
-            // btAdd
-            // 
-            btAdd.Location = new Point(560, 13);
-            btAdd.Name = "btAdd";
-            btAdd.Size = new Size(124, 40);
-            btAdd.TabIndex = 1;
-            btAdd.Text = "Add ";
-            btAdd.UseVisualStyleBackColor = true;
-            btAdd.Click += btnAdd_Click;
-            // 
-            // pnMainDataGridView
-            // 
-            pnMainDataGridView.Controls.Add(cboGender);
-            pnMainDataGridView.Controls.Add(cboSort);
-            pnMainDataGridView.Controls.Add(txtSearch);
-            pnMainDataGridView.Controls.Add(dgvStudent);
-            pnMainDataGridView.Controls.Add(panel1);
-            pnMainDataGridView.Dock = DockStyle.Top;
-            pnMainDataGridView.Location = new Point(0, 0);
-            pnMainDataGridView.Name = "pnMainDataGridView";
-            pnMainDataGridView.Size = new Size(1232, 630);
-            pnMainDataGridView.TabIndex = 2;
-            // 
-            // cboGender
-            // 
-            cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(406, 12);
-            cboGender.Name = "cboGender";
-            cboGender.Size = new Size(97, 28);
-            cboGender.TabIndex = 5;
-            cboGender.SelectedIndexChanged += cboGender_SelectedIndexChanged;
-            // 
-            // cboSort
-            // 
-            cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(296, 11);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(101, 28);
-            cboSort.TabIndex = 4;
-            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(513, 12);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(713, 27);
-            txtSearch.TabIndex = 3;
-            txtSearch.TextChanged += txtSearch_TextChanged;
+            dgvScore.BackgroundColor = SystemColors.Control;
+            dgvScore.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvScore.Location = new Point(285, 43);
+            dgvScore.Name = "dgvScore";
+            dgvScore.ReadOnly = true;
+            dgvScore.RowHeadersVisible = false;
+            dgvScore.RowHeadersWidth = 51;
+            dgvScore.Size = new Size(941, 707);
+            dgvScore.TabIndex = 0;
             // 
             // panel1
             // 
@@ -212,19 +143,27 @@
             panel1.Controls.Add(lblLastname);
             panel1.Controls.Add(lblFirstname);
             panel1.Controls.Add(lblID);
+            panel1.Controls.Add(label9);
             panel1.Controls.Add(lblEmailInfo);
+            panel1.Controls.Add(label8);
             panel1.Controls.Add(lblAddressInfo);
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(lblPhoneInfo);
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(lblGenderInfo);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(lblDobInfo);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(lblLastnameInfo);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(lblFirstnameInfo);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(lblIDInfo);
             panel1.Controls.Add(picStudent);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(285, 630);
+            panel1.Size = new Size(285, 753);
             panel1.TabIndex = 2;
             // 
             // label1
@@ -307,6 +246,16 @@
             lblID.Size = new Size(0, 25);
             lblID.TabIndex = 10;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(12, 517);
+            label9.Name = "label9";
+            label9.Size = new Size(58, 25);
+            label9.TabIndex = 9;
+            label9.Text = "Email";
+            // 
             // lblEmailInfo
             // 
             lblEmailInfo.AutoSize = true;
@@ -316,6 +265,16 @@
             lblEmailInfo.Size = new Size(58, 25);
             lblEmailInfo.TabIndex = 9;
             lblEmailInfo.Text = "Email";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(12, 480);
+            label8.Name = "label8";
+            label8.Size = new Size(80, 25);
+            label8.TabIndex = 8;
+            label8.Text = "Address";
             // 
             // lblAddressInfo
             // 
@@ -327,6 +286,16 @@
             lblAddressInfo.TabIndex = 8;
             lblAddressInfo.Text = "Address";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(12, 449);
+            label7.Name = "label7";
+            label7.Size = new Size(66, 25);
+            label7.TabIndex = 7;
+            label7.Text = "Phone";
+            // 
             // lblPhoneInfo
             // 
             lblPhoneInfo.AutoSize = true;
@@ -336,6 +305,16 @@
             lblPhoneInfo.Size = new Size(66, 25);
             lblPhoneInfo.TabIndex = 7;
             lblPhoneInfo.Text = "Phone";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(12, 413);
+            label6.Name = "label6";
+            label6.Size = new Size(74, 25);
+            label6.TabIndex = 6;
+            label6.Text = "Gender";
             // 
             // lblGenderInfo
             // 
@@ -347,6 +326,16 @@
             lblGenderInfo.TabIndex = 6;
             lblGenderInfo.Text = "Gender";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(12, 380);
+            label5.Name = "label5";
+            label5.Size = new Size(122, 25);
+            label5.TabIndex = 5;
+            label5.Text = "Date of birth";
+            // 
             // lblDobInfo
             // 
             lblDobInfo.AutoSize = true;
@@ -356,6 +345,16 @@
             lblDobInfo.Size = new Size(122, 25);
             lblDobInfo.TabIndex = 5;
             lblDobInfo.Text = "Date of birth";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(12, 342);
+            label4.Name = "label4";
+            label4.Size = new Size(93, 25);
+            label4.TabIndex = 4;
+            label4.Text = "Lastname";
             // 
             // lblLastnameInfo
             // 
@@ -367,6 +366,16 @@
             lblLastnameInfo.TabIndex = 4;
             lblLastnameInfo.Text = "Lastname";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 306);
+            label3.Name = "label3";
+            label3.Size = new Size(95, 25);
+            label3.TabIndex = 3;
+            label3.Text = "Firstname";
+            // 
             // lblFirstnameInfo
             // 
             lblFirstnameInfo.AutoSize = true;
@@ -376,6 +385,16 @@
             lblFirstnameInfo.Size = new Size(95, 25);
             lblFirstnameInfo.TabIndex = 3;
             lblFirstnameInfo.Text = "Firstname";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(12, 268);
+            label2.Name = "label2";
+            label2.Size = new Size(31, 25);
+            label2.TabIndex = 2;
+            label2.Text = "ID";
             // 
             // lblIDInfo
             // 
@@ -395,112 +414,72 @@
             picStudent.TabIndex = 1;
             picStudent.TabStop = false;
             // 
-            // pnFunction
+            // pnMainDataGridView
             // 
-            pnFunction.Controls.Add(btnViewScore);
-            pnFunction.Controls.Add(btnEdit);
-            pnFunction.Controls.Add(lblTotal);
-            pnFunction.Controls.Add(btnRefresh);
-            pnFunction.Controls.Add(btAdd);
-            pnFunction.Dock = DockStyle.Bottom;
-            pnFunction.Location = new Point(0, 636);
-            pnFunction.Name = "pnFunction";
-            pnFunction.Size = new Size(1232, 157);
-            pnFunction.TabIndex = 3;
+            pnMainDataGridView.Controls.Add(cboGender);
+            pnMainDataGridView.Controls.Add(cboSort);
+            pnMainDataGridView.Controls.Add(txtSearch);
+            pnMainDataGridView.Controls.Add(dgvScore);
+            pnMainDataGridView.Controls.Add(panel1);
+            pnMainDataGridView.Dock = DockStyle.Top;
+            pnMainDataGridView.Location = new Point(0, 0);
+            pnMainDataGridView.Name = "pnMainDataGridView";
+            pnMainDataGridView.Size = new Size(1227, 753);
+            pnMainDataGridView.TabIndex = 4;
             // 
-            // btnEdit
+            // cboGender
             // 
-            btnEdit.Location = new Point(692, 13);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 5;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
+            cboGender.FormattingEnabled = true;
+            cboGender.Location = new Point(406, 12);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(97, 28);
+            cboGender.TabIndex = 5;
             // 
-            // lblTotal
+            // cboSort
             // 
-            lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(294, 13);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(100, 20);
-            lblTotal.TabIndex = 4;
-            lblTotal.Text = "Total Student:";
+            cboSort.FormattingEnabled = true;
+            cboSort.Location = new Point(296, 11);
+            cboSort.Name = "cboSort";
+            cboSort.Size = new Size(101, 28);
+            cboSort.TabIndex = 4;
             // 
-            // btnRefresh
+            // txtSearch
             // 
-            btnRefresh.Location = new Point(822, 13);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 2;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
+            txtSearch.Location = new Point(513, 12);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search";
+            txtSearch.Size = new Size(713, 27);
+            txtSearch.TabIndex = 3;
             // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // btnViewScore
-            // 
-            btnViewScore.Location = new Point(964, 13);
-            btnViewScore.Name = "btnViewScore";
-            btnViewScore.Size = new Size(124, 40);
-            btnViewScore.TabIndex = 6;
-            btnViewScore.Text = "View Score";
-            btnViewScore.UseVisualStyleBackColor = true;
-            btnViewScore.Click += btnViewScore_Click;
-            // 
-            // f_ListStudent
+            // f_Score
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1232, 793);
+            ClientSize = new Size(1227, 857);
             Controls.Add(pnFunction);
             Controls.Add(pnMainDataGridView);
-            Name = "f_ListStudent";
-            Text = "Student Management";
-            Load += ManageStudent_Load;
-            Shown += f_ListStudent_Shown;
-            ((System.ComponentModel.ISupportInitialize)dgvStudent).EndInit();
-            pnMainDataGridView.ResumeLayout(false);
-            pnMainDataGridView.PerformLayout();
+            Name = "f_Score";
+            Text = "f_Score";
+            pnFunction.ResumeLayout(false);
+            pnFunction.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvScore).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
-            pnFunction.ResumeLayout(false);
-            pnFunction.PerformLayout();
+            pnMainDataGridView.ResumeLayout(false);
+            pnMainDataGridView.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgvStudent;
-        private Button btAdd;
-        private Panel pnMainDataGridView;
         private Panel pnFunction;
-        private PictureBox picStudent;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn Lastname;
-        private DataGridViewTextBoxColumn Firstname;
-        private DataGridViewTextBoxColumn Dob;
-        private DataGridViewTextBoxColumn Gender;
-        private DataGridViewTextBoxColumn Phone;
-        private DataGridViewTextBoxColumn Address;
-        private DataGridViewTextBoxColumn Hometown;
-        private DataGridViewTextBoxColumn Email;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button btnEdit;
+        private Label lblTotalScore;
         private Button btnRefresh;
+        private DataGridView dgvScore;
         private Panel panel1;
-        private Label lblIDInfo;
-        private Label lblFirstnameInfo;
-        private Label lblDobInfo;
-        private Label lblLastnameInfo;
-        private Label lblAddressInfo;
-        private Label lblPhoneInfo;
-        private Label lblGenderInfo;
-        private Label lblEmailInfo;
+        private Label label1;
         private Label lblAddress;
         private Label lblPhone;
         private Label lblGender;
@@ -509,12 +488,27 @@
         private Label lblLastname;
         private Label lblFirstname;
         private Label lblID;
-        private Label label1;
+        private Label label9;
+        private Label lblEmailInfo;
+        private Label label8;
+        private Label lblAddressInfo;
+        private Label label7;
+        private Label lblPhoneInfo;
+        private Label label6;
+        private Label lblGenderInfo;
+        private Label label5;
+        private Label lblDobInfo;
+        private Label label4;
+        private Label lblLastnameInfo;
+        private Label label3;
+        private Label lblFirstnameInfo;
+        private Label label2;
+        private Label lblIDInfo;
+        private PictureBox picStudent;
+        private Panel pnMainDataGridView;
         private ComboBox cboGender;
         private ComboBox cboSort;
         private TextBox txtSearch;
-        private Label lblTotal;
-        private Button btnEdit;
-        private Button btnViewScore;
+        private Label lblOverview;
     }
 }

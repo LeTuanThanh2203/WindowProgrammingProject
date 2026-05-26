@@ -1,4 +1,4 @@
-﻿namespace Project_Group6
+﻿namespace LoginForm
 {
     partial class f_EditDeleteCourse
     {
@@ -52,6 +52,12 @@
             txt_IDCourse = new TextBox();
             label2 = new Label();
             lbl_IDCourse = new Label();
+            txt_CourseCode = new TextBox();
+            lbl_CourseCode = new Label();
+            cbo_Semester = new ComboBox();
+            lbl_Semester = new Label();
+            txt_Week = new TextBox();
+            lbl_Week = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
             panel2.SuspendLayout();
@@ -65,7 +71,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(677, 606);
+            panel1.Size = new Size(677, 702);
             panel1.TabIndex = 49;
             // 
             // cboSort
@@ -97,12 +103,18 @@
             dgvCourse.RowHeadersVisible = false;
             dgvCourse.RowHeadersWidth = 51;
             dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCourse.Size = new Size(670, 565);
+            dgvCourse.Size = new Size(670, 661);
             dgvCourse.TabIndex = 6;
             dgvCourse.CellClick += dgvCourse_CellClick;
             // 
             // panel2
             // 
+            panel2.Controls.Add(txt_Week);
+            panel2.Controls.Add(lbl_Week);
+            panel2.Controls.Add(cbo_Semester);
+            panel2.Controls.Add(lbl_Semester);
+            panel2.Controls.Add(txt_CourseCode);
+            panel2.Controls.Add(lbl_CourseCode);
             panel2.Controls.Add(btnRefresh);
             panel2.Controls.Add(btnQuit);
             panel2.Controls.Add(btnDelete);
@@ -125,12 +137,13 @@
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(679, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(591, 606);
+            panel2.Size = new Size(591, 702);
             panel2.TabIndex = 68;
+    
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(303, 487);
+            btnRefresh.Location = new Point(303, 629);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(126, 44);
             btnRefresh.TabIndex = 57;
@@ -140,7 +153,7 @@
             // 
             // btnQuit
             // 
-            btnQuit.Location = new Point(442, 487);
+            btnQuit.Location = new Point(442, 629);
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(126, 44);
             btnQuit.TabIndex = 56;
@@ -150,7 +163,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(158, 487);
+            btnDelete.Location = new Point(158, 629);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(126, 44);
             btnDelete.TabIndex = 55;
@@ -160,7 +173,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(23, 487);
+            btnUpdate.Location = new Point(23, 629);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(117, 44);
             btnUpdate.TabIndex = 54;
@@ -171,7 +184,7 @@
             // lbl_Practical
             // 
             lbl_Practical.AutoSize = true;
-            lbl_Practical.Location = new Point(489, 240);
+            lbl_Practical.Location = new Point(489, 382);
             lbl_Practical.Name = "lbl_Practical";
             lbl_Practical.Size = new Size(65, 20);
             lbl_Practical.TabIndex = 53;
@@ -179,7 +192,7 @@
             // 
             // txt_PracticalPeriod
             // 
-            txt_PracticalPeriod.Location = new Point(426, 233);
+            txt_PracticalPeriod.Location = new Point(426, 375);
             txt_PracticalPeriod.Name = "txt_PracticalPeriod";
             txt_PracticalPeriod.Size = new Size(57, 27);
             txt_PracticalPeriod.TabIndex = 52;
@@ -187,7 +200,7 @@
             // lbl_Theory
             // 
             lbl_Theory.AutoSize = true;
-            lbl_Theory.Location = new Point(354, 240);
+            lbl_Theory.Location = new Point(354, 382);
             lbl_Theory.Name = "lbl_Theory";
             lbl_Theory.Size = new Size(54, 20);
             lbl_Theory.TabIndex = 51;
@@ -195,7 +208,7 @@
             // 
             // txt_CreditHour
             // 
-            txt_CreditHour.Location = new Point(118, 237);
+            txt_CreditHour.Location = new Point(118, 379);
             txt_CreditHour.Name = "txt_CreditHour";
             txt_CreditHour.Size = new Size(83, 27);
             txt_CreditHour.TabIndex = 50;
@@ -203,7 +216,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(23, 240);
+            label3.Location = new Point(23, 382);
             label3.Name = "label3";
             label3.Size = new Size(89, 20);
             label3.TabIndex = 49;
@@ -211,7 +224,7 @@
             // 
             // txt_Overview
             // 
-            txt_Overview.Location = new Point(23, 307);
+            txt_Overview.Location = new Point(23, 449);
             txt_Overview.Multiline = true;
             txt_Overview.Name = "txt_Overview";
             txt_Overview.Size = new Size(531, 126);
@@ -220,7 +233,7 @@
             // lbl_Overview
             // 
             lbl_Overview.AutoSize = true;
-            lbl_Overview.Location = new Point(23, 284);
+            lbl_Overview.Location = new Point(23, 426);
             lbl_Overview.Name = "lbl_Overview";
             lbl_Overview.Size = new Size(73, 20);
             lbl_Overview.TabIndex = 47;
@@ -228,7 +241,7 @@
             // 
             // txt_TheoryPeriod
             // 
-            txt_TheoryPeriod.Location = new Point(291, 237);
+            txt_TheoryPeriod.Location = new Point(291, 379);
             txt_TheoryPeriod.Name = "txt_TheoryPeriod";
             txt_TheoryPeriod.Size = new Size(57, 27);
             txt_TheoryPeriod.TabIndex = 46;
@@ -236,7 +249,7 @@
             // lbl_Period
             // 
             lbl_Period.AutoSize = true;
-            lbl_Period.Location = new Point(218, 240);
+            lbl_Period.Location = new Point(218, 382);
             lbl_Period.Name = "lbl_Period";
             lbl_Period.Size = new Size(54, 20);
             lbl_Period.TabIndex = 45;
@@ -245,7 +258,7 @@
             // cbo_PrerequisiteCourse
             // 
             cbo_PrerequisiteCourse.FormattingEnabled = true;
-            cbo_PrerequisiteCourse.Location = new Point(23, 190);
+            cbo_PrerequisiteCourse.Location = new Point(23, 332);
             cbo_PrerequisiteCourse.Name = "cbo_PrerequisiteCourse";
             cbo_PrerequisiteCourse.Size = new Size(531, 28);
             cbo_PrerequisiteCourse.TabIndex = 44;
@@ -253,7 +266,7 @@
             // lbl_PrerequisiteCourse
             // 
             lbl_PrerequisiteCourse.AutoSize = true;
-            lbl_PrerequisiteCourse.Location = new Point(23, 167);
+            lbl_PrerequisiteCourse.Location = new Point(23, 309);
             lbl_PrerequisiteCourse.Name = "lbl_PrerequisiteCourse";
             lbl_PrerequisiteCourse.Size = new Size(139, 20);
             lbl_PrerequisiteCourse.TabIndex = 43;
@@ -261,22 +274,22 @@
             // 
             // txt_NameCourse
             // 
-            txt_NameCourse.Location = new Point(400, 121);
+            txt_NameCourse.Location = new Point(132, 151);
             txt_NameCourse.Name = "txt_NameCourse";
-            txt_NameCourse.Size = new Size(154, 27);
+            txt_NameCourse.Size = new Size(380, 27);
             txt_NameCourse.TabIndex = 42;
             // 
             // txt_IDCourse
             // 
-            txt_IDCourse.Location = new Point(105, 121);
+            txt_IDCourse.Location = new Point(130, 55);
             txt_IDCourse.Name = "txt_IDCourse";
-            txt_IDCourse.Size = new Size(173, 27);
+            txt_IDCourse.Size = new Size(382, 27);
             txt_IDCourse.TabIndex = 41;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(293, 124);
+            label2.Location = new Point(27, 154);
             label2.Name = "label2";
             label2.Size = new Size(101, 20);
             label2.TabIndex = 40;
@@ -285,17 +298,67 @@
             // lbl_IDCourse
             // 
             lbl_IDCourse.AutoSize = true;
-            lbl_IDCourse.Location = new Point(23, 124);
+            lbl_IDCourse.Location = new Point(29, 58);
             lbl_IDCourse.Name = "lbl_IDCourse";
             lbl_IDCourse.Size = new Size(76, 20);
             lbl_IDCourse.TabIndex = 39;
             lbl_IDCourse.Text = "ID Course:";
             // 
+            // txt_CourseCode
+            // 
+            txt_CourseCode.Location = new Point(130, 103);
+            txt_CourseCode.Name = "txt_CourseCode";
+            txt_CourseCode.Size = new Size(382, 27);
+            txt_CourseCode.TabIndex = 59;
+      
+            // 
+            // lbl_CourseCode
+            // 
+            lbl_CourseCode.AutoSize = true;
+            lbl_CourseCode.Location = new Point(27, 106);
+            lbl_CourseCode.Name = "lbl_CourseCode";
+            lbl_CourseCode.Size = new Size(96, 20);
+            lbl_CourseCode.TabIndex = 58;
+            lbl_CourseCode.Text = "Course Code:";
+            // 
+            // cbo_Semester
+            // 
+            cbo_Semester.FormattingEnabled = true;
+            cbo_Semester.Location = new Point(130, 200);
+            cbo_Semester.Name = "cbo_Semester";
+            cbo_Semester.Size = new Size(382, 28);
+            cbo_Semester.TabIndex = 61;
+            // 
+            // lbl_Semester
+            // 
+            lbl_Semester.AutoSize = true;
+            lbl_Semester.Location = new Point(27, 200);
+            lbl_Semester.Name = "lbl_Semester";
+            lbl_Semester.Size = new Size(73, 20);
+            lbl_Semester.TabIndex = 60;
+            lbl_Semester.Text = "Semester:";
+            // 
+            // txt_Week
+            // 
+            txt_Week.Location = new Point(130, 253);
+            txt_Week.Name = "txt_Week";
+            txt_Week.Size = new Size(382, 27);
+            txt_Week.TabIndex = 63;
+            // 
+            // lbl_Week
+            // 
+            lbl_Week.AutoSize = true;
+            lbl_Week.Location = new Point(24, 256);
+            lbl_Week.Name = "lbl_Week";
+            lbl_Week.Size = new Size(48, 20);
+            lbl_Week.TabIndex = 62;
+            lbl_Week.Text = "Week:";
+            // 
             // f_EditDeleteCourse
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 606);
+            ClientSize = new Size(1270, 702);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Name = "f_EditDeleteCourse";
@@ -337,5 +400,11 @@
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnRefresh;
+        private TextBox txt_CourseCode;
+        private Label lbl_CourseCode;
+        private ComboBox cbo_Semester;
+        private Label lbl_Semester;
+        private TextBox txt_Week;
+        private Label lbl_Week;
     }
 }

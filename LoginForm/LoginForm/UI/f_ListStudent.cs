@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Project_Group6;
 using Project_Group6.UI;
 using ProjectMonHoc;
 using System;
@@ -304,6 +305,27 @@ namespace LoginForm
 
             edit.ShowDialog();
         }
+        private void btnViewScore_Click(
+object sender,
+EventArgs e)
+        {
+            if (dgvStudent.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Please select a student.");
+                return;
+            }
 
+            string mssv =
+                dgvStudent.CurrentRow
+                .Cells["MSSV"]
+                .Value
+                .ToString();
+
+            f_Score frm =
+                new f_Score(mssv);
+
+            frm.ShowDialog();
+        }
     }
 }

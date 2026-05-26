@@ -3,35 +3,55 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
 
-namespace Project_Group6
+namespace Project_Group6.Models
 {
     internal class Course
     {
-        public string CourseID { get; set; }
+        // PROPERTIES
+        public int CourseID { get; set; }
+
+        public string CourseCode { get; set; }
+
         public string CourseName { get; set; }
+
         public int CreditHour { get; set; }
+
+        public int Semester { get; set; }
+
+        public int Week { get; set; }
+
         public string Overview { get; set; }
-        public string PrerequisiteCourseID { get; set; }
+
+        public int? PrerequisiteCourseID { get; set; }
+
         public int TheoryPeriod { get; set; }
+
         public int PracticalPeriod { get; set; }
 
+        // CONSTRUCTOR
         public Course()
         {
 
         }
 
         public Course(
-            string courseID,
+            int courseID,
+            string courseCode,
             string courseName,
             int creditHour,
+            int semester,
+            int week,
             string overview,
-            string prerequisiteCourseID,
+            int? prerequisiteCourseID,
             int theoryPeriod,
             int practicalPeriod)
         {
             CourseID = courseID;
+            CourseCode = courseCode;
             CourseName = courseName;
             CreditHour = creditHour;
+            Semester = semester;
+            Week = week;
             Overview = overview;
             PrerequisiteCourseID =
                 prerequisiteCourseID;
@@ -51,9 +71,11 @@ namespace Project_Group6
                     string query = @"
                     INSERT INTO Course
                     (
-                        CourseID,
+                        CourseCode,
                         CourseName,
                         CreditHour,
+                        Semester,
+                        Week,
                         Overview,
                         PrerequisiteCourseID,
                         TheoryPeriod,
@@ -61,9 +83,11 @@ namespace Project_Group6
                     )
                     VALUES
                     (
-                        @courseID,
+                        @courseCode,
                         @courseName,
                         @creditHour,
+                        @semester,
+                        @week,
                         @overview,
                         @prerequisiteCourseID,
                         @theoryPeriod,
@@ -76,8 +100,8 @@ namespace Project_Group6
                             db.getConnection);
 
                     cmd.Parameters.AddWithValue(
-                        "@courseID",
-                        CourseID);
+                        "@courseCode",
+                        CourseCode);
 
                     cmd.Parameters.AddWithValue(
                         "@courseName",
@@ -88,8 +112,17 @@ namespace Project_Group6
                         CreditHour);
 
                     cmd.Parameters.AddWithValue(
+                        "@semester",
+                        Semester);
+
+                    cmd.Parameters.AddWithValue(
+                        "@week",
+                        Week);
+
+                    cmd.Parameters.AddWithValue(
                         "@overview",
-                        Overview);
+                        (object)Overview
+                        ?? DBNull.Value);
 
                     cmd.Parameters.AddWithValue(
                         "@prerequisiteCourseID",
@@ -112,6 +145,8 @@ namespace Project_Group6
                 return false;
             }
         }
+
+        // GET PREREQUISITE COURSE
         public DataTable GetPrerequisiteCourse()
         {
             DataTable table =
@@ -122,11 +157,11 @@ namespace Project_Group6
                 using (My_DB db = new My_DB())
                 {
                     string query = @"
-            SELECT 
-                CourseID,
-                CourseID + ' - ' + CourseName
-                AS CourseDisplay
-            FROM Course";
+                    SELECT 
+                        CourseID,
+                        CourseCode + ' - ' + CourseName
+                        AS CourseDisplay
+                    FROM Course";
 
                     SqlCommand command =
                         new SqlCommand(
@@ -159,8 +194,11 @@ namespace Project_Group6
                     string query = @"
                     UPDATE Course
                     SET
+                        CourseCode = @courseCode,
                         CourseName = @courseName,
                         CreditHour = @creditHour,
+                        Semester = @semester,
+                        Week = @week,
                         Overview = @overview,
                         PrerequisiteCourseID =
                             @prerequisiteCourseID,
@@ -179,6 +217,10 @@ namespace Project_Group6
                         CourseID);
 
                     cmd.Parameters.AddWithValue(
+                        "@courseCode",
+                        CourseCode);
+
+                    cmd.Parameters.AddWithValue(
                         "@courseName",
                         CourseName);
 
@@ -187,8 +229,17 @@ namespace Project_Group6
                         CreditHour);
 
                     cmd.Parameters.AddWithValue(
+                        "@semester",
+                        Semester);
+
+                    cmd.Parameters.AddWithValue(
+                        "@week",
+                        Week);
+
+                    cmd.Parameters.AddWithValue(
                         "@overview",
-                        Overview);
+                        (object)Overview
+                        ?? DBNull.Value);
 
                     cmd.Parameters.AddWithValue(
                         "@prerequisiteCourseID",
@@ -206,15 +257,16 @@ namespace Project_Group6
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message); // KHÔNG return silent
                 return false;
             }
         }
 
         // DELETE COURSE
         public static bool DelCourse(
-            string courseID)
+            int courseID)
         {
             try
             {
@@ -280,7 +332,7 @@ namespace Project_Group6
 
         // GET COURSE BY ID
         public Course GetCourseByID(
-            string courseID)
+            int courseID)
         {
             Course course = null;
 
@@ -313,7 +365,11 @@ namespace Project_Group6
                             new Course();
 
                         course.CourseID =
-                            reader["CourseID"]
+                            Convert.ToInt32(
+                                reader["CourseID"]);
+
+                        course.CourseCode =
+                            reader["CourseCode"]
                             .ToString();
 
                         course.CourseName =
@@ -324,13 +380,25 @@ namespace Project_Group6
                             Convert.ToInt32(
                                 reader["CreditHour"]);
 
+                        course.Semester =
+                            Convert.ToInt32(
+                                reader["Semester"]);
+
+                        course.Week =
+                            Convert.ToInt32(
+                                reader["Week"]);
+
                         course.Overview =
                             reader["Overview"]
                             .ToString();
 
-                        course.PrerequisiteCourseID =
-                            reader["PrerequisiteCourseID"]
-                            .ToString();
+                        if (reader["PrerequisiteCourseID"]
+                            != DBNull.Value)
+                        {
+                            course.PrerequisiteCourseID =
+                                Convert.ToInt32(
+                                    reader["PrerequisiteCourseID"]);
+                        }
 
                         course.TheoryPeriod =
                             Convert.ToInt32(
@@ -365,7 +433,7 @@ namespace Project_Group6
                     SELECT *
                     FROM Course
                     WHERE
-                        CourseID LIKE @keyword
+                        CourseCode LIKE @keyword
                         OR CourseName LIKE @keyword
                         OR Overview LIKE @keyword";
 

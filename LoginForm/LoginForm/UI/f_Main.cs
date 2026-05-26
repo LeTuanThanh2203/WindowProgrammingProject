@@ -47,6 +47,10 @@ namespace LoginForm
 
             btnStudent.Visible = false;
 
+            btnCourse.Visible = false;
+
+            btnCourseReg.Visible = false;
+
             // ADMIN
             if (Globals.Role == "Admin")
             {
@@ -55,6 +59,9 @@ namespace LoginForm
                 btnStudent.Visible = true;
 
                 btnStudent.Visible = true;
+
+                btnCourse.Visible = true;
+
                 OpenForm(new f_Overview());
             }
 
@@ -64,16 +71,16 @@ namespace LoginForm
                 btnOverview.Visible = true;
 
                 btnStudent.Visible = true;
+
+                btnCourse.Visible = true;
                 OpenForm(new f_Overview());
             }
 
             // USER
             else if (Globals.Role == "User")
             {
-                MessageBox.Show(
-                    "You do not have permission!");
-
-                pnSidebar.Enabled = false;
+             
+                btnCourseReg.Visible = true; 
             }
         }
 
@@ -119,6 +126,12 @@ namespace LoginForm
             EventArgs e)
         {
             OpenForm(new f_Overview());
+        }
+        private void btnCourse_Click(
+        object sender,
+        EventArgs e)
+        {
+            OpenForm(new f_ManageCourse());
         }
 
         private async void btnAskAI_Click(

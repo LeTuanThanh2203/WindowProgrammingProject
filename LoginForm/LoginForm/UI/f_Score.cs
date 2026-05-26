@@ -1,0 +1,122 @@
+﻿using Microsoft.Data.SqlClient;
+using ProjectMonHoc;
+using System;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Reflection.Metadata;
+using System.Windows.Forms;
+
+namespace Project_Group6
+{
+    public partial class f_Score : Form
+    {
+        My_DB db = new My_DB();
+        private string _mssv;
+
+        public f_Score(string mssv)
+        {
+            InitializeComponent();
+            _mssv = mssv;
+            this.Load += f_Score_Load;
+            btnRefresh.Click += btnRefresh_Click;
+            dgvScore.CellClick += dgvScore_CellClick;
+        }
+
+        private void f_Score_Load(object sender, EventArgs e)
+        {
+            LoadStudentInfo();
+            LoadScores();
+        }
+
+        // =========================
+        // LOAD STUDENT INFO
+        // =========================
+        private void LoadStudentInfo()
+        {
+            // Dùng GetStudentByID — connection riêng, không conflict
+            Student student = new Student().GetStudentByID(_mssv);
+            if (student == null) return;
+
+            lblID.Text = student.MSSV;
+            lblFirstname.Text = student.Fname;
+            lblLastname.Text = student.Lname;
+            lblDob.Text = student.Dob.ToString("dd/MM/yyyy");
+            lblGender.Text = student.Gender;
+            lblPhone.Text = student.Phone;
+            lblAddress.Text = student.Address;
+            lblEmail.Text = student.Email;
+
+            // Hiện ảnh — copy y chang f_ListStudent
+            if (student.Picture != null && student.Picture.Length > 0)
+            {
+                MemoryStream ms = new MemoryStream(student.Picture);
+                picStudent.Image = Image.FromStream(ms);
+                picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                picStudent.Image = null;
+            }
+        }
+
+        // =========================
+        // LOAD SCORE
+        // =========================
+        private void LoadScores()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT * FROM Score WHERE MSSV = @mssv");
+
+                cmd.Parameters.AddWithValue("@mssv", _mssv);
+
+                DataTable table = new Score().GetScores(cmd);
+
+                dgvScore.DataSource = table;
+                dgvScore.AllowUserToAddRows = false;
+                dgvScore.RowHeadersVisible = false;
+                dgvScore.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (dgvScore.Columns["MSSV"] != null)
+                    dgvScore.Columns["MSSV"].Visible = false;
+
+                lblTotalScore.Text = "Total: " + table.Rows.Count + " courses";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // =========================
+        // CLICK SCORE ROW
+        // =========================
+        private void dgvScore_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow row = dgvScore.Rows[e.RowIndex];
+            string ov = row.Cells["Overview"].Value?.ToString();
+
+            lblOverview.Text = "Overview: " + ov;
+            lblOverview.ForeColor = ov switch
+            {
+                "Excellent" => Color.Blue,
+                "Good" => Color.Green,
+                "Pass" => Color.DarkOrange,
+                _ => Color.Red
+            };
+        }
+
+        // =========================
+        // REFRESH
+        // =========================
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadScores();
+        }
+    }
+}
