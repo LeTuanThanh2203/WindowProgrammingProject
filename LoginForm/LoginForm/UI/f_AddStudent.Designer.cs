@@ -33,7 +33,6 @@ namespace LoginForm
         {
             label1 = new Label();
             label2 = new Label();
-            txtMSSV = new TextBox();
             txtFname = new TextBox();
             label3 = new Label();
             txtLname = new TextBox();
@@ -45,8 +44,6 @@ namespace LoginForm
             txtPhone = new TextBox();
             label7 = new Label();
             txtAddress = new TextBox();
-            label8 = new Label();
-            txtHometown = new TextBox();
             label9 = new Label();
             txtEmail = new TextBox();
             picStudent = new PictureBox();
@@ -56,6 +53,9 @@ namespace LoginForm
             btnClear = new Button();
             btnQuit = new Button();
             btnScan = new Button();
+            label8 = new Label();
+            cboHometown = new ComboBox();
+            txtMSSV = new TextBox();
             ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
             SuspendLayout();
             // 
@@ -77,13 +77,6 @@ namespace LoginForm
             label2.TabIndex = 1;
             label2.Text = "Last name:";
             // 
-            // txtMSSV
-            // 
-            txtMSSV.Location = new Point(108, 62);
-            txtMSSV.Name = "txtMSSV";
-            txtMSSV.Size = new Size(143, 27);
-            txtMSSV.TabIndex = 2;
-            // 
             // txtFname
             // 
             txtFname.Location = new Point(108, 102);
@@ -94,7 +87,7 @@ namespace LoginForm
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(337, 105);
+            label3.Location = new Point(323, 105);
             label3.Name = "label3";
             label3.Size = new Size(80, 20);
             label3.TabIndex = 4;
@@ -102,14 +95,14 @@ namespace LoginForm
             // 
             // txtLname
             // 
-            txtLname.Location = new Point(417, 102);
+            txtLname.Location = new Point(403, 102);
             txtLname.Name = "txtLname";
-            txtLname.Size = new Size(106, 27);
+            txtLname.Size = new Size(108, 27);
             txtLname.TabIndex = 5;
             // 
             // dtpDob
             // 
-            dtpDob.Location = new Point(629, 102);
+            dtpDob.Location = new Point(626, 102);
             dtpDob.Name = "dtpDob";
             dtpDob.Size = new Size(149, 27);
             dtpDob.TabIndex = 6;
@@ -117,7 +110,7 @@ namespace LoginForm
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(532, 105);
+            label4.Location = new Point(529, 105);
             label4.Name = "label4";
             label4.Size = new Size(97, 20);
             label4.TabIndex = 7;
@@ -159,7 +152,7 @@ namespace LoginForm
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(21, 189);
+            label7.Location = new Point(19, 226);
             label7.Name = "label7";
             label7.Size = new Size(65, 20);
             label7.TabIndex = 12;
@@ -167,26 +160,10 @@ namespace LoginForm
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(109, 186);
+            txtAddress.Location = new Point(107, 223);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(404, 27);
             txtAddress.TabIndex = 13;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(21, 230);
-            label8.Name = "label8";
-            label8.Size = new Size(86, 20);
-            label8.TabIndex = 14;
-            label8.Text = "Hometown:";
-            // 
-            // txtHometown
-            // 
-            txtHometown.Location = new Point(109, 227);
-            txtHometown.Name = "txtHometown";
-            txtHometown.Size = new Size(404, 27);
-            txtHometown.TabIndex = 15;
             // 
             // label9
             // 
@@ -201,7 +178,7 @@ namespace LoginForm
             // 
             txtEmail.Location = new Point(109, 266);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(222, 27);
+            txtEmail.Size = new Size(402, 27);
             txtEmail.TabIndex = 17;
             // 
             // picStudent
@@ -274,11 +251,38 @@ namespace LoginForm
             btnScan.UseVisualStyleBackColor = false;
             btnScan.Click += btnAI_Click;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(21, 188);
+            label8.Name = "label8";
+            label8.Size = new Size(86, 20);
+            label8.TabIndex = 25;
+            label8.Text = "Hometown:";
+            // 
+            // cboHometown
+            // 
+            cboHometown.FormattingEnabled = true;
+            cboHometown.Location = new Point(109, 185);
+            cboHometown.Name = "cboHometown";
+            cboHometown.Size = new Size(402, 28);
+            cboHometown.TabIndex = 27;
+            // 
+            // txtMSSV
+            // 
+            txtMSSV.Location = new Point(107, 58);
+            txtMSSV.Name = "txtMSSV";
+            txtMSSV.Size = new Size(404, 27);
+            txtMSSV.TabIndex = 28;
+            // 
             // f_AddStudent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(832, 445);
+            Controls.Add(txtMSSV);
+            Controls.Add(cboHometown);
+            Controls.Add(label8);
             Controls.Add(btnScan);
             Controls.Add(btnQuit);
             Controls.Add(btnClear);
@@ -288,8 +292,6 @@ namespace LoginForm
             Controls.Add(picStudent);
             Controls.Add(txtEmail);
             Controls.Add(label9);
-            Controls.Add(txtHometown);
-            Controls.Add(label8);
             Controls.Add(txtAddress);
             Controls.Add(label7);
             Controls.Add(txtPhone);
@@ -301,7 +303,6 @@ namespace LoginForm
             Controls.Add(txtLname);
             Controls.Add(label3);
             Controls.Add(txtFname);
-            Controls.Add(txtMSSV);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "f_AddStudent";
@@ -316,7 +317,6 @@ namespace LoginForm
 
         private Label label1;
         private Label label2;
-        private TextBox txtMSSV;
         private TextBox txtFname;
         private Label label3;
         private TextBox txtLname;
@@ -328,8 +328,6 @@ namespace LoginForm
         private TextBox txtPhone;
         private Label label7;
         private TextBox txtAddress;
-        private Label label8;
-        private TextBox txtHometown;
         private Label label9;
         private TextBox txtEmail;
         private PictureBox picStudent;
@@ -339,5 +337,8 @@ namespace LoginForm
         private Button btnClear;
         private Button btnQuit;
         private Button btnScan;
+        private Label label8;
+        private ComboBox cboHometown;
+        private TextBox txtMSSV;
     }
 }

@@ -52,79 +52,33 @@ public class Student
 
                 string query = @"
                 INSERT INTO Student
-                (
-                    MSSV,
-                    FirstName,
-                    LastName,
-                    Dob,
-                    Gender,
-                    Phone,
-                    Address,
-                    HomeTown,
-                    Email,
-                    Picture
-                )
+                (MSSV, FirstName, LastName, Dob, Gender, Phone, Address, HomeTown, Email, Picture)
                 VALUES
-                (
-                    @mssv,
-                    @fname,
-                    @lname,
-                    @dob,
-                    @gender,
-                    @phone,
-                    @address,
-                    @hometown,
-                    @email,
-                    @picture
-                )";
+                (@mssv, @fname, @lname, @dob, @gender, @phone, @address, @hometown, @email, @picture)";
 
-                SqlCommand cmd =
-                    new SqlCommand(query, db.getConnection);
+                SqlCommand cmd = new SqlCommand(query, db.getConnection);
 
-                cmd.Parameters.Add("@mssv",
-                    SqlDbType.Int).Value = MSSV;
+                // FIX: MSSV là NVarChar, không phải Int
+                cmd.Parameters.Add("@mssv", SqlDbType.NVarChar).Value = MSSV;
+                cmd.Parameters.Add("@fname", SqlDbType.NVarChar).Value = Fname;
+                cmd.Parameters.Add("@lname", SqlDbType.NVarChar).Value = Lname;
+                cmd.Parameters.Add("@dob", SqlDbType.Date).Value = Dob;
+                cmd.Parameters.Add("@gender", SqlDbType.NVarChar).Value = Gender;
+                cmd.Parameters.Add("@phone", SqlDbType.VarChar).Value = Phone;
+                cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = Address;
+                cmd.Parameters.Add("@hometown", SqlDbType.NVarChar).Value = Hometown;
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = Email;
+                cmd.Parameters.Add("@picture", SqlDbType.VarBinary).Value = (object)Picture ?? DBNull.Value;
 
-                cmd.Parameters.Add("@fname",
-                    SqlDbType.NVarChar).Value = Fname;
-
-                cmd.Parameters.Add("@lname",
-                    SqlDbType.NVarChar).Value = Lname;
-
-                cmd.Parameters.Add("@dob",
-                    SqlDbType.Date).Value = Dob;
-
-                cmd.Parameters.Add("@gender",
-                    SqlDbType.NVarChar).Value = Gender;
-
-                cmd.Parameters.Add("@phone",
-                    SqlDbType.VarChar).Value = Phone;
-
-                cmd.Parameters.Add("@address",
-                    SqlDbType.NVarChar).Value = Address;
-
-                cmd.Parameters.Add("@hometown",
-                    SqlDbType.NVarChar).Value = Hometown;
-
-                cmd.Parameters.Add("@email",
-                    SqlDbType.VarChar).Value = Email;
-
-                //cmd.Parameters.Add("@picture",
-                //    SqlDbType.Image).Value =
-                //    (object)Picture ?? DBNull.Value;
-                cmd.Parameters.Add("@picture",
-                SqlDbType.VarBinary).Value =
-                (object)Picture ?? DBNull.Value;
-
-                int result = cmd.ExecuteNonQuery();
-
-                return result > 0;
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
-        catch
+        catch (Exception ex)
         {
+            // Hiện lỗi thật thay vì âm thầm return false
+            MessageBox.Show("AddStudent Error: " + ex.Message);
             return false;
         }
-
     }
 
 
@@ -389,10 +343,24 @@ public class Student
         DataTable table =
             new DataTable();
 
-        SqlDataAdapter adapter =
-            new SqlDataAdapter(command);
+        try
+        {
+            using (My_DB db =
+                new My_DB())
+            {
+                command.Connection =
+                    db.getConnection;
 
-        adapter.Fill(table);
+                SqlDataAdapter adapter =
+                    new SqlDataAdapter(command);
+
+                adapter.Fill(table);
+            }
+        }
+        catch
+        {
+
+        }
 
         return table;
     }
@@ -488,8 +456,7 @@ public class Student
 
         return table;
     }
-    public Student GetStudentByID(
-    int mssv)
+    public Student GetStudentByID(string mssv)
     {
         Student student =
             null;

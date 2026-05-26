@@ -38,7 +38,6 @@ namespace LoginForm
             lbl_Password = new Label();
             txt_Email = new TextBox();
             lbl_Email = new Label();
-            lbl_Time = new Label();
             bt_OTP = new Button();
             txt_OTP = new TextBox();
             lbl_OTP = new Label();
@@ -46,6 +45,10 @@ namespace LoginForm
             btn_Register = new Button();
             bt_Cancel = new Button();
             pnLeft = new Panel();
+            lbl_Time = new Label();
+            lbl_CheckEmail = new Label();
+            lbl_CheckPassword = new Label();
+            lbl_CheckUsername = new Label();
             pnOTP = new Panel();
             pnRight = new Panel();
             btnClose = new Button();
@@ -62,7 +65,7 @@ namespace LoginForm
             // 
             cb_isShowPassword.AutoSize = true;
             cb_isShowPassword.Font = new Font("Segoe UI", 10.2F);
-            cb_isShowPassword.Location = new Point(47, 607);
+            cb_isShowPassword.Location = new Point(604, 570);
             cb_isShowPassword.Margin = new Padding(4, 3, 4, 3);
             cb_isShowPassword.Name = "cb_isShowPassword";
             cb_isShowPassword.Size = new Size(148, 27);
@@ -74,7 +77,7 @@ namespace LoginForm
             // txt_Password
             // 
             txt_Password.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txt_Password.Location = new Point(44, 575);
+            txt_Password.Location = new Point(47, 536);
             txt_Password.Margin = new Padding(4, 3, 4, 3);
             txt_Password.Name = "txt_Password";
             txt_Password.Size = new Size(705, 27);
@@ -84,7 +87,7 @@ namespace LoginForm
             // txt_UserName
             // 
             txt_UserName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txt_UserName.Location = new Point(44, 244);
+            txt_UserName.Location = new Point(47, 187);
             txt_UserName.Margin = new Padding(4, 3, 4, 3);
             txt_UserName.Name = "txt_UserName";
             txt_UserName.Size = new Size(705, 27);
@@ -95,7 +98,7 @@ namespace LoginForm
             lbl_Username.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbl_Username.AutoSize = true;
             lbl_Username.Font = new Font("Segoe UI", 16.2F);
-            lbl_Username.Location = new Point(39, 195);
+            lbl_Username.Location = new Point(52, 146);
             lbl_Username.Margin = new Padding(4, 0, 4, 0);
             lbl_Username.Name = "lbl_Username";
             lbl_Username.Size = new Size(142, 38);
@@ -107,7 +110,7 @@ namespace LoginForm
             lbl_Password.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbl_Password.AutoSize = true;
             lbl_Password.Font = new Font("Segoe UI", 16.2F);
-            lbl_Password.Location = new Point(34, 527);
+            lbl_Password.Location = new Point(52, 495);
             lbl_Password.Margin = new Padding(4, 0, 4, 0);
             lbl_Password.Name = "lbl_Password";
             lbl_Password.Size = new Size(132, 38);
@@ -117,7 +120,7 @@ namespace LoginForm
             // txt_Email
             // 
             txt_Email.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txt_Email.Location = new Point(44, 346);
+            txt_Email.Location = new Point(47, 304);
             txt_Email.Margin = new Padding(4, 3, 4, 3);
             txt_Email.Name = "txt_Email";
             txt_Email.Size = new Size(705, 27);
@@ -128,20 +131,12 @@ namespace LoginForm
             lbl_Email.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbl_Email.AutoSize = true;
             lbl_Email.Font = new Font("Segoe UI", 16.2F);
-            lbl_Email.Location = new Point(38, 295);
+            lbl_Email.Location = new Point(52, 263);
             lbl_Email.Margin = new Padding(4, 0, 4, 0);
             lbl_Email.Name = "lbl_Email";
             lbl_Email.Size = new Size(83, 38);
             lbl_Email.TabIndex = 17;
             lbl_Email.Text = "Email";
-            // 
-            // lbl_Time
-            // 
-            lbl_Time.AutoSize = true;
-            lbl_Time.Location = new Point(532, 488);
-            lbl_Time.Name = "lbl_Time";
-            lbl_Time.Size = new Size(0, 20);
-            lbl_Time.TabIndex = 36;
             // 
             // bt_OTP
             // 
@@ -157,7 +152,7 @@ namespace LoginForm
             // txt_OTP
             // 
             txt_OTP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            txt_OTP.Location = new Point(4, 2);
+            txt_OTP.Location = new Point(0, 2);
             txt_OTP.Margin = new Padding(4, 3, 4, 3);
             txt_OTP.Name = "txt_OTP";
             txt_OTP.Size = new Size(564, 27);
@@ -168,7 +163,7 @@ namespace LoginForm
             lbl_OTP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbl_OTP.AutoSize = true;
             lbl_OTP.Font = new Font("Segoe UI", 16.2F);
-            lbl_OTP.Location = new Point(38, 410);
+            lbl_OTP.Location = new Point(52, 375);
             lbl_OTP.Margin = new Padding(4, 0, 4, 0);
             lbl_OTP.Name = "lbl_OTP";
             lbl_OTP.Size = new Size(138, 38);
@@ -200,7 +195,7 @@ namespace LoginForm
             btn_Register.FlatAppearance.BorderSize = 0;
             btn_Register.FlatStyle = FlatStyle.Flat;
             btn_Register.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Register.Location = new Point(186, 639);
+            btn_Register.Location = new Point(183, 650);
             btn_Register.Margin = new Padding(4, 3, 4, 3);
             btn_Register.Name = "btn_Register";
             btn_Register.Size = new Size(465, 67);
@@ -217,7 +212,7 @@ namespace LoginForm
             bt_Cancel.Cursor = Cursors.Hand;
             bt_Cancel.FlatStyle = FlatStyle.Flat;
             bt_Cancel.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bt_Cancel.Location = new Point(186, 717);
+            bt_Cancel.Location = new Point(183, 728);
             bt_Cancel.Margin = new Padding(4, 3, 4, 3);
             bt_Cancel.Name = "bt_Cancel";
             bt_Cancel.Size = new Size(465, 63);
@@ -228,8 +223,22 @@ namespace LoginForm
             // 
             // pnLeft
             // 
+            pnLeft.Controls.Add(lbl_Time);
+            pnLeft.Controls.Add(lbl_CheckEmail);
+            pnLeft.Controls.Add(bt_Cancel);
+            pnLeft.Controls.Add(lbl_CheckPassword);
+            pnLeft.Controls.Add(btn_Register);
+            pnLeft.Controls.Add(lbl_CheckUsername);
             pnLeft.Controls.Add(pnOTP);
             pnLeft.Controls.Add(lbl_Title);
+            pnLeft.Controls.Add(txt_Email);
+            pnLeft.Controls.Add(lbl_Username);
+            pnLeft.Controls.Add(cb_isShowPassword);
+            pnLeft.Controls.Add(lbl_OTP);
+            pnLeft.Controls.Add(txt_Password);
+            pnLeft.Controls.Add(lbl_Password);
+            pnLeft.Controls.Add(txt_UserName);
+            pnLeft.Controls.Add(lbl_Email);
             pnLeft.Dock = DockStyle.Left;
             pnLeft.Location = new Point(0, 0);
             pnLeft.Name = "pnLeft";
@@ -237,14 +246,50 @@ namespace LoginForm
             pnLeft.TabIndex = 40;
             pnLeft.MouseDown += pnlTop_MouseDown;
             // 
+            // lbl_Time
+            // 
+            lbl_Time.AutoSize = true;
+            lbl_Time.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Time.Location = new Point(488, 452);
+            lbl_Time.Name = "lbl_Time";
+            lbl_Time.Size = new Size(0, 28);
+            lbl_Time.TabIndex = 43;
+            // 
+            // lbl_CheckEmail
+            // 
+            lbl_CheckEmail.AutoSize = true;
+            lbl_CheckEmail.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckEmail.Location = new Point(52, 332);
+            lbl_CheckEmail.Name = "lbl_CheckEmail";
+            lbl_CheckEmail.Size = new Size(0, 28);
+            lbl_CheckEmail.TabIndex = 42;
+            // 
+            // lbl_CheckPassword
+            // 
+            lbl_CheckPassword.AutoSize = true;
+            lbl_CheckPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckPassword.Location = new Point(52, 566);
+            lbl_CheckPassword.Name = "lbl_CheckPassword";
+            lbl_CheckPassword.Size = new Size(0, 28);
+            lbl_CheckPassword.TabIndex = 41;
+            // 
+            // lbl_CheckUsername
+            // 
+            lbl_CheckUsername.AutoSize = true;
+            lbl_CheckUsername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckUsername.Location = new Point(52, 217);
+            lbl_CheckUsername.Name = "lbl_CheckUsername";
+            lbl_CheckUsername.Size = new Size(0, 28);
+            lbl_CheckUsername.TabIndex = 39;
+            // 
             // pnOTP
             // 
             pnOTP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             pnOTP.Controls.Add(txt_OTP);
             pnOTP.Controls.Add(bt_OTP);
-            pnOTP.Location = new Point(47, 453);
+            pnOTP.Location = new Point(47, 416);
             pnOTP.Name = "pnOTP";
-            pnOTP.Size = new Size(705, 32);
+            pnOTP.Size = new Size(705, 33);
             pnOTP.TabIndex = 38;
             // 
             // pnRight
@@ -319,17 +364,6 @@ namespace LoginForm
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1518, 817);
             Controls.Add(pnRight);
-            Controls.Add(bt_Cancel);
-            Controls.Add(btn_Register);
-            Controls.Add(lbl_Time);
-            Controls.Add(lbl_OTP);
-            Controls.Add(txt_Email);
-            Controls.Add(lbl_Email);
-            Controls.Add(cb_isShowPassword);
-            Controls.Add(txt_Password);
-            Controls.Add(txt_UserName);
-            Controls.Add(lbl_Username);
-            Controls.Add(lbl_Password);
             Controls.Add(pnLeft);
             FormBorderStyle = FormBorderStyle.None;
             Name = "f_RegisterForm";
@@ -342,7 +376,6 @@ namespace LoginForm
             pnRight.ResumeLayout(false);
             pnButtonContainer.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -356,7 +389,6 @@ namespace LoginForm
         private Label lbl_Password;
         private TextBox txt_Email;
         private Label lbl_Email;
-        private Label lbl_Time;
         private Button bt_OTP;
         private TextBox txt_OTP;
         private Label lbl_OTP;
@@ -368,5 +400,9 @@ namespace LoginForm
         private Button btnMaximize;
         private Button btnMinimize;
         private Panel pnOTP;
+        private Label lbl_CheckUsername;
+        private Label lbl_CheckEmail;
+        private Label lbl_CheckPassword;
+        private Label lbl_Time;
     }
 }

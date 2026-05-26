@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho việc di chuyển form không có border
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 namespace LoginForm
 {
 
@@ -31,6 +32,154 @@ namespace LoginForm
         public f_RegisterForm()
         {
             InitializeComponent();
+        }
+        private void txt_UserName_TextChanged(
+    object sender,
+    EventArgs e)
+        {
+            string username =
+                txt_UserName.Text.Trim();
+
+            // EMPTY
+            if (username == "")
+            {
+                lbl_CheckUsername.Text =
+                    "Username is required";
+
+                lbl_CheckUsername.ForeColor =
+                    Color.Red;
+
+                return;
+            }
+
+            using (My_DB db = new My_DB())
+            {
+                string query =
+                    "SELECT COUNT(*) FROM DataLoginForm WHERE UserName=@user";
+
+                SqlCommand cmd =
+                    new SqlCommand(
+                        query,
+                        db.getConnection);
+
+                cmd.Parameters.AddWithValue(
+                    "@user",
+                    username);
+
+                db.openConnection();
+
+                int count =
+                    (int)cmd.ExecuteScalar();
+
+                db.closeConnection();
+
+                if (count > 0)
+                {
+                    lbl_CheckUsername.Text =
+                        "Username already exists";
+
+                    lbl_CheckUsername.ForeColor =
+                        Color.Red;
+                }
+                else
+                {
+                    lbl_CheckUsername.Text =
+                        "Username available";
+
+                    lbl_CheckUsername.ForeColor =
+                        Color.Green;
+                }
+            }
+        }
+        private void txt_Email_TextChanged(
+    object sender,
+    EventArgs e)
+        {
+            string email =
+                txt_Email.Text.Trim();
+
+            // EMAIL REGEX
+            string pattern =
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            if (email == "")
+            {
+                lbl_CheckEmail.Text =
+                    "Email is required";
+
+                lbl_CheckEmail.ForeColor =
+                    Color.Red;
+
+                return;
+            }
+
+            if (Regex.IsMatch(email, pattern))
+            {
+                lbl_CheckEmail.Text =
+                    "Valid email";
+
+                lbl_CheckEmail.ForeColor =
+                    Color.Green;
+            }
+            else
+            {
+                lbl_CheckEmail.Text =
+                    "Invalid email";
+
+                lbl_CheckEmail.ForeColor =
+                    Color.Red;
+            }
+        }
+        private void txt_Password_TextChanged(
+    object sender,
+    EventArgs e)
+        {
+            string password =
+                txt_Password.Text;
+
+            if (password.Length < 8)
+            {
+                lbl_CheckPassword.Text =
+                    "At least 8 characters";
+
+                lbl_CheckPassword.ForeColor =
+                    Color.Red;
+
+                return;
+            }
+
+            bool hasUpper =
+                Regex.IsMatch(password, @"[A-Z]");
+
+            bool hasLower =
+                Regex.IsMatch(password, @"[a-z]");
+
+            bool hasNumber =
+                Regex.IsMatch(password, @"[0-9]");
+
+            bool hasSpecial =
+                Regex.IsMatch(password,
+                @"[\W_]");
+
+            if (hasUpper &&
+                hasLower &&
+                hasNumber &&
+                hasSpecial)
+            {
+                lbl_CheckPassword.Text =
+                    "Strong password";
+
+                lbl_CheckPassword.ForeColor =
+                    Color.Green;
+            }
+            else
+            {
+                lbl_CheckPassword.Text =
+                    "Weak password";
+
+                lbl_CheckPassword.ForeColor =
+                    Color.Orange;
+            }
         }
         private void Timer_Tick(
     object sender,
@@ -57,6 +206,14 @@ namespace LoginForm
             timer.Interval = 1000;
 
             timer.Tick += Timer_Tick;
+            txt_UserName.TextChanged +=
+       txt_UserName_TextChanged;
+
+            txt_Email.TextChanged +=
+                txt_Email_TextChanged;
+
+            txt_Password.TextChanged +=
+                txt_Password_TextChanged;
         }
         private void bt_OTP_Click(
     object sender,
@@ -228,7 +385,6 @@ namespace LoginForm
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
     }
 }
 

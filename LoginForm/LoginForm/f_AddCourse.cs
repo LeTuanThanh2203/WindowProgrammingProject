@@ -1,4 +1,6 @@
-﻿using ProjectMonHoc;
+﻿using Microsoft.Data.SqlClient;
+using Project_Group6;
+using ProjectMonHoc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +8,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace LoginForm
 {
@@ -19,50 +20,44 @@ namespace LoginForm
         }
         private void LoadPrerequisiteCourse()
         {
-            using (My_DB db = new My_DB())
-            {
-                string query = @"
-        SELECT 
-            CourseID,
-            CourseID + ' - ' + CourseName AS CourseDisplay
-        FROM Course";
+            Course course =
+                new Course();
 
-                SqlCommand command =
-                    new SqlCommand(query, db.getConnection);
+            DataTable table =
+                course.GetPrerequisiteCourse();
 
-                SqlDataAdapter adapter =
-                    new SqlDataAdapter(command);
+            // ADD NONE
+            DataRow row =
+                table.NewRow();
 
-                DataTable table =
-                    new DataTable();
+            row["CourseID"] =
+                DBNull.Value;
 
-                adapter.Fill(table);
+            row["CourseDisplay"] =
+                "-- None --";
 
-                // THÊM DÒNG NONE
-                DataRow row = table.NewRow();
+            table.Rows.InsertAt(row, 0);
 
-                row["CourseID"] = DBNull.Value;
-                row["CourseDisplay"] = "-- None --";
+            cbo_PrerequisiteCourse.DataSource =
+                table;
 
-                table.Rows.InsertAt(row, 0);
+            cbo_PrerequisiteCourse.DisplayMember =
+                "CourseDisplay";
 
-                cbo_PrerequisiteCourse.DataSource = table;
+            cbo_PrerequisiteCourse.ValueMember =
+                "CourseID";
 
-                cbo_PrerequisiteCourse.DisplayMember =
-                    "CourseDisplay";
-
-                cbo_PrerequisiteCourse.ValueMember =
-                    "CourseID";
-
-                cbo_PrerequisiteCourse.SelectedIndex = 0;
-            }
+            cbo_PrerequisiteCourse.SelectedIndex = 0;
         }
-        private void btn_AddCourse_Click(object sender, EventArgs e)
+        private void btn_AddCourse_Click(
+    object sender,
+    EventArgs e)
         {
-            // CHECK RỖNG
+            // CHECK EMPTY
             if (txt_IDCourse.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter course ID!");
+                MessageBox.Show(
+                    "Please enter course ID!");
 
                 txt_IDCourse.Focus();
 
@@ -71,7 +66,8 @@ namespace LoginForm
 
             if (txt_NameCourse.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter course name!");
+                MessageBox.Show(
+                    "Please enter course name!");
 
                 txt_NameCourse.Focus();
 
@@ -80,7 +76,8 @@ namespace LoginForm
 
             if (txt_CreditHour.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter credit hour!");
+                MessageBox.Show(
+                    "Please enter credit hour!");
 
                 txt_CreditHour.Focus();
 
@@ -89,7 +86,8 @@ namespace LoginForm
 
             if (txt_TheoryPeriod.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter theory period!");
+                MessageBox.Show(
+                    "Please enter theory period!");
 
                 txt_TheoryPeriod.Focus();
 
@@ -98,118 +96,91 @@ namespace LoginForm
 
             if (txt_PracticalPeriod.Text.Trim() == "")
             {
-                MessageBox.Show("Please enter practical period!");
+                MessageBox.Show(
+                    "Please enter practical period!");
 
                 txt_PracticalPeriod.Focus();
 
                 return;
             }
 
-            using (My_DB db = new My_DB())
+            // CHECK NUMBER
+            if (!int.TryParse(
+                txt_CreditHour.Text,
+                out int creditHour))
             {
-                string courseID =
-                    txt_IDCourse.Text.Trim();
+                MessageBox.Show(
+                    "Credit hour must be number!");
 
-                string courseName =
-                    txt_NameCourse.Text.Trim();
+                return;
+            }
 
-                string overview =
-                    txt_Overview.Text.Trim();
+            if (!int.TryParse(
+                txt_TheoryPeriod.Text,
+                out int theoryPeriod))
+            {
+                MessageBox.Show(
+                    "Theory period must be number!");
 
-                int creditHour =
-                    Convert.ToInt32(txt_CreditHour.Text);
+                return;
+            }
 
-                int theoryPeriod =
-                    Convert.ToInt32(txt_TheoryPeriod.Text);
+            if (!int.TryParse(
+                txt_PracticalPeriod.Text,
+                out int practicalPeriod))
+            {
+                MessageBox.Show(
+                    "Practical period must be number!");
 
-                int practicalPeriod =
-                    Convert.ToInt32(txt_PracticalPeriod.Text);
+                return;
+            }
 
-                string query = @"
-INSERT INTO Course
-(
-    CourseID,
-    CourseName,
-    CreditHour,
-    Overview,
-    PrerequisiteCourseID,
-    TheoryPeriod,
-    PracticalPeriod
-)
-VALUES
-(
-    @CourseID,
-    @CourseName,
-    @CreditHour,
-    @Overview,
-    @PrerequisiteCourseID,
-    @TheoryPeriod,
-    @PracticalPeriod
-)";
+            // CREATE COURSE OBJECT
+            Course course =
+                new Course(
+                    txt_IDCourse.Text.Trim(),
+                    txt_NameCourse.Text.Trim(),
+                    creditHour,
+                    txt_Overview.Text.Trim(),
 
-                SqlCommand command =
-                    new SqlCommand(query, db.getConnection);
+                    cbo_PrerequisiteCourse
+                        .SelectedValue == DBNull.Value
+                        ? null
+                        : cbo_PrerequisiteCourse
+                            .SelectedValue
+                            .ToString(),
 
-                command.Parameters.Add("@CourseID",
-                    SqlDbType.VarChar).Value = courseID;
+                    theoryPeriod,
+                    practicalPeriod
+                );
 
-                command.Parameters.Add("@CourseName",
-                    SqlDbType.NVarChar).Value = courseName;
+            // ADD COURSE
+            if (course.AddCourse())
+            {
+                MessageBox.Show(
+                    "Add Course Successfully!");
 
-                command.Parameters.Add("@CreditHour",
-                    SqlDbType.Int).Value = creditHour;
+                txt_IDCourse.Clear();
 
-                command.Parameters.Add("@Overview",
-                    SqlDbType.NVarChar).Value = overview;
+                txt_NameCourse.Clear();
 
-                command.Parameters.Add("@TheoryPeriod",
-                    SqlDbType.Int).Value = theoryPeriod;
+                txt_CreditHour.Clear();
 
-                command.Parameters.Add("@PracticalPeriod",
-                    SqlDbType.Int).Value = practicalPeriod;
+                txt_Overview.Clear();
 
-                // PREREQUISITE COURSE
-                if (cbo_PrerequisiteCourse.SelectedValue == DBNull.Value)
-                {
-                    command.Parameters.Add(
-                        "@PrerequisiteCourseID",
-                        SqlDbType.VarChar).Value =
-                        DBNull.Value;
-                }
-                else
-                {
-                    command.Parameters.Add(
-                        "@PrerequisiteCourseID",
-                        SqlDbType.VarChar).Value =
-                        cbo_PrerequisiteCourse.SelectedValue;
-                }
+                txt_TheoryPeriod.Clear();
 
-                db.openConnection();
+                txt_PracticalPeriod.Clear();
 
-                int result =
-                    command.ExecuteNonQuery();
+                cbo_PrerequisiteCourse
+                    .SelectedIndex = 0;
 
-                if (result > 0)
-                {
-                    MessageBox.Show(
-                        "Add Course Successfully!");
-
-                    txt_IDCourse.Clear();
-                    txt_NameCourse.Clear();
-                    txt_CreditHour.Clear();
-                    txt_Overview.Clear();
-                    txt_TheoryPeriod.Clear();
-                    txt_PracticalPeriod.Clear();
-
-                    cbo_PrerequisiteCourse.SelectedIndex = -1;
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "Add Course Failed!");
-                }
-
-                db.closeConnection();
+                txt_IDCourse.Focus();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Add Course Failed!");
             }
         }
         private void bt_Cancel_Click(object sender, EventArgs e)
