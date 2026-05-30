@@ -11,6 +11,7 @@
           "AForge": "2.2.5",
           "AForge.Video": "2.2.5",
           "AForge.Video.DirectShow": "2.2.5",
+          "FontAwesome.Sharp": "6.6.0",
           "Microsoft.Data.SqlClient": "7.0.1",
           "Newtonsoft.Json": "13.0.4",
           "System.Data.SqlClient": "4.9.1",
@@ -47,6 +48,14 @@
           "lib/AForge.Video.DirectShow.dll": {
             "assemblyVersion": "2.2.5.0",
             "fileVersion": "2.2.5.0"
+          }
+        }
+      },
+      "FontAwesome.Sharp/6.6.0": {
+        "runtime": {
+          "lib/net8.0-windows7.0/FontAwesome.Sharp.dll": {
+            "assemblyVersion": "6.6.0.0",
+            "fileVersion": "6.6.0.0"
           }
         }
       },
@@ -422,6 +431,13 @@
       "sha512": "sha512-pEch6felU/RGAbl0A7yjaQjsGxwiRFU9R+qBqR92wQo++XhzPLeQaZHnAPIBYaG7MfoqtjgCDkK4z3Tra4VQ3w==",
       "path": "aforge.video.directshow/2.2.5",
       "hashPath": "aforge.video.directshow.2.2.5.nupkg.sha512"
+    },
+    "FontAwesome.Sharp/6.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bJCb2x73UC1nD9+9iMLaUy6Ujf9Pf+buL6FHwVnaoDYT4CQNLazz59hO5gQ0+SMSW0G+ZXmjjShOYr3Jn2UZiw==",
+      "path": "fontawesome.sharp/6.6.0",
+      "hashPath": "fontawesome.sharp.6.6.0.nupkg.sha512"
     },
     "Microsoft.Bcl.Cryptography/9.0.13": {
       "type": "package",

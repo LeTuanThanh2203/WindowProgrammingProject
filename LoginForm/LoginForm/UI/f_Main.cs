@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;   // Dùng để gọi hàm WinAPI cho vi�
 using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using FontAwesome.Sharp;
 namespace LoginForm
 {
     public partial class f_Main : Form
@@ -49,7 +50,7 @@ namespace LoginForm
 
             btnCourse.Visible = false;
 
-            btnCourseReg.Visible = false;
+            btnCourseRegistation.Visible = false;
 
             btnApprove.Visible = false;
 
@@ -68,7 +69,7 @@ namespace LoginForm
 
                 btnAddScore.Visible = true;
 
-                btnApprove.Visible = true ;
+                btnApprove.Visible = true;
                 OpenForm(new f_Dashboard());
             }
 
@@ -88,7 +89,7 @@ namespace LoginForm
             // USER
             else if (Globals.Role == "User")
             {
-                btnCourseReg.Visible = true;
+                btnCourseRegistation.Visible = true;
             }
         }
 
@@ -286,6 +287,11 @@ namespace LoginForm
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void lblRole_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
