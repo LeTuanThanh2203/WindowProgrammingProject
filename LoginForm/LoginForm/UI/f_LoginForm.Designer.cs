@@ -400,6 +400,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 3, 4, 3);
             Name = "f_LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login Form";
             Load += LoginForm_Load;
             pnRight.ResumeLayout(false);

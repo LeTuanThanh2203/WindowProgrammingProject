@@ -62,12 +62,12 @@
             // 
             dgvUnRegistereCourse.BackgroundColor = SystemColors.Control;
             dgvUnRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUnRegistereCourse.Location = new Point(0, 39);
+            dgvUnRegistereCourse.Location = new Point(0, 77);
             dgvUnRegistereCourse.Name = "dgvUnRegistereCourse";
             dgvUnRegistereCourse.ReadOnly = true;
             dgvUnRegistereCourse.RowHeadersVisible = false;
             dgvUnRegistereCourse.RowHeadersWidth = 51;
-            dgvUnRegistereCourse.Size = new Size(407, 674);
+            dgvUnRegistereCourse.Size = new Size(407, 636);
             dgvUnRegistereCourse.TabIndex = 6;
             // 
             // comboBox1
@@ -90,12 +90,12 @@
             // 
             dgvRegistereCourse.BackgroundColor = SystemColors.Control;
             dgvRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRegistereCourse.Location = new Point(644, 39);
+            dgvRegistereCourse.Location = new Point(644, 77);
             dgvRegistereCourse.Name = "dgvRegistereCourse";
             dgvRegistereCourse.ReadOnly = true;
             dgvRegistereCourse.RowHeadersVisible = false;
             dgvRegistereCourse.RowHeadersWidth = 51;
-            dgvRegistereCourse.Size = new Size(407, 674);
+            dgvRegistereCourse.Size = new Size(407, 636);
             dgvRegistereCourse.TabIndex = 9;
             // 
             // btnSelectedRegist
@@ -113,7 +113,7 @@
             btnSelectedALLRegist.Name = "btnSelectedALLRegist";
             btnSelectedALLRegist.Size = new Size(162, 58);
             btnSelectedALLRegist.TabIndex = 13;
-            btnSelectedALLRegist.Text = "Select ALL ==>";
+            btnSelectedALLRegist.Text = "Select All==>";
             btnSelectedALLRegist.UseVisualStyleBackColor = true;
             // 
             // btnSelectedALLUnRegist
@@ -122,7 +122,7 @@
             btnSelectedALLUnRegist.Name = "btnSelectedALLUnRegist";
             btnSelectedALLUnRegist.Size = new Size(162, 58);
             btnSelectedALLUnRegist.TabIndex = 15;
-            btnSelectedALLUnRegist.Text = "<== Select ALL";
+            btnSelectedALLUnRegist.Text = "<== Select All";
             btnSelectedALLUnRegist.UseVisualStyleBackColor = true;
             // 
             // btnSelectedUnRegist

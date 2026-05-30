@@ -1,6 +1,6 @@
 ﻿namespace LoginForm
 {
-    partial class f_ManageCourse
+    partial class f_ListCourse
     {
         /// <summary>
         /// Required designer variable.
@@ -33,16 +33,17 @@
             txtSearch = new TextBox();
             dgvCourse = new DataGridView();
             pnMain = new Panel();
-            btnEdit = new Button();
             lblTotal = new Label();
-            btnRefresh = new Button();
-            btnAdd = new Button();
-            panel3 = new Panel();
             panel2 = new Panel();
             panel1 = new Panel();
+            pnBottom = new Panel();
+            btnEdit = new Button();
+            btnAdd = new Button();
+            btnRefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
             pnMain.SuspendLayout();
             panel1.SuspendLayout();
+            pnBottom.SuspendLayout();
             SuspendLayout();
             // 
             // cboGender
@@ -87,72 +88,27 @@
             // 
             // pnMain
             // 
-            pnMain.Controls.Add(btnEdit);
-            pnMain.Controls.Add(lblTotal);
-            pnMain.Controls.Add(btnRefresh);
-            pnMain.Controls.Add(btnAdd);
             pnMain.Controls.Add(cboSort);
             pnMain.Controls.Add(cboGender);
             pnMain.Controls.Add(txtSearch);
-            pnMain.Controls.Add(panel3);
             pnMain.Controls.Add(panel2);
             pnMain.Controls.Add(panel1);
+            pnMain.Controls.Add(pnBottom);
             pnMain.Dock = DockStyle.Fill;
             pnMain.Location = new Point(0, 0);
             pnMain.Name = "pnMain";
             pnMain.Size = new Size(1083, 718);
             pnMain.TabIndex = 10;
             // 
-            // btnEdit
-            // 
-            btnEdit.Anchor = AnchorStyles.Top;
-            btnEdit.Location = new Point(434, 651);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 13;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEditDelete_Click;
-            // 
             // lblTotal
             // 
             lblTotal.Anchor = AnchorStyles.Top;
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(36, 651);
+            lblTotal.Location = new Point(36, 20);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(100, 20);
+            lblTotal.Size = new Size(94, 20);
             lblTotal.TabIndex = 12;
-            lblTotal.Text = "Total Student:";
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Anchor = AnchorStyles.Top;
-            btnRefresh.Location = new Point(564, 651);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 11;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Anchor = AnchorStyles.Top;
-            btnAdd.Location = new Point(302, 651);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(124, 40);
-            btnAdd.TabIndex = 10;
-            btnAdd.Text = "Add ";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAddCourse_Click;
-            // 
-            // panel3
-            // 
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 636);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1083, 82);
-            panel3.TabIndex = 16;
+            lblTotal.Text = "Total Course:";
             // 
             // panel2
             // 
@@ -171,19 +127,66 @@
             panel1.Size = new Size(1077, 575);
             panel1.TabIndex = 14;
             // 
-            // f_ManageCourse
+            // pnBottom
+            // 
+            pnBottom.Controls.Add(btnEdit);
+            pnBottom.Controls.Add(btnAdd);
+            pnBottom.Controls.Add(btnRefresh);
+            pnBottom.Controls.Add(lblTotal);
+            pnBottom.Dock = DockStyle.Bottom;
+            pnBottom.Location = new Point(0, 636);
+            pnBottom.Name = "pnBottom";
+            pnBottom.Size = new Size(1083, 82);
+            pnBottom.TabIndex = 16;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Anchor = AnchorStyles.Top;
+            btnEdit.Location = new Point(432, 15);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(124, 40);
+            btnEdit.TabIndex = 13;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEditDelete_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Anchor = AnchorStyles.Top;
+            btnAdd.Location = new Point(302, 15);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(124, 40);
+            btnAdd.TabIndex = 10;
+            btnAdd.Text = "Add ";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAddCourse_Click;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Anchor = AnchorStyles.Top;
+            btnRefresh.Location = new Point(562, 15);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(124, 40);
+            btnRefresh.TabIndex = 11;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // f_ListCourse
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1083, 718);
             Controls.Add(pnMain);
-            Name = "f_ManageCourse";
-            Text = "f_ManageCourse";
+            Name = "f_ListCourse";
+            Text = "List Course";
             Load += f_ManageCourse_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCourse).EndInit();
             pnMain.ResumeLayout(false);
             pnMain.PerformLayout();
             panel1.ResumeLayout(false);
+            pnBottom.ResumeLayout(false);
+            pnBottom.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -199,7 +202,7 @@
         private Button btnRefresh;
         private Button btnAdd;
         private Panel panel1;
-        private Panel panel3;
+        private Panel pnBottom;
         private Panel panel2;
     }
 }

@@ -686,4 +686,81 @@ public class Student
         return table;
     }
 
+    // ================= GET STUDENT REGISTERED =================
+    public DataTable GetStudentsRegisteredCourse()
+    {
+        DataTable table =
+            new DataTable();
+
+        using (My_DB db = new My_DB())
+        {
+            string query = @"
+                SELECT DISTINCT
+                    Student.MSSV,
+                    Student.FirstName,
+                    Student.LastName
+                FROM Student
+                JOIN DKMH
+                ON Student.MSSV = DKMH.MSSV";
+
+            SqlCommand cmd =
+                new SqlCommand(
+                    query,
+                    db.getConnection);
+
+            SqlDataAdapter adapter =
+                new SqlDataAdapter(cmd);
+
+            adapter.Fill(table);
+        }
+
+        return table;
+    }
+
+    // ================= GET COURSE NO SCORE =================
+    public DataTable GetCoursesWithoutScore(
+        string mssv)
+    {
+        DataTable table =
+            new DataTable();
+
+        using (My_DB db = new My_DB())
+        {
+            string query = @"
+                SELECT
+                    Course.CourseID,
+                    Course.CourseName
+                FROM DKMH
+                JOIN Course
+                ON DKMH.CourseID = Course.CourseID
+                WHERE DKMH.MSSV = @mssv
+                AND NOT EXISTS
+                (
+                    SELECT *
+                    FROM Score
+                    WHERE Score.MSSV = @mssv
+                    AND Score.CourseID = Course.CourseID
+                )";
+
+            SqlCommand cmd =
+                new SqlCommand(
+                    query,
+                    db.getConnection);
+
+            cmd.Parameters.AddWithValue(
+                "@mssv",
+                mssv);
+
+            SqlDataAdapter adapter =
+                new SqlDataAdapter(cmd);
+
+            adapter.Fill(table);
+        }
+
+        return table;
+    }
+
+
+
+
 }

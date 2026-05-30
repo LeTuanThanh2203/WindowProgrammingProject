@@ -1,7 +1,7 @@
 ﻿namespace LoginForm
 
 {
-    partial class f_Overview
+    partial class f_Dashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,8 @@
             pnBottom = new Panel();
             pnTop = new Panel();
             panel2 = new Panel();
-            label3 = new Label();
-            label4 = new Label();
+            lblCourseTotal = new Label();
+            lblCourseTotalTitle = new Label();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
             lblAccountTotal = new Label();
@@ -73,35 +73,35 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(label4);
+            panel2.Controls.Add(lblCourseTotal);
+            panel2.Controls.Add(lblCourseTotalTitle);
             panel2.Controls.Add(pictureBox2);
             panel2.Location = new Point(403, 97);
             panel2.Name = "panel2";
             panel2.Size = new Size(300, 118);
             panel2.TabIndex = 3;
             // 
-            // label3
+            // lblCourseTotal
             // 
-            label3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(139, 59);
-            label3.Name = "label3";
-            label3.Size = new Size(27, 31);
-            label3.TabIndex = 2;
-            label3.Text = "0";
+            lblCourseTotal.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblCourseTotal.AutoSize = true;
+            lblCourseTotal.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCourseTotal.Location = new Point(139, 59);
+            lblCourseTotal.Name = "lblCourseTotal";
+            lblCourseTotal.Size = new Size(27, 31);
+            lblCourseTotal.TabIndex = 2;
+            lblCourseTotal.Text = "0";
             // 
-            // label4
+            // lblCourseTotalTitle
             // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(143, 16);
-            label4.Name = "label4";
-            label4.Size = new Size(93, 31);
-            label4.TabIndex = 1;
-            label4.Text = "Course ";
+            lblCourseTotalTitle.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblCourseTotalTitle.AutoSize = true;
+            lblCourseTotalTitle.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCourseTotalTitle.Location = new Point(143, 16);
+            lblCourseTotalTitle.Name = "lblCourseTotalTitle";
+            lblCourseTotalTitle.Size = new Size(93, 31);
+            lblCourseTotalTitle.TabIndex = 1;
+            lblCourseTotalTitle.Text = "Course ";
             // 
             // pictureBox2
             // 
@@ -197,15 +197,15 @@
             picStudentTotal.TabIndex = 0;
             picStudentTotal.TabStop = false;
             // 
-            // f_Overview
+            // f_Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1176, 667);
             Controls.Add(pnTop);
             Controls.Add(pnBottom);
-            Name = "f_Overview";
-            Text = "f_Overview";
+            Name = "f_Dashboard";
+            Text = "Dashboard";
             pnTop.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -232,8 +232,8 @@
         private Label label2;
         private PictureBox pictureBox1;
         private Panel panel2;
-        private Label label3;
-        private Label label4;
+        private Label lblCourseTotal;
+        private Label lblCourseTotalTitle;
         private PictureBox pictureBox2;
         private Label lblAccountTotal;
     }

@@ -136,7 +136,6 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingPro
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ListStudent.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_LoginForm.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Main.resources
-C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Overview.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_RegisterForm.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.csproj.GenerateResource.cache
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.GeneratedMSBuildEditorConfig.editorconfig
@@ -156,10 +155,13 @@ D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\AForge
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.UI.f_AIAddStudent.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_AddCourse.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_AddCourse.resources
-C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ManageCourse.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditDeleteCourse.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_Score.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditDeleteCourse.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ManageCourse.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_Score.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_CourseRegistration.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_CourseRegistration.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_AddScore.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ListCourse.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Dashboard.resources

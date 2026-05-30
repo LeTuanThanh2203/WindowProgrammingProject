@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="UI\f_AddScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\f_AddCourse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -34,10 +37,10 @@
     <Compile Update="UI\f_LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\f_ManageCourse.cs">
+    <Compile Update="UI\f_ListCourse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\f_Overview.cs">
+    <Compile Update="UI\f_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_RegisterForm.cs">

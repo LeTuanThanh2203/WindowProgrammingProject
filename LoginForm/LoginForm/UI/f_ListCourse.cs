@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace LoginForm
 {
-    public partial class f_ManageCourse : Form
+    public partial class f_ListCourse : Form
     {
         Course course = new Course();
 
-        public f_ManageCourse()
+        public f_ListCourse()
         {
             InitializeComponent();
         }

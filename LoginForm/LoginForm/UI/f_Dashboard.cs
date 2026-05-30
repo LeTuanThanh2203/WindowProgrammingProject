@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Project_Group6.Models;
 using ProjectMonHoc;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ using System.Windows.Forms;
 namespace LoginForm
 
 {
-    public partial class f_Overview : Form
+    public partial class f_Dashboard : Form
     {
-        public f_Overview()
+        public f_Dashboard()
         {
             InitializeComponent();
             LoadDashboard();
@@ -27,14 +28,21 @@ namespace LoginForm
                 student.TotalStudent()
                 .ToString();
 
+            // TOTAL COURSE
+            Course course =
+                new Course();
+
+            lblCourseTotal.Text =
+                course.TotalCourse()
+                .ToString();
+
             using (My_DB db = new My_DB())
             {
-
                 SqlCommand command =
                     new SqlCommand(
                     @"SELECT COUNT(*)
-                    FROM DataLoginForm
-                    WHERE IsApproved = 0",
+              FROM DataLoginForm
+              WHERE IsApproved = 0",
                     db.getConnection);
 
                 db.openConnection();
@@ -44,10 +52,8 @@ namespace LoginForm
                         command.ExecuteScalar());
 
                 lblAccountTotal.Text =
-                                total
-                                .ToString();
+                    total.ToString();
             }
-
         }
     }
 }

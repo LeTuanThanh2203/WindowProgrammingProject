@@ -42,56 +42,20 @@ namespace LoginForm
             cboSort.SelectedIndex = 0;
 
             isLoaded = true;
+            btnViewScore.Enabled = false;
         }
 
         // ✅ Gọi LoadData sau khi form đã hiển thị hoàn toàn
         private void f_ListStudent_Shown(object sender, EventArgs e)
         {
             LoadData();
+  
         }
 
         // =========================
         // LOAD STUDENT
         // =========================
-        private void LoadStudent()
-        {
-            try
-            {
-                string query =
-                    "SELECT * FROM Student";
-
-                SqlDataAdapter adapter =
-                    new SqlDataAdapter(
-                        query,
-                        db.getConnection);
-
-                DataTable table =
-                    new DataTable();
-
-                adapter.Fill(table);
-
-                dgvStudent.DataSource = table;
-
-                // Hide picture column
-                if (dgvStudent.Columns["Picture"] != null)
-                {
-                    dgvStudent.Columns["Picture"]
-                        .Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            lblID.Text = "";
-            lblFirstname.Text = "";
-            lblLastname.Text = "";
-            lblDob.Text = "";
-            lblGender.Text = "";
-            lblPhone.Text = "";
-            lblAddress.Text = "";
-            lblEmail.Text = "";
-        }
+     
 
         // =========================
         // CLICK ROW -> SHOW IMAGE
@@ -152,6 +116,9 @@ namespace LoginForm
                     picStudent.Image = null;
                 }
             }
+
+
+            btnViewScore.Enabled = true;
         }
 
 
@@ -305,26 +272,12 @@ namespace LoginForm
 
             edit.ShowDialog();
         }
-        private void btnViewScore_Click(
-object sender,
-EventArgs e)
+        private void btnViewScore_Click(object sender, EventArgs e)
         {
-            if (dgvStudent.CurrentRow == null)
-            {
-                MessageBox.Show(
-                    "Please select a student.");
-                return;
-            }
-
             string mssv =
-                dgvStudent.CurrentRow
-                .Cells["MSSV"]
-                .Value
-                .ToString();
+                dgvStudent.CurrentRow.Cells["MSSV"].Value.ToString();
 
-            f_Score frm =
-                new f_Score(mssv);
-
+            f_Score frm = new f_Score(mssv);
             frm.ShowDialog();
         }
     }

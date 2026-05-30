@@ -13,6 +13,7 @@ namespace Project_Group6
     {
         My_DB db = new My_DB();
         private string _mssv;
+        Score score = new Score();
 
         public f_Score(string mssv)
         {
@@ -27,6 +28,7 @@ namespace Project_Group6
         {
             LoadStudentInfo();
             LoadScores();
+            MessageBox.Show(_mssv);
         }
 
         // =========================
@@ -65,31 +67,12 @@ namespace Project_Group6
         // =========================
         private void LoadScores()
         {
-            try
-            {
-                SqlCommand cmd = new SqlCommand(
-                    "SELECT * FROM Score WHERE MSSV = @mssv");
-
-                cmd.Parameters.AddWithValue("@mssv", _mssv);
-
-                DataTable table = new Score().GetScores(cmd);
-
-                dgvScore.DataSource = table;
-                dgvScore.AllowUserToAddRows = false;
-                dgvScore.RowHeadersVisible = false;
-                dgvScore.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgvScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                if (dgvScore.Columns["MSSV"] != null)
-                    dgvScore.Columns["MSSV"].Visible = false;
-
-                lblTotalScore.Text = "Total: " + table.Rows.Count + " courses";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
+            dgvScore.DataSource =
+            score.GetScoreByStudent(_mssv);
         }
+
+
 
         // =========================
         // CLICK SCORE ROW

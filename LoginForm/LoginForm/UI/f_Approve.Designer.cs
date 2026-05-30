@@ -54,7 +54,7 @@
             dataGridView_AcceptUser.Location = new Point(114, 12);
             dataGridView_AcceptUser.Name = "dataGridView_AcceptUser";
             dataGridView_AcceptUser.RowHeadersWidth = 51;
-            dataGridView_AcceptUser.Size = new Size(684, 226);
+            dataGridView_AcceptUser.Size = new Size(974, 609);
             dataGridView_AcceptUser.TabIndex = 0;
             dataGridView_AcceptUser.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -121,13 +121,14 @@
             // 
             // dataGridView_UnlockAcc
             // 
+            dataGridView_UnlockAcc.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView_UnlockAcc.BackgroundColor = Color.White;
             dataGridView_UnlockAcc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_UnlockAcc.Columns.AddRange(new DataGridViewColumn[] { txt_ID, txt_Name, txt_Role, bt_Unlock, bt_Delete });
-            dataGridView_UnlockAcc.Location = new Point(114, 12);
+            dataGridView_UnlockAcc.Location = new Point(109, 12);
             dataGridView_UnlockAcc.Name = "dataGridView_UnlockAcc";
             dataGridView_UnlockAcc.RowHeadersWidth = 51;
-            dataGridView_UnlockAcc.Size = new Size(684, 226);
+            dataGridView_UnlockAcc.Size = new Size(1004, 609);
             dataGridView_UnlockAcc.TabIndex = 4;
             dataGridView_UnlockAcc.CellContentClick += dataGridView_UnlockAcc_CellContentClick;
             // 
@@ -176,7 +177,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1130, 633);
             Controls.Add(dataGridView_UnlockAcc);
             Controls.Add(bt_UnlockAcc);
             Controls.Add(bt_ApplyAcc);

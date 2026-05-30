@@ -367,6 +367,7 @@ namespace LoginForm
             Controls.Add(pnLeft);
             FormBorderStyle = FormBorderStyle.None;
             Name = "f_RegisterForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Register Form";
             Load += f_Register_Load;
             pnLeft.ResumeLayout(false);
