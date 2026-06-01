@@ -33,13 +33,13 @@
             txtSearch = new TextBox();
             dgvCourse = new DataGridView();
             pnMain = new Panel();
-            lblTotal = new Label();
             panel2 = new Panel();
             panel1 = new Panel();
             pnBottom = new Panel();
             btnEdit = new Button();
             btnAdd = new Button();
             btnRefresh = new Button();
+            lblTotal = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
             pnMain.SuspendLayout();
             panel1.SuspendLayout();
@@ -73,6 +73,10 @@
             // 
             // dgvCourse
             // 
+            dgvCourse.AllowUserToAddRows = false;
+            dgvCourse.AllowUserToDeleteRows = false;
+            dgvCourse.AllowUserToResizeColumns = false;
+            dgvCourse.AllowUserToResizeRows = false;
             dgvCourse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCourse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCourse.BackgroundColor = SystemColors.Control;
@@ -99,16 +103,6 @@
             pnMain.Name = "pnMain";
             pnMain.Size = new Size(1083, 718);
             pnMain.TabIndex = 10;
-            // 
-            // lblTotal
-            // 
-            lblTotal.Anchor = AnchorStyles.Top;
-            lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(36, 20);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(94, 20);
-            lblTotal.TabIndex = 12;
-            lblTotal.Text = "Total Course:";
             // 
             // panel2
             // 
@@ -171,6 +165,16 @@
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
+            // 
+            // lblTotal
+            // 
+            lblTotal.Anchor = AnchorStyles.Top;
+            lblTotal.AutoSize = true;
+            lblTotal.Location = new Point(36, 20);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(94, 20);
+            lblTotal.TabIndex = 12;
+            lblTotal.Text = "Total Course:";
             // 
             // f_ListCourse
             // 

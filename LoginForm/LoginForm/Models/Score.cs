@@ -92,11 +92,11 @@ public class Score
     // ================= COURSES =================
 
     public DataTable GetAllCourses() =>
-        ExecuteQuery(@"
-        SELECT
-            CourseID,
-            CAST(CourseID AS NVARCHAR) + ' - ' + CourseName AS CourseName
-        FROM Course");
+    ExecuteQuery(@"
+    SELECT
+        CourseID,
+        CourseCode + ' - ' + CourseName AS CourseName
+    FROM Course");
 
     public DataTable GetAllScore() =>
         ExecuteQuery(BaseSelectQuery);
@@ -169,15 +169,16 @@ public class Score
 
     // ================= GET COURSES WITH SCORE =================
     public DataTable GetCoursesWithScore(string mssv) =>
-        ExecuteQuery(@"
-        SELECT
-            Course.CourseID,
-            CAST(Course.CourseID AS NVARCHAR)
-                + ' - ' + Course.CourseName AS CourseName
-        FROM Score
-        JOIN Course ON Score.CourseID = Course.CourseID
-        WHERE Score.MSSV = @mssv",
-            cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
+    ExecuteQuery(@"
+    SELECT
+        Course.CourseID,
+        Course.CourseCode + ' - ' + Course.CourseName AS CourseName
+    FROM Score
+    JOIN Course ON Score.CourseID = Course.CourseID
+    WHERE Score.MSSV = @mssv
+      AND Score.MidtermScore IS NOT NULL",
+        cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
+
     public DataTable GetScoreByFilter(string mssv, string academicYear, string semester) =>
     ExecuteQuery(@"
     SELECT Course.CourseName, Score.TotalScore
@@ -194,19 +195,19 @@ public class Score
             cmd.Parameters.AddWithValue("@academicYear", academicYear);
             cmd.Parameters.AddWithValue("@semester", Convert.ToInt32(semester));
         });
+
     // ================= GET COURSES WITHOUT SCORE =================
     public DataTable GetCoursesWithoutScore(string mssv) =>
-        ExecuteQuery(@"
+    ExecuteQuery(@"
     SELECT
         Course.CourseID,
-        CAST(Course.CourseID AS NVARCHAR)
-            + ' - ' + Course.CourseName AS CourseName
+        Course.CourseCode + ' - ' + Course.CourseName AS CourseName
     FROM Score
     JOIN Course ON Score.CourseID = Course.CourseID
     WHERE Score.MSSV = @mssv
-      AND Score.MidtermScore IS NULL
-      AND Score.FinalScore   IS NULL",
-            cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
+      AND Score.MidtermScore IS NULL",
+        cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
+
     // ================= ADD EMPTY SCORE =================
     public bool AddScoreEmpty(string mssv, int courseID) =>
         ExecuteNonQuery(@"
@@ -217,4 +218,37 @@ public class Score
                 cmd.Parameters.AddWithValue("@mssv", mssv);
                 cmd.Parameters.AddWithValue("@courseID", courseID);
             });
+    public DataTable GetScoreByStudentAndCourse(string mssv, int courseID) =>
+    ExecuteQuery(@"
+    SELECT
+        Score.MidtermScore AS [Process Grade],
+        Score.FinalScore   AS [Final Grade]
+    FROM Score
+    WHERE Score.MSSV     = @mssv
+      AND Score.CourseID = @courseID",
+        cmd =>
+        {
+            cmd.Parameters.AddWithValue("@mssv", mssv);
+            cmd.Parameters.AddWithValue("@courseID", courseID);
+        });
+    // Trả về CourseID dựa theo MSSV và CourseName (để focus combobox đúng môn)
+    public int? GetCourseIDByStudentAndName(string mssv, string courseName)
+    {
+        var table = ExecuteQuery(@"
+        SELECT Course.CourseID
+        FROM Score
+        JOIN Course ON Score.CourseID = Course.CourseID
+        WHERE Score.MSSV = @mssv
+          AND Course.CourseName = @courseName",
+            cmd =>
+            {
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@courseName", courseName);
+            });
+
+        if (table.Rows.Count > 0)
+            return Convert.ToInt32(table.Rows[0]["CourseID"]);
+
+        return null;
+    }
 }

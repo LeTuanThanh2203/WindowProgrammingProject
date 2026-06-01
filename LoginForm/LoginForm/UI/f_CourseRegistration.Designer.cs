@@ -30,12 +30,6 @@
         {
             txtUnRegistereSearch = new TextBox();
             dgvUnRegistereCourse = new DataGridView();
-            txtRegistereSearch = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            lblAcademicYear = new Label();
-            dgvRegistereCourse = new DataGridView();
             txtCourseCodeUnRegister = new DataGridViewTextBoxColumn();
             txtCourseNameUnRegister = new DataGridViewTextBoxColumn();
             txtCreditHourUnRegister = new DataGridViewTextBoxColumn();
@@ -43,6 +37,12 @@
             txtSemesterUnRegister = new DataGridViewTextBoxColumn();
             txtWeekUnRegister = new DataGridViewTextBoxColumn();
             btnRegister = new DataGridViewButtonColumn();
+            txtRegistereSearch = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lblAcademicYear = new Label();
+            dgvRegistereCourse = new DataGridView();
             txtCourseCodeRegister = new DataGridViewTextBoxColumn();
             txtCourseNameRegister = new DataGridViewTextBoxColumn();
             txtCreditHourRegister = new DataGridViewTextBoxColumn();
@@ -59,11 +59,15 @@
             txtUnRegistereSearch.Location = new Point(12, 128);
             txtUnRegistereSearch.Name = "txtUnRegistereSearch";
             txtUnRegistereSearch.PlaceholderText = "Search";
-            txtUnRegistereSearch.Size = new Size(1061, 27);
+            txtUnRegistereSearch.Size = new Size(1086, 27);
             txtUnRegistereSearch.TabIndex = 7;
             // 
             // dgvUnRegistereCourse
             // 
+            dgvUnRegistereCourse.AllowUserToAddRows = false;
+            dgvUnRegistereCourse.AllowUserToDeleteRows = false;
+            dgvUnRegistereCourse.AllowUserToResizeColumns = false;
+            dgvUnRegistereCourse.AllowUserToResizeRows = false;
             dgvUnRegistereCourse.BackgroundColor = SystemColors.Control;
             dgvUnRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUnRegistereCourse.Columns.AddRange(new DataGridViewColumn[] { txtCourseCodeUnRegister, txtCourseNameUnRegister, txtCreditHourUnRegister, txtPrerequisiteCourseUnRegister, txtSemesterUnRegister, txtWeekUnRegister, btnRegister });
@@ -72,68 +76,8 @@
             dgvUnRegistereCourse.ReadOnly = true;
             dgvUnRegistereCourse.RowHeadersVisible = false;
             dgvUnRegistereCourse.RowHeadersWidth = 51;
-            dgvUnRegistereCourse.Size = new Size(1061, 318);
+            dgvUnRegistereCourse.Size = new Size(1086, 318);
             dgvUnRegistereCourse.TabIndex = 6;
-            // 
-            // txtRegistereSearch
-            // 
-            txtRegistereSearch.Location = new Point(12, 600);
-            txtRegistereSearch.Name = "txtRegistereSearch";
-            txtRegistereSearch.PlaceholderText = "Search";
-            txtRegistereSearch.Size = new Size(1061, 27);
-            txtRegistereSearch.TabIndex = 10;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(268, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(480, 62);
-            label1.TabIndex = 11;
-            label1.Text = "Courses Registration";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(268, 512);
-            label2.Name = "label2";
-            label2.Size = new Size(446, 62);
-            label2.TabIndex = 12;
-            label2.Text = "Registered Courses";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(12, 77);
-            label3.Name = "label3";
-            label3.Size = new Size(81, 38);
-            label3.TabIndex = 14;
-            label3.Text = "Year:";
-            // 
-            // lblAcademicYear
-            // 
-            lblAcademicYear.AutoSize = true;
-            lblAcademicYear.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAcademicYear.Location = new Point(99, 77);
-            lblAcademicYear.Name = "lblAcademicYear";
-            lblAcademicYear.Size = new Size(0, 38);
-            lblAcademicYear.TabIndex = 15;
-            // 
-            // dgvRegistereCourse
-            // 
-            dgvRegistereCourse.BackgroundColor = SystemColors.Control;
-            dgvRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRegistereCourse.Columns.AddRange(new DataGridViewColumn[] { txtCourseCodeRegister, txtCourseNameRegister, txtCreditHourRegister, txtPrerequisiteCourseRegister, txtSemesterRegister, txtWeekRegister, btnUnRegister });
-            dgvRegistereCourse.Location = new Point(12, 633);
-            dgvRegistereCourse.Name = "dgvRegistereCourse";
-            dgvRegistereCourse.ReadOnly = true;
-            dgvRegistereCourse.RowHeadersVisible = false;
-            dgvRegistereCourse.RowHeadersWidth = 51;
-            dgvRegistereCourse.Size = new Size(1061, 318);
-            dgvRegistereCourse.TabIndex = 16;
             // 
             // txtCourseCodeUnRegister
             // 
@@ -196,6 +140,71 @@
             btnRegister.MinimumWidth = 6;
             btnRegister.Name = "btnRegister";
             btnRegister.ReadOnly = true;
+            btnRegister.Width = 125;
+            // 
+            // txtRegistereSearch
+            // 
+            txtRegistereSearch.Location = new Point(12, 600);
+            txtRegistereSearch.Name = "txtRegistereSearch";
+            txtRegistereSearch.PlaceholderText = "Search";
+            txtRegistereSearch.Size = new Size(1086, 27);
+            txtRegistereSearch.TabIndex = 10;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(295, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(480, 62);
+            label1.TabIndex = 11;
+            label1.Text = "Courses Registration";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(317, 512);
+            label2.Name = "label2";
+            label2.Size = new Size(446, 62);
+            label2.TabIndex = 12;
+            label2.Text = "Registered Courses";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 77);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 38);
+            label3.TabIndex = 14;
+            label3.Text = "Year:";
+            // 
+            // lblAcademicYear
+            // 
+            lblAcademicYear.AutoSize = true;
+            lblAcademicYear.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAcademicYear.Location = new Point(99, 77);
+            lblAcademicYear.Name = "lblAcademicYear";
+            lblAcademicYear.Size = new Size(0, 38);
+            lblAcademicYear.TabIndex = 15;
+            // 
+            // dgvRegistereCourse
+            // 
+            dgvRegistereCourse.AllowUserToAddRows = false;
+            dgvRegistereCourse.AllowUserToDeleteRows = false;
+            dgvRegistereCourse.AllowUserToResizeColumns = false;
+            dgvRegistereCourse.AllowUserToResizeRows = false;
+            dgvRegistereCourse.BackgroundColor = SystemColors.Control;
+            dgvRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRegistereCourse.Columns.AddRange(new DataGridViewColumn[] { txtCourseCodeRegister, txtCourseNameRegister, txtCreditHourRegister, txtPrerequisiteCourseRegister, txtSemesterRegister, txtWeekRegister, btnUnRegister });
+            dgvRegistereCourse.Location = new Point(12, 633);
+            dgvRegistereCourse.Name = "dgvRegistereCourse";
+            dgvRegistereCourse.ReadOnly = true;
+            dgvRegistereCourse.RowHeadersVisible = false;
+            dgvRegistereCourse.RowHeadersWidth = 51;
+            dgvRegistereCourse.Size = new Size(1086, 318);
+            dgvRegistereCourse.TabIndex = 16;
             // 
             // txtCourseCodeRegister
             // 
@@ -258,6 +267,7 @@
             btnUnRegister.MinimumWidth = 6;
             btnUnRegister.Name = "btnUnRegister";
             btnUnRegister.ReadOnly = true;
+            btnUnRegister.Width = 125;
             // 
             // f_CourseRegistration
             // 

@@ -109,15 +109,14 @@ namespace LoginForm
             var midCell = row.Cells["Process Grade"];
             var finalCell = row.Cells["Final Grade"];
 
-            bool hasScore = midCell.Value != null
-                         && midCell.Value != DBNull.Value
-                         && finalCell.Value != null
-                         && finalCell.Value != DBNull.Value;
+            bool hasScore = midCell.Value != null && midCell.Value != DBNull.Value
+                         && finalCell.Value != null && finalCell.Value != DBNull.Value;
 
             _isEditMode = hasScore;
 
             string mssv = row.Cells["MSSV"].Value.ToString();
-            lblID.Text = mssv;  // Set trước khi BindComboBox
+            string courseName = row.Cells["CourseName"].Value?.ToString(); // tên môn từ grid
+            lblID.Text = mssv;
 
             if (hasScore)
             {
@@ -126,7 +125,7 @@ namespace LoginForm
                 txtQT.Text = _originalMidterm.ToString();
                 txtCK.Text = _originalFinal.ToString();
                 btnAdd.Text = "Update";
-                BindComboBox(score.GetCoursesWithScore(mssv));  // ✅ Đúng
+                BindComboBox(score.GetCoursesWithScore(mssv));
             }
             else
             {
@@ -134,7 +133,17 @@ namespace LoginForm
                 _originalFinal = 0;
                 ResetInputs();
                 btnAdd.Text = "Add";
-                BindComboBox(score. GetCoursesWithoutScore(mssv));  // ✅ Sửa bug 1
+                BindComboBox(score.GetCoursesWithoutScore(mssv));
+            }
+
+            // ✅ Focus đúng môn của row đang click
+            // Lấy CourseID từ DB dựa theo mssv + courseName
+            var courseRow = score.GetCourseIDByStudentAndName(mssv, courseName);
+            if (courseRow != null)
+            {
+                _isFillingFromRow = true;
+                cboCourse.SelectedValue = courseRow;
+                _isFillingFromRow = false;
             }
 
             SetFormVisibility(true);
@@ -148,17 +157,43 @@ namespace LoginForm
             if (cboCourse.SelectedValue == null) return;
             if (!int.TryParse(cboCourse.SelectedValue.ToString(), out int courseID)) return;
 
-            // ✅ Bug 2: KHÔNG clear lblID và form khi đang có sinh viên được chọn
-            // Chỉ filter grid, không reset form
             if (lblID.Text == "")
             {
-                // Chưa chọn sinh viên → filter grid bình thường
+                // Chưa chọn sinh viên → filter grid theo môn
                 dgvStudent.DataSource = courseID == -1
                     ? score.GetAllScore()
                     : score.GetScoreByCourse(courseID);
+                return;
             }
-            // Nếu đã có sinh viên đang được chọn, giữ nguyên form,
-            // chỉ cần courseID mới sẽ được dùng khi bấm Add/Update
+
+            // Đã chọn sinh viên → load điểm của môn vừa chọn
+            var scoreData = score.GetScoreByStudentAndCourse(lblID.Text, courseID);
+            if (scoreData != null && scoreData.Rows.Count > 0)
+            {
+                var r = scoreData.Rows[0];
+                bool hasScore = r["Process Grade"] != DBNull.Value
+                             && r["Final Grade"] != DBNull.Value;
+
+                _isEditMode = hasScore;
+                btnDelete.Visible = hasScore;
+
+                if (hasScore)
+                {
+                    _originalMidterm = Convert.ToDecimal(r["Process Grade"]);
+                    _originalFinal = Convert.ToDecimal(r["Final Grade"]);
+                    txtQT.Text = _originalMidterm.ToString();
+                    txtCK.Text = _originalFinal.ToString();
+                    btnAdd.Text = "Update";
+                }
+                else
+                {
+                    _originalMidterm = 0;
+                    _originalFinal = 0;
+                    ResetInputs();
+                    btnAdd.Text = "Add";
+                }
+                CalculateScore();
+            }
         }
 
         // ================= REFRESH =================

@@ -100,6 +100,10 @@
             // 
             // dgvScore
             // 
+            dgvScore.AllowUserToAddRows = false;
+            dgvScore.AllowUserToDeleteRows = false;
+            dgvScore.AllowUserToResizeColumns = false;
+            dgvScore.AllowUserToResizeRows = false;
             dgvScore.BackgroundColor = SystemColors.Control;
             dgvScore.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvScore.Location = new Point(285, 43);

@@ -77,6 +77,10 @@
             // 
             // dgvStudent
             // 
+            dgvStudent.AllowUserToAddRows = false;
+            dgvStudent.AllowUserToDeleteRows = false;
+            dgvStudent.AllowUserToResizeColumns = false;
+            dgvStudent.AllowUserToResizeRows = false;
             dgvStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudent.BackgroundColor = SystemColors.Control;
             dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

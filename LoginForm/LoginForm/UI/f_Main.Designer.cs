@@ -306,6 +306,7 @@ namespace LoginForm
             // pnBody
             // 
             pnBody.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnBody.AutoScroll = true;
             pnBody.Location = new Point(311, 48);
             pnBody.Name = "pnBody";
             pnBody.Size = new Size(1316, 927);
