@@ -9,18 +9,17 @@ using System.Windows.Forms;
 
 namespace Project_Group6
 {
-    public partial class f_Score : Form
+    public partial class f_ScoreView : Form
     {
         My_DB db = new My_DB();
         private string _mssv;
         Score score = new Score();
 
-        public f_Score(string mssv)
+        public f_ScoreView(string mssv)
         {
             InitializeComponent();
             _mssv = mssv;
             this.Load += f_Score_Load;
-            btnRefresh.Click += btnRefresh_Click;
             dgvScore.CellClick += dgvScore_CellClick;
         }
 
@@ -28,7 +27,6 @@ namespace Project_Group6
         {
             LoadStudentInfo();
             LoadScores();
-            MessageBox.Show(_mssv);
         }
 
         // =========================
@@ -92,14 +90,6 @@ namespace Project_Group6
                 "Pass" => Color.DarkOrange,
                 _ => Color.Red
             };
-        }
-
-        // =========================
-        // REFRESH
-        // =========================
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            LoadScores();
         }
     }
 }

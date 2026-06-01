@@ -33,8 +33,9 @@ namespace LoginForm
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
             pnMenu = new Panel();
+            btnInformation = new IconButton();
             lblUser = new Label();
-            btnAddScore = new IconButton();
+            btnScore = new IconButton();
             lblRole = new Label();
             btnCourseRegistation = new IconButton();
             btnCourse = new IconButton();
@@ -74,8 +75,9 @@ namespace LoginForm
             // 
             // pnMenu
             // 
+            pnMenu.Controls.Add(btnInformation);
             pnMenu.Controls.Add(lblUser);
-            pnMenu.Controls.Add(btnAddScore);
+            pnMenu.Controls.Add(btnScore);
             pnMenu.Controls.Add(lblRole);
             pnMenu.Controls.Add(btnCourseRegistation);
             pnMenu.Controls.Add(btnCourse);
@@ -93,6 +95,23 @@ namespace LoginForm
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
             // 
+            // btnInformation
+            // 
+            btnInformation.BackColor = Color.Transparent;
+            btnInformation.Dock = DockStyle.Top;
+            btnInformation.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnInformation.IconChar = IconChar.MortarBoard;
+            btnInformation.IconColor = Color.Black;
+            btnInformation.IconFont = IconFont.Auto;
+            btnInformation.ImageAlign = ContentAlignment.MiddleLeft;
+            btnInformation.Location = new Point(0, 456);
+            btnInformation.Name = "btnInformation";
+            btnInformation.Size = new Size(304, 76);
+            btnInformation.TabIndex = 10;
+            btnInformation.Text = "Information";
+            btnInformation.UseVisualStyleBackColor = false;
+            btnInformation.Click += btnInformation_Click;
+            // 
             // lblUser
             // 
             lblUser.AutoSize = true;
@@ -104,22 +123,22 @@ namespace LoginForm
             lblUser.TabIndex = 0;
             lblUser.Text = "User: ";
             // 
-            // btnAddScore
+            // btnScore
             // 
-            btnAddScore.BackColor = Color.Transparent;
-            btnAddScore.Dock = DockStyle.Top;
-            btnAddScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAddScore.IconChar = IconChar.MortarBoard;
-            btnAddScore.IconColor = Color.Black;
-            btnAddScore.IconFont = IconFont.Auto;
-            btnAddScore.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddScore.Location = new Point(0, 380);
-            btnAddScore.Name = "btnAddScore";
-            btnAddScore.Size = new Size(304, 76);
-            btnAddScore.TabIndex = 9;
-            btnAddScore.Text = "Add Score";
-            btnAddScore.UseVisualStyleBackColor = false;
-            btnAddScore.Click += btnAddScore_Click;
+            btnScore.BackColor = Color.Transparent;
+            btnScore.Dock = DockStyle.Top;
+            btnScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnScore.IconChar = IconChar.MortarBoard;
+            btnScore.IconColor = Color.Black;
+            btnScore.IconFont = IconFont.Auto;
+            btnScore.ImageAlign = ContentAlignment.MiddleLeft;
+            btnScore.Location = new Point(0, 380);
+            btnScore.Name = "btnScore";
+            btnScore.Size = new Size(304, 76);
+            btnScore.TabIndex = 9;
+            btnScore.Text = "Score";
+            btnScore.UseVisualStyleBackColor = false;
+            btnScore.Click += btnScore_Click;
             // 
             // lblRole
             // 
@@ -404,9 +423,10 @@ namespace LoginForm
   
         private FontAwesome.Sharp.IconButton btnOverview;
         private FontAwesome.Sharp.IconButton btnStudent;
-        private FontAwesome.Sharp.IconButton btnAddScore;
+        private FontAwesome.Sharp.IconButton btnScore;
         private FontAwesome.Sharp.IconButton btnCourseRegistation;
         private FontAwesome.Sharp.IconButton btnCourse;
         private FontAwesome.Sharp.IconButton btnApprove;
+        private IconButton btnInformation;
     }
 }

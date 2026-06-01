@@ -54,7 +54,9 @@ namespace LoginForm
 
             btnApprove.Visible = false;
 
-            btnAddScore.Visible = false;
+            btnScore.Visible = false;
+
+            btnInformation.Visible = false;
 
             // ADMIN
             if (Globals.Role == "Admin")
@@ -67,9 +69,10 @@ namespace LoginForm
 
                 btnCourse.Visible = true;
 
-                btnAddScore.Visible = true;
+                btnScore.Visible = true;
 
                 btnApprove.Visible = true;
+
                 OpenForm(new f_Dashboard());
             }
 
@@ -82,7 +85,7 @@ namespace LoginForm
 
                 btnCourse.Visible = true;
 
-                btnAddScore.Visible = true;
+                btnScore.Visible = true;
                 OpenForm(new f_Dashboard());
             }
 
@@ -90,6 +93,7 @@ namespace LoginForm
             else if (Globals.Role == "User")
             {
                 btnCourseRegistation.Visible = true;
+                btnInformation.Visible = true;
             }
         }
 
@@ -146,13 +150,18 @@ namespace LoginForm
         {
             OpenForm(new f_ListCourse());
         }
-        private void btnAddScore_Click(
+        private void btnScore_Click(
        object sender,
        EventArgs e)
         {
-            OpenForm(new f_AddScore());
+            OpenForm(new f_EditScore());
         }
-
+        private void btnInformation_Click(
+       object sender,
+       EventArgs e)
+        {
+            OpenForm(new f_StudentInformation());
+        }
         private async void btnAskAI_Click(
     object sender,
     EventArgs e)

@@ -277,7 +277,7 @@ namespace LoginForm
             string mssv =
                 dgvStudent.CurrentRow.Cells["MSSV"].Value.ToString();
 
-            f_Score frm = new f_Score(mssv);
+            f_ScoreView frm = new f_ScoreView(mssv);
             frm.ShowDialog();
         }
     }

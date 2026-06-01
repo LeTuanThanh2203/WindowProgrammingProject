@@ -1,193 +1,148 @@
-﻿using LoginForm;
-using Project_Group6.Models;
+﻿using Project_Group6.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LoginForm
 {
     public partial class f_CourseRegistration : Form
     {
-        Student student =
-            new Student();
-
-        // MSSV hiện tại
-        string currentMSSV =
-            Globals.Username;
+        private readonly Student student = new();
+        private string currentMSSV = Globals.Username;
+        private string academicYear;
 
         public f_CourseRegistration()
         {
             InitializeComponent();
-
-            Load +=
-                f_CourseRegistration_Load;
-
-            btnSelectedRegist.Click +=
-                btnSelectedRegist_Click;
-
-            btnSelectedUnRegist.Click +=
-                btnSelectedUnRegist_Click;
-
-            btnSelectedALLRegist.Click +=
-                btnSelectedALLRegist_Click;
-
-            btnSelectedALLUnRegist.Click +=
-                btnSelectedALLUnRegist_Click;
+            Load += f_CourseRegistration_Load;
+            txtUnRegistereSearch.TextChanged += txtUnRegistereSearch_TextChanged;
+            txtRegistereSearch.TextChanged += txtRegistereSearch_TextChanged;
+            dgvUnRegistereCourse.CellClick += dgvUnRegistereCourse_CellClick;
+            dgvRegistereCourse.CellClick += dgvRegistereCourse_CellClick;
         }
 
-        private void
-            f_CourseRegistration_Load(
-            object sender,
-            EventArgs e)
+        // ================= LOAD =================
+        private void f_CourseRegistration_Load(object sender, EventArgs e)
         {
+            int currentYear = DateTime.Now.Month >= 9
+                ? DateTime.Now.Year
+                : DateTime.Now.Year - 1;
+
+            academicYear = $"{currentYear} - {currentYear + 1}";
+            lblAcademicYear.Text = academicYear;
+
             LoadCourse();
         }
 
-        // LOAD DATA
+        // ================= LOAD DATA =================
         private void LoadCourse()
         {
             dgvUnRegistereCourse.DataSource =
-                student.GetUnRegisteredCourses(
-                    currentMSSV);
+                student.GetUnRegisteredCourses(currentMSSV, academicYear);
 
             dgvRegistereCourse.DataSource =
-                student.GetRegisteredCourses(
-                    currentMSSV);
+                student.GetRegisteredCourses(currentMSSV, academicYear);
 
-            dgvUnRegistereCourse.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
-
-            dgvRegistereCourse.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
+            MapColumns(dgvUnRegistereCourse, isRegister: true);
+            MapColumns(dgvRegistereCourse, isRegister: false);
         }
 
-        // REGISTER 1 COURSE
-        private void
-            btnSelectedRegist_Click(
-            object sender,
-            EventArgs e)
+        // ================= MAP CỘT =================
+        private void MapColumns(DataGridView dgv, bool isRegister)
         {
-            if (dgvUnRegistereCourse.CurrentRow
-                == null)
+            if (isRegister)
             {
-                return;
+                txtCourseCodeUnRegister.DataPropertyName = "CourseCode";
+                txtCourseNameUnRegister.DataPropertyName = "CourseName";
+                txtCreditHourUnRegister.DataPropertyName = "CreditHour";
+                txtPrerequisiteCourseUnRegister.DataPropertyName = "Prerequisite Course";
+                txtSemesterUnRegister.DataPropertyName = "Semester";
+                txtWeekUnRegister.DataPropertyName = "Week";
+                btnRegister.Text = "Register";
+                btnRegister.UseColumnTextForButtonValue = true;
             }
+            else
+            {
+                txtCourseCodeRegister.DataPropertyName = "CourseCode";
+                txtCourseNameRegister.DataPropertyName = "CourseName";
+                txtCreditHourRegister.DataPropertyName = "CreditHour";
+                txtPrerequisiteCourseRegister.DataPropertyName = "Prerequisite Course";
+                txtSemesterRegister.DataPropertyName = "Semester";
+                txtWeekRegister.DataPropertyName = "Week";
+                btnUnRegister.Text = "UnRegister";
+                btnUnRegister.UseColumnTextForButtonValue = true;
+            }
+        }
 
-            int courseID =
-                Convert.ToInt32(
-                    dgvUnRegistereCourse
-                    .CurrentRow
-                    .Cells["CourseID"]
-                    .Value);
+        // ================= HELPER LẤY COURSE ID =================
+        private int? GetCourseIDFromRow(DataGridView dgv, int rowIndex)
+        {
+            var item = dgv.Rows[rowIndex].DataBoundItem as DataRowView;
+            if (item == null) return null;
 
-            var result =
-                Student.RegisterCourse(
-                    currentMSSV,
-                    courseID);
+            var val = item["CourseID"];
+            if (val == null || val == DBNull.Value) return null;
 
-            MessageBox.Show(
-                result.message);
+            return Convert.ToInt32(val);
+        }
+
+        // ================= CLICK REGISTER =================
+        // ================= CLICK REGISTER =================
+        private void dgvUnRegistereCourse_CellClick(
+            object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (dgvUnRegistereCourse.Columns[e.ColumnIndex].Name != "btnRegister") return;
+
+            int? courseID = GetCourseIDFromRow(dgvUnRegistereCourse, e.RowIndex);
+            if (courseID == null) return;
+
+            var result = Student.RegisterCourse(currentMSSV, courseID.Value, academicYear);
+            MessageBox.Show(result.message);
 
             if (result.success)
             {
+                // Insert vào Score với điểm NULL
+                Score score = new Score();
+                score.AddScoreEmpty(currentMSSV, courseID.Value);
                 LoadCourse();
             }
         }
 
-        // CANCEL 1 COURSE
-        private void
-            btnSelectedUnRegist_Click(
-            object sender,
-            EventArgs e)
+        // ================= CLICK UNREGISTER =================
+        private void dgvRegistereCourse_CellClick(
+            object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvRegistereCourse.CurrentRow
-                == null)
-            {
-                return;
-            }
+            if (e.RowIndex < 0) return;
+            if (dgvRegistereCourse.Columns[e.ColumnIndex].Name != "btnUnRegister") return;
 
-            int courseID =
-                Convert.ToInt32(
-                    dgvRegistereCourse
-                    .CurrentRow
-                    .Cells["CourseID"]
-                    .Value);
+            int? courseID = GetCourseIDFromRow(dgvRegistereCourse, e.RowIndex);
+            if (courseID == null) return;
 
-            var result =
-                Student.CancelCourse(
-                    currentMSSV,
-                    courseID);
-
-            MessageBox.Show(
-                result.message);
-
-            if (result.success)
-            {
-                LoadCourse();
-            }
+            var result = Student.CancelCourse(currentMSSV, courseID.Value, academicYear);
+            MessageBox.Show(result.message);
+            if (result.success) LoadCourse();
         }
 
-        // REGISTER ALL
-        private void
-            btnSelectedALLRegist_Click(
-            object sender,
-            EventArgs e)
+        // ================= SEARCH =================
+        private void txtUnRegistereSearch_TextChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row
-                in dgvUnRegistereCourse.Rows)
-            {
-                if (row.Cells["CourseID"]
-                    .Value != null)
-                {
-                    int courseID =
-                        Convert.ToInt32(
-                            row.Cells["CourseID"]
-                            .Value);
+            string kw = txtUnRegistereSearch.Text.Trim();
+            dgvUnRegistereCourse.DataSource = string.IsNullOrEmpty(kw)
+                ? student.GetUnRegisteredCourses(currentMSSV, academicYear)
+                : student.SearchUnRegisteredCourses(currentMSSV, academicYear, kw);
 
-                    Student.RegisterCourse(
-                        currentMSSV,
-                        courseID);
-                }
-            }
-
-            LoadCourse();
-
-            MessageBox.Show(
-                "Registered all courses!");
+            MapColumns(dgvUnRegistereCourse, isRegister: true);
         }
 
-        // CANCEL ALL
-        private void
-            btnSelectedALLUnRegist_Click(
-            object sender,
-            EventArgs e)
+        private void txtRegistereSearch_TextChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row
-                in dgvRegistereCourse.Rows)
-            {
-                if (row.Cells["CourseID"]
-                    .Value != null)
-                {
-                    int courseID =
-                        Convert.ToInt32(
-                            row.Cells["CourseID"]
-                            .Value);
+            string kw = txtRegistereSearch.Text.Trim();
+            dgvRegistereCourse.DataSource = string.IsNullOrEmpty(kw)
+                ? student.GetRegisteredCourses(currentMSSV, academicYear)
+                : student.SearchRegisteredCourses(currentMSSV, academicYear, kw);
 
-                    Student.CancelCourse(
-                        currentMSSV,
-                        courseID);
-                }
-            }
-
-            LoadCourse();
-
-            MessageBox.Show(
-                "Cancelled all courses!");
+            MapColumns(dgvRegistereCourse, isRegister: false);
         }
     }
 }

@@ -58,7 +58,6 @@ D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginF
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ListStudent.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_LoginForm.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Main.resources
-D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Overview.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_RegisterForm.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.csproj.GenerateResource.cache
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.GeneratedMSBuildEditorConfig.editorconfig
@@ -158,11 +157,33 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingPro
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditDeleteCourse.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_Score.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditDeleteCourse.resources
-D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ManageCourse.resources
-D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_Score.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_CourseRegistration.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_CourseRegistration.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_AddScore.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ListCourse.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Dashboard.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\FontAwesome.Sharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\FontAwesome.Sharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Dashboard.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ListCourse.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_EditScore.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_ScoreView.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.f_StudentInformation.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\HarfBuzzSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\LiveChartsCore.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\LiveChartsCore.SkiaSharpView.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\LiveChartsCore.SkiaSharpView.WinForms.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\OpenTK.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\OpenTK.GLControl.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\SkiaSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\SkiaSharp.HarfBuzz.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\SkiaSharp.Views.Desktop.Common.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\SkiaSharp.Views.WindowsForms.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\osx\native\libSkiaSharp.dylib
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\runtimes\win-x86\native\libSkiaSharp.dll

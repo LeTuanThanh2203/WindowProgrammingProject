@@ -28,126 +28,249 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cboSort = new ComboBox();
-            txtSearch = new TextBox();
+            txtUnRegistereSearch = new TextBox();
             dgvUnRegistereCourse = new DataGridView();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
+            txtRegistereSearch = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lblAcademicYear = new Label();
             dgvRegistereCourse = new DataGridView();
-            btnSelectedRegist = new Button();
-            btnSelectedALLRegist = new Button();
-            btnSelectedALLUnRegist = new Button();
-            btnSelectedUnRegist = new Button();
+            txtCourseCodeUnRegister = new DataGridViewTextBoxColumn();
+            txtCourseNameUnRegister = new DataGridViewTextBoxColumn();
+            txtCreditHourUnRegister = new DataGridViewTextBoxColumn();
+            txtPrerequisiteCourseUnRegister = new DataGridViewTextBoxColumn();
+            txtSemesterUnRegister = new DataGridViewTextBoxColumn();
+            txtWeekUnRegister = new DataGridViewTextBoxColumn();
+            btnRegister = new DataGridViewButtonColumn();
+            txtCourseCodeRegister = new DataGridViewTextBoxColumn();
+            txtCourseNameRegister = new DataGridViewTextBoxColumn();
+            txtCreditHourRegister = new DataGridViewTextBoxColumn();
+            txtPrerequisiteCourseRegister = new DataGridViewTextBoxColumn();
+            txtSemesterRegister = new DataGridViewTextBoxColumn();
+            txtWeekRegister = new DataGridViewTextBoxColumn();
+            btnUnRegister = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgvUnRegistereCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRegistereCourse).BeginInit();
             SuspendLayout();
             // 
-            // cboSort
+            // txtUnRegistereSearch
             // 
-            cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(5, 7);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(101, 28);
-            cboSort.TabIndex = 8;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(112, 7);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(295, 27);
-            txtSearch.TabIndex = 7;
+            txtUnRegistereSearch.Location = new Point(12, 128);
+            txtUnRegistereSearch.Name = "txtUnRegistereSearch";
+            txtUnRegistereSearch.PlaceholderText = "Search";
+            txtUnRegistereSearch.Size = new Size(1061, 27);
+            txtUnRegistereSearch.TabIndex = 7;
             // 
             // dgvUnRegistereCourse
             // 
             dgvUnRegistereCourse.BackgroundColor = SystemColors.Control;
             dgvUnRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUnRegistereCourse.Location = new Point(0, 77);
+            dgvUnRegistereCourse.Columns.AddRange(new DataGridViewColumn[] { txtCourseCodeUnRegister, txtCourseNameUnRegister, txtCreditHourUnRegister, txtPrerequisiteCourseUnRegister, txtSemesterUnRegister, txtWeekUnRegister, btnRegister });
+            dgvUnRegistereCourse.Location = new Point(12, 162);
             dgvUnRegistereCourse.Name = "dgvUnRegistereCourse";
             dgvUnRegistereCourse.ReadOnly = true;
             dgvUnRegistereCourse.RowHeadersVisible = false;
             dgvUnRegistereCourse.RowHeadersWidth = 51;
-            dgvUnRegistereCourse.Size = new Size(407, 636);
+            dgvUnRegistereCourse.Size = new Size(1061, 318);
             dgvUnRegistereCourse.TabIndex = 6;
             // 
-            // comboBox1
+            // txtRegistereSearch
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(649, 7);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(101, 28);
-            comboBox1.TabIndex = 11;
+            txtRegistereSearch.Location = new Point(12, 600);
+            txtRegistereSearch.Name = "txtRegistereSearch";
+            txtRegistereSearch.PlaceholderText = "Search";
+            txtRegistereSearch.Size = new Size(1061, 27);
+            txtRegistereSearch.TabIndex = 10;
             // 
-            // textBox1
+            // label1
             // 
-            textBox1.Location = new Point(756, 7);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search";
-            textBox1.Size = new Size(295, 27);
-            textBox1.TabIndex = 10;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(268, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(480, 62);
+            label1.TabIndex = 11;
+            label1.Text = "Courses Registration";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(268, 512);
+            label2.Name = "label2";
+            label2.Size = new Size(446, 62);
+            label2.TabIndex = 12;
+            label2.Text = "Registered Courses";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 77);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 38);
+            label3.TabIndex = 14;
+            label3.Text = "Year:";
+            // 
+            // lblAcademicYear
+            // 
+            lblAcademicYear.AutoSize = true;
+            lblAcademicYear.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAcademicYear.Location = new Point(99, 77);
+            lblAcademicYear.Name = "lblAcademicYear";
+            lblAcademicYear.Size = new Size(0, 38);
+            lblAcademicYear.TabIndex = 15;
             // 
             // dgvRegistereCourse
             // 
             dgvRegistereCourse.BackgroundColor = SystemColors.Control;
             dgvRegistereCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRegistereCourse.Location = new Point(644, 77);
+            dgvRegistereCourse.Columns.AddRange(new DataGridViewColumn[] { txtCourseCodeRegister, txtCourseNameRegister, txtCreditHourRegister, txtPrerequisiteCourseRegister, txtSemesterRegister, txtWeekRegister, btnUnRegister });
+            dgvRegistereCourse.Location = new Point(12, 633);
             dgvRegistereCourse.Name = "dgvRegistereCourse";
             dgvRegistereCourse.ReadOnly = true;
             dgvRegistereCourse.RowHeadersVisible = false;
             dgvRegistereCourse.RowHeadersWidth = 51;
-            dgvRegistereCourse.Size = new Size(407, 636);
-            dgvRegistereCourse.TabIndex = 9;
+            dgvRegistereCourse.Size = new Size(1061, 318);
+            dgvRegistereCourse.TabIndex = 16;
             // 
-            // btnSelectedRegist
+            // txtCourseCodeUnRegister
             // 
-            btnSelectedRegist.Location = new Point(445, 102);
-            btnSelectedRegist.Name = "btnSelectedRegist";
-            btnSelectedRegist.Size = new Size(162, 58);
-            btnSelectedRegist.TabIndex = 12;
-            btnSelectedRegist.Text = "Select ==>";
-            btnSelectedRegist.UseVisualStyleBackColor = true;
+            txtCourseCodeUnRegister.Frozen = true;
+            txtCourseCodeUnRegister.HeaderText = "Course Code";
+            txtCourseCodeUnRegister.MinimumWidth = 6;
+            txtCourseCodeUnRegister.Name = "txtCourseCodeUnRegister";
+            txtCourseCodeUnRegister.ReadOnly = true;
+            txtCourseCodeUnRegister.Width = 125;
             // 
-            // btnSelectedALLRegist
+            // txtCourseNameUnRegister
             // 
-            btnSelectedALLRegist.Location = new Point(445, 189);
-            btnSelectedALLRegist.Name = "btnSelectedALLRegist";
-            btnSelectedALLRegist.Size = new Size(162, 58);
-            btnSelectedALLRegist.TabIndex = 13;
-            btnSelectedALLRegist.Text = "Select All==>";
-            btnSelectedALLRegist.UseVisualStyleBackColor = true;
+            txtCourseNameUnRegister.Frozen = true;
+            txtCourseNameUnRegister.HeaderText = "Course Name";
+            txtCourseNameUnRegister.MinimumWidth = 6;
+            txtCourseNameUnRegister.Name = "txtCourseNameUnRegister";
+            txtCourseNameUnRegister.ReadOnly = true;
+            txtCourseNameUnRegister.Width = 225;
             // 
-            // btnSelectedALLUnRegist
+            // txtCreditHourUnRegister
             // 
-            btnSelectedALLUnRegist.Location = new Point(445, 461);
-            btnSelectedALLUnRegist.Name = "btnSelectedALLUnRegist";
-            btnSelectedALLUnRegist.Size = new Size(162, 58);
-            btnSelectedALLUnRegist.TabIndex = 15;
-            btnSelectedALLUnRegist.Text = "<== Select All";
-            btnSelectedALLUnRegist.UseVisualStyleBackColor = true;
+            txtCreditHourUnRegister.Frozen = true;
+            txtCreditHourUnRegister.HeaderText = "Credit Hour";
+            txtCreditHourUnRegister.MinimumWidth = 6;
+            txtCreditHourUnRegister.Name = "txtCreditHourUnRegister";
+            txtCreditHourUnRegister.ReadOnly = true;
+            txtCreditHourUnRegister.Width = 125;
             // 
-            // btnSelectedUnRegist
+            // txtPrerequisiteCourseUnRegister
             // 
-            btnSelectedUnRegist.Location = new Point(445, 374);
-            btnSelectedUnRegist.Name = "btnSelectedUnRegist";
-            btnSelectedUnRegist.Size = new Size(162, 58);
-            btnSelectedUnRegist.TabIndex = 14;
-            btnSelectedUnRegist.Text = "<== Select";
-            btnSelectedUnRegist.UseVisualStyleBackColor = true;
+            txtPrerequisiteCourseUnRegister.Frozen = true;
+            txtPrerequisiteCourseUnRegister.HeaderText = "Prerequisite Course";
+            txtPrerequisiteCourseUnRegister.MinimumWidth = 6;
+            txtPrerequisiteCourseUnRegister.Name = "txtPrerequisiteCourseUnRegister";
+            txtPrerequisiteCourseUnRegister.ReadOnly = true;
+            txtPrerequisiteCourseUnRegister.Width = 225;
+            // 
+            // txtSemesterUnRegister
+            // 
+            txtSemesterUnRegister.Frozen = true;
+            txtSemesterUnRegister.HeaderText = "Semester";
+            txtSemesterUnRegister.MinimumWidth = 6;
+            txtSemesterUnRegister.Name = "txtSemesterUnRegister";
+            txtSemesterUnRegister.ReadOnly = true;
+            txtSemesterUnRegister.Width = 175;
+            // 
+            // txtWeekUnRegister
+            // 
+            txtWeekUnRegister.Frozen = true;
+            txtWeekUnRegister.HeaderText = "Week";
+            txtWeekUnRegister.MinimumWidth = 6;
+            txtWeekUnRegister.Name = "txtWeekUnRegister";
+            txtWeekUnRegister.ReadOnly = true;
+            txtWeekUnRegister.Width = 80;
+            // 
+            // btnRegister
+            // 
+            btnRegister.Frozen = true;
+            btnRegister.HeaderText = "Register";
+            btnRegister.MinimumWidth = 6;
+            btnRegister.Name = "btnRegister";
+            btnRegister.ReadOnly = true;
+            // 
+            // txtCourseCodeRegister
+            // 
+            txtCourseCodeRegister.Frozen = true;
+            txtCourseCodeRegister.HeaderText = "Course Code";
+            txtCourseCodeRegister.MinimumWidth = 6;
+            txtCourseCodeRegister.Name = "txtCourseCodeRegister";
+            txtCourseCodeRegister.ReadOnly = true;
+            txtCourseCodeRegister.Width = 125;
+            // 
+            // txtCourseNameRegister
+            // 
+            txtCourseNameRegister.Frozen = true;
+            txtCourseNameRegister.HeaderText = "Course Name";
+            txtCourseNameRegister.MinimumWidth = 6;
+            txtCourseNameRegister.Name = "txtCourseNameRegister";
+            txtCourseNameRegister.ReadOnly = true;
+            txtCourseNameRegister.Width = 225;
+            // 
+            // txtCreditHourRegister
+            // 
+            txtCreditHourRegister.Frozen = true;
+            txtCreditHourRegister.HeaderText = "Credit Hour";
+            txtCreditHourRegister.MinimumWidth = 6;
+            txtCreditHourRegister.Name = "txtCreditHourRegister";
+            txtCreditHourRegister.ReadOnly = true;
+            txtCreditHourRegister.Width = 125;
+            // 
+            // txtPrerequisiteCourseRegister
+            // 
+            txtPrerequisiteCourseRegister.Frozen = true;
+            txtPrerequisiteCourseRegister.HeaderText = "Prerequisite Course";
+            txtPrerequisiteCourseRegister.MinimumWidth = 6;
+            txtPrerequisiteCourseRegister.Name = "txtPrerequisiteCourseRegister";
+            txtPrerequisiteCourseRegister.ReadOnly = true;
+            txtPrerequisiteCourseRegister.Width = 225;
+            // 
+            // txtSemesterRegister
+            // 
+            txtSemesterRegister.Frozen = true;
+            txtSemesterRegister.HeaderText = "Semester";
+            txtSemesterRegister.MinimumWidth = 6;
+            txtSemesterRegister.Name = "txtSemesterRegister";
+            txtSemesterRegister.ReadOnly = true;
+            txtSemesterRegister.Width = 175;
+            // 
+            // txtWeekRegister
+            // 
+            txtWeekRegister.Frozen = true;
+            txtWeekRegister.HeaderText = "Week";
+            txtWeekRegister.MinimumWidth = 6;
+            txtWeekRegister.Name = "txtWeekRegister";
+            txtWeekRegister.ReadOnly = true;
+            txtWeekRegister.Width = 80;
+            // 
+            // btnUnRegister
+            // 
+            btnUnRegister.Frozen = true;
+            btnUnRegister.HeaderText = "UnRegister";
+            btnUnRegister.MinimumWidth = 6;
+            btnUnRegister.Name = "btnUnRegister";
+            btnUnRegister.ReadOnly = true;
             // 
             // f_CourseRegistration
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1063, 744);
-            Controls.Add(btnSelectedALLUnRegist);
-            Controls.Add(btnSelectedUnRegist);
-            Controls.Add(btnSelectedALLRegist);
-            Controls.Add(btnSelectedRegist);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            ClientSize = new Size(1170, 1012);
             Controls.Add(dgvRegistereCourse);
-            Controls.Add(cboSort);
-            Controls.Add(txtSearch);
+            Controls.Add(lblAcademicYear);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(txtRegistereSearch);
+            Controls.Add(txtUnRegistereSearch);
             Controls.Add(dgvUnRegistereCourse);
             Name = "f_CourseRegistration";
             Text = "f_CourseRegistration";
@@ -160,15 +283,27 @@
         #endregion
 
         private ComboBox cboGender;
-        private ComboBox cboSort;
-        private TextBox txtSearch;
+        private TextBox txtUnRegistereSearch;
         private DataGridView dgvUnRegistereCourse;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private TextBox txtRegistereSearch;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label lblAcademicYear;
         private DataGridView dgvRegistereCourse;
-        private Button btnSelectedRegist;
-        private Button btnSelectedALLRegist;
-        private Button btnSelectedALLUnRegist;
-        private Button btnSelectedUnRegist;
+        private DataGridViewTextBoxColumn txtCourseCodeUnRegister;
+        private DataGridViewTextBoxColumn txtCourseNameUnRegister;
+        private DataGridViewTextBoxColumn txtCreditHourUnRegister;
+        private DataGridViewTextBoxColumn txtPrerequisiteCourseUnRegister;
+        private DataGridViewTextBoxColumn txtSemesterUnRegister;
+        private DataGridViewTextBoxColumn txtWeekUnRegister;
+        private DataGridViewButtonColumn btnRegister;
+        private DataGridViewTextBoxColumn txtCourseCodeRegister;
+        private DataGridViewTextBoxColumn txtCourseNameRegister;
+        private DataGridViewTextBoxColumn txtCreditHourRegister;
+        private DataGridViewTextBoxColumn txtPrerequisiteCourseRegister;
+        private DataGridViewTextBoxColumn txtSemesterRegister;
+        private DataGridViewTextBoxColumn txtWeekRegister;
+        private DataGridViewButtonColumn btnUnRegister;
     }
 }

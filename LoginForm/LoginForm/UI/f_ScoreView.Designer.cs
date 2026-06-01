@@ -1,6 +1,6 @@
 ﻿namespace Project_Group6
 {
-    partial class f_Score
+    partial class f_ScoreView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,7 @@
         {
             pnFunction = new Panel();
             lblOverview = new Label();
-            btnEdit = new Button();
             lblTotalScore = new Label();
-            btnRefresh = new Button();
             dgvScore = new DataGridView();
             panel1 = new Panel();
             label1 = new Label();
@@ -75,9 +73,7 @@
             // pnFunction
             // 
             pnFunction.Controls.Add(lblOverview);
-            pnFunction.Controls.Add(btnEdit);
             pnFunction.Controls.Add(lblTotalScore);
-            pnFunction.Controls.Add(btnRefresh);
             pnFunction.Dock = DockStyle.Bottom;
             pnFunction.Location = new Point(0, 751);
             pnFunction.Name = "pnFunction";
@@ -93,15 +89,6 @@
             lblOverview.TabIndex = 6;
             lblOverview.Text = "Overview:";
             // 
-            // btnEdit
-            // 
-            btnEdit.Location = new Point(961, 5);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 5;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            // 
             // lblTotalScore
             // 
             lblTotalScore.AutoSize = true;
@@ -110,15 +97,6 @@
             lblTotalScore.Size = new Size(45, 20);
             lblTotalScore.TabIndex = 4;
             lblTotalScore.Text = "Total:";
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Location = new Point(1091, 5);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 2;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
             // 
             // dgvScore
             // 
@@ -451,14 +429,14 @@
             txtSearch.Size = new Size(713, 27);
             txtSearch.TabIndex = 3;
             // 
-            // f_Score
+            // f_ScoreView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1227, 857);
             Controls.Add(pnFunction);
             Controls.Add(pnMainDataGridView);
-            Name = "f_Score";
+            Name = "f_ScoreView";
             Text = "f_Score";
             pnFunction.ResumeLayout(false);
             pnFunction.PerformLayout();
@@ -474,9 +452,7 @@
         #endregion
 
         private Panel pnFunction;
-        private Button btnEdit;
         private Label lblTotalScore;
-        private Button btnRefresh;
         private DataGridView dgvScore;
         private Panel panel1;
         private Label label1;
