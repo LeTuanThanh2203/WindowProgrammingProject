@@ -33,6 +33,8 @@ namespace LoginForm
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
             pnMenu = new Panel();
+            btnConfirmationRequest = new IconButton();
+            btnClass = new IconButton();
             btnInformation = new IconButton();
             lblUser = new Label();
             btnScore = new IconButton();
@@ -75,6 +77,8 @@ namespace LoginForm
             // 
             // pnMenu
             // 
+            pnMenu.Controls.Add(btnConfirmationRequest);
+            pnMenu.Controls.Add(btnClass);
             pnMenu.Controls.Add(btnInformation);
             pnMenu.Controls.Add(lblUser);
             pnMenu.Controls.Add(btnScore);
@@ -94,6 +98,40 @@ namespace LoginForm
             pnMenu.Size = new Size(304, 825);
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnConfirmationRequest
+            // 
+            btnConfirmationRequest.BackColor = Color.Transparent;
+            btnConfirmationRequest.Dock = DockStyle.Top;
+            btnConfirmationRequest.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnConfirmationRequest.IconChar = IconChar.MortarBoard;
+            btnConfirmationRequest.IconColor = Color.Black;
+            btnConfirmationRequest.IconFont = IconFont.Auto;
+            btnConfirmationRequest.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfirmationRequest.Location = new Point(0, 608);
+            btnConfirmationRequest.Name = "btnConfirmationRequest";
+            btnConfirmationRequest.Size = new Size(304, 76);
+            btnConfirmationRequest.TabIndex = 12;
+            btnConfirmationRequest.Text = "Confirmation Request";
+            btnConfirmationRequest.UseVisualStyleBackColor = false;
+            btnConfirmationRequest.Click += btnConfirmationRequest_Click;
+            // 
+            // btnClass
+            // 
+            btnClass.BackColor = Color.Transparent;
+            btnClass.Dock = DockStyle.Top;
+            btnClass.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClass.IconChar = IconChar.MortarBoard;
+            btnClass.IconColor = Color.Black;
+            btnClass.IconFont = IconFont.Auto;
+            btnClass.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClass.Location = new Point(0, 532);
+            btnClass.Name = "btnClass";
+            btnClass.Size = new Size(304, 76);
+            btnClass.TabIndex = 11;
+            btnClass.Text = "Class";
+            btnClass.UseVisualStyleBackColor = false;
+            btnClass.Click += btnClass_Click;
             // 
             // btnInformation
             // 
@@ -238,7 +276,7 @@ namespace LoginForm
             // 
             // progressAI
             // 
-            progressAI.Location = new Point(6, 706);
+            progressAI.Location = new Point(6, 751);
             progressAI.Name = "progressAI";
             progressAI.Size = new Size(281, 10);
             progressAI.TabIndex = 0;
@@ -257,7 +295,7 @@ namespace LoginForm
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(7, 590);
+            label1.Location = new Point(7, 635);
             label1.Name = "label1";
             label1.Size = new Size(215, 28);
             label1.TabIndex = 4;
@@ -265,7 +303,7 @@ namespace LoginForm
             // 
             // btnAskAI
             // 
-            btnAskAI.Location = new Point(193, 722);
+            btnAskAI.Location = new Point(193, 767);
             btnAskAI.Name = "btnAskAI";
             btnAskAI.Size = new Size(94, 29);
             btnAskAI.TabIndex = 0;
@@ -275,7 +313,7 @@ namespace LoginForm
             // 
             // txtAI
             // 
-            txtAI.Location = new Point(7, 620);
+            txtAI.Location = new Point(7, 665);
             txtAI.MaxLength = 50;
             txtAI.Multiline = true;
             txtAI.Name = "txtAI";
@@ -429,5 +467,7 @@ namespace LoginForm
         private FontAwesome.Sharp.IconButton btnCourse;
         private FontAwesome.Sharp.IconButton btnApprove;
         private IconButton btnInformation;
+        private IconButton btnClass;
+        private IconButton btnConfirmationRequest;
     }
 }

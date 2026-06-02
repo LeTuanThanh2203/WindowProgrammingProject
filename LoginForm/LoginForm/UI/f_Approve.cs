@@ -1,12 +1,15 @@
 ﻿using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
 using System.Configuration;
+
 namespace LoginForm
 {
     public partial class f_Approve : Form
     {
         string connStr =
-       ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
+            ConfigurationManager
+            .ConnectionStrings["MyConn"]
+            .ConnectionString;
 
         public f_Approve()
         {
@@ -15,211 +18,290 @@ namespace LoginForm
             RegisterRole.Items.Add("User");
             RegisterRole.Items.Add("Manager");
             RegisterRole.Items.Add("Admin");
-            // Mặc định chỉ hiện AcceptUser
+
             dataGridView_AcceptUser.Visible = true;
             dataGridView_UnlockAcc.Visible = false;
+            dataGridView_ConfirmationRequest.Visible = false;
+
             LoadPendingUsers();
         }
 
-        // LOAD USER CHƯA DUYỆT
+        // ================= LOAD USER CHƯA DUYỆT =================
         private void LoadPendingUsers()
         {
             dataGridView_AcceptUser.Rows.Clear();
 
-         
-                My_DB db = new My_DB();
-            db.openConnection();
+            using (var conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                var cmd = new SqlCommand(@"
+                    SELECT Id, UserName
+                    FROM DataLoginForm
+                    WHERE IsApproved = 0", conn);
 
-                string query = @"
-                SELECT Id, UserName
-                FROM DataLoginForm
-                WHERE IsApproved = 0";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, db.getConnection);
-
-                SqlDataReader reader =
-                    cmd.ExecuteReader();
-
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     dataGridView_AcceptUser.Rows.Add(
                         reader["Id"],
                         reader["UserName"],
-                        "User"
-                    );
+                        "User");
                 }
-
                 reader.Close();
-            db.closeConnection();
-
+            }
         }
 
-        // CLICK BUTTON
+        // ================= ACCEPT / CANCEL USER =================
         private void dataGridView1_CellContentClick(
             object sender,
             DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            if (e.RowIndex < 0) return;
 
             int id = Convert.ToInt32(
-                dataGridView_AcceptUser.Rows[e.RowIndex]
+                dataGridView_AcceptUser
+                .Rows[e.RowIndex]
                 .Cells["RegisterID"].Value);
 
             string role =
-                dataGridView_AcceptUser.Rows[e.RowIndex]
+                dataGridView_AcceptUser
+                .Rows[e.RowIndex]
                 .Cells["RegisterRole"].Value
                 ?.ToString() ?? "User";
 
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
+            using (var conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
-                // ACCEPT
-                if (dataGridView_AcceptUser.Columns[e.ColumnIndex].Name
-                    == "RegisterAcp")
+                if (dataGridView_AcceptUser
+                    .Columns[e.ColumnIndex].Name == "RegisterAcp")
                 {
-                    string query = @"
-                    UPDATE DataLoginForm
-                    SET IsApproved = 1,
-                        RoleName = @role
-                    WHERE Id = @id";
-
-                    SqlCommand cmd =
-                        new SqlCommand(query, conn);
-
+                    var cmd = new SqlCommand(@"
+                        UPDATE DataLoginForm
+                        SET IsApproved = 1,
+                            RoleName   = @role
+                        WHERE Id = @id", conn);
                     cmd.Parameters.AddWithValue("@role", role);
                     cmd.Parameters.AddWithValue("@id", id);
-
                     cmd.ExecuteNonQuery();
-
                     MessageBox.Show("Approved!");
                 }
-
-                // CANCEL
-                else if
-                (dataGridView_AcceptUser.Columns[e.ColumnIndex].Name
-                    == "RegisterCancel")
+                else if (dataGridView_AcceptUser
+                    .Columns[e.ColumnIndex].Name == "RegisterCancel")
                 {
-                    string query =
-                    "DELETE FROM DataLoginForm WHERE Id = @id";
-
-                    SqlCommand cmd =
-                        new SqlCommand(query, conn);
-
+                    var cmd = new SqlCommand(
+                        "DELETE FROM DataLoginForm WHERE Id = @id", conn);
                     cmd.Parameters.AddWithValue("@id", id);
-
                     cmd.ExecuteNonQuery();
-
                     MessageBox.Show("Deleted!");
                 }
             }
 
             LoadPendingUsers();
         }
-        private void bt_ApplyAcc_Click(object sender, EventArgs e)
+
+        // ================= SWITCH: APPLY ACC =================
+        private void bt_ApplyAcc_Click(
+            object sender,
+            EventArgs e)
         {
             dataGridView_AcceptUser.Visible = true;
             dataGridView_UnlockAcc.Visible = false;
+            dataGridView_ConfirmationRequest.Visible = false;
+            LoadPendingUsers();
         }
 
-        private void bt_UnlockAcc_Click(object sender, EventArgs e)
+        // ================= SWITCH: UNLOCK ACC =================
+        private void bt_UnlockAcc_Click(
+            object sender,
+            EventArgs e)
         {
             dataGridView_AcceptUser.Visible = false;
             dataGridView_UnlockAcc.Visible = true;
-
+            dataGridView_ConfirmationRequest.Visible = false;
             LoadLockedAccounts();
         }
+
+        // ================= LOAD LOCKED ACCOUNTS =================
         private void LoadLockedAccounts()
         {
-            My_DB db = new My_DB();
-
-            string query = @"
-    SELECT ID, UserName, RoleName
-    FROM DataLoginForm
-    WHERE IsLocked = 1";
-
-            SqlCommand command =
-                new SqlCommand(query, db.getConnection);
-
-            db.openConnection();
-
-            SqlDataReader reader =
-                command.ExecuteReader();
-
             dataGridView_UnlockAcc.Rows.Clear();
 
-            while (reader.Read())
+            using (var conn = new SqlConnection(connStr))
             {
-                dataGridView_UnlockAcc.Rows.Add(
-                    reader["ID"].ToString(),
-                    reader["UserName"].ToString(),
-                    reader["RoleName"].ToString()
-                );
-            }
+                conn.Open();
+                var cmd = new SqlCommand(@"
+                    SELECT ID, UserName, RoleName
+                    FROM DataLoginForm
+                    WHERE IsLocked = 1", conn);
 
-            reader.Close();
-            db.closeConnection();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dataGridView_UnlockAcc.Rows.Add(
+                        reader["ID"].ToString(),
+                        reader["UserName"].ToString(),
+                        reader["RoleName"].ToString());
+                }
+                reader.Close();
+            }
         }
+
+        // ================= UNLOCK / DELETE ACC =================
         private void dataGridView_UnlockAcc_CellContentClick(
-    object sender,
-    DataGridViewCellEventArgs e)
+            object sender,
+            DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            if (e.RowIndex < 0) return;
 
             int id = Convert.ToInt32(
-                dataGridView_UnlockAcc.Rows[e.RowIndex]
+                dataGridView_UnlockAcc
+                .Rows[e.RowIndex]
                 .Cells["txt_ID"].Value);
 
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
+            using (var conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
-                // UNLOCK
-                if (dataGridView_UnlockAcc.Columns[e.ColumnIndex].Name
-                    == "bt_Unlock")
+                if (dataGridView_UnlockAcc
+                    .Columns[e.ColumnIndex].Name == "bt_Unlock")
                 {
-                    string query = @"
-            UPDATE DataLoginForm
-            SET IsLocked = 0,
-                LoginAttempts = 0
-            WHERE Id = @id";
-
-                    SqlCommand cmd =
-                        new SqlCommand(query, conn);
-
+                    var cmd = new SqlCommand(@"
+                        UPDATE DataLoginForm
+                        SET IsLocked      = 0,
+                            LoginAttempts = 0
+                        WHERE Id = @id", conn);
                     cmd.Parameters.AddWithValue("@id", id);
-
                     cmd.ExecuteNonQuery();
-
                     MessageBox.Show("Account unlocked!");
                 }
-
-                // DELETE
-                else if
-                (dataGridView_UnlockAcc.Columns[e.ColumnIndex].Name
-                    == "bt_Delete")
+                else if (dataGridView_UnlockAcc
+                    .Columns[e.ColumnIndex].Name == "bt_Delete")
                 {
-                    string query =
-                    "DELETE FROM DataLoginForm WHERE Id = @id";
-
-                    SqlCommand cmd =
-                        new SqlCommand(query, conn);
-
+                    var cmd = new SqlCommand(
+                        "DELETE FROM DataLoginForm WHERE Id = @id", conn);
                     cmd.Parameters.AddWithValue("@id", id);
-
                     cmd.ExecuteNonQuery();
-
                     MessageBox.Show("Account deleted!");
                 }
             }
 
-            // LOAD LẠI DANH SÁCH BỊ KHÓA
             LoadLockedAccounts();
+        }
+
+        // ================= SWITCH: CONFIRMATION REQUEST =================
+        private void btn_ConfirmationRequest_Click(
+            object sender,
+            EventArgs e)
+        {
+            dataGridView_AcceptUser.Visible = false;
+            dataGridView_UnlockAcc.Visible = false;
+            dataGridView_ConfirmationRequest.Visible = true;
+            LoadConfirmationRequests();
+        }
+
+        // ================= LOAD CONFIRMATION REQUESTS =================
+        private void LoadConfirmationRequests()
+        {
+            dataGridView_ConfirmationRequest.Rows.Clear();
+
+            using (var conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                var cmd = new SqlCommand(@"
+                    SELECT
+                        RequestID,
+                        MSSV,
+                        ConfirmationName,
+                        Quantity
+                    FROM ConfirmationRequest
+                    WHERE Status = 0
+                    ORDER BY QueueNumber ASC", conn);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int rowIdx = dataGridView_ConfirmationRequest.Rows.Add(
+                        reader["MSSV"].ToString(),
+                        reader["ConfirmationName"].ToString(),
+                        reader["Quantity"].ToString(),
+                        "Accept",
+                        "Delete");
+
+                    // Lưu RequestID vào Tag
+                    dataGridView_ConfirmationRequest
+                        .Rows[rowIdx].Tag =
+                        Convert.ToInt32(reader["RequestID"]);
+                }
+                reader.Close();
+            }
+        }
+
+        // ================= ACCEPT / DELETE REQUEST =================
+        private void dataGridView_ConfirmationRequest_CellContentClick(
+            object sender,
+            DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            object tag =
+                dataGridView_ConfirmationRequest
+                .Rows[e.RowIndex].Tag;
+
+            if (tag == null) return;
+
+            int requestID = Convert.ToInt32(tag);
+
+            string colName =
+                dataGridView_ConfirmationRequest
+                .Columns[e.ColumnIndex].Name;
+
+            // ACCEPT
+            if (colName == "btn_AcpRequest")
+            {
+                DialogResult confirm = MessageBox.Show(
+                    "Approve this request?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes) return;
+
+                using (var conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand(@"
+                        UPDATE ConfirmationRequest
+                        SET Status = 1
+                        WHERE RequestID = @id", conn);
+                    cmd.Parameters.AddWithValue("@id", requestID);
+                    int rows = cmd.ExecuteNonQuery();
+                }
+            }
+
+            // DELETE
+            else if (colName == "btn_DeleteRequest")
+            {
+                DialogResult confirm = MessageBox.Show(
+                    "Delete this request?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm != DialogResult.Yes) return;
+
+                using (var conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand(@"
+                        DELETE FROM ConfirmationRequest
+                        WHERE RequestID = @id", conn);
+                    cmd.Parameters.AddWithValue("@id", requestID);
+                    int rows = cmd.ExecuteNonQuery();
+                }
+            }
+
+            LoadConfirmationRequests();
         }
     }
 }

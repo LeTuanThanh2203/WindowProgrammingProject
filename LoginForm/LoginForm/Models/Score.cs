@@ -12,6 +12,7 @@ public class Score
     public decimal FinalScore    { get; set; }
     public decimal TotalScore    { get; set; }
     public string  Overview      { get; set; }
+    public string AcademicYear { get; set; }
 
     // ================= HELPER =================
     private void ComputeTotalAndOverview()

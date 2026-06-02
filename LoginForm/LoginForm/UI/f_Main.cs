@@ -58,6 +58,10 @@ namespace LoginForm
 
             btnInformation.Visible = false;
 
+            btnClass.Visible = false;
+
+            btnConfirmationRequest.Visible = false;
+
             // ADMIN
             if (Globals.Role == "Admin")
             {
@@ -72,6 +76,8 @@ namespace LoginForm
                 btnScore.Visible = true;
 
                 btnApprove.Visible = true;
+
+                btnClass.Visible = true;
 
                 OpenForm(new f_Dashboard());
             }
@@ -94,6 +100,7 @@ namespace LoginForm
             {
                 btnCourseRegistation.Visible = true;
                 btnInformation.Visible = true;
+                btnConfirmationRequest.Visible = true;
             }
         }
 
@@ -155,6 +162,10 @@ namespace LoginForm
        EventArgs e)
         {
             OpenForm(new f_EditScore());
+        }
+        private void btnClass_Click(object sender, EventArgs e)
+        {
+            OpenForm(new f_ClassList());
         }
         private void btnInformation_Click(
        object sender,
@@ -298,9 +309,10 @@ namespace LoginForm
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void lblRole_Click(object sender, EventArgs e)
-        {
 
+        private void btnConfirmationRequest_Click(object sender, EventArgs e)
+        {
+            OpenForm(new f_Request());
         }
     }
 

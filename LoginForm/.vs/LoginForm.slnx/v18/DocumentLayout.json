@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\WindowProgrammingProject\\LoginForm\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_approve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_approve.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_editscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_editscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_approve.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_approve.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\confirmationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\confirmationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,40 +31,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Score.cs",
-              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
-              "RelativeDocumentMoniker": "LoginForm\\Models\\Score.cs",
-              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Score.cs",
-              "RelativeToolTip": "LoginForm\\Models\\Score.cs",
-              "ViewState": "AgIAALgAAAAAAAAAAAAqwMsAAABDAAAAAAAAAA==",
+              "Title": "f_Approve.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Approve.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Approve.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Approve.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_Approve.cs",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAAAO8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T06:54:15.726Z",
+              "WhenOpened": "2026-06-02T03:02:22.077Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "f_EditScore.cs",
-              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditScore.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_EditScore.cs",
-              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_EditScore.cs",
-              "RelativeToolTip": "LoginForm\\UI\\f_EditScore.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAK0AAABCAAAAAAAAAA==",
+              "Title": "f_Approve.Designer.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Approve.Designer.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Approve.Designer.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Approve.Designer.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_Approve.Designer.cs",
+              "ViewState": "AgIAAPcAAAAAAAAAAAAkwAIBAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T18:49:00.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-02T02:59:17.059Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Student.cs",
-              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
-              "RelativeDocumentMoniker": "LoginForm\\Models\\Student.cs",
-              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Student.cs",
-              "RelativeToolTip": "LoginForm\\Models\\Student.cs",
-              "ViewState": "AgIAAAsCAAAAAAAAAAAuwC0CAAA/AAAAAAAAAA==",
+              "Title": "ConfirmationRequest.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\ConfirmationRequest.cs",
+              "RelativeDocumentMoniker": "LoginForm\\ConfirmationRequest.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\ConfirmationRequest.cs",
+              "RelativeToolTip": "LoginForm\\ConfirmationRequest.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAkwMYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T18:14:16.863Z"
+              "WhenOpened": "2026-06-02T02:22:19.864Z"
             }
           ]
         }

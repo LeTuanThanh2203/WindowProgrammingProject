@@ -2,15 +2,8 @@
 {
     partial class f_Approve
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             dataGridView_AcceptUser = new DataGridView();
@@ -42,8 +31,16 @@
             txt_Role = new DataGridViewTextBoxColumn();
             bt_Unlock = new DataGridViewButtonColumn();
             bt_Delete = new DataGridViewButtonColumn();
+            dataGridView_ConfirmationRequest = new DataGridView();
+            btn_ConfirmationRequest = new Button();
+            txt_ = new DataGridViewTextBoxColumn();
+            txt_ConfirmationName = new DataGridViewTextBoxColumn();
+            txt_Quantity = new DataGridViewTextBoxColumn();
+            btn_AcpRequest = new DataGridViewButtonColumn();
+            btn_DeleteRequest = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView_AcceptUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_UnlockAcc).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_ConfirmationRequest).BeginInit();
             SuspendLayout();
             // 
             // dataGridView_AcceptUser
@@ -54,7 +51,7 @@
             dataGridView_AcceptUser.Location = new Point(114, 12);
             dataGridView_AcceptUser.Name = "dataGridView_AcceptUser";
             dataGridView_AcceptUser.RowHeadersWidth = 51;
-            dataGridView_AcceptUser.Size = new Size(974, 609);
+            dataGridView_AcceptUser.Size = new Size(699, 258);
             dataGridView_AcceptUser.TabIndex = 0;
             dataGridView_AcceptUser.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -128,7 +125,7 @@
             dataGridView_UnlockAcc.Location = new Point(109, 12);
             dataGridView_UnlockAcc.Name = "dataGridView_UnlockAcc";
             dataGridView_UnlockAcc.RowHeadersWidth = 51;
-            dataGridView_UnlockAcc.Size = new Size(1004, 609);
+            dataGridView_UnlockAcc.Size = new Size(704, 258);
             dataGridView_UnlockAcc.TabIndex = 4;
             dataGridView_UnlockAcc.CellContentClick += dataGridView_UnlockAcc_CellContentClick;
             // 
@@ -172,12 +169,77 @@
             bt_Delete.Text = "Delete";
             bt_Delete.Width = 125;
             // 
+            // dataGridView_ConfirmationRequest
+            // 
+            dataGridView_ConfirmationRequest.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView_ConfirmationRequest.BackgroundColor = Color.White;
+            dataGridView_ConfirmationRequest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_ConfirmationRequest.Columns.AddRange(new DataGridViewColumn[] { txt_, txt_ConfirmationName, txt_Quantity, btn_AcpRequest, btn_DeleteRequest });
+            dataGridView_ConfirmationRequest.Location = new Point(109, 12);
+            dataGridView_ConfirmationRequest.Name = "dataGridView_ConfirmationRequest";
+            dataGridView_ConfirmationRequest.RowHeadersWidth = 51;
+            dataGridView_ConfirmationRequest.Size = new Size(704, 258);
+            dataGridView_ConfirmationRequest.TabIndex = 5;
+            dataGridView_ConfirmationRequest.CellContentClick += dataGridView_ConfirmationRequest_CellContentClick;
+            // 
+            // btn_ConfirmationRequest
+            // 
+            btn_ConfirmationRequest.Location = new Point(12, 268);
+            btn_ConfirmationRequest.Name = "btn_ConfirmationRequest";
+            btn_ConfirmationRequest.Size = new Size(91, 88);
+            btn_ConfirmationRequest.TabIndex = 6;
+            btn_ConfirmationRequest.Text = "Confirmation Request";
+            btn_ConfirmationRequest.UseVisualStyleBackColor = true;
+            btn_ConfirmationRequest.Click += btn_ConfirmationRequest_Click;
+            // 
+            // txt_
+            // 
+            txt_.HeaderText = "MSSV";
+            txt_.MinimumWidth = 6;
+            txt_.Name = "txt_";
+            txt_.ReadOnly = true;
+            txt_.Width = 125;
+            // 
+            // txt_ConfirmationName
+            // 
+            txt_ConfirmationName.HeaderText = "Name";
+            txt_ConfirmationName.MinimumWidth = 6;
+            txt_ConfirmationName.Name = "txt_ConfirmationName";
+            txt_ConfirmationName.ReadOnly = true;
+            txt_ConfirmationName.Width = 125;
+            // 
+            // txt_Quantity
+            // 
+            txt_Quantity.HeaderText = "Quantity";
+            txt_Quantity.MinimumWidth = 6;
+            txt_Quantity.Name = "txt_Quantity";
+            txt_Quantity.ReadOnly = true;
+            txt_Quantity.Width = 125;
+            // 
+            // btn_AcpRequest
+            // 
+            btn_AcpRequest.HeaderText = "Accept";
+            btn_AcpRequest.MinimumWidth = 6;
+            btn_AcpRequest.Name = "btn_AcpRequest";
+            btn_AcpRequest.Text = "Accept";
+            btn_AcpRequest.Width = 125;
+            // 
+            // btn_DeleteRequest
+            // 
+            btn_DeleteRequest.HeaderText = "Delete";
+            btn_DeleteRequest.MinimumWidth = 6;
+            btn_DeleteRequest.Name = "btn_DeleteRequest";
+            btn_DeleteRequest.Text = "Delete";
+            btn_DeleteRequest.Width = 125;
+            // 
             // f_Approve
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1130, 633);
+            Controls.Add(btn_ConfirmationRequest);
+            Controls.Add(dataGridView_ConfirmationRequest);
             Controls.Add(dataGridView_UnlockAcc);
             Controls.Add(bt_UnlockAcc);
             Controls.Add(bt_ApplyAcc);
@@ -186,6 +248,7 @@
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView_AcceptUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_UnlockAcc).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_ConfirmationRequest).EndInit();
             ResumeLayout(false);
         }
 
@@ -205,5 +268,12 @@
         private DataGridViewTextBoxColumn txt_Role;
         private DataGridViewButtonColumn bt_Unlock;
         private DataGridViewButtonColumn bt_Delete;
+        private DataGridView dataGridView_ConfirmationRequest;
+        private Button btn_ConfirmationRequest;
+        private DataGridViewTextBoxColumn txt_;
+        private DataGridViewTextBoxColumn txt_ConfirmationName;
+        private DataGridViewTextBoxColumn txt_Quantity;
+        private DataGridViewButtonColumn btn_AcpRequest;
+        private DataGridViewButtonColumn btn_DeleteRequest;
     }
 }
