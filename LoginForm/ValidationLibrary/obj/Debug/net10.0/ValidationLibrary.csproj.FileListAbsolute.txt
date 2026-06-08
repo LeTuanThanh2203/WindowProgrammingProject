@@ -22,3 +22,15 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingPro
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\refint\ValidationLibrary.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.pdb
 C:\Users\LENOVO\Desktop\Study\Window Programming\W3\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ref\ValidationLibrary.dll
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\bin\Debug\net10.0\ValidationLibrary.deps.json
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\bin\Debug\net10.0\ValidationLibrary.dll
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\bin\Debug\net10.0\ValidationLibrary.pdb
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.AssemblyInfoInputs.cache
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.AssemblyInfo.cs
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.sourcelink.json
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.dll
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\refint\ValidationLibrary.dll
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.pdb
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ref\ValidationLibrary.dll

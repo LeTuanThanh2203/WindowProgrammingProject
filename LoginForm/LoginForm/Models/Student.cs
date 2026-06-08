@@ -252,7 +252,7 @@ public class Student
     }
 
     // ================= STATS =================
-    public int TotalStudent() => CountByGender(null);
+    public int totalStudent() => CountByGender(null);
     public double totalMaleStudent() => CountByGender("Male");
     public double totalFemaleStudent() => CountByGender("Female");
     public double totalOtherStudent() => CountByGender("Other");
@@ -556,4 +556,17 @@ public class Student
         WHERE MSSV = @mssv
         ORDER BY AcademicYear DESC",
             cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
+    //
+    public DataTable GetStudentStatisticsByYear()
+    {
+        string query =
+        @"SELECT
+        '20' + LEFT(MSSV, 2) AS EnrollmentYear,
+        COUNT(*) AS TotalStudents
+      FROM Student
+      GROUP BY LEFT(MSSV, 2)
+      ORDER BY EnrollmentYear";
+
+        return ExecuteQuery(query);
+    }
 }

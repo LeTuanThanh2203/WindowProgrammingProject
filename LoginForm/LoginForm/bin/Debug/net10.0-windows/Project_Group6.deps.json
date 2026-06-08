@@ -16,7 +16,8 @@
           "Microsoft.Data.SqlClient": "7.0.1",
           "Newtonsoft.Json": "13.0.4",
           "System.Data.SqlClient": "4.9.1",
-          "ValidationLibrary": "1.0.0"
+          "ValidationLibrary": "1.0.0",
+          "Xceed.Words.NET": "5.2.26166.7850"
         },
         "runtime": {
           "Project_Group6.dll": {}
@@ -567,6 +568,52 @@
           }
         }
       },
+      "Xceed.Document.NET/5.2.26166.7850": {
+        "dependencies": {
+          "Xceed.Drawing.NET": "1.0.26166.7850",
+          "Xceed.Pdf": "5.2.26166.7850"
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Document.NET.dll": {
+            "assemblyVersion": "5.2.26166.7850",
+            "fileVersion": "5.2.26166.7850"
+          }
+        }
+      },
+      "Xceed.Drawing.NET/1.0.26166.7850": {
+        "dependencies": {
+          "SkiaSharp": "3.119.1"
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Drawing.NET.dll": {
+            "assemblyVersion": "1.0.26166.7850",
+            "fileVersion": "1.0.26166.7850"
+          }
+        }
+      },
+      "Xceed.Pdf/5.2.26166.7850": {
+        "dependencies": {
+          "Xceed.Drawing.NET": "1.0.26166.7850"
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.PDF.NET.dll": {
+            "assemblyVersion": "5.2.26166.7850",
+            "fileVersion": "5.2.26166.7850"
+          }
+        }
+      },
+      "Xceed.Words.NET/5.2.26166.7850": {
+        "dependencies": {
+          "Xceed.Document.NET": "5.2.26166.7850",
+          "Xceed.Drawing.NET": "1.0.26166.7850"
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Words.NET.dll": {
+            "assemblyVersion": "5.2.26166.7850",
+            "fileVersion": "5.2.26166.7850"
+          }
+        }
+      },
       "ValidationLibrary/1.0.0": {
         "runtime": {
           "ValidationLibrary.dll": {
@@ -883,6 +930,34 @@
       "sha512": "sha512-rrs2u7DRMXQG2yh0oVyF/vLwosfRv20Ld2iEpYcKwQWXHjfV+gFXNQsQ9p008kR9Ou4pxBs68Q6/9zC8Gi1wjg==",
       "path": "system.identitymodel.tokens.jwt/8.16.0",
       "hashPath": "system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512"
+    },
+    "Xceed.Document.NET/5.2.26166.7850": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VKsK3BI0Eb12F/0M5pVZyJ7x4XLwMVcw18jR6w+cqFXvlXw7nmorOuFawGbDkKqeGMKGPJ7qyiYq/hC/Ld6osQ==",
+      "path": "xceed.document.net/5.2.26166.7850",
+      "hashPath": "xceed.document.net.5.2.26166.7850.nupkg.sha512"
+    },
+    "Xceed.Drawing.NET/1.0.26166.7850": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DLKZVGpfd81ifGvV2xjnVdezqHcYd1dlDQZymoLbxpi9U2QJXpbCU9+tppNGkzjMhniVhhxAC0H4o3ApqSOe3Q==",
+      "path": "xceed.drawing.net/1.0.26166.7850",
+      "hashPath": "xceed.drawing.net.1.0.26166.7850.nupkg.sha512"
+    },
+    "Xceed.Pdf/5.2.26166.7850": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yAgtAcrKCff3+r6SMDtxEKdydE7U/5QBMFkAt2mEagjEfeMBnDXex9tnSnp9if6otKTF/Yf6IRqqfxDq+XnCdg==",
+      "path": "xceed.pdf/5.2.26166.7850",
+      "hashPath": "xceed.pdf.5.2.26166.7850.nupkg.sha512"
+    },
+    "Xceed.Words.NET/5.2.26166.7850": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d8xd28ToMOVLRGZfkZ1YYts772FOeQVrzjehORA1ae6lCjBYHQXpBl6sVk1vS5TTW9SKBTQn+HTzYbfpLkn3KQ==",
+      "path": "xceed.words.net/5.2.26166.7850",
+      "hashPath": "xceed.words.net.5.2.26166.7850.nupkg.sha512"
     },
     "ValidationLibrary/1.0.0": {
       "type": "project",

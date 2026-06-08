@@ -280,5 +280,21 @@ namespace LoginForm
             f_ScoreView frm = new f_ScoreView(mssv);
             frm.ShowDialog();
         }
+
+        private void btnExportWord_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lblID.Text))
+            {
+                MessageBox.Show("Please select a student first.");
+                return;
+            }
+
+            Print print = new Print();
+
+            print.ExportScoreStudent(
+                lblID.Text,
+                "Semester 1",
+                "2025-2026");
+        }
     }
 }

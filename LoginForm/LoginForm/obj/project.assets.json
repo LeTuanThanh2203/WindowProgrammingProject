@@ -740,6 +740,68 @@
           }
         }
       },
+      "Xceed.Document.NET/5.2.26166.7850": {
+        "type": "package",
+        "dependencies": {
+          "Xceed.Drawing.NET": "[1.0.26166.7850]",
+          "Xceed.Pdf": "[5.2.26166.7850]"
+        },
+        "compile": {
+          "lib/net5.0/Xceed.Document.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Document.NET.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xceed.Drawing.NET/1.0.26166.7850": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.88.8"
+        },
+        "compile": {
+          "lib/net5.0/Xceed.Drawing.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Drawing.NET.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xceed.Pdf/5.2.26166.7850": {
+        "type": "package",
+        "dependencies": {
+          "Xceed.Drawing.NET": "[1.0.26166.7850]"
+        },
+        "compile": {
+          "lib/net5.0/Xceed.PDF.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.PDF.NET.dll": {}
+        }
+      },
+      "Xceed.Words.NET/5.2.26166.7850": {
+        "type": "package",
+        "dependencies": {
+          "Xceed.Document.NET": "[5.2.26166.7850]",
+          "Xceed.Drawing.NET": "[1.0.26166.7850]"
+        },
+        "compile": {
+          "lib/net5.0/Xceed.Words.NET.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Words.NET.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "ValidationLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -1869,6 +1931,75 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
+    "Xceed.Document.NET/5.2.26166.7850": {
+      "sha512": "VKsK3BI0Eb12F/0M5pVZyJ7x4XLwMVcw18jR6w+cqFXvlXw7nmorOuFawGbDkKqeGMKGPJ7qyiYq/hC/Ld6osQ==",
+      "type": "package",
+      "path": "xceed.document.net/5.2.26166.7850",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License Agreement.txt",
+        "images/Words.png",
+        "lib/net40/Xceed.Document.NET.dll",
+        "lib/net40/Xceed.Document.NET.xml",
+        "lib/net5.0/Xceed.Document.NET.dll",
+        "lib/net5.0/Xceed.Document.NET.xml",
+        "xceed.document.net.5.2.26166.7850.nupkg.sha512",
+        "xceed.document.net.nuspec"
+      ]
+    },
+    "Xceed.Drawing.NET/1.0.26166.7850": {
+      "sha512": "DLKZVGpfd81ifGvV2xjnVdezqHcYd1dlDQZymoLbxpi9U2QJXpbCU9+tppNGkzjMhniVhhxAC0H4o3ApqSOe3Q==",
+      "type": "package",
+      "path": "xceed.drawing.net/1.0.26166.7850",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License Agreement.txt",
+        "images/Words.png",
+        "lib/net40/Xceed.Drawing.NET.dll",
+        "lib/net40/Xceed.Drawing.NET.xml",
+        "lib/net5.0/Xceed.Drawing.NET.dll",
+        "lib/net5.0/Xceed.Drawing.NET.xml",
+        "xceed.drawing.net.1.0.26166.7850.nupkg.sha512",
+        "xceed.drawing.net.nuspec"
+      ]
+    },
+    "Xceed.Pdf/5.2.26166.7850": {
+      "sha512": "yAgtAcrKCff3+r6SMDtxEKdydE7U/5QBMFkAt2mEagjEfeMBnDXex9tnSnp9if6otKTF/Yf6IRqqfxDq+XnCdg==",
+      "type": "package",
+      "path": "xceed.pdf/5.2.26166.7850",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License Agreement.txt",
+        "images/PDFCreator.png",
+        "lib/net40/Xceed.Pdf.dll",
+        "lib/net5.0/Xceed.PDF.NET.dll",
+        "xceed.pdf.5.2.26166.7850.nupkg.sha512",
+        "xceed.pdf.nuspec"
+      ]
+    },
+    "Xceed.Words.NET/5.2.26166.7850": {
+      "sha512": "d8xd28ToMOVLRGZfkZ1YYts772FOeQVrzjehORA1ae6lCjBYHQXpBl6sVk1vS5TTW9SKBTQn+HTzYbfpLkn3KQ==",
+      "type": "package",
+      "path": "xceed.words.net/5.2.26166.7850",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License Agreement.txt",
+        "docs/Xceed.Words.NET.md",
+        "images/Words.png",
+        "lib/net40/Xceed.Words.NET.dll",
+        "lib/net40/Xceed.Words.NET.xml",
+        "lib/net5.0/Xceed.Words.NET.dll",
+        "lib/net5.0/Xceed.Words.NET.xml",
+        "tools/init.ps1",
+        "xceed.words.net.5.2.26166.7850.nupkg.sha512",
+        "xceed.words.net.nuspec"
+      ]
+    },
     "ValidationLibrary/1.0.0": {
       "type": "project",
       "path": "../ValidationLibrary/ValidationLibrary.csproj",
@@ -1885,28 +2016,24 @@
       "Microsoft.Data.SqlClient >= 7.0.1",
       "Newtonsoft.Json >= 13.0.4",
       "System.Data.SqlClient >= 4.9.1",
-      "ValidationLibrary >= 1.0.0"
+      "ValidationLibrary >= 1.0.0",
+      "Xceed.Words.NET >= 5.2.26166.7850"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PHUOC ANH\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
       "projectName": "Project_Group6",
-      "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
-      "packagesPath": "C:\\Users\\PHUOC ANH\\.nuget\\packages\\",
-      "outputPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\PHUOC ANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1914,7 +2041,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1922,8 +2048,8 @@
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
-              "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
+            "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
+              "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
             }
           }
         }
@@ -1976,6 +2102,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.9.1, )"
+          },
+          "Xceed.Words.NET": {
+            "target": "Package",
+            "version": "[5.2.26166.7850, )"
           }
         },
         "imports": [

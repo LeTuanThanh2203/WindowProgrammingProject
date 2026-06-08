@@ -68,6 +68,7 @@
             lblTotal = new Label();
             btnRefresh = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            Export = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
             pnMainDataGridView.SuspendLayout();
             pnLeft.SuspendLayout();
@@ -403,6 +404,7 @@
             // 
             // pnFunction
             // 
+            pnFunction.Controls.Add(Export);
             pnFunction.Controls.Add(btnViewScore);
             pnFunction.Controls.Add(btnEdit);
             pnFunction.Controls.Add(lblTotal);
@@ -457,6 +459,16 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // Export
+            // 
+            Export.Location = new Point(1094, 13);
+            Export.Name = "Export";
+            Export.Size = new Size(124, 40);
+            Export.TabIndex = 7;
+            Export.Text = "Add ";
+            Export.UseVisualStyleBackColor = true;
+            Export.Click += btnExportWord_Click;
             // 
             // f_ListStudent
             // 
@@ -522,5 +534,6 @@
         private Label lblTotal;
         private Button btnEdit;
         private Button btnViewScore;
+        private Button Export;
     }
 }

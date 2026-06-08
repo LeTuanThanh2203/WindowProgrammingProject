@@ -77,6 +77,9 @@ namespace LoginForm
             // 
             // pnMenu
             // 
+            pnMenu.BackColor = Color.Transparent;
+            pnMenu.BackgroundImageLayout = ImageLayout.None;
+            pnMenu.BorderStyle = BorderStyle.Fixed3D;
             pnMenu.Controls.Add(btnConfirmationRequest);
             pnMenu.Controls.Add(btnClass);
             pnMenu.Controls.Add(btnInformation);
@@ -110,7 +113,7 @@ namespace LoginForm
             btnConfirmationRequest.ImageAlign = ContentAlignment.MiddleLeft;
             btnConfirmationRequest.Location = new Point(0, 608);
             btnConfirmationRequest.Name = "btnConfirmationRequest";
-            btnConfirmationRequest.Size = new Size(304, 76);
+            btnConfirmationRequest.Size = new Size(300, 76);
             btnConfirmationRequest.TabIndex = 12;
             btnConfirmationRequest.Text = "Confirmation Request";
             btnConfirmationRequest.UseVisualStyleBackColor = false;
@@ -127,7 +130,7 @@ namespace LoginForm
             btnClass.ImageAlign = ContentAlignment.MiddleLeft;
             btnClass.Location = new Point(0, 532);
             btnClass.Name = "btnClass";
-            btnClass.Size = new Size(304, 76);
+            btnClass.Size = new Size(300, 76);
             btnClass.TabIndex = 11;
             btnClass.Text = "Class";
             btnClass.UseVisualStyleBackColor = false;
@@ -144,7 +147,7 @@ namespace LoginForm
             btnInformation.ImageAlign = ContentAlignment.MiddleLeft;
             btnInformation.Location = new Point(0, 456);
             btnInformation.Name = "btnInformation";
-            btnInformation.Size = new Size(304, 76);
+            btnInformation.Size = new Size(300, 76);
             btnInformation.TabIndex = 10;
             btnInformation.Text = "Information";
             btnInformation.UseVisualStyleBackColor = false;
@@ -155,7 +158,7 @@ namespace LoginForm
             lblUser.AutoSize = true;
             lblUser.Dock = DockStyle.Bottom;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 769);
+            lblUser.Location = new Point(0, 765);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(65, 28);
             lblUser.TabIndex = 0;
@@ -172,7 +175,7 @@ namespace LoginForm
             btnScore.ImageAlign = ContentAlignment.MiddleLeft;
             btnScore.Location = new Point(0, 380);
             btnScore.Name = "btnScore";
-            btnScore.Size = new Size(304, 76);
+            btnScore.Size = new Size(300, 76);
             btnScore.TabIndex = 9;
             btnScore.Text = "Score";
             btnScore.UseVisualStyleBackColor = false;
@@ -183,7 +186,7 @@ namespace LoginForm
             lblRole.AutoSize = true;
             lblRole.Dock = DockStyle.Bottom;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.Location = new Point(0, 797);
+            lblRole.Location = new Point(0, 793);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(62, 28);
             lblRole.TabIndex = 1;
@@ -200,7 +203,7 @@ namespace LoginForm
             btnCourseRegistation.ImageAlign = ContentAlignment.MiddleLeft;
             btnCourseRegistation.Location = new Point(0, 304);
             btnCourseRegistation.Name = "btnCourseRegistation";
-            btnCourseRegistation.Size = new Size(304, 76);
+            btnCourseRegistation.Size = new Size(300, 76);
             btnCourseRegistation.TabIndex = 8;
             btnCourseRegistation.Text = "Courses Registation";
             btnCourseRegistation.UseVisualStyleBackColor = false;
@@ -217,7 +220,7 @@ namespace LoginForm
             btnCourse.ImageAlign = ContentAlignment.MiddleLeft;
             btnCourse.Location = new Point(0, 228);
             btnCourse.Name = "btnCourse";
-            btnCourse.Size = new Size(304, 76);
+            btnCourse.Size = new Size(300, 76);
             btnCourse.TabIndex = 7;
             btnCourse.Text = "Courses";
             btnCourse.UseVisualStyleBackColor = false;
@@ -234,7 +237,7 @@ namespace LoginForm
             btnApprove.ImageAlign = ContentAlignment.MiddleLeft;
             btnApprove.Location = new Point(0, 152);
             btnApprove.Name = "btnApprove";
-            btnApprove.Size = new Size(304, 76);
+            btnApprove.Size = new Size(300, 76);
             btnApprove.TabIndex = 6;
             btnApprove.Text = "Approve";
             btnApprove.UseVisualStyleBackColor = false;
@@ -251,7 +254,7 @@ namespace LoginForm
             btnStudent.ImageAlign = ContentAlignment.MiddleLeft;
             btnStudent.Location = new Point(0, 76);
             btnStudent.Name = "btnStudent";
-            btnStudent.Size = new Size(304, 76);
+            btnStudent.Size = new Size(300, 76);
             btnStudent.TabIndex = 5;
             btnStudent.Text = "Student";
             btnStudent.UseVisualStyleBackColor = false;
@@ -262,13 +265,13 @@ namespace LoginForm
             btnOverview.BackColor = Color.Transparent;
             btnOverview.Dock = DockStyle.Top;
             btnOverview.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnOverview.IconChar = IconChar.TachometerAltFast;
+            btnOverview.IconChar = IconChar.HomeUser;
             btnOverview.IconColor = Color.Black;
             btnOverview.IconFont = IconFont.Auto;
             btnOverview.ImageAlign = ContentAlignment.MiddleLeft;
             btnOverview.Location = new Point(0, 0);
             btnOverview.Name = "btnOverview";
-            btnOverview.Size = new Size(304, 76);
+            btnOverview.Size = new Size(300, 76);
             btnOverview.TabIndex = 0;
             btnOverview.Text = "Dashboard";
             btnOverview.UseVisualStyleBackColor = false;
