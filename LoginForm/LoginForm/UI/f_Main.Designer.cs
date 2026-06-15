@@ -444,11 +444,11 @@ namespace LoginForm
         #endregion
 
         private Panel pnSidebar;
-      
+
         private Panel pnMenu;
         private Panel pnLogo;
         private Panel pnBody;
-   
+
         private Label lblRole;
         private Label lblUser;
         private TextBox txtAI;
@@ -462,7 +462,7 @@ namespace LoginForm
         private Panel pnButtonContainer;
         private Button btnMaximize;
         private Button btnMinimize;
-  
+
         private FontAwesome.Sharp.IconButton btnOverview;
         private FontAwesome.Sharp.IconButton btnStudent;
         private FontAwesome.Sharp.IconButton btnScore;

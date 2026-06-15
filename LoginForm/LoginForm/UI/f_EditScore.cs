@@ -1,287 +1,307 @@
 ﻿using Project_Group6.Models;
 using System;
 using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LoginForm
 {
     public partial class f_EditScore : Form
     {
-        private readonly Student student = new();
-        private readonly Score score = new();
+        private readonly Score _score = new();
+        private DataTable _currentTable;
 
-        private decimal _originalMidterm;
-        private decimal _originalFinal;
-        private bool _isFillingFromRow;
-        private bool _isEditMode;
+        public f_EditScore()
+        {
+            InitializeComponent();
+            Load += f_EditScore_Load;
 
-        public f_EditScore() => InitializeComponent();
+            cboClass.SelectedIndexChanged += Filter_Changed;
+            cboAcademicYear.SelectedIndexChanged += Filter_Changed;
+            cboSemester.SelectedIndexChanged += Filter_Changed;
+            btnAdd.Click += btnAdd_Click;
+            btnReset.Click += btnReset_Click;   // sửa đúng
+                                                // btnExport để sau
+            dgvStudent.CellEndEdit += dgvStudent_CellEndEdit;
+        }
 
         // ================= LOAD =================
-        private void f_AddScore_Load(object sender, EventArgs e)
+        private void f_EditScore_Load(object sender, EventArgs e)
         {
-            cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
-            SetFormVisibility(false);
-            LoadAllCourses();
+            LoadClasses();
+            LoadAcademicYears();
+            LoadSemesters();
             RefreshGrid();
         }
 
-        // ================= HELPERS =================
-        private void SetFormVisibility(bool visible)
+        // ================= SETUP =================
+        private void LoadClasses()
         {
-            foreach (var ctrl in new Control[]
+            var dt = _score.GetAllClasses();
+
+            var allRow = dt.NewRow();
+            allRow["ClassID"] = "";
+            allRow["ClassDisplay"] = "-- All Classes --";
+            dt.Rows.InsertAt(allRow, 0);
+
+            cboClass.DataSource = dt;
+            cboClass.DisplayMember = "ClassDisplay";
+            cboClass.ValueMember = "ClassID";
+            cboClass.SelectedIndex = 0;
+        }
+
+        private void LoadAcademicYears()
+        {
+            cboAcademicYear.Items.Clear();
+            cboAcademicYear.Items.Add("-- All --");
+
+            var dt = new Class().GetDistinctAcademicYears();
+            foreach (DataRow row in dt.Rows)
+                cboAcademicYear.Items.Add(row[0].ToString());
+
+            cboAcademicYear.SelectedIndex = 0;
+        }
+
+        private void LoadSemesters()
+        {
+            cboSemester.Items.Clear();
+            cboSemester.Items.Add("-- All --");
+            cboSemester.Items.Add("1");
+            cboSemester.Items.Add("2");
+            cboSemester.Items.Add("3");
+            cboSemester.SelectedIndex = 0;
+        }
+
+        // ================= LOAD DATA =================
+        private void RefreshGrid()
+        {
+            _currentTable = _score.GetAllScore();
+            dgvStudent.DataSource = _currentTable;
+            LockNonScoreColumns();
+        }
+
+        private void LockNonScoreColumns()
+        {
+            if (dgvStudent.Columns.Count == 0) return;
+
+            foreach (DataGridViewColumn col in dgvStudent.Columns)
             {
-        MSSV, lblID, label2, label3, label4,
-        txtQT, txtCK, lblTotal,
-        btnAdd, btnRefresh
-            })
-                ctrl.Visible = visible;
+                bool isEditable = col.Name == "Process Grade"
+                               || col.Name == "Final Grade";
+                col.ReadOnly = !isEditable;
 
-            // Delete chỉ hiện khi Edit mode (đã có điểm)
-            btnDelete.Visible = visible && _isEditMode;
-        }
-
-        private void LoadAllCourses()
-        {
-            var courses = score.GetAllCourses();
-            var allRow = courses.NewRow();
-            allRow["CourseID"] = -1;
-            allRow["CourseName"] = "-- All Courses --";
-            courses.Rows.InsertAt(allRow, 0);
-            BindComboBox(courses);
-        }
-
-        private void BindComboBox(DataTable table)
-        {
-            _isFillingFromRow = true;
-            cboCourse.DataSource = table;
-            cboCourse.DisplayMember = "CourseName";
-            cboCourse.ValueMember = "CourseID";
-            _isFillingFromRow = false;
-        }
-
-        private void RefreshGrid() =>
-            dgvStudent.DataSource = score.GetAllScore();
-
-        private void ResetInputs()
-        {
-            txtQT.Text = "";
-            txtCK.Text = "";
-            lblTotal.Text = "";
-        }
-
-        private void CalculateScore()
-        {
-            if (txtQT.Text == "" || txtCK.Text == "")
-            {
-                lblTotal.Text = "";
-                return;
-            }
-            decimal qt = Convert.ToDecimal(txtQT.Text);
-            decimal ck = Convert.ToDecimal(txtCK.Text);
-            lblTotal.Text = ((qt + ck) / 2).ToString("0.00");
-        }
-
-        private bool ValidateScore(string text, out decimal value)
-        {
-            value = 0;
-            if (!decimal.TryParse(text, out value) || value < 0 || value > 10)
-            {
-                MessageBox.Show("Score must be 0 -> 10");
-                return false;
-            }
-            return true;
-        }
-
-        private bool Verify() =>
-            lblID.Text != ""
-            && txtQT.Text != ""
-            && txtCK.Text != ""
-            && cboCourse.SelectedValue != null
-            && Convert.ToInt32(cboCourse.SelectedValue) != -1;
-
-        // ================= CLICK SINH VIÊN =================
-        private void dgvStudent_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            var row = dgvStudent.Rows[e.RowIndex];
-            var midCell = row.Cells["Process Grade"];
-            var finalCell = row.Cells["Final Grade"];
-
-            bool hasScore = midCell.Value != null && midCell.Value != DBNull.Value
-                         && finalCell.Value != null && finalCell.Value != DBNull.Value;
-
-            _isEditMode = hasScore;
-
-            string mssv = row.Cells["MSSV"].Value.ToString();
-            string courseName = row.Cells["CourseName"].Value?.ToString(); // tên môn từ grid
-            lblID.Text = mssv;
-
-            if (hasScore)
-            {
-                _originalMidterm = Convert.ToDecimal(midCell.Value);
-                _originalFinal = Convert.ToDecimal(finalCell.Value);
-                txtQT.Text = _originalMidterm.ToString();
-                txtCK.Text = _originalFinal.ToString();
-                btnAdd.Text = "Update";
-                BindComboBox(score.GetCoursesWithScore(mssv));
-            }
-            else
-            {
-                _originalMidterm = 0;
-                _originalFinal = 0;
-                ResetInputs();
-                btnAdd.Text = "Add";
-                BindComboBox(score.GetCoursesWithoutScore(mssv));
+                // Căn giữa header và cell
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
-            // ✅ Focus đúng môn của row đang click
-            // Lấy CourseID từ DB dựa theo mssv + courseName
-            var courseRow = score.GetCourseIDByStudentAndName(mssv, courseName);
-            if (courseRow != null)
-            {
-                _isFillingFromRow = true;
-                cboCourse.SelectedValue = courseRow;
-                _isFillingFromRow = false;
-            }
-
-            SetFormVisibility(true);
-            CalculateScore();
+            if (dgvStudent.Columns.Contains("Process Grade"))
+                dgvStudent.Columns["Process Grade"].DefaultCellStyle.BackColor = Color.LightYellow;
+            if (dgvStudent.Columns.Contains("Final Grade"))
+                dgvStudent.Columns["Final Grade"].DefaultCellStyle.BackColor = Color.LightYellow;
         }
 
-        // ================= CHỌN MÔN =================
-        private void cboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        // ================= FILTER =================
+        private void Filter_Changed(object sender, EventArgs e) => ApplyFilter();
+
+        private void dgvStudent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            if (_isFillingFromRow) return;
-            if (cboCourse.SelectedValue == null) return;
-            if (!int.TryParse(cboCourse.SelectedValue.ToString(), out int courseID)) return;
-
-            if (lblID.Text == "")
+            foreach (DataGridViewRow row in dgvStudent.Rows)
             {
-                // Chưa chọn sinh viên → filter grid theo môn
-                dgvStudent.DataSource = courseID == -1
-                    ? score.GetAllScore()
-                    : score.GetScoreByCourse(courseID);
-                return;
-            }
+                if (row.IsNewRow) continue;
+                string grade = row.Cells["Grade"].Value?.ToString() ?? "";
+                var cell = row.Cells["Grade"];
 
-            // Đã chọn sinh viên → load điểm của môn vừa chọn
-            var scoreData = score.GetScoreByStudentAndCourse(lblID.Text, courseID);
-            if (scoreData != null && scoreData.Rows.Count > 0)
-            {
-                var r = scoreData.Rows[0];
-                bool hasScore = r["Process Grade"] != DBNull.Value
-                             && r["Final Grade"] != DBNull.Value;
-
-                _isEditMode = hasScore;
-                btnDelete.Visible = hasScore;
-
-                if (hasScore)
+                (cell.Style.BackColor, cell.Style.ForeColor) = grade switch
                 {
-                    _originalMidterm = Convert.ToDecimal(r["Process Grade"]);
-                    _originalFinal = Convert.ToDecimal(r["Final Grade"]);
-                    txtQT.Text = _originalMidterm.ToString();
-                    txtCK.Text = _originalFinal.ToString();
-                    btnAdd.Text = "Update";
-                }
-                else
-                {
-                    _originalMidterm = 0;
-                    _originalFinal = 0;
-                    ResetInputs();
-                    btnAdd.Text = "Add";
-                }
-                CalculateScore();
+                    "A+" or "A" => (Color.FromArgb(0, 180, 0), Color.White),
+                    "B+" or "B" => (Color.FromArgb(100, 200, 100), Color.Black),
+                    "C+" or "C" => (Color.FromArgb(255, 200, 0), Color.Black),
+                    "D+" or "D" => (Color.FromArgb(255, 140, 0), Color.White),
+                    "F" => (Color.FromArgb(220, 50, 50), Color.White),
+                    _ => (Color.White, Color.Black)
+                };
             }
         }
 
-        // ================= REFRESH =================
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void ApplyFilter()
         {
-            txtQT.Text = _originalMidterm != 0 ? _originalMidterm.ToString() : "";
-            txtCK.Text = _originalFinal != 0 ? _originalFinal.ToString() : "";
-            lblTotal.Text = "";
-            CalculateScore();
-        }
+            string classID = cboClass.SelectedValue?.ToString() ?? "";
+            string academicYear = cboAcademicYear.SelectedItem?.ToString() ?? "";
+            string semStr = cboSemester.SelectedItem?.ToString() ?? "";
 
-        // ================= DELETE =================
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (lblID.Text == "" || cboCourse.SelectedValue == null) return;
+            bool filterClass = !string.IsNullOrEmpty(classID);
+            bool filterYear = academicYear != "-- All --" && !string.IsNullOrEmpty(academicYear);
+            bool filterSem = int.TryParse(semStr, out int semester);
 
-            if (MessageBox.Show("Reset score to 0 for this student?", "Confirm",
-                    MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            DataTable dt = filterClass
+                ? _score.GetScoreByClass(classID)
+                : _score.GetAllScore();
 
-            var reset = new Score
+            if (dt.Rows.Count > 0)
             {
-                MSSV = lblID.Text,
-                CourseID = Convert.ToInt32(cboCourse.SelectedValue),
-                MidtermScore = 0,
-                FinalScore = 0
-            };
+                var query = dt.AsEnumerable();
 
-            if (reset.UpdateScore())
-            {
-                MessageBox.Show("Score reset to 0");
-                txtQT.Text = "0";
-                txtCK.Text = "0";
-                _originalMidterm = 0;
-                _originalFinal = 0;
-                CalculateScore();
-                RefreshGrid();
+                if (filterYear)
+                    query = query.Where(r => r["AcademicYear"].ToString() == academicYear);
+
+                if (filterSem)
+                    query = query.Where(r => r.Field<int>("Semester") == semester);
+
+                dt = query.Any() ? query.CopyToDataTable() : dt.Clone();
             }
-            else
-                MessageBox.Show("Reset failed");
+
+            _currentTable = dt;
+            dgvStudent.DataSource = dt;
+            LockNonScoreColumns();
         }
 
-        // ================= QT =================
-        private void txtQT_TextChanged(object sender, EventArgs e)
-        {
-            if (txtQT.Text == "") return;
-            if (!ValidateScore(txtQT.Text, out _)) { txtQT.Clear(); return; }
-            CalculateScore();
-        }
-
-        // ================= CK =================
-        private void txtCK_TextChanged(object sender, EventArgs e)
-        {
-            if (txtCK.Text == "") return;
-            if (!ValidateScore(txtCK.Text, out _)) { txtCK.Clear(); return; }
-            CalculateScore();
-        }
-
-        // ================= ADD / UPDATE =================
+        // ================= SAVE =================
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!Verify())
+            dgvStudent.EndEdit();
+
+            int successCount = 0;
+            int failCount = 0;
+
+            foreach (DataGridViewRow row in dgvStudent.Rows)
             {
-                MessageBox.Show("Please select a student and input score");
+                if (row.IsNewRow) continue;
+
+                string midVal = row.Cells["Process Grade"].Value?.ToString();
+                string finalVal = row.Cells["Final Grade"].Value?.ToString();
+
+                if (string.IsNullOrEmpty(midVal) && string.IsNullOrEmpty(finalVal))
+                    continue;
+
+                bool midOk = decimal.TryParse(midVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture,
+                                 out decimal midterm);
+                bool finalOk = decimal.TryParse(finalVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture,
+                                 out decimal final);
+
+                if (!midOk || !finalOk || midterm < 0 || midterm > 10 || final < 0 || final > 10)
+                {
+                    failCount++;
+                    continue;
+                }
+
+                var s = new Score
+                {
+                    MSSV = row.Cells["MSSV"].Value?.ToString(),
+                    ClassID = row.Cells["ClassID"].Value?.ToString(),
+                    Semester = Convert.ToInt32(row.Cells["Semester"].Value),
+                    AcademicYear = row.Cells["AcademicYear"].Value?.ToString(),
+                    MidtermScore = midterm,
+                    FinalScore = final
+                };
+
+                if (s.UpdateScore()) successCount++;
+                else failCount++;
+            }
+
+            if (failCount > 0)
+                MessageBox.Show(
+                    $"Saved: {successCount} | Failed/Invalid: {failCount}\n"
+                    + "Score must be between 0 and 10.", "Result");
+            else
+                MessageBox.Show($"Saved {successCount} record(s) successfully!");
+
+            RefreshGrid();
+            ApplyFilter();
+        }
+        // ================= EXPORT (chưa làm) =================
+        private void btnExport_Click(object sender, EventArgs e) { }
+
+        // ================= RESET =================
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (dgvStudent.CurrentRow == null) return;
+
+            var row = dgvStudent.CurrentRow;
+            string mssv = row.Cells["MSSV"].Value?.ToString();
+            string classID = row.Cells["ClassID"].Value?.ToString();
+            int semester = Convert.ToInt32(row.Cells["Semester"].Value);
+            string acadYear = row.Cells["AcademicYear"].Value?.ToString();
+
+            if (string.IsNullOrEmpty(mssv))
+            {
+                MessageBox.Show("Select a row first!");
                 return;
             }
+
+            if (MessageBox.Show(
+                    $"Reset score for {mssv} - {classID}?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo) != DialogResult.Yes)
+                return;
 
             var s = new Score
             {
-                MSSV = lblID.Text,
-                CourseID = Convert.ToInt32(cboCourse.SelectedValue),
-                MidtermScore = Convert.ToDecimal(txtQT.Text),
-                FinalScore = Convert.ToDecimal(txtCK.Text)
+                MSSV = mssv,
+                ClassID = classID,
+                Semester = semester,
+                AcademicYear = acadYear
             };
 
-            // Luôn dùng UpdateScore vì record đã có sẵn (insert khi đăng ký)
-            bool success = s.UpdateScore();
-
-            if (success)
+            if (s.ResetScore())
             {
-                MessageBox.Show("Update success");
-                _originalMidterm = s.MidtermScore;
-                _originalFinal = s.FinalScore;
-                ResetInputs();
+                MessageBox.Show("Reset successfully!");
                 RefreshGrid();
-                BindComboBox(score.GetCoursesWithScore(lblID.Text));
+                ApplyFilter();
             }
             else
-                MessageBox.Show("Update failed");
+                MessageBox.Show("Reset failed!");
+        }
+
+        // ================= VALIDATE =================
+        private void dgvStudent_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var col = dgvStudent.Columns[e.ColumnIndex];
+            if (col.Name != "Process Grade" && col.Name != "Final Grade") return;
+
+            var cell = dgvStudent.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            string val = cell.Value?.ToString() ?? "";
+
+            if (val == "") return;
+
+            bool valid = decimal.TryParse(val,
+                             System.Globalization.NumberStyles.Any,
+                             System.Globalization.CultureInfo.InvariantCulture,
+                             out decimal d)
+                         && d >= 0 && d <= 10;
+
+            if (!valid)
+            {
+                cell.Style.BackColor = Color.LightCoral;
+                cell.Style.ForeColor = Color.DarkRed;
+                cell.ErrorText = "Must be 0 - 10";
+            }
+            else
+            {
+                cell.Style.BackColor = Color.LightYellow;
+                cell.Style.ForeColor = Color.Black;
+                cell.ErrorText = "";
+
+                var row = dgvStudent.Rows[e.RowIndex];
+                bool midOk = decimal.TryParse(
+                                 row.Cells["Process Grade"].Value?.ToString(),
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture,
+                                 out decimal mid);
+                bool finOk = decimal.TryParse(
+                                 row.Cells["Final Grade"].Value?.ToString(),
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture,
+                                 out decimal fin);
+
+                if (midOk && finOk && dgvStudent.Columns.Contains("Total Grade"))
+                    row.Cells["Total Grade"].Value = Math.Round((mid + fin) / 2, 2);
+            }
         }
     }
 }

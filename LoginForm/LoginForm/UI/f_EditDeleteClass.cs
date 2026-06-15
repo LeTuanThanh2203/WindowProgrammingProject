@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
-using ProjectMonHoc;
 using Project_Group6.Models;
 using System.Windows.Forms;
 
@@ -10,84 +8,114 @@ namespace Project_Group6
     public partial class f_EditDeleteClass : Form
     {
         private bool isLoaded = false;
-
         Class _class = new Class();
         Course _course = new Course();
 
         public f_EditDeleteClass()
         {
             InitializeComponent();
-
-            // GẮN EVENTS
             this.Load += f_EditDeleteClass_Load;
             this.Shown += f_EditDeleteClass_Shown;
             btnUpdate.Click += btnUpdate_Click;
             btnDelete.Click += btnDelete_Click;
             btnRefresh.Click += btnRefresh_Click;
             btnQuit.Click += btnQuit_Click;
-            txtSearch.TextChanged
-                                += txtSearch_TextChanged;
-            cboSort.SelectedIndexChanged
-                                += cboSort_SelectedIndexChanged;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
             dgvCourse.CellClick += dgvCourse_CellClick;
             cbo_CourseName.SelectedIndexChanged
-                                += cbo_CourseName_SelectedIndexChanged;
+                                         += cbo_CourseName_SelectedIndexChanged;
         }
 
-        // ================= LOAD FORM =================
-        private void f_EditDeleteClass_Load(
-            object sender,
-            EventArgs e)
+        // ================= LOAD =================
+        private void f_EditDeleteClass_Load(object sender, EventArgs e)
         {
             cboSort.Items.AddRange(new[]
             {
-                "Name A-Z",
-                "Name Z-A",
-                "Year Asc",
-                "Year Desc"
+                "Name A-Z", "Name Z-A",
+                "Year Asc", "Year Desc"
             });
             cboSort.SelectedIndex = 0;
 
             LoadCourseName();
+            LoadSemester();
 
             isLoaded = true;
         }
 
-        private void f_EditDeleteClass_Shown(
-            object sender,
-            EventArgs e)
+        private void f_EditDeleteClass_Shown(object sender, EventArgs e)
+            => LoadData();
+
+        // ================= LOAD COURSE =================
+        private void LoadCourseName()
         {
-            LoadData();
+            DataTable dt = _course.GetCoursesForCombo();
+
+            cbo_CourseName.DataSource = dt;
+            cbo_CourseName.DisplayMember = "CourseDisplay";
+            cbo_CourseName.ValueMember = "CourseCode";   // ← string
+            cbo_CourseName.SelectedIndex = -1;
+        }
+
+        // ================= LOAD SEMESTER =================
+        private void LoadSemester()
+        {
+            cboSemester.Items.Clear();
+            cboSemester.Items.Add("Semester 1");
+            cboSemester.Items.Add("Semester 2");
+            cboSemester.Items.Add("Summer");
+            cboSemester.SelectedIndex = 0;
+        }
+
+        // ================= HELPER: semester int =================
+        private int SemesterValue()
+        {
+            return cboSemester.SelectedItem?.ToString() switch
+            {
+                "Semester 1" => 1,
+                "Semester 2" => 2,
+                "Summer" => 3,
+                _ => 1
+            };
+        }
+
+        // ================= HELPER: int → combobox text =================
+        private void SetSemesterCombo(int semester)
+        {
+            cboSemester.SelectedItem = semester switch
+            {
+                1 => "Semester 1",
+                2 => "Semester 2",
+                3 => "Summer",
+                _ => "Semester 1"
+            };
         }
 
         // ================= LOAD DATA =================
         private void LoadData()
         {
-            string keyword =
-                txtSearch.Text.Trim();
+            string keyword = txtSearch.Text.Trim();
 
-            DataTable dt =
-                _class.SearchClassrooms(keyword);
+            DataTable dt = string.IsNullOrEmpty(keyword)
+                ? GetAllClassesTable()
+                : _class.SearchClassrooms(keyword);
 
             DataView dv = dt.DefaultView;
+            string sort = cboSort.SelectedItem?.ToString();
 
-            string sort =
-                cboSort.SelectedItem?.ToString();
-
-            if (sort == "Name A-Z")
-                dv.Sort = "ClassName ASC";
-            else if (sort == "Name Z-A")
-                dv.Sort = "ClassName DESC";
-            else if (sort == "Year Asc")
-                dv.Sort = "AcademicYear ASC";
-            else if (sort == "Year Desc")
-                dv.Sort = "AcademicYear DESC";
+            if (sort == "Name A-Z") dv.Sort = "ClassName ASC";
+            else if (sort == "Name Z-A") dv.Sort = "ClassName DESC";
+            else if (sort == "Year Asc") dv.Sort = "AcademicYear ASC";
+            else if (sort == "Year Desc") dv.Sort = "AcademicYear DESC";
 
             dgvCourse.DataSource = dv.ToTable();
-
             FormatGrid();
             ClearForm();
         }
+
+        // SearchClassrooms("") trả về đúng, nhưng dùng riêng để rõ ý
+        private DataTable GetAllClassesTable()
+            => _class.SearchClassrooms("");
 
         // ================= FORMAT GRID =================
         private void FormatGrid()
@@ -101,127 +129,72 @@ namespace Project_Group6
             dgvCourse.RowTemplate.Height = 35;
             dgvCourse.BackgroundColor =
                 System.Drawing.Color.White;
-            dgvCourse.BorderStyle =
-                BorderStyle.None;
+            dgvCourse.BorderStyle = BorderStyle.None;
         }
 
-        // ================= LOAD COURSE COMBOBOX =================
-        private void LoadCourseName()
-        {
-            DataTable dt = _course.GetCoursesForCombo();
-
-            cbo_CourseName.DataSource = dt;
-            cbo_CourseName.DisplayMember = "CourseDisplay";
-            cbo_CourseName.ValueMember = "CourseID";
-            cbo_CourseName.SelectedIndex = -1;
-        }
-
-        // ================= CLICK GRID → FILL FORM =================
+        // ================= CLICK GRID =================
         private void dgvCourse_CellClick(
-            object sender,
-            DataGridViewCellEventArgs e)
+            object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            DataGridViewRow row =
-                dgvCourse.Rows[e.RowIndex];
+            var row = dgvCourse.Rows[e.RowIndex];
 
-            // ClassID
-            lbl_ClassIDAuto.Text =
-                row.Cells["ClassID"].Value?.ToString();
+            lbl_ClassIDAuto.Text = row.Cells["ClassID"].Value?.ToString();
+            lbl_AcademicYearAuto.Text = row.Cells["AcademicYear"].Value?.ToString();
+            txt_ClassCourse.Text = row.Cells["ClassName"].Value?.ToString();
 
-            // AcademicYear
-            lbl_AcademicYearAuto.Text =
-                row.Cells["AcademicYear"].Value?.ToString();
-
-            // ClassName
-            txt_ClassCourse.Text =
-                row.Cells["ClassName"].Value?.ToString();
-
-            // HomeroomTeacher → txt
+            // Manager → txt_HomeroomTeacher (giữ tên control cũ)
             txt_HomeroomTeacher.Text =
-                row.Cells["HomeroomTeacher"].Value?.ToString() ?? "";
+                row.Cells["Manager"].Value?.ToString() ?? "";
 
-            // CourseName → tìm CourseCode từ ClassID
-            // ClassID dạng: "CS101-2024" → CourseCode = "CS101"
-            string classID =
-                lbl_ClassIDAuto.Text ?? "";
+            // Semester
+            if (int.TryParse(
+                    row.Cells["Semester"].Value?.ToString(),
+                    out int sem))
+                SetSemesterCombo(sem);
 
-            string courseCode = classID.Contains("-")
-                ? classID.Substring(
-                    0, classID.LastIndexOf("-")).Trim()
-                : classID.Trim();
+            // CourseCode → bind combobox
+            string courseCode =
+                row.Cells["CourseCode"].Value?.ToString().Trim() ?? "";
 
-            DataTable dt =
-                cbo_CourseName.DataSource as DataTable;
-
-            if (dt != null)
-            {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    string display =
-                        dr["CourseDisplay"].ToString();
-
-                    string code = display.Contains(" - ")
-                        ? display.Split(" - ")[0].Trim()
-                        : display.Trim();
-
-                    if (code == courseCode)
-                    {
-                        cbo_CourseName.SelectedValue =
-                            dr["CourseID"];
-                        break;
-                    }
-                }
-            }
+            cbo_CourseName.SelectedValue = courseCode;
         }
 
-        // ================= SINH CLASS ID KHI ĐỔI COURSE =================
+        // ================= AUTO CLASS ID =================
         private void cbo_CourseName_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+            object sender, EventArgs e)
         {
-            if (cbo_CourseName.SelectedItem == null)
+            // Chỉ sinh ClassID khi chưa chọn từ grid
+            if (!string.IsNullOrEmpty(lbl_ClassIDAuto.Text)) return;
+
+            if (cbo_CourseName.SelectedValue == null
+             || cbo_CourseName.SelectedValue == DBNull.Value)
                 return;
 
-            string display = cbo_CourseName.Text;
-            string courseCode = display.Contains(" - ")
-                ? display.Split(" - ")[0].Trim()
-                : display.Trim();
-
-            string year =
-                lbl_AcademicYearAuto.Text.Contains(" - ")
-                ? lbl_AcademicYearAuto.Text
-                    .Split(" - ")[0].Trim()
+            string courseCode = cbo_CourseName.SelectedValue
+                                              .ToString().Trim();
+            string year = lbl_AcademicYearAuto.Text.Contains("-")
+                ? lbl_AcademicYearAuto.Text.Split('-')[0].Trim()
                 : DateTime.Now.Year.ToString();
 
-            // Chỉ sinh ClassID khi chưa có (chưa chọn từ grid)
-            if (string.IsNullOrEmpty(lbl_ClassIDAuto.Text))
-                lbl_ClassIDAuto.Text =
-                    $"{courseCode}-{year}";
+            lbl_ClassIDAuto.Text = $"{courseCode}-{year}-S{SemesterValue()}";
         }
 
         // ================= UPDATE =================
-        private void btnUpdate_Click(
-            object sender,
-            EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(lbl_ClassIDAuto.Text))
             {
-                MessageBox.Show(
-                    "Please select a class from the list.",
-                    "Validation",
-                    MessageBoxButtons.OK,
+                MessageBox.Show("Please select a class from the list.",
+                    "Validation", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
-
             if (string.IsNullOrWhiteSpace(txt_ClassCourse.Text))
             {
-                MessageBox.Show(
-                    "Please enter Class Name.",
-                    "Validation",
-                    MessageBoxButtons.OK,
+                MessageBox.Show("Please enter Class Name.",
+                    "Validation", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 txt_ClassCourse.Focus();
                 return;
@@ -230,40 +203,35 @@ namespace Project_Group6
             var updated = new Class
             {
                 ClassID = lbl_ClassIDAuto.Text.Trim(),
+                CourseCode = cbo_CourseName.SelectedValue?
+                                               .ToString().Trim() ?? "",
                 ClassName = txt_ClassCourse.Text.Trim(),
+                Semester = SemesterValue(),
                 AcademicYear = lbl_AcademicYearAuto.Text.Trim(),
                 NumberOfStudent = 0,
-                HomeroomTeacher =
-                    string.IsNullOrWhiteSpace(
-                        txt_HomeroomTeacher.Text)
-                    ? null
-                    : txt_HomeroomTeacher.Text.Trim()
+                Manager = string.IsNullOrWhiteSpace(
+                                    txt_HomeroomTeacher.Text)
+                                  ? null
+                                  : txt_HomeroomTeacher.Text.Trim()
             };
 
             bool ok = updated.EditClassroom();
 
             MessageBox.Show(
-                ok ? "Updated successfully!"
-                   : "Update failed!",
-                "Update",
-                MessageBoxButtons.OK,
-                ok ? MessageBoxIcon.Information
-                   : MessageBoxIcon.Error);
+                ok ? "Updated successfully!" : "Update failed!",
+                "Update", MessageBoxButtons.OK,
+                ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             if (ok) LoadData();
         }
 
         // ================= DELETE =================
-        private void btnDelete_Click(
-            object sender,
-            EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(lbl_ClassIDAuto.Text))
             {
-                MessageBox.Show(
-                    "Please select a class from the list.",
-                    "No Selection",
-                    MessageBoxButtons.OK,
+                MessageBox.Show("Please select a class from the list.",
+                    "No Selection", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
@@ -271,47 +239,35 @@ namespace Project_Group6
             string classID = lbl_ClassIDAuto.Text.Trim();
             string className = txt_ClassCourse.Text.Trim();
 
-            DialogResult confirm = MessageBox.Show(
-                $"Are you sure you want to delete class \"{className}\"?\nThis action cannot be undone.",
-                "Confirm Delete",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirm != DialogResult.Yes) return;
+            if (MessageBox.Show(
+                    $"Delete class \"{className}\"?\nThis cannot be undone.",
+                    "Confirm Delete", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
             bool ok = Class.DeleteClassroom(classID);
 
             MessageBox.Show(
-                ok ? "Deleted successfully!"
-                   : "Delete failed!",
-                "Delete",
-                MessageBoxButtons.OK,
-                ok ? MessageBoxIcon.Information
-                   : MessageBoxIcon.Error);
+                ok ? "Deleted successfully!" : "Delete failed!",
+                "Delete", MessageBoxButtons.OK,
+                ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             if (ok) LoadData();
         }
 
-        // ================= SEARCH =================
-        private void txtSearch_TextChanged(
-            object sender,
-            EventArgs e)
+        // ================= SEARCH / SORT =================
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (isLoaded) LoadData();
         }
 
-        // ================= SORT =================
-        private void cboSort_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isLoaded) LoadData();
         }
 
         // ================= REFRESH =================
-        private void btnRefresh_Click(
-            object sender,
-            EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
             cboSort.SelectedIndex = 0;
@@ -326,14 +282,10 @@ namespace Project_Group6
             txt_ClassCourse.Clear();
             txt_HomeroomTeacher.Clear();
             cbo_CourseName.SelectedIndex = -1;
+            cboSemester.SelectedIndex = 0;
         }
 
-        // ================= CANCEL =================
-        private void btnQuit_Click(
-            object sender,
-            EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnQuit_Click(object sender, EventArgs e)
+            => this.Close();
     }
 }

@@ -111,7 +111,7 @@ namespace Project_Group6
             else semesterValue = 3;
 
             Score score = new Score();
-            DataTable dt = score.GetScoreByFilter(currentMSSV, selectedYear, semesterValue.ToString());
+            DataTable dt = score.GetScoreByFilter(currentMSSV, selectedYear, semesterValue);
 
             // Không có data → ẩn chart hẳn
             if (dt == null || dt.Rows.Count == 0)

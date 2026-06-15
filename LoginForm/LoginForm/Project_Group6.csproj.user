@@ -4,6 +4,9 @@
     <Compile Update="UI\f_AddClass.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\f_AddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\f_ClassList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -11,6 +14,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_Request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\f_ScoreView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_StudentInformation.cs">
@@ -37,9 +43,6 @@
     <Compile Update="UI\f_ForgetPass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UI\f_AddStudent.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UI\f_Approve.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,9 +62,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_RegisterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\f_ScoreView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

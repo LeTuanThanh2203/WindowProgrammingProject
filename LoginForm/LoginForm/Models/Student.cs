@@ -1,7 +1,7 @@
-﻿using System;
-using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
+using System;
+using System.Data;
 using System.Windows.Forms;
 
 public class Student
@@ -46,36 +46,19 @@ public class Student
         return table;
     }
 
-    private static DataTable ExecuteQueryStatic(string query, Action<SqlCommand> addParams = null)
+    private static Student MapFromReader(SqlDataReader reader) => new Student
     {
-        var table = new DataTable();
-        try
-        {
-            using (var db = new My_DB())
-            {
-                var cmd = new SqlCommand(query, db.getConnection);
-                addParams?.Invoke(cmd);
-                new SqlDataAdapter(cmd).Fill(table);
-            }
-        }
-        catch { }
-        return table;
-    }
-
-    // Base query cho course registration — dùng chung
-    private const string CourseSelectBase = @"
-        SELECT
-            c.CourseID,
-            c.CourseCode,
-            c.CourseName,
-            c.CreditHour,
-            pre.CourseName AS [Prerequisite Course],
-            c.Semester,
-            c.Week
-        FROM {0}
-        LEFT JOIN Course pre ON c.PrerequisiteCourseID = pre.CourseID
-        {1}
-        ORDER BY c.CourseCode";
+        MSSV = reader["MSSV"].ToString(),
+        Fname = reader["FirstName"].ToString(),
+        Lname = reader["LastName"].ToString(),
+        Dob = Convert.ToDateTime(reader["Dob"]),
+        Gender = reader["Gender"].ToString(),
+        Phone = reader["Phone"].ToString(),
+        Address = reader["Address"].ToString(),
+        Hometown = reader["HomeTown"].ToString(),
+        Email = reader["Email"].ToString(),
+        Picture = reader["Picture"] != DBNull.Value ? (byte[])reader["Picture"] : null
+    };
 
     // ================= ADD =================
     public bool AddStudent()
@@ -125,10 +108,10 @@ public class Student
                 db.openConnection();
                 var cmd = new SqlCommand(@"
                     UPDATE Student SET
-                        FirstName = @fname, LastName  = @lname,
-                        Dob       = @dob,   Gender    = @gender,
-                        Phone     = @phone, Address   = @address,
-                        HomeTown  = @hometown, Email  = @email,
+                        FirstName = @fname,   LastName  = @lname,
+                        Dob       = @dob,     Gender    = @gender,
+                        Phone     = @phone,   Address   = @address,
+                        HomeTown  = @hometown, Email    = @email,
                         Picture   = @picture
                     WHERE MSSV = @mssv",
                     db.getConnection);
@@ -167,7 +150,8 @@ public class Student
         catch { return false; }
     }
 
-    public static bool DeleteScoreandStudent(string mssv)
+    // Xóa Score + DKMH + Student theo thứ tự FK
+    public static bool DeleteScoreAndStudent(string mssv)
     {
         try
         {
@@ -192,34 +176,21 @@ public class Student
     }
 
     // ================= GET / SEARCH =================
-    public DataTable getStudents(SqlCommand command)
-    {
-        var table = new DataTable();
-        try
-        {
-            using (var db = new My_DB())
-            {
-                command.Connection = db.getConnection;
-                new SqlDataAdapter(command).Fill(table);
-            }
-        }
-        catch { }
-        return table;
-    }
+    public DataTable GetAllStudents() =>
+        ExecuteQuery("SELECT * FROM Student ORDER BY MSSV");
 
     public DataTable SearchStudents(string keyword) =>
         ExecuteQuery(@"
             SELECT * FROM Student
             WHERE CAST(MSSV AS NVARCHAR) LIKE @kw
-               OR FirstName LIKE @kw OR LastName LIKE @kw
-               OR Gender    LIKE @kw OR Phone    LIKE @kw
-               OR Address   LIKE @kw OR HomeTown LIKE @kw
+               OR FirstName LIKE @kw OR LastName  LIKE @kw
+               OR Gender    LIKE @kw OR Phone     LIKE @kw
+               OR Address   LIKE @kw OR HomeTown  LIKE @kw
                OR Email     LIKE @kw",
             cmd => cmd.Parameters.AddWithValue("@kw", $"%{keyword}%"));
 
     public Student GetStudentByID(string mssv)
     {
-        Student s = null;
         try
         {
             using (var db = new My_DB())
@@ -230,25 +201,10 @@ public class Student
                 cmd.Parameters.AddWithValue("@mssv", mssv);
 
                 using var reader = cmd.ExecuteReader();
-                if (reader.Read())
-                    s = new Student
-                    {
-                        MSSV = reader["MSSV"].ToString(),
-                        Fname = reader["FirstName"].ToString(),
-                        Lname = reader["LastName"].ToString(),
-                        Dob = Convert.ToDateTime(reader["Dob"]),
-                        Gender = reader["Gender"].ToString(),
-                        Phone = reader["Phone"].ToString(),
-                        Address = reader["Address"].ToString(),
-                        Hometown = reader["HomeTown"].ToString(),
-                        Email = reader["Email"].ToString(),
-                        Picture = reader["Picture"] != DBNull.Value
-                                    ? (byte[])reader["Picture"] : null
-                    };
+                return reader.Read() ? MapFromReader(reader) : null;
             }
         }
-        catch { }
-        return s;
+        catch { return null; }
     }
 
     // ================= STATS =================
@@ -275,39 +231,247 @@ public class Student
         catch { return 0; }
     }
 
-    // ================= REGISTERED / UNREGISTERED (no year) =================
-    public DataTable GetStudentsRegisteredCourse() =>
-        ExecuteQuery(@"
-            SELECT DISTINCT s.MSSV, s.FirstName, s.LastName
-            FROM Student s JOIN DKMH d ON s.MSSV = d.MSSV");
+    // ================= DKMH — REGISTERED / UNREGISTERED =================
+    // Schema DKMH: (MSSV, ClassID, Semester, AcademicYear)
+    // Join Class → Course để lấy CourseCode, CourseName, CreditHour, Week
 
-    public DataTable GetUnRegisteredCourses(string mssv) =>
+    public DataTable GetUnRegisteredCourses(string mssv, string academicYear) =>
+    ExecuteQuery(@"
+        SELECT
+            cl.ClassID,
+            cl.ClassName,
+            c.CourseName,
+            cl.Manager,
+            c.CreditHour,
+            pre.CourseName AS [Prerequisite Course],
+            cl.Semester,
+            c.Week
+        FROM Class cl
+        JOIN Course c ON cl.CourseCode = c.CourseCode
+        LEFT JOIN Course pre ON c.PrerequisiteCourseCode = pre.CourseCode
+        WHERE cl.ClassID NOT IN (
+            SELECT ClassID FROM DKMH
+            WHERE MSSV = @mssv AND AcademicYear = @academicYear
+        )
+        ORDER BY cl.CourseCode",
+        cmd =>
+        {
+            cmd.Parameters.AddWithValue("@mssv", mssv);
+            cmd.Parameters.AddWithValue("@academicYear", academicYear);
+        });
+
+    public DataTable GetRegisteredCourses(string mssv, string academicYear) =>
         ExecuteQuery(@"
-            SELECT CourseID, CourseCode, CourseName, CreditHour, Semester
-            FROM Course
-            WHERE CourseID NOT IN (SELECT CourseID FROM DKMH WHERE MSSV = @mssv)
-            ORDER BY CourseCode",
+        SELECT
+            d.ClassID,
+            cl.ClassName,
+            c.CourseName,
+            cl.Manager,
+            c.CreditHour,
+            pre.CourseName AS [Prerequisite Course],
+            d.Semester,
+            c.Week
+        FROM DKMH d
+        JOIN Class   cl  ON d.ClassID     = cl.ClassID
+        JOIN Course  c   ON cl.CourseCode  = c.CourseCode
+        LEFT JOIN Course pre ON c.PrerequisiteCourseCode = pre.CourseCode
+        WHERE d.MSSV         = @mssv
+          AND d.AcademicYear = @academicYear
+        ORDER BY d.Semester, cl.ClassID",
+            cmd =>
+            {
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@academicYear", academicYear);
+            });
+
+    public DataTable SearchUnRegisteredCourses(string mssv, string academicYear, string keyword) =>
+        ExecuteQuery(@"
+        SELECT
+            cl.ClassID,
+            cl.ClassName,
+            c.CourseName,
+            cl.Manager,
+            c.CreditHour,
+            pre.CourseName AS [Prerequisite Course],
+            cl.Semester,
+            c.Week
+        FROM Class cl
+        JOIN Course c ON cl.CourseCode = c.CourseCode
+        LEFT JOIN Course pre ON c.PrerequisiteCourseCode = pre.CourseCode
+        WHERE cl.ClassID NOT IN (
+            SELECT ClassID FROM DKMH
+            WHERE MSSV = @mssv AND AcademicYear = @academicYear
+        )
+        AND (cl.ClassID   LIKE @kw
+          OR cl.ClassName LIKE @kw
+          OR c.CourseName LIKE @kw
+          OR cl.Manager   LIKE @kw)
+        ORDER BY cl.CourseCode",
+            cmd =>
+            {
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@academicYear", academicYear);
+                cmd.Parameters.AddWithValue("@kw", $"%{keyword}%");
+            });
+
+    public DataTable SearchRegisteredCourses(string mssv, string academicYear, string keyword) =>
+        ExecuteQuery(@"
+        SELECT
+            d.ClassID,
+            cl.ClassName,
+            c.CourseName,
+            cl.Manager,
+            c.CreditHour,
+            pre.CourseName AS [Prerequisite Course],
+            d.Semester,
+            c.Week
+        FROM DKMH d
+        JOIN Class   cl ON d.ClassID     = cl.ClassID
+        JOIN Course  c  ON cl.CourseCode  = c.CourseCode
+        LEFT JOIN Course pre ON c.PrerequisiteCourseCode = pre.CourseCode
+        WHERE d.MSSV         = @mssv
+          AND d.AcademicYear = @academicYear
+          AND (d.ClassID    LIKE @kw
+            OR cl.ClassName LIKE @kw
+            OR c.CourseName LIKE @kw
+            OR cl.Manager   LIKE @kw)
+        ORDER BY d.Semester, cl.ClassID",
+            cmd =>
+            {
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@academicYear", academicYear);
+                cmd.Parameters.AddWithValue("@kw", $"%{keyword}%");
+            });
+    // ================= REGISTER / CANCEL =================
+    // PK của DKMH: (MSSV, ClassID, Semester, AcademicYear)
+    public static (bool success, string message) RegisterCourse(
+    string mssv, string classID, int semester, string academicYear)
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+
+                var check = new SqlCommand(@"
+                SELECT COUNT(*) FROM DKMH
+                WHERE MSSV = @mssv AND ClassID = @classID
+                  AND Semester = @semester AND AcademicYear = @academicYear",
+                    db.getConnection);
+                check.Parameters.AddWithValue("@mssv", mssv);
+                check.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                check.Parameters.AddWithValue("@semester", semester);
+                check.Parameters.AddWithValue("@academicYear", academicYear);
+                if ((int)check.ExecuteScalar() > 0)
+                    return (false, "Already registered this class!");
+
+                var credit = new SqlCommand(@"
+                SELECT c.CreditHour
+                FROM Class cl
+                JOIN Course c ON cl.CourseCode = c.CourseCode
+                WHERE cl.ClassID = @classID",
+                    db.getConnection);
+                credit.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                object creditResult = credit.ExecuteScalar();
+
+                if (creditResult == null || creditResult == DBNull.Value)
+                    return (false, "Class not found!");
+
+                int newCredits = Convert.ToInt32(creditResult);
+
+                var total = new SqlCommand(@"
+                SELECT ISNULL(SUM(c.CreditHour), 0)
+                FROM DKMH d
+                JOIN Class  cl ON d.ClassID    = cl.ClassID
+                JOIN Course c  ON cl.CourseCode = c.CourseCode
+                WHERE d.MSSV = @mssv AND d.AcademicYear = @academicYear",
+                    db.getConnection);
+                total.Parameters.AddWithValue("@mssv", mssv);
+                total.Parameters.AddWithValue("@academicYear", academicYear);
+                int current = Convert.ToInt32(total.ExecuteScalar());
+
+                if (current + newCredits > 24)
+                    return (false, $"Exceeded 24 credits! Current: {current}, Adding: {newCredits}");
+
+                var insert = new SqlCommand(@"
+                INSERT INTO DKMH (MSSV, ClassID, Semester, AcademicYear)
+                VALUES (@mssv, @classID, @semester, @academicYear)",
+                    db.getConnection);
+                insert.Parameters.AddWithValue("@mssv", mssv);
+                insert.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                insert.Parameters.AddWithValue("@semester", semester);
+                insert.Parameters.AddWithValue("@academicYear", academicYear);
+                insert.ExecuteNonQuery();
+
+                var insertScore = new SqlCommand(@"
+                INSERT INTO Score (MSSV, ClassID, Semester, AcademicYear,
+                                   MidtermScore, FinalScore, TotalScore, Overview)
+                VALUES (@mssv, @classID, @semester, @academicYear,
+                        NULL, NULL, NULL, NULL)",
+                    db.getConnection);
+                insertScore.Parameters.AddWithValue("@mssv", mssv);
+                insertScore.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                insertScore.Parameters.AddWithValue("@semester", semester);
+                insertScore.Parameters.AddWithValue("@academicYear", academicYear);
+                insertScore.ExecuteNonQuery();
+
+                return (true, $"Registered! Total credits: {current + newCredits}/24");
+            }
+        }
+        catch (Exception ex) { return (false, "Error: " + ex.Message); }
+    }
+
+    public static (bool success, string message) CancelCourse(
+        string mssv, string classID, int semester, string academicYear)
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+
+                var deleteScore = new SqlCommand(@"
+                DELETE FROM Score
+                WHERE MSSV         = @mssv
+                  AND ClassID      = @classID
+                  AND Semester     = @semester
+                  AND AcademicYear = @academicYear
+                  AND MidtermScore IS NULL
+                  AND FinalScore   IS NULL",
+                    db.getConnection);
+                deleteScore.Parameters.AddWithValue("@mssv", mssv);
+                deleteScore.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                deleteScore.Parameters.AddWithValue("@semester", semester);
+                deleteScore.Parameters.AddWithValue("@academicYear", academicYear);
+                deleteScore.ExecuteNonQuery();
+
+                var cmd = new SqlCommand(@"
+                DELETE FROM DKMH
+                WHERE MSSV = @mssv AND ClassID = @classID
+                  AND Semester = @semester AND AcademicYear = @academicYear",
+                    db.getConnection);
+                cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
+                cmd.Parameters.AddWithValue("@semester", semester);
+                cmd.Parameters.AddWithValue("@academicYear", academicYear);
+                return cmd.ExecuteNonQuery() > 0
+                    ? (true, "Cancelled successfully!")
+                    : (false, "Registration not found!");
+            }
+        }
+        catch (Exception ex) { return (false, "Error: " + ex.Message); }
+    }
+
+    // ================= ACADEMIC YEARS =================
+    public DataTable GetAcademicYearsByMSSV(string mssv) =>
+        ExecuteQuery(@"
+            SELECT DISTINCT AcademicYear
+            FROM DKMH
+            WHERE MSSV = @mssv
+            ORDER BY AcademicYear DESC",
             cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
 
-    public DataTable GetRegisteredCourses(string mssv) =>
-        ExecuteQuery(@"
-            SELECT c.CourseID, c.CourseCode, c.CourseName, c.CreditHour, c.Semester
-            FROM DKMH d JOIN Course c ON d.CourseID = c.CourseID
-            WHERE d.MSSV = @mssv ORDER BY c.CourseCode",
-            cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
-
-    public DataTable GetCoursesWithoutScore(string mssv) =>
-        ExecuteQuery(@"
-            SELECT Course.CourseID, Course.CourseName
-            FROM DKMH JOIN Course ON DKMH.CourseID = Course.CourseID
-            WHERE DKMH.MSSV = @mssv
-              AND NOT EXISTS (
-                SELECT * FROM Score
-                WHERE Score.MSSV = @mssv AND Score.CourseID = Course.CourseID
-              )",
-            cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
-
-    public int GetTotalCredits(string mssv)
+    public int GetTotalCredits(string mssv, string academicYear)
     {
         try
         {
@@ -316,257 +480,25 @@ public class Student
                 db.openConnection();
                 var cmd = new SqlCommand(@"
                     SELECT ISNULL(SUM(c.CreditHour), 0)
-                    FROM DKMH d JOIN Course c ON d.CourseID = c.CourseID
-                    WHERE d.MSSV = @mssv", db.getConnection);
+                    FROM DKMH d
+                    JOIN Class  cl ON d.ClassID    = cl.ClassID
+                    JOIN Course c  ON cl.CourseCode = c.CourseCode
+                    WHERE d.MSSV = @mssv AND d.AcademicYear = @academicYear",
+                    db.getConnection);
                 cmd.Parameters.AddWithValue("@mssv", mssv);
+                cmd.Parameters.AddWithValue("@academicYear", academicYear);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
         catch { return 0; }
     }
 
-    // ================= REGISTERED / UNREGISTERED (with year) =================
-    public DataTable GetUnRegisteredCourses(string mssv, string academicYear) =>
+    // ================= STATS BY ENROLLMENT YEAR =================
+    public DataTable GetStudentStatisticsByYear() =>
         ExecuteQuery(@"
-            SELECT c.CourseID, c.CourseCode, c.CourseName, c.CreditHour,
-                   pre.CourseName AS [Prerequisite Course], c.Semester, c.Week
-            FROM Course c
-            LEFT JOIN Course pre ON c.PrerequisiteCourseID = pre.CourseID
-            WHERE c.CourseID NOT IN (
-                SELECT CourseID FROM DKMH WHERE MSSV = @mssv AND AcademicYear = @year
-            )
-            ORDER BY c.CourseCode",
-            cmd => {
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@year", academicYear);
-            });
-
-    public DataTable GetRegisteredCourses(string mssv, string academicYear) =>
-        ExecuteQuery(@"
-            SELECT c.CourseID, c.CourseCode, c.CourseName, c.CreditHour,
-                   pre.CourseName AS [Prerequisite Course], c.Semester, c.Week
-            FROM DKMH d
-            JOIN Course c ON d.CourseID = c.CourseID
-            LEFT JOIN Course pre ON c.PrerequisiteCourseID = pre.CourseID
-            WHERE d.MSSV = @mssv AND d.AcademicYear = @year
-            ORDER BY c.CourseCode",
-            cmd => {
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@year", academicYear);
-            });
-
-    public DataTable SearchUnRegisteredCourses(
-        string mssv, string academicYear, string keyword) =>
-        ExecuteQuery(@"
-            SELECT c.CourseID, c.CourseCode, c.CourseName, c.CreditHour,
-                   pre.CourseName AS [Prerequisite Course], c.Semester, c.Week
-            FROM Course c
-            LEFT JOIN Course pre ON c.PrerequisiteCourseID = pre.CourseID
-            WHERE c.CourseID NOT IN (
-                SELECT CourseID FROM DKMH WHERE MSSV = @mssv AND AcademicYear = @year
-            )
-            AND (c.CourseCode LIKE @kw OR c.CourseName LIKE @kw)
-            ORDER BY c.CourseCode",
-            cmd => {
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@year", academicYear);
-                cmd.Parameters.AddWithValue("@kw", $"%{keyword}%");
-            });
-
-    public DataTable SearchRegisteredCourses(
-        string mssv, string academicYear, string keyword) =>
-        ExecuteQuery(@"
-            SELECT c.CourseID, c.CourseCode, c.CourseName, c.CreditHour,
-                   pre.CourseName AS [Prerequisite Course], c.Semester, c.Week
-            FROM DKMH d
-            JOIN Course c ON d.CourseID = c.CourseID
-            LEFT JOIN Course pre ON c.PrerequisiteCourseID = pre.CourseID
-            WHERE d.MSSV = @mssv AND d.AcademicYear = @year
-            AND (c.CourseCode LIKE @kw OR c.CourseName LIKE @kw)
-            ORDER BY c.CourseCode",
-            cmd => {
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@year", academicYear);
-                cmd.Parameters.AddWithValue("@kw", $"%{keyword}%");
-            });
-
-    // ================= REGISTER / CANCEL (with year) =================
-    // ================= REGISTER / CANCEL (with year) =================
-    public static (bool success, string message) RegisterCourse(
-        string mssv, int courseID, string academicYear)
-    {
-        try
-        {
-            using (var db = new My_DB())
-            {
-                db.openConnection();
-
-                // Guard: courseID không hợp lệ
-                if (courseID <= 0)
-                    return (false, "Invalid course!");
-
-                var check = new SqlCommand(@"
-                SELECT COUNT(*) FROM DKMH
-                WHERE MSSV = @mssv AND CourseID = @id AND AcademicYear = @year",
-                    db.getConnection);
-                check.Parameters.AddWithValue("@mssv", mssv);
-                check.Parameters.AddWithValue("@id", courseID);
-                check.Parameters.AddWithValue("@year", academicYear);
-                if ((int)check.ExecuteScalar() > 0)
-                    return (false, "Already registered this course!");
-
-                var credit = new SqlCommand(
-                    "SELECT CreditHour FROM Course WHERE CourseID = @id",
-                    db.getConnection);
-                credit.Parameters.AddWithValue("@id", courseID);
-                object creditResult = credit.ExecuteScalar();
-
-                // Guard: môn không tồn tại
-                if (creditResult == null || creditResult == DBNull.Value)
-                    return (false, "Course not found!");
-
-                int newCredits = Convert.ToInt32(creditResult);
-
-                var total = new SqlCommand(@"
-                SELECT ISNULL(SUM(c.CreditHour), 0)
-                FROM DKMH d JOIN Course c ON d.CourseID = c.CourseID
-                WHERE d.MSSV = @mssv AND d.AcademicYear = @year",
-                    db.getConnection);
-                total.Parameters.AddWithValue("@mssv", mssv);
-                total.Parameters.AddWithValue("@year", academicYear);
-                int current = Convert.ToInt32(total.ExecuteScalar());
-
-                if (current + newCredits > 24)
-                    return (false, $"Exceeded 24 credits! Current: {current}, Adding: {newCredits}");
-
-                var insert = new SqlCommand(@"
-                INSERT INTO DKMH (MSSV, CourseID, AcademicYear)
-                VALUES (@mssv, @id, @year)",
-                    db.getConnection);
-                insert.Parameters.AddWithValue("@mssv", mssv);
-                insert.Parameters.AddWithValue("@id", courseID);
-                insert.Parameters.AddWithValue("@year", academicYear);
-                insert.ExecuteNonQuery();
-
-                return (true, $"Registered! Total credits: {current + newCredits}/24");
-            }
-        }
-        catch (Exception ex) { return (false, "Error: " + ex.Message); }
-    }
-
-    // ================= REGISTER / CANCEL (no year) =================
-    public static (bool success, string message) RegisterCourse(string mssv, int courseID)
-    {
-        try
-        {
-            using (var db = new My_DB())
-            {
-                db.openConnection();
-
-                if (courseID <= 0)
-                    return (false, "Invalid course!");
-
-                var check = new SqlCommand(
-                    "SELECT COUNT(*) FROM DKMH WHERE MSSV=@mssv AND CourseID=@id",
-                    db.getConnection);
-                check.Parameters.AddWithValue("@mssv", mssv);
-                check.Parameters.AddWithValue("@id", courseID);
-                if ((int)check.ExecuteScalar() > 0)
-                    return (false, "Already registered this course!");
-
-                var credit = new SqlCommand(
-                    "SELECT CreditHour FROM Course WHERE CourseID=@id",
-                    db.getConnection);
-                credit.Parameters.AddWithValue("@id", courseID);
-                object creditResult = credit.ExecuteScalar();
-
-                if (creditResult == null || creditResult == DBNull.Value)
-                    return (false, "Course not found!");
-
-                int newCredits = Convert.ToInt32(creditResult);
-
-                var total = new SqlCommand(@"
-                SELECT ISNULL(SUM(c.CreditHour), 0)
-                FROM DKMH d JOIN Course c ON d.CourseID = c.CourseID
-                WHERE d.MSSV = @mssv",
-                    db.getConnection);
-                total.Parameters.AddWithValue("@mssv", mssv);
-                int current = Convert.ToInt32(total.ExecuteScalar());
-
-                if (current + newCredits > 24)
-                    return (false, $"Exceeded 24 credits! Current: {current}, Adding: {newCredits}");
-
-                var insert = new SqlCommand(
-                    "INSERT INTO DKMH (MSSV, CourseID) VALUES (@mssv, @id)",
-                    db.getConnection);
-                insert.Parameters.AddWithValue("@mssv", mssv);
-                insert.Parameters.AddWithValue("@id", courseID);
-                insert.ExecuteNonQuery();
-
-                return (true, $"Registered! Total credits: {current + newCredits}/24");
-            }
-        }
-        catch (Exception ex) { return (false, "Error: " + ex.Message); }
-    }
-    public static (bool success, string message) CancelCourse(
-    string mssv, int courseID, string academicYear)
-    {
-        try
-        {
-            using (var db = new My_DB())
-            {
-                db.openConnection();
-                var cmd = new SqlCommand(@"
-                DELETE FROM DKMH
-                WHERE MSSV = @mssv AND CourseID = @id AND AcademicYear = @year",
-                    db.getConnection);
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@id", courseID);
-                cmd.Parameters.AddWithValue("@year", academicYear);
-                return cmd.ExecuteNonQuery() > 0
-                    ? (true, "Cancelled successfully!")
-                    : (false, "Registration not found!");
-            }
-        }
-        catch (Exception ex) { return (false, "Error: " + ex.Message); }
-    }
-    public static (bool success, string message) CancelCourse(string mssv, int courseID)
-    {
-        try
-        {
-            using (var db = new My_DB())
-            {
-                db.openConnection();
-                var cmd = new SqlCommand(
-                    "DELETE FROM DKMH WHERE MSSV=@mssv AND CourseID=@id", db.getConnection);
-                cmd.Parameters.AddWithValue("@mssv", mssv);
-                cmd.Parameters.AddWithValue("@id", courseID);
-                return cmd.ExecuteNonQuery() > 0
-                    ? (true, "Cancelled successfully!")
-                    : (false, "Registration not found!");
-            }
-        }
-        catch (Exception ex) { return (false, "Error: " + ex.Message); }
-    }
-    // Thêm vào Student.cs
-    public DataTable GetAcademicYearsByMSSV(string mssv) =>
-        ExecuteQuery(@"
-        SELECT DISTINCT AcademicYear
-        FROM DKMH
-        WHERE MSSV = @mssv
-        ORDER BY AcademicYear DESC",
-            cmd => cmd.Parameters.AddWithValue("@mssv", mssv));
-    //
-    public DataTable GetStudentStatisticsByYear()
-    {
-        string query =
-        @"SELECT
-        '20' + LEFT(MSSV, 2) AS EnrollmentYear,
-        COUNT(*) AS TotalStudents
-      FROM Student
-      GROUP BY LEFT(MSSV, 2)
-      ORDER BY EnrollmentYear";
-
-        return ExecuteQuery(query);
-    }
+            SELECT '20' + LEFT(MSSV, 2) AS EnrollmentYear,
+                   COUNT(*) AS TotalStudents
+            FROM Student
+            GROUP BY LEFT(MSSV, 2)
+            ORDER BY EnrollmentYear");
 }

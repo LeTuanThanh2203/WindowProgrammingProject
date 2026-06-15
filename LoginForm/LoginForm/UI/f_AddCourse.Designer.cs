@@ -46,15 +46,13 @@
             lbl_CourseCode = new Label();
             lbl_PrerequisiteCourse = new Label();
             cbo_PrerequisiteCourse = new ComboBox();
-            cbo_Semester = new ComboBox();
-            lbl_Semester = new Label();
             lbl_Week = new Label();
             txt_Week = new TextBox();
             SuspendLayout();
             // 
             // txt_Overview
             // 
-            txt_Overview.Location = new Point(188, 363);
+            txt_Overview.Location = new Point(188, 336);
             txt_Overview.Multiline = true;
             txt_Overview.Name = "txt_Overview";
             txt_Overview.Size = new Size(419, 107);
@@ -63,7 +61,7 @@
             // lbl_Overview
             // 
             lbl_Overview.AutoSize = true;
-            lbl_Overview.Location = new Point(43, 366);
+            lbl_Overview.Location = new Point(43, 339);
             lbl_Overview.Name = "lbl_Overview";
             lbl_Overview.Size = new Size(73, 20);
             lbl_Overview.TabIndex = 27;
@@ -71,7 +69,7 @@
             // 
             // txt_TheoryPeriod
             // 
-            txt_TheoryPeriod.Location = new Point(188, 322);
+            txt_TheoryPeriod.Location = new Point(188, 295);
             txt_TheoryPeriod.Name = "txt_TheoryPeriod";
             txt_TheoryPeriod.Size = new Size(69, 27);
             txt_TheoryPeriod.TabIndex = 26;
@@ -79,7 +77,7 @@
             // lbl_Period
             // 
             lbl_Period.AutoSize = true;
-            lbl_Period.Location = new Point(43, 325);
+            lbl_Period.Location = new Point(43, 298);
             lbl_Period.Name = "lbl_Period";
             lbl_Period.Size = new Size(54, 20);
             lbl_Period.TabIndex = 25;
@@ -103,7 +101,7 @@
             // 
             // btnQuit
             // 
-            btnQuit.Location = new Point(557, 476);
+            btnQuit.Location = new Point(557, 449);
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(136, 44);
             btnQuit.TabIndex = 33;
@@ -113,7 +111,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(369, 476);
+            btnClear.Location = new Point(369, 449);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(136, 44);
             btnClear.TabIndex = 32;
@@ -123,7 +121,7 @@
             // 
             // btn_AddCourse
             // 
-            btn_AddCourse.Location = new Point(188, 476);
+            btn_AddCourse.Location = new Point(188, 449);
             btn_AddCourse.Name = "btn_AddCourse";
             btn_AddCourse.Size = new Size(127, 44);
             btn_AddCourse.TabIndex = 31;
@@ -150,7 +148,7 @@
             // lbl_Theory
             // 
             lbl_Theory.AutoSize = true;
-            lbl_Theory.Location = new Point(263, 325);
+            lbl_Theory.Location = new Point(263, 298);
             lbl_Theory.Name = "lbl_Theory";
             lbl_Theory.Size = new Size(54, 20);
             lbl_Theory.TabIndex = 36;
@@ -159,7 +157,7 @@
             // lbl_Practical
             // 
             lbl_Practical.AutoSize = true;
-            lbl_Practical.Location = new Point(471, 325);
+            lbl_Practical.Location = new Point(471, 298);
             lbl_Practical.Name = "lbl_Practical";
             lbl_Practical.Size = new Size(65, 20);
             lbl_Practical.TabIndex = 38;
@@ -167,7 +165,7 @@
             // 
             // txt_PracticalPeriod
             // 
-            txt_PracticalPeriod.Location = new Point(396, 322);
+            txt_PracticalPeriod.Location = new Point(396, 295);
             txt_PracticalPeriod.Name = "txt_PracticalPeriod";
             txt_PracticalPeriod.Size = new Size(69, 27);
             txt_PracticalPeriod.TabIndex = 37;
@@ -191,7 +189,7 @@
             // lbl_PrerequisiteCourse
             // 
             lbl_PrerequisiteCourse.AutoSize = true;
-            lbl_PrerequisiteCourse.Location = new Point(43, 284);
+            lbl_PrerequisiteCourse.Location = new Point(43, 257);
             lbl_PrerequisiteCourse.Name = "lbl_PrerequisiteCourse";
             lbl_PrerequisiteCourse.Size = new Size(139, 20);
             lbl_PrerequisiteCourse.TabIndex = 22;
@@ -200,32 +198,15 @@
             // cbo_PrerequisiteCourse
             // 
             cbo_PrerequisiteCourse.FormattingEnabled = true;
-            cbo_PrerequisiteCourse.Location = new Point(188, 284);
+            cbo_PrerequisiteCourse.Location = new Point(188, 257);
             cbo_PrerequisiteCourse.Name = "cbo_PrerequisiteCourse";
             cbo_PrerequisiteCourse.Size = new Size(419, 28);
             cbo_PrerequisiteCourse.TabIndex = 23;
             // 
-            // cbo_Semester
-            // 
-            cbo_Semester.FormattingEnabled = true;
-            cbo_Semester.Location = new Point(188, 206);
-            cbo_Semester.Name = "cbo_Semester";
-            cbo_Semester.Size = new Size(419, 28);
-            cbo_Semester.TabIndex = 42;
-            // 
-            // lbl_Semester
-            // 
-            lbl_Semester.AutoSize = true;
-            lbl_Semester.Location = new Point(43, 206);
-            lbl_Semester.Name = "lbl_Semester";
-            lbl_Semester.Size = new Size(73, 20);
-            lbl_Semester.TabIndex = 41;
-            lbl_Semester.Text = "Semester:";
-            // 
             // lbl_Week
             // 
             lbl_Week.AutoSize = true;
-            lbl_Week.Location = new Point(43, 250);
+            lbl_Week.Location = new Point(43, 223);
             lbl_Week.Name = "lbl_Week";
             lbl_Week.Size = new Size(48, 20);
             lbl_Week.TabIndex = 43;
@@ -233,7 +214,7 @@
             // 
             // txt_Week
             // 
-            txt_Week.Location = new Point(188, 247);
+            txt_Week.Location = new Point(188, 220);
             txt_Week.Name = "txt_Week";
             txt_Week.Size = new Size(419, 27);
             txt_Week.TabIndex = 44;
@@ -245,8 +226,6 @@
             ClientSize = new Size(818, 609);
             Controls.Add(txt_Week);
             Controls.Add(lbl_Week);
-            Controls.Add(cbo_Semester);
-            Controls.Add(lbl_Semester);
             Controls.Add(txt_CourseCode);
             Controls.Add(lbl_CourseCode);
             Controls.Add(lbl_Practical);
@@ -294,8 +273,6 @@
         private ComboBox comboBox1;
         private TextBox txt_CourseCode;
         private Label lbl_CourseCode;
-        private ComboBox cbo_Semester;
-        private Label lbl_Semester;
         private Label lbl_Week;
         private Label lbl_CourseName;
         private TextBox txt_Week;

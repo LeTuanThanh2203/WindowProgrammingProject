@@ -29,88 +29,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtQT = new TextBox();
-            txtCK = new TextBox();
-            MSSV = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
             btnAdd = new Button();
             dgvStudent = new DataGridView();
             label1 = new Label();
-            cboCourse = new ComboBox();
-            lblID = new Label();
-            lblTotal = new Label();
-            btnDelete = new Button();
-            btnRefresh = new Button();
+            cboClass = new ComboBox();
+            btnReset = new Button();
+            panel1 = new Panel();
+            label3 = new Label();
+            cboSemester = new ComboBox();
+            cboAcademicYear = new ComboBox();
+            label2 = new Label();
+            panel2 = new Panel();
+            btnExport = new Button();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtQT
-            // 
-            txtQT.Location = new Point(146, 185);
-            txtQT.Name = "txtQT";
-            txtQT.Size = new Size(359, 27);
-            txtQT.TabIndex = 3;
-            txtQT.TextChanged += txtQT_TextChanged;
-            // 
-            // txtCK
-            // 
-            txtCK.Location = new Point(146, 256);
-            txtCK.Name = "txtCK";
-            txtCK.Size = new Size(359, 27);
-            txtCK.TabIndex = 4;
-            txtCK.TextChanged += txtCK_TextChanged;
-            // 
-            // MSSV
-            // 
-            MSSV.AutoSize = true;
-            MSSV.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MSSV.Location = new Point(32, 122);
-            MSSV.Name = "MSSV";
-            MSSV.Size = new Size(25, 20);
-            MSSV.TabIndex = 7;
-            MSSV.Text = "ID";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(32, 188);
-            label2.Name = "label2";
-            label2.Size = new Size(108, 20);
-            label2.TabIndex = 9;
-            label2.Text = "Process Grade";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(32, 256);
-            label3.Name = "label3";
-            label3.Size = new Size(88, 20);
-            label3.TabIndex = 10;
-            label3.Text = "Final Grade";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(32, 326);
-            label4.Name = "label4";
-            label4.Size = new Size(90, 20);
-            label4.TabIndex = 11;
-            label4.Text = "Total Grade";
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(32, 390);
+            btnAdd.BackColor = Color.Black;
+            btnAdd.ForeColor = SystemColors.ButtonFace;
+            btnAdd.Location = new Point(620, 17);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(127, 44);
+            btnAdd.Size = new Size(118, 29);
             btnAdd.TabIndex = 22;
-            btnAdd.Text = "Add ";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnAdd.Text = "Save Changes";
+            btnAdd.UseVisualStyleBackColor = false;
             // 
             // dgvStudent
             // 
@@ -119,115 +65,161 @@
             dgvStudent.AllowUserToResizeColumns = false;
             dgvStudent.AllowUserToResizeRows = false;
             dgvStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvStudent.BackgroundColor = Color.White;
+            dgvStudent.BackgroundColor = Color.Azure;
             dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudent.Location = new Point(525, 29);
+            dgvStudent.Location = new Point(20, 60);
+            dgvStudent.MultiSelect = false;
             dgvStudent.Name = "dgvStudent";
-            dgvStudent.ReadOnly = true;
+            dgvStudent.RowHeadersVisible = false;
             dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(612, 590);
+            dgvStudent.Size = new Size(986, 386);
             dgvStudent.TabIndex = 23;
-            dgvStudent.CellClick += dgvStudent_CellClick;
+            dgvStudent.DataBindingComplete += dgvStudent_DataBindingComplete;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(35, 53);
+            label1.Location = new Point(33, 18);
             label1.Name = "label1";
-            label1.Size = new Size(57, 20);
+            label1.Size = new Size(48, 20);
             label1.TabIndex = 25;
-            label1.Text = "Course";
+            label1.Text = "Class:";
             // 
-            // cboCourse
+            // cboClass
             // 
-            cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboCourse.FormattingEnabled = true;
-            cboCourse.Location = new Point(146, 50);
-            cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(359, 28);
-            cboCourse.TabIndex = 24;
-            cboCourse.SelectedIndexChanged += cboCourse_SelectedIndexChanged;
+            cboClass.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboClass.FormattingEnabled = true;
+            cboClass.Location = new Point(87, 10);
+            cboClass.Name = "cboClass";
+            cboClass.Size = new Size(389, 28);
+            cboClass.TabIndex = 24;
             // 
-            // lblID
+            // btnReset
             // 
-            lblID.AutoSize = true;
-            lblID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblID.Location = new Point(146, 115);
-            lblID.Name = "lblID";
-            lblID.Size = new Size(0, 28);
-            lblID.TabIndex = 26;
+            btnReset.Location = new Point(754, 17);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(118, 29);
+            btnReset.TabIndex = 29;
+            btnReset.Text = "RESET";
+            btnReset.UseVisualStyleBackColor = true;
             // 
-            // lblTotal
+            // panel1
             // 
-            lblTotal.AutoSize = true;
-            lblTotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(146, 318);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(0, 28);
-            lblTotal.TabIndex = 27;
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(cboSemester);
+            panel1.Controls.Add(cboAcademicYear);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(cboClass);
+            panel1.Location = new Point(32, 40);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(494, 108);
+            panel1.TabIndex = 30;
             // 
-            // btnDelete
+            // label3
             // 
-            btnDelete.Location = new Point(378, 390);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(127, 44);
-            btnDelete.TabIndex = 28;
-            btnDelete.Text = "Delete Score";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(250, 62);
+            label3.Name = "label3";
+            label3.Size = new Size(79, 20);
+            label3.TabIndex = 29;
+            label3.Text = "Semester:";
             // 
-            // btnRefresh
+            // cboSemester
             // 
-            btnRefresh.Location = new Point(207, 390);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(127, 44);
-            btnRefresh.TabIndex = 29;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
+            cboSemester.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSemester.FormattingEnabled = true;
+            cboSemester.Location = new Point(335, 59);
+            cboSemester.Name = "cboSemester";
+            cboSemester.Size = new Size(141, 28);
+            cboSemester.TabIndex = 28;
+            // 
+            // cboAcademicYear
+            // 
+            cboAcademicYear.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboAcademicYear.FormattingEnabled = true;
+            cboAcademicYear.Location = new Point(87, 59);
+            cboAcademicYear.Name = "cboAcademicYear";
+            cboAcademicYear.Size = new Size(141, 28);
+            cboAcademicYear.TabIndex = 27;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(37, 62);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 20);
+            label2.TabIndex = 26;
+            label2.Text = "Year:";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.Control;
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(btnReset);
+            panel2.Controls.Add(btnExport);
+            panel2.Controls.Add(dgvStudent);
+            panel2.Controls.Add(btnAdd);
+            panel2.Location = new Point(32, 188);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1021, 465);
+            panel2.TabIndex = 31;
+            // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(888, 17);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(118, 29);
+            btnExport.TabIndex = 28;
+            btnExport.Text = "Export";
+            btnExport.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = SystemColors.Control;
+            label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label4.Location = new Point(20, 1);
+            label4.Name = "label4";
+            label4.Size = new Size(216, 46);
+            label4.TabIndex = 32;
+            label4.Text = "List Student:";
             // 
             // f_EditScore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1309, 656);
-            Controls.Add(btnRefresh);
-            Controls.Add(btnDelete);
-            Controls.Add(lblTotal);
-            Controls.Add(lblID);
-            Controls.Add(label1);
-            Controls.Add(cboCourse);
-            Controls.Add(dgvStudent);
-            Controls.Add(btnAdd);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(MSSV);
-            Controls.Add(txtCK);
-            Controls.Add(txtQT);
+            BackColor = Color.FromArgb(224, 224, 224);
+            ClientSize = new Size(1121, 771);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Name = "f_EditScore";
             Text = "Score";
-            Load += f_AddScore_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStudent).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private TextBox txtQT;
-        private TextBox txtCK;
-        private Label MSSV;
-        private Label label2;
-        private Label label3;
-        private Label label4;
         private Button btnAdd;
         private DataGridView dgvStudent;
         private Label label1;
-        private ComboBox cboCourse;
-        private Label lblID;
-        private Label lblTotal;
-        private Button btnDelete;
-        private Button btnRefresh;
+        private ComboBox cboClass;
+        private Button btnReset;
+        private Panel panel1;
+        private Label label3;
+        private ComboBox cboSemester;
+        private ComboBox cboAcademicYear;
+        private Label label2;
+        private Panel panel2;
+        private Button btnExport;
+        private Label label4;
     }
 }

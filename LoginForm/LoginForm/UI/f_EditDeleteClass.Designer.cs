@@ -33,6 +33,7 @@
             txtSearch = new TextBox();
             dgvCourse = new DataGridView();
             panel2 = new Panel();
+            txt_HomeroomTeacher = new TextBox();
             btnRefresh = new Button();
             btnQuit = new Button();
             btnDelete = new Button();
@@ -46,7 +47,8 @@
             lbl_HomeroomTeacher = new Label();
             txt_ClassCourse = new TextBox();
             lbl_ClassName = new Label();
-            txt_HomeroomTeacher = new TextBox();
+            cboSemester = new ComboBox();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
             panel2.SuspendLayout();
@@ -95,6 +97,8 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(cboSemester);
+            panel2.Controls.Add(label2);
             panel2.Controls.Add(txt_HomeroomTeacher);
             panel2.Controls.Add(btnRefresh);
             panel2.Controls.Add(btnQuit);
@@ -115,9 +119,16 @@
             panel2.Size = new Size(588, 701);
             panel2.TabIndex = 70;
             // 
+            // txt_HomeroomTeacher
+            // 
+            txt_HomeroomTeacher.Location = new Point(157, 381);
+            txt_HomeroomTeacher.Name = "txt_HomeroomTeacher";
+            txt_HomeroomTeacher.Size = new Size(419, 27);
+            txt_HomeroomTeacher.TabIndex = 83;
+            // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(302, 380);
+            btnRefresh.Location = new Point(302, 456);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(126, 44);
             btnRefresh.TabIndex = 82;
@@ -126,7 +137,7 @@
             // 
             // btnQuit
             // 
-            btnQuit.Location = new Point(441, 380);
+            btnQuit.Location = new Point(441, 456);
             btnQuit.Name = "btnQuit";
             btnQuit.Size = new Size(126, 44);
             btnQuit.TabIndex = 81;
@@ -135,7 +146,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(157, 380);
+            btnDelete.Location = new Point(157, 456);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(126, 44);
             btnDelete.TabIndex = 80;
@@ -144,7 +155,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(22, 380);
+            btnUpdate.Location = new Point(22, 456);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(117, 44);
             btnUpdate.TabIndex = 79;
@@ -154,7 +165,7 @@
             // lbl_AcademicYearAuto
             // 
             lbl_AcademicYearAuto.AutoSize = true;
-            lbl_AcademicYearAuto.Location = new Point(524, 205);
+            lbl_AcademicYearAuto.Location = new Point(523, 267);
             lbl_AcademicYearAuto.Name = "lbl_AcademicYearAuto";
             lbl_AcademicYearAuto.Size = new Size(0, 20);
             lbl_AcademicYearAuto.TabIndex = 78;
@@ -179,7 +190,7 @@
             // lbl_AcademicYear
             // 
             lbl_AcademicYear.AutoSize = true;
-            lbl_AcademicYear.Location = new Point(395, 205);
+            lbl_AcademicYear.Location = new Point(394, 267);
             lbl_AcademicYear.Name = "lbl_AcademicYear";
             lbl_AcademicYear.Size = new Size(110, 20);
             lbl_AcademicYear.TabIndex = 75;
@@ -205,7 +216,7 @@
             // lbl_HomeroomTeacher
             // 
             lbl_HomeroomTeacher.AutoSize = true;
-            lbl_HomeroomTeacher.Location = new Point(12, 305);
+            lbl_HomeroomTeacher.Location = new Point(12, 381);
             lbl_HomeroomTeacher.Name = "lbl_HomeroomTeacher";
             lbl_HomeroomTeacher.Size = new Size(107, 20);
             lbl_HomeroomTeacher.TabIndex = 68;
@@ -213,7 +224,7 @@
             // 
             // txt_ClassCourse
             // 
-            txt_ClassCourse.Location = new Point(157, 250);
+            txt_ClassCourse.Location = new Point(157, 326);
             txt_ClassCourse.Name = "txt_ClassCourse";
             txt_ClassCourse.Size = new Size(419, 27);
             txt_ClassCourse.TabIndex = 67;
@@ -221,18 +232,28 @@
             // lbl_ClassName
             // 
             lbl_ClassName.AutoSize = true;
-            lbl_ClassName.Location = new Point(12, 250);
+            lbl_ClassName.Location = new Point(12, 326);
             lbl_ClassName.Name = "lbl_ClassName";
             lbl_ClassName.Size = new Size(89, 20);
             lbl_ClassName.TabIndex = 66;
             lbl_ClassName.Text = "Name Class:";
             // 
-            // txt_HomeroomTeacher
+            // cboSemester
             // 
-            txt_HomeroomTeacher.Location = new Point(157, 305);
-            txt_HomeroomTeacher.Name = "txt_HomeroomTeacher";
-            txt_HomeroomTeacher.Size = new Size(419, 27);
-            txt_HomeroomTeacher.TabIndex = 83;
+            cboSemester.FormattingEnabled = true;
+            cboSemester.Location = new Point(157, 264);
+            cboSemester.Name = "cboSemester";
+            cboSemester.Size = new Size(112, 28);
+            cboSemester.TabIndex = 85;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 264);
+            label2.Name = "label2";
+            label2.Size = new Size(73, 20);
+            label2.TabIndex = 84;
+            label2.Text = "Semester:";
             // 
             // f_EditDeleteClass
             // 
@@ -272,5 +293,7 @@
         private Button btnDelete;
         private Button btnUpdate;
         private TextBox txt_HomeroomTeacher;
+        private ComboBox cboSemester;
+        private Label label2;
     }
 }

@@ -76,21 +76,15 @@ namespace LoginForm
         private void LoadStudentID()
         {
             Student student = new Student();
-
-            SqlCommand command = new SqlCommand(@"
-                SELECT 
-                    MSSV,
-                    MSSV + ' - ' + FirstName + ' ' + LastName AS StudentDisplay
-                FROM Student
-                ORDER BY MSSV");
-
-            DataTable table = student.getStudents(command);
+            DataTable table = student.GetAllStudents();
 
             studentList.Clear();
 
             foreach (DataRow row in table.Rows)
             {
-                studentList.Add(row["StudentDisplay"].ToString());
+                // Tự ghép chuỗi thay vì đọc cột StudentDisplay không tồn tại
+                string display = $"{row["MSSV"]} - {row["FirstName"]} {row["LastName"]}";
+                studentList.Add(display);
             }
         }
 

@@ -63,12 +63,12 @@
             lblIDInfo = new Label();
             picStudent = new PictureBox();
             pnFunction = new Panel();
+            btnExport = new Button();
             btnViewScore = new Button();
             btnEdit = new Button();
             lblTotal = new Label();
             btnRefresh = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            Export = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
             pnMainDataGridView.SuspendLayout();
             pnLeft.SuspendLayout();
@@ -404,7 +404,7 @@
             // 
             // pnFunction
             // 
-            pnFunction.Controls.Add(Export);
+            pnFunction.Controls.Add(btnExport);
             pnFunction.Controls.Add(btnViewScore);
             pnFunction.Controls.Add(btnEdit);
             pnFunction.Controls.Add(lblTotal);
@@ -416,9 +416,18 @@
             pnFunction.Size = new Size(1455, 157);
             pnFunction.TabIndex = 3;
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(1094, 13);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(124, 40);
+            btnExport.TabIndex = 7;
+            btnExport.Text = "Export";
+            btnExport.UseVisualStyleBackColor = true;
+            // 
             // btnViewScore
             // 
-            btnViewScore.Location = new Point(964, 13);
+            btnViewScore.Location = new Point(960, 13);
             btnViewScore.Name = "btnViewScore";
             btnViewScore.Size = new Size(124, 40);
             btnViewScore.TabIndex = 6;
@@ -459,16 +468,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // Export
-            // 
-            Export.Location = new Point(1094, 13);
-            Export.Name = "Export";
-            Export.Size = new Size(124, 40);
-            Export.TabIndex = 7;
-            Export.Text = "Add ";
-            Export.UseVisualStyleBackColor = true;
-            Export.Click += btnExportWord_Click;
             // 
             // f_ListStudent
             // 
@@ -534,6 +533,6 @@
         private Label lblTotal;
         private Button btnEdit;
         private Button btnViewScore;
-        private Button Export;
+        private Button btnExport;
     }
 }

@@ -281,20 +281,20 @@ namespace LoginForm
             frm.ShowDialog();
         }
 
-        private void btnExportWord_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(lblID.Text))
-            {
-                MessageBox.Show("Please select a student first.");
-                return;
-            }
+        //private void btnExportWord_Click(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(lblID.Text))
+        //    {
+        //        MessageBox.Show("Please select a student first.");
+        //        return;
+        //    }
 
-            Print print = new Print();
+        //    Print print = new Print();
 
-            print.ExportScoreStudent(
-                lblID.Text,
-                "Semester 1",
-                "2025-2026");
-        }
+        //    print.ExportScoreStudent(
+        //        lblID.Text,
+        //        "Semester 1",
+        //        "2025-2026");
+        //}
     }
 }

@@ -65,10 +65,15 @@ namespace Project_Group6
         // =========================
         private void LoadScores()
         {
-           
-            dgvScore.DataSource =
-            score.GetScoreByStudent(_mssv);
+            dgvScore.DataSource = score.GetScoreByStudent(_mssv);
+
+            dgvScore.AllowUserToAddRows = false;
+            dgvScore.ReadOnly = true;
+            dgvScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        // dgvScore_CellClick — KHÔNG CẦN SỬA
+        // LoadStudentInfo() — KHÔNG CẦN SỬA
 
 
 

@@ -1,29 +1,38 @@
-﻿using System;
-using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 public class Class
 {
     // ================= PROPERTIES =================
+    // Theo schema: ClassID, CourseCode, ClassName, Semester,
+    //              AcademicYear, NumberOfStudent, Manager
+    // KHÔNG còn: HomeroomTeacher (đổi thành Manager)
     public string ClassID { get; set; }
+    public string CourseCode { get; set; }
     public string ClassName { get; set; }
+    public int Semester { get; set; }
     public string AcademicYear { get; set; }
     public int NumberOfStudent { get; set; }
-    public string HomeroomTeacher { get; set; }
+    public string Manager { get; set; }
 
     // ================= CONSTRUCTORS =================
     public Class() { }
 
-    public Class(string classID, string className, string academicYear,
-                 int numberOfStudent, string homeroomTeacher)
+    public Class(string classID, string courseCode, string className,
+                 int semester, string academicYear,
+                 int numberOfStudent, string manager)
     {
         ClassID = classID;
+        CourseCode = courseCode;
         ClassName = className;
+        Semester = semester;
         AcademicYear = academicYear;
         NumberOfStudent = numberOfStudent;
-        HomeroomTeacher = homeroomTeacher;
+        Manager = manager;
     }
 
     // ================= HELPERS =================
@@ -43,82 +52,78 @@ public class Class
         return table;
     }
 
-    private static DataTable ExecuteQueryStatic(string query, Action<SqlCommand> addParams = null)
-    {
-        var table = new DataTable();
-        try
-        {
-            using (var db = new My_DB())
-            {
-                var cmd = new SqlCommand(query, db.getConnection);
-                addParams?.Invoke(cmd);
-                new SqlDataAdapter(cmd).Fill(table);
-            }
-        }
-        catch { }
-        return table;
-    }
-
-    // ================= ADD =================
-    public bool AddClassroom()
+    private bool ExecuteNonQuery(string query, Action<SqlCommand> addParams = null)
     {
         try
         {
             using (var db = new My_DB())
             {
                 db.openConnection();
-                var cmd = new SqlCommand(@"
-                    INSERT INTO Class
-                        (ClassID, ClassName, AcademicYear, NumberOfStudent, HomeroomTeacher)
-                    VALUES
-                        (@classID, @className, @academicYear, @numberOfStudent, @homeroomTeacher)",
-                    db.getConnection);
-
-                cmd.Parameters.Add("@classID", SqlDbType.VarChar).Value = ClassID;
-                cmd.Parameters.Add("@className", SqlDbType.VarChar).Value = ClassName;
-                cmd.Parameters.Add("@academicYear", SqlDbType.VarChar).Value = AcademicYear;
-                cmd.Parameters.Add("@numberOfStudent", SqlDbType.Int).Value = NumberOfStudent;
-                cmd.Parameters.Add("@homeroomTeacher", SqlDbType.VarChar).Value =
-                    (object)HomeroomTeacher ?? DBNull.Value;
-
+                var cmd = new SqlCommand(query, db.getConnection);
+                addParams?.Invoke(cmd);
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show("AddClassroom Error: " + ex.Message);
+            MessageBox.Show("Class Error: " + ex.Message);
             return false;
         }
     }
 
-    // ================= EDIT =================
-    public bool EditClassroom()
+    private static Class MapFromReader(SqlDataReader reader) => new Class
     {
-        try
-        {
-            using (var db = new My_DB())
+        ClassID = reader["ClassID"].ToString(),
+        CourseCode = reader["CourseCode"].ToString().Trim(),
+        ClassName = reader["ClassName"].ToString(),
+        Semester = Convert.ToInt32(reader["Semester"]),
+        AcademicYear = reader["AcademicYear"].ToString(),
+        NumberOfStudent = reader["NumberOfStudent"] == DBNull.Value
+                            ? 0 : Convert.ToInt32(reader["NumberOfStudent"]),
+        Manager = reader["Manager"]?.ToString()
+    };
+
+    // ================= ADD =================
+    public bool AddClassroom() =>
+        ExecuteNonQuery(@"
+            INSERT INTO Class
+                (ClassID, CourseCode, ClassName, Semester,
+                 AcademicYear, NumberOfStudent, Manager)
+            VALUES
+                (@classID, @courseCode, @className, @semester,
+                 @academicYear, @numberOfStudent, @manager)",
+            cmd =>
             {
-                db.openConnection();
-                var cmd = new SqlCommand(@"
-                    UPDATE Class SET
-                        ClassName       = @className,
-                        AcademicYear    = @academicYear,
-                        NumberOfStudent = @numberOfStudent,
-                        HomeroomTeacher = @homeroomTeacher
-                    WHERE ClassID = @classID",
-                    db.getConnection);
+                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = ClassID;
+                cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = CourseCode;
+                cmd.Parameters.Add("@className", SqlDbType.VarChar, 100).Value = ClassName;
+                cmd.Parameters.Add("@semester", SqlDbType.Int).Value = Semester;
+                cmd.Parameters.Add("@academicYear", SqlDbType.VarChar, 20).Value = AcademicYear;
+                cmd.Parameters.Add("@numberOfStudent", SqlDbType.Int).Value = NumberOfStudent;
+                cmd.Parameters.Add("@manager", SqlDbType.VarChar, 100).Value = (object)Manager ?? DBNull.Value;
+            });
 
-                cmd.Parameters.AddWithValue("@classID", ClassID);
-                cmd.Parameters.AddWithValue("@className", ClassName);
-                cmd.Parameters.AddWithValue("@academicYear", AcademicYear);
-                cmd.Parameters.AddWithValue("@numberOfStudent", NumberOfStudent);
-                cmd.Parameters.AddWithValue("@homeroomTeacher", (object)HomeroomTeacher ?? DBNull.Value);
-
-                return cmd.ExecuteNonQuery() > 0;
-            }
-        }
-        catch { return false; }
-    }
+    // ================= EDIT =================
+    public bool EditClassroom() =>
+        ExecuteNonQuery(@"
+            UPDATE Class SET
+                CourseCode      = @courseCode,
+                ClassName       = @className,
+                Semester        = @semester,
+                AcademicYear    = @academicYear,
+                NumberOfStudent = @numberOfStudent,
+                Manager         = @manager
+            WHERE ClassID = @classID",
+            cmd =>
+            {
+                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = ClassID;
+                cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = CourseCode;
+                cmd.Parameters.Add("@className", SqlDbType.VarChar, 100).Value = ClassName;
+                cmd.Parameters.Add("@semester", SqlDbType.Int).Value = Semester;
+                cmd.Parameters.Add("@academicYear", SqlDbType.VarChar, 20).Value = AcademicYear;
+                cmd.Parameters.Add("@numberOfStudent", SqlDbType.Int).Value = NumberOfStudent;
+                cmd.Parameters.Add("@manager", SqlDbType.VarChar, 100).Value = (object)Manager ?? DBNull.Value;
+            });
 
     // ================= DELETE =================
     public static bool DeleteClassroom(string classID)
@@ -130,14 +135,14 @@ public class Class
                 db.openConnection();
                 var cmd = new SqlCommand(
                     "DELETE FROM Class WHERE ClassID = @classID", db.getConnection);
-                cmd.Parameters.AddWithValue("@classID", classID);
+                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
         catch { return false; }
     }
 
-    // ================= GET / SEARCH =================
+    // ================= GET ALL =================
     public static List<Class> GetClassrooms()
     {
         var list = new List<Class>();
@@ -147,35 +152,19 @@ public class Class
             {
                 db.openConnection();
                 var cmd = new SqlCommand(
-                    "SELECT ClassID, ClassName, AcademicYear, NumberOfStudent, HomeroomTeacher FROM Class ORDER BY ClassID",
+                    "SELECT * FROM Class ORDER BY ClassID",
                     db.getConnection);
 
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
-                    list.Add(new Class
-                    {
-                        ClassID = reader["ClassID"].ToString(),
-                        ClassName = reader["ClassName"].ToString(),
-                        AcademicYear = reader["AcademicYear"].ToString(),
-                        NumberOfStudent = reader["NumberOfStudent"] == DBNull.Value
-                                            ? 0 : Convert.ToInt32(reader["NumberOfStudent"]),
-                        HomeroomTeacher = reader["HomeroomTeacher"].ToString()
-                    });
+                    list.Add(MapFromReader(reader));
             }
         }
         catch { }
         return list;
     }
 
-    public DataTable SearchClassrooms(string keyword) =>
-        ExecuteQuery(@"
-            SELECT * FROM Class
-            WHERE ClassID       LIKE @kw
-               OR ClassName     LIKE @kw
-               OR AcademicYear  LIKE @kw
-               OR HomeroomTeacher LIKE @kw",
-            cmd => cmd.Parameters.AddWithValue("@kw", $"%{keyword}%"));
-
+    // ================= GET BY ID =================
     public Class GetClassByID(string classID)
     {
         Class c = null;
@@ -186,24 +175,56 @@ public class Class
                 db.openConnection();
                 var cmd = new SqlCommand(
                     "SELECT * FROM Class WHERE ClassID = @classID", db.getConnection);
-                cmd.Parameters.AddWithValue("@classID", classID);
+                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
 
                 using var reader = cmd.ExecuteReader();
                 if (reader.Read())
-                    c = new Class
-                    {
-                        ClassID = reader["ClassID"].ToString(),
-                        ClassName = reader["ClassName"].ToString(),
-                        AcademicYear = reader["AcademicYear"].ToString(),
-                        NumberOfStudent = reader["NumberOfStudent"] == DBNull.Value
-                                            ? 0 : Convert.ToInt32(reader["NumberOfStudent"]),
-                        HomeroomTeacher = reader["HomeroomTeacher"].ToString()
-                    };
+                    c = MapFromReader(reader);
             }
         }
         catch { }
         return c;
     }
+
+    // ================= SEARCH =================
+    public DataTable SearchClassrooms(string keyword) =>
+        ExecuteQuery(@"
+            SELECT * FROM Class
+            WHERE ClassID       LIKE @kw
+               OR CourseCode    LIKE @kw
+               OR ClassName     LIKE @kw
+               OR AcademicYear  LIKE @kw
+               OR Manager       LIKE @kw",
+            cmd => cmd.Parameters.AddWithValue("@kw", $"%{keyword}%"));
+
+    // ================= FILTER =================
+    public DataTable GetClassesByAcademicYear(string academicYear) =>
+        ExecuteQuery(@"
+            SELECT * FROM Class
+            WHERE AcademicYear = @year
+            ORDER BY ClassID",
+            cmd => cmd.Parameters.AddWithValue("@year", academicYear));
+
+    public DataTable GetClassesByCourseCode(string courseCode) =>
+        ExecuteQuery(@"
+            SELECT * FROM Class
+            WHERE CourseCode = @courseCode
+            ORDER BY AcademicYear, Semester",
+            cmd => cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = courseCode);
+
+    public DataTable GetDistinctAcademicYears() =>
+        ExecuteQuery(@"
+            SELECT DISTINCT AcademicYear
+            FROM Class
+            ORDER BY AcademicYear DESC");
+
+    // ================= FOR COMBOBOX =================
+    public DataTable GetClassesForCombo() =>
+        ExecuteQuery(@"
+            SELECT ClassID,
+                   ClassID + ' - ' + ClassName AS ClassDisplay
+            FROM Class
+            ORDER BY ClassID");
 
     // ================= STATS =================
     public int TotalClassrooms()
@@ -234,18 +255,4 @@ public class Class
         }
         catch { return 0; }
     }
-
-    public DataTable GetClassesByAcademicYear(string academicYear) =>
-        ExecuteQuery(@"
-            SELECT ClassID, ClassName, AcademicYear, NumberOfStudent, HomeroomTeacher
-            FROM Class
-            WHERE AcademicYear = @year
-            ORDER BY ClassID",
-            cmd => cmd.Parameters.AddWithValue("@year", academicYear));
-
-    public DataTable GetDistinctAcademicYears() =>
-        ExecuteQuery(@"
-            SELECT DISTINCT AcademicYear
-            FROM Class
-            ORDER BY AcademicYear DESC");
 }

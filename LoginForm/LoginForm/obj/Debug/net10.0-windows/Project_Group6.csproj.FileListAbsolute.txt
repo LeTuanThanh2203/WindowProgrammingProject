@@ -303,3 +303,7 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProjec
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Drawing.NET.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.PDF.NET.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Words.NET.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Document.NET.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Drawing.NET.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.PDF.NET.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Words.NET.dll
