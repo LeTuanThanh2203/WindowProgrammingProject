@@ -1,4 +1,4 @@
-﻿namespace Project_Group6
+namespace Project_Group6
 {
     partial class f_AddClass
     {
@@ -111,50 +111,78 @@
                 lblSchedule, txt_Schedule
             });
 
-            int lblX = 20, fldX = 200, rowH = 44, startY = 28;
+            int fldX = 200, rowH = 44, startY = 28;
 
             // Row 0 – Course
-            SetLabel(lbl_NameCourse, "Course:", lblX, startY + rowH * 0);
+            lbl_NameCourse.Text = "Course:";
+            lbl_NameCourse.Location = new System.Drawing.Point(20, 32);
+            lbl_NameCourse.AutoSize = true;
+            lbl_NameCourse.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lbl_NameCourse.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             cbo_CourseName.Location = new System.Drawing.Point(fldX, startY + rowH * 0 - 3);
             cbo_CourseName.Size = new System.Drawing.Size(420, 28);
             cbo_CourseName.DropDownStyle = ComboBoxStyle.DropDownList;
             cbo_CourseName.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 
             // Row 1 – Class ID (readonly label)
-            SetLabel(lbl_ClassID, "Class ID:", lblX, startY + rowH * 1);
+            lbl_ClassID.Text = "Class ID:";
+            lbl_ClassID.Location = new System.Drawing.Point(20, 76);
+            lbl_ClassID.AutoSize = true;
+            lbl_ClassID.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lbl_ClassID.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             lbl_ClassIDAuto.Location = new System.Drawing.Point(fldX, startY + rowH * 1);
             lbl_ClassIDAuto.Size = new System.Drawing.Size(300, 24);
             lbl_ClassIDAuto.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
             lbl_ClassIDAuto.ForeColor = System.Drawing.Color.FromArgb(10, 61, 120);
 
             // Row 2 – Semester + Academic Year side-by-side
-            SetLabel(label2, "Semester:", lblX, startY + rowH * 2);
+            label2.Text = "Semester:";
+            label2.Location = new System.Drawing.Point(20, 120);
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            label2.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             cboSemester.Location = new System.Drawing.Point(fldX, startY + rowH * 2 - 3);
             cboSemester.Size = new System.Drawing.Size(140, 28);
             cboSemester.DropDownStyle = ComboBoxStyle.DropDownList;
             cboSemester.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 
-            SetLabel(lbl_AcademicYear, "Academic Year:", fldX + 160, startY + rowH * 2);
+            lbl_AcademicYear.Text = "Academic Year:";
+            lbl_AcademicYear.Location = new System.Drawing.Point(360, 120);
+            lbl_AcademicYear.AutoSize = true;
+            lbl_AcademicYear.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lbl_AcademicYear.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             lbl_AcademicYearAuto.Location = new System.Drawing.Point(fldX + 160 + 120, startY + rowH * 2);
             lbl_AcademicYearAuto.Size = new System.Drawing.Size(120, 24);
             lbl_AcademicYearAuto.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
             lbl_AcademicYearAuto.ForeColor = System.Drawing.Color.FromArgb(10, 61, 120);
 
             // Row 3 – Capacity
-            SetLabel(lblCapacity, "Capacity:", lblX, startY + rowH * 3);
+            lblCapacity.Text = "Capacity:";
+            lblCapacity.Location = new System.Drawing.Point(20, 164);
+            lblCapacity.AutoSize = true;
+            lblCapacity.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblCapacity.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             txt_Capacity.Location = new System.Drawing.Point(fldX, startY + rowH * 3 - 2);
             txt_Capacity.Size = new System.Drawing.Size(100, 27);
             txt_Capacity.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             txt_Capacity.MaxLength = 4;
 
             // Row 4 – Room
-            SetLabel(lblRoom, "Room:", lblX, startY + rowH * 4);
+            lblRoom.Text = "Room:";
+            lblRoom.Location = new System.Drawing.Point(20, 208);
+            lblRoom.AutoSize = true;
+            lblRoom.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblRoom.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             txt_Room.Location = new System.Drawing.Point(fldX, startY + rowH * 4 - 2);
             txt_Room.Size = new System.Drawing.Size(200, 27);
             txt_Room.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 
             // Row 5 – Schedule
-            SetLabel(lblSchedule, "Schedule:", lblX, startY + rowH * 5);
+            lblSchedule.Text = "Schedule:";
+            lblSchedule.Location = new System.Drawing.Point(20, 252);
+            lblSchedule.AutoSize = true;
+            lblSchedule.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblSchedule.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
             txt_Schedule.Location = new System.Drawing.Point(fldX, startY + rowH * 5 - 2);
             txt_Schedule.Size = new System.Drawing.Size(420, 27);
             txt_Schedule.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -166,9 +194,37 @@
             pnlButtons.Padding = new Padding(24, 12, 24, 12);
             pnlButtons.Controls.AddRange(new Control[] { btn_AddCourse, btnClear, btnQuit });
 
-            StylePrimaryBtn(btn_AddCourse, "Add Class", 0);
-            StyleSecondaryBtn(btnClear, "Reset", 148);
-            StyleSecondaryBtn(btnQuit, "Cancel", 284);
+            btn_AddCourse.Text = "Add Class";
+            btn_AddCourse.Location = new System.Drawing.Point(0, 10);
+            btn_AddCourse.Size = new System.Drawing.Size(130, 42);
+            btn_AddCourse.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btn_AddCourse.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            btn_AddCourse.ForeColor = System.Drawing.Color.White;
+            btn_AddCourse.FlatStyle = FlatStyle.Flat;
+            btn_AddCourse.FlatAppearance.BorderSize = 0;
+            btn_AddCourse.Cursor = Cursors.Hand;
+
+            btnClear.Text = "Reset";
+            btnClear.Location = new System.Drawing.Point(148, 10);
+            btnClear.Size = new System.Drawing.Size(120, 42);
+            btnClear.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            btnClear.BackColor = System.Drawing.Color.White;
+            btnClear.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnClear.FlatAppearance.BorderSize = 1;
+            btnClear.Cursor = Cursors.Hand;
+
+            btnQuit.Text = "Cancel";
+            btnQuit.Location = new System.Drawing.Point(284, 10);
+            btnQuit.Size = new System.Drawing.Size(120, 42);
+            btnQuit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            btnQuit.BackColor = System.Drawing.Color.White;
+            btnQuit.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnQuit.FlatStyle = FlatStyle.Flat;
+            btnQuit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnQuit.FlatAppearance.BorderSize = 1;
+            btnQuit.Cursor = Cursors.Hand;
 
             // ── Form ──────────────────────────────────────────────────
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -191,42 +247,6 @@
             PerformLayout();
         }
 
-        // ── Helpers ───────────────────────────────────────────────────
-        private void SetLabel(Label lbl, string text, int x, int y)
-        {
-            lbl.Text = text;
-            lbl.Location = new System.Drawing.Point(x, y + 4);
-            lbl.AutoSize = true;
-            lbl.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            lbl.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
-        }
-
-        private void StylePrimaryBtn(Button btn, string text, int left)
-        {
-            btn.Text = text;
-            btn.Location = new System.Drawing.Point(left, 10);
-            btn.Size = new System.Drawing.Size(130, 42);
-            btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
-            btn.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
-            btn.ForeColor = System.Drawing.Color.White;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
-            btn.Cursor = Cursors.Hand;
-        }
-
-        private void StyleSecondaryBtn(Button btn, string text, int left)
-        {
-            btn.Text = text;
-            btn.Location = new System.Drawing.Point(left, 10);
-            btn.Size = new System.Drawing.Size(120, 42);
-            btn.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            btn.BackColor = System.Drawing.Color.White;
-            btn.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btn.FlatAppearance.BorderSize = 1;
-            btn.Cursor = Cursors.Hand;
-        }
 
         #endregion
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
 using System.Windows.Forms;
@@ -16,6 +17,13 @@ namespace LoginForm
     {
         OTP otpManager = new OTP();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
+
+        [DllImport("user32.DLL")]
+        private static extern void ReleaseCapture();
+
+        [DllImport("user32.DLL")]
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         public f_ForgetPass()
         {
             InitializeComponent();
@@ -190,6 +198,34 @@ namespace LoginForm
             login.Show();
             this.Close();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
     }
 
 }

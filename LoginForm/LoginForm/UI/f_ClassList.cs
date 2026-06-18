@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,6 +8,7 @@ namespace Project_Group6
     public partial class f_ClassList : Form
     {
         Class _class = new Class();
+        private LoginForm.PaginationHelper _pager;
 
         public f_ClassList()
         {
@@ -32,6 +33,20 @@ namespace Project_Group6
             object sender,
             EventArgs e)
         {
+            _pager = new LoginForm.PaginationHelper(
+                pageTable => {
+                    dgvClassList.DataSource = pageTable;
+                },
+                lblPageInfo,
+                lblTotal,
+                btnFirst,
+                btnPrev,
+                btnNext,
+                btnLast,
+                cboPageSize
+            );
+
+            LoginForm.UIStyleHelper.StyleDataGridView(dgvClassList);
             LoadClass();
             InitFilter();
         }
@@ -39,36 +54,8 @@ namespace Project_Group6
         // LOAD CLASS
         private void LoadClass()
         {
-            dgvClassList.DataSource =
-                _class.SearchClassrooms("");
-
-            lblTotal.Text =
-                "Total Class: "
-                + _class.TotalClassrooms();
-
-            dgvClassList.AllowUserToAddRows =
-                false;
-
-            dgvClassList.ReadOnly = true;
-
-            dgvClassList.MultiSelect = false;
-
-            dgvClassList.SelectionMode =
-                DataGridViewSelectionMode
-                .FullRowSelect;
-
-            dgvClassList.RowTemplate.Height =
-                35;
-
-            dgvClassList.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode
-                .Fill;
-
-            dgvClassList.BorderStyle =
-                BorderStyle.None;
-
-            dgvClassList.BackgroundColor =
-                Color.White;
+            DataTable dt = _class.SearchClassrooms("");
+            _pager.SetData(dt);
         }
 
         // INIT FILTER COMBOS
@@ -96,13 +83,8 @@ namespace Project_Group6
             string keyword =
                 txtSearch.Text.Trim();
 
-            if (keyword == "")
-                LoadClass();
-            else
-                dgvClassList.DataSource =
-                    _class.SearchClassrooms(keyword);
-
-            UpdateTotal();
+            DataTable dt = _class.SearchClassrooms(keyword);
+            _pager.SetData(dt);
         }
 
         // FILTER SORT
@@ -131,25 +113,19 @@ namespace Project_Group6
                 cboSort.SelectedItem?.ToString();
 
             DataTable dt =
-                selYear == "All Years"
+                selYear == "All Years" || string.IsNullOrEmpty(selYear)
                 ? _class.SearchClassrooms("")
                 : _class.GetClassesByAcademicYear(selYear);
 
             if (sortBy != "All"
+                && sortBy != "All Years"
+                && !string.IsNullOrEmpty(sortBy)
                 && dt.Columns.Contains(sortBy))
-                dt.DefaultView.Sort =
-                    sortBy + " ASC";
+            {
+                dt.DefaultView.Sort = sortBy + " ASC";
+            }
 
-            dgvClassList.DataSource = dt;
-            UpdateTotal();
-        }
-
-        // UPDATE TOTAL LABEL
-        private void UpdateTotal()
-        {
-            lblTotal.Text =
-                "Total Class: "
-                + dgvClassList.Rows.Count;
+            _pager.SetData(dt.DefaultView.ToTable());
         }
 
         // REFRESH

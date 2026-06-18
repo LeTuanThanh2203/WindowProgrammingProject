@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
 
 namespace LoginForm
 {
@@ -15,26 +13,18 @@ namespace LoginForm
         // Chức vụ / quyền
         public static string Role { get; private set; }
 
-        // Email
-
-
         // Thời gian hoạt động cuối cùng
         public static DateTime LastActivityTime { get; private set; }
 
         // Thời gian timeout (30 phút)
-        private static readonly TimeSpan SessionTimeout =
-            TimeSpan.FromMinutes(30);
+        private static readonly TimeSpan SessionTimeout = TimeSpan.FromMinutes(30);
 
         // Gán thông tin session sau khi login
-        public static void SetSession(
-            int userId,
-            string username,
-            string role)
+        public static void SetSession(int userId, string username, string role)
         {
             GlobalUserId = userId;
             Username = username;
             Role = role;
-
             UpdateActivity();
         }
 
@@ -47,8 +37,7 @@ namespace LoginForm
         // Kiểm tra session còn hạn hay không
         public static bool IsSessionExpired()
         {
-            return DateTime.Now - LastActivityTime
-                   > SessionTimeout;
+            return DateTime.Now - LastActivityTime > SessionTimeout;
         }
 
         // Xóa session khi logout
@@ -57,7 +46,6 @@ namespace LoginForm
             GlobalUserId = 0;
             Username = string.Empty;
             Role = string.Empty;
-
             LastActivityTime = DateTime.MinValue;
         }
     }

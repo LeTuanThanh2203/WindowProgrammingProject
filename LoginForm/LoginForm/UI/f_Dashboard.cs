@@ -1,6 +1,7 @@
-﻿using LiveChartsCore;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.WinForms;
+using LiveChartsCore.SkiaSharpView.Painting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,28 @@ namespace LoginForm
         public f_Dashboard()
         {
             InitializeComponent();
+            UIStyleHelper.StyleDataGridView(dgvTopStudents);
+            SetupCardHoverEvents();
             LoadDashboard();
+        }
+
+        private void SetupCardHoverEvents()
+        {
+            SetupCardHover(pnTotalStudents, Color.FromArgb(41, 128, 185), Color.FromArgb(52, 152, 219));
+            SetupCardHover(pnTotalCourses, Color.FromArgb(142, 68, 173), Color.FromArgb(155, 89, 182));
+            SetupCardHover(pnTotalClasses, Color.FromArgb(39, 174, 96), Color.FromArgb(46, 204, 113));
+            SetupCardHover(pnTotalEnrollments, Color.FromArgb(211, 84, 0), Color.FromArgb(230, 126, 34));
+        }
+
+        private void SetupCardHover(Panel cardPanel, Color normalColor, Color hoverColor)
+        {
+            cardPanel.MouseEnter += (s, e) => cardPanel.BackColor = hoverColor;
+            cardPanel.MouseLeave += (s, e) => cardPanel.BackColor = normalColor;
+            foreach (Control ctrl in cardPanel.Controls)
+            {
+                ctrl.MouseEnter += (s, e) => cardPanel.BackColor = hoverColor;
+                ctrl.MouseLeave += (s, e) => cardPanel.BackColor = normalColor;
+            }
         }
 
         private void LoadDashboard()
@@ -22,39 +44,31 @@ namespace LoginForm
             LoadStatistics();
             LoadGenderChart();
             LoadEnrollmentChart();
+            LoadGradeChart();
+            LoadTopStudents();
         }
 
-        // ================= STATISTICS =================
+        // ================= STATISTICS CARDS =================
         private void LoadStatistics()
         {
             Student student = new Student();
 
-            // Schema mới: TotalStudents/TotalMaleStudents/TotalFemaleStudents (int)
-            // Không còn totalOtherStudent() — schema chỉ có Male/Female
             int totalStudents = student.TotalStudents();
-            int maleStudents = student.TotalMaleStudents();
-            int femaleStudents = student.TotalFemaleStudents();
-
-            double malePercent = totalStudents > 0 ? maleStudents * 100.0 / totalStudents : 0;
-            double femalePercent = totalStudents > 0 ? femaleStudents * 100.0 / totalStudents : 0;
+            int totalCourses = student.TotalCoursesCount();
+            int totalClasses = student.TotalClassesCount();
+            int totalEnrollments = student.TotalEnrollmentsCount();
 
             lblTotalStudents.Text = totalStudents.ToString();
-            lblMalePercent.Text = malePercent.ToString("0.0") + "%";
-            lblFemalePercent.Text = femalePercent.ToString("0.0") + "%";
-
-            // Nếu vẫn còn label "Other" trên form, ẩn hoặc xoá đi
-            if (lblOtherPercent != null)
-                lblOtherPercent.Visible = false;
-            if (pnOtherStudents != null)
-                pnOtherStudents.Visible = false;
+            lblTotalCourses.Text = totalCourses.ToString();
+            lblTotalClasses.Text = totalClasses.ToString();
+            lblTotalEnrollments.Text = totalEnrollments.ToString();
         }
 
-        // ================= GENDER CHART =================
+        // ================= GENDER DISTRIBUTION CHART =================
         private void LoadGenderChart()
         {
             Student student = new Student();
 
-            // Schema mới: chỉ Male và Female
             double maleStudents = student.TotalMaleStudents();
             double femaleStudents = student.TotalFemaleStudents();
 
@@ -63,8 +77,18 @@ namespace LoginForm
                 Dock = DockStyle.Fill,
                 Series = new ISeries[]
                 {
-                    new PieSeries<double> { Values = new[] { maleStudents },   Name = "Male"   },
-                    new PieSeries<double> { Values = new[] { femaleStudents }, Name = "Female" }
+                    new PieSeries<double> 
+                    { 
+                        Values = new[] { maleStudents }, 
+                        Name = "Male",
+                        Fill = new SolidColorPaint(new SkiaSharp.SKColor(41, 128, 185))
+                    },
+                    new PieSeries<double> 
+                    { 
+                        Values = new[] { femaleStudents }, 
+                        Name = "Female",
+                        Fill = new SolidColorPaint(new SkiaSharp.SKColor(231, 76, 60))
+                    }
                 }
             };
 
@@ -72,12 +96,10 @@ namespace LoginForm
             pnStudentChart.Controls.Add(chart);
         }
 
-        // ================= ENROLLMENT CHART =================
+        // ================= ENROLLMENT CHART BY YEAR =================
         private void LoadEnrollmentChart()
         {
             Student student = new Student();
-
-            // GetStudentStatisticsByYear() dùng cột ID thay MSSV
             DataTable table = student.GetStudentStatisticsByYear();
 
             var values = new List<int>();
@@ -97,7 +119,8 @@ namespace LoginForm
                     new ColumnSeries<int>
                     {
                         Values = values.ToArray(),
-                        Name   = "Students"
+                        Name   = "Students",
+                        Fill = new SolidColorPaint(new SkiaSharp.SKColor(46, 204, 113))
                     }
                 },
                 XAxes = new[]
@@ -114,23 +137,68 @@ namespace LoginForm
             pnEnrollmentChart.Controls.Add(chart);
         }
 
-        // ================= HOVER EFFECTS =================
-        private void Panel_MouseEnter(object sender, EventArgs e)
+        // ================= ACADEMIC PERFORMANCE (GRADE DISTRIBUTION) =================
+        private void LoadGradeChart()
         {
-            var panel = (sender as Control) is Panel p ? p : (Panel)((Control)sender).Parent;
+            Student student = new Student();
+            DataTable table = student.GetGradeDistribution();
 
-            if (panel == pnTotalStudents) panel.BackColor = Color.FromArgb(93, 173, 226);
-            else if (panel == pnMaleStudents) panel.BackColor = Color.FromArgb(88, 214, 141);
-            else if (panel == pnFemaleStudents) panel.BackColor = Color.FromArgb(236, 112, 99);
+            var seriesList = new List<ISeries>();
+
+            // Define harmonious colors for performance categories
+            // Excellent: Gold, Good: Light Blue, Pass: Green, Fail: Red
+            var colorMap = new Dictionary<string, SkiaSharp.SKColor>
+            {
+                { "Excellent", new SkiaSharp.SKColor(241, 196, 15) },
+                { "Good",      new SkiaSharp.SKColor(52, 152, 219) },
+                { "Pass",      new SkiaSharp.SKColor(46, 204, 113) },
+                { "Fail",      new SkiaSharp.SKColor(231, 76, 60) }
+            };
+
+            foreach (DataRow row in table.Rows)
+            {
+                string overview = row["Overview"].ToString();
+                double count = Convert.ToDouble(row["Total"]);
+
+                SkiaSharp.SKColor fillColor = colorMap.ContainsKey(overview) 
+                    ? colorMap[overview] 
+                    : new SkiaSharp.SKColor(149, 165, 166); // Default Gray
+
+                seriesList.Add(new PieSeries<double>
+                {
+                    Values = new[] { count },
+                    Name = overview,
+                    Fill = new SolidColorPaint(fillColor)
+                });
+            }
+
+            var chart = new PieChart
+            {
+                Dock = DockStyle.Fill,
+                Series = seriesList.ToArray()
+            };
+
+            pnGradeChart.Controls.Clear();
+            pnGradeChart.Controls.Add(chart);
         }
 
-        private void Panel_MouseLeave(object sender, EventArgs e)
+        // ================= TOP 5 STUDENTS =================
+        private void LoadTopStudents()
         {
-            var panel = (sender as Control) is Panel p ? p : (Panel)((Control)sender).Parent;
+            Student student = new Student();
+            DataTable table = student.GetTopStudentsByGPA();
 
-            if (panel == pnTotalStudents) panel.BackColor = Color.FromArgb(174, 214, 241);
-            else if (panel == pnMaleStudents) panel.BackColor = Color.FromArgb(169, 223, 191);
-            else if (panel == pnFemaleStudents) panel.BackColor = Color.FromArgb(245, 183, 177);
+            dgvTopStudents.DataSource = table;
+
+            if (dgvTopStudents.Columns["ID"] != null)
+                dgvTopStudents.Columns["ID"].HeaderText = "Student ID";
+            if (dgvTopStudents.Columns["StudentName"] != null)
+                dgvTopStudents.Columns["StudentName"].HeaderText = "Full Name";
+            if (dgvTopStudents.Columns["GPA"] != null)
+            {
+                dgvTopStudents.Columns["GPA"].HeaderText = "GPA";
+                dgvTopStudents.Columns["GPA"].DefaultCellStyle.Format = "0.00";
+            }
         }
     }
 }

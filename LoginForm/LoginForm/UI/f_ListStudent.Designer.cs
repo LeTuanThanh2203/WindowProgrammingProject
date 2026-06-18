@@ -1,16 +1,9 @@
-﻿namespace LoginForm
+namespace LoginForm
 {
     partial class f_ListStudent
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,517 +15,651 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            dgvStudent = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            Lastname = new DataGridViewTextBoxColumn();
-            Firstname = new DataGridViewTextBoxColumn();
-            Dob = new DataGridViewTextBoxColumn();
-            Gender = new DataGridViewTextBoxColumn();
-            Phone = new DataGridViewTextBoxColumn();
-            Address = new DataGridViewTextBoxColumn();
-            Hometown = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            btAdd = new Button();
-            pnMainDataGridView = new Panel();
-            cboGender = new ComboBox();
-            cboSort = new ComboBox();
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            pnlToolbar = new Panel();
             txtSearch = new TextBox();
-            pnLeft = new Panel();
-            label1 = new Label();
-            lblAddress = new Label();
-            lblPhone = new Label();
-            lblGender = new Label();
-            lblEmail = new Label();
-            lblDob = new Label();
-            lblLastname = new Label();
-            lblFirstname = new Label();
-            lblID = new Label();
-            lblEmailInfo = new Label();
-            lblAddressInfo = new Label();
-            lblPhoneInfo = new Label();
-            lblGenderInfo = new Label();
-            lblDobInfo = new Label();
-            lblLastnameInfo = new Label();
-            lblFirstnameInfo = new Label();
-            lblIDInfo = new Label();
-            picStudent = new PictureBox();
-            pnFunction = new Panel();
-            btnExport = new Button();
-            btnViewScore = new Button();
-            btnEdit = new Button();
-            lblTotal = new Label();
+            cboSort = new ComboBox();
+            cboGender = new ComboBox();
             btnRefresh = new Button();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            pnlBody = new Panel();
+            pnlGrid = new Panel();
+            dgvStudent = new DataGridView();
+            pnLeft = new Panel();
+            picStudent = new PictureBox();
+            lblIDInfo = new Label();
+            lblFirstnameInfo = new Label();
+            lblLastnameInfo = new Label();
+            lblDobInfo = new Label();
+            lblGenderInfo = new Label();
+            lblPhoneInfo = new Label();
+            lblAddressInfo = new Label();
+            lblEmailInfo = new Label();
+            lblID = new Label();
+            lblFirstname = new Label();
+            lblLastname = new Label();
+            lblDob = new Label();
+            lblGender = new Label();
+            lblPhone = new Label();
+            lblAddress = new Label();
+            lblEmail = new Label();
+            label1 = new Label();
+            pnlBottom = new Panel();
+            btAdd = new Button();
+            btnEdit = new Button();
+            btnViewScore = new Button();
+            btnExport = new Button();
+            lblTotal = new Label();
+            pnlPagination = new Panel();
+            cboPageSize = new ComboBox();
+            btnFirst = new Button();
+            btnPrev = new Button();
+            lblPageInfo = new Label();
+            btnNext = new Button();
+            btnLast = new Button();
+            pnlHeader.SuspendLayout();
+            pnlToolbar.SuspendLayout();
+            pnlBody.SuspendLayout();
+            pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
-            pnMainDataGridView.SuspendLayout();
             pnLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
-            pnFunction.SuspendLayout();
+            pnlBottom.SuspendLayout();
+            pnlPagination.SuspendLayout();
             SuspendLayout();
             // 
-            // dgvStudent
+            // pnlHeader
             // 
-            dgvStudent.AllowUserToAddRows = false;
-            dgvStudent.AllowUserToDeleteRows = false;
-            dgvStudent.AllowUserToResizeColumns = false;
-            dgvStudent.AllowUserToResizeRows = false;
-            dgvStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvStudent.BackgroundColor = SystemColors.Control;
-            dgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudent.Location = new Point(290, 46);
-            dgvStudent.Name = "dgvStudent";
-            dgvStudent.ReadOnly = true;
-            dgvStudent.RowHeadersVisible = false;
-            dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(1162, 584);
-            dgvStudent.TabIndex = 0;
-            dgvStudent.CellClick += dgvStudent_CellClick;
+            pnlHeader.BackColor = Color.FromArgb(10, 61, 120);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(lblSubtitle);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(1455, 80);
+            pnlHeader.TabIndex = 3;
             // 
-            // ID
+            // lblTitle
             // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.Width = 125;
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(24, 10);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(280, 37);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Student Management";
             // 
-            // Lastname
+            // lblSubtitle
             // 
-            Lastname.HeaderText = "Lastname";
-            Lastname.MinimumWidth = 6;
-            Lastname.Name = "Lastname";
-            Lastname.Width = 125;
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.Font = new Font("Segoe UI", 9.5F);
+            lblSubtitle.ForeColor = Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new Point(25, 48);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(302, 21);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "University Academic Management System";
             // 
-            // Firstname
+            // pnlToolbar
             // 
-            Firstname.HeaderText = "Firstname";
-            Firstname.MinimumWidth = 6;
-            Firstname.Name = "Firstname";
-            Firstname.Width = 125;
-            // 
-            // Dob
-            // 
-            Dob.HeaderText = "Dob";
-            Dob.MinimumWidth = 6;
-            Dob.Name = "Dob";
-            Dob.Width = 125;
-            // 
-            // Gender
-            // 
-            Gender.HeaderText = "Gender";
-            Gender.MinimumWidth = 6;
-            Gender.Name = "Gender";
-            Gender.Width = 125;
-            // 
-            // Phone
-            // 
-            Phone.HeaderText = "Phone";
-            Phone.MinimumWidth = 6;
-            Phone.Name = "Phone";
-            Phone.Width = 125;
-            // 
-            // Address
-            // 
-            Address.HeaderText = "Address";
-            Address.MinimumWidth = 6;
-            Address.Name = "Address";
-            Address.Width = 125;
-            // 
-            // Hometown
-            // 
-            Hometown.HeaderText = "Hometown";
-            Hometown.MinimumWidth = 6;
-            Hometown.Name = "Hometown";
-            Hometown.Width = 125;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.Width = 250;
-            // 
-            // btAdd
-            // 
-            btAdd.Location = new Point(560, 13);
-            btAdd.Name = "btAdd";
-            btAdd.Size = new Size(124, 40);
-            btAdd.TabIndex = 1;
-            btAdd.Text = "Add ";
-            btAdd.UseVisualStyleBackColor = true;
-            btAdd.Click += btnAdd_Click;
-            // 
-            // pnMainDataGridView
-            // 
-            pnMainDataGridView.AutoScroll = true;
-            pnMainDataGridView.Controls.Add(cboGender);
-            pnMainDataGridView.Controls.Add(cboSort);
-            pnMainDataGridView.Controls.Add(txtSearch);
-            pnMainDataGridView.Controls.Add(dgvStudent);
-            pnMainDataGridView.Controls.Add(pnLeft);
-            pnMainDataGridView.Dock = DockStyle.Top;
-            pnMainDataGridView.Location = new Point(0, 0);
-            pnMainDataGridView.Name = "pnMainDataGridView";
-            pnMainDataGridView.Size = new Size(1455, 630);
-            pnMainDataGridView.TabIndex = 2;
-            // 
-            // cboGender
-            // 
-            cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(406, 12);
-            cboGender.Name = "cboGender";
-            cboGender.Size = new Size(97, 28);
-            cboGender.TabIndex = 5;
-            cboGender.SelectedIndexChanged += cboGender_SelectedIndexChanged;
-            // 
-            // cboSort
-            // 
-            cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(296, 11);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(101, 28);
-            cboSort.TabIndex = 4;
-            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
+            pnlToolbar.BackColor = Color.White;
+            pnlToolbar.Controls.Add(txtSearch);
+            pnlToolbar.Controls.Add(cboSort);
+            pnlToolbar.Controls.Add(cboGender);
+            pnlToolbar.Controls.Add(btnRefresh);
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Location = new Point(0, 80);
+            pnlToolbar.Name = "pnlToolbar";
+            pnlToolbar.Padding = new Padding(16, 12, 16, 8);
+            pnlToolbar.Size = new Size(1455, 56);
+            pnlToolbar.TabIndex = 2;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(513, 12);
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Font = new Font("Segoe UI", 9.5F);
+            txtSearch.Location = new Point(16, 14);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(942, 27);
-            txtSearch.TabIndex = 3;
+            txtSearch.PlaceholderText = "Search by ID, name, email…";
+            txtSearch.Size = new Size(320, 29);
+            txtSearch.TabIndex = 0;
             txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // cboSort
+            // 
+            cboSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSort.Font = new Font("Segoe UI", 9.5F);
+            cboSort.Location = new Point(352, 13);
+            cboSort.Name = "cboSort";
+            cboSort.Size = new Size(140, 29);
+            cboSort.TabIndex = 1;
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
+            // 
+            // cboGender
+            // 
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.Font = new Font("Segoe UI", 9.5F);
+            cboGender.Location = new Point(508, 13);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(100, 29);
+            cboGender.TabIndex = 2;
+            cboGender.SelectedIndexChanged += cboGender_SelectedIndexChanged;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.White;
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 9.5F);
+            btnRefresh.ForeColor = Color.FromArgb(60, 70, 85);
+            btnRefresh.Location = new Point(624, 11);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(100, 32);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "↺  Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // pnlBody
+            // 
+            pnlBody.Controls.Add(pnlGrid);
+            pnlBody.Controls.Add(pnLeft);
+            pnlBody.Dock = DockStyle.Fill;
+            pnlBody.Location = new Point(0, 136);
+            pnlBody.Name = "pnlBody";
+            pnlBody.Size = new Size(1455, 598);
+            pnlBody.TabIndex = 0;
+            // 
+            // pnlGrid
+            // 
+            pnlGrid.BackColor = Color.FromArgb(245, 247, 250);
+            pnlGrid.Controls.Add(dgvStudent);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Location = new Point(404, 0);
+            pnlGrid.Name = "pnlGrid";
+            pnlGrid.Padding = new Padding(16, 12, 16, 8);
+            pnlGrid.Size = new Size(1051, 598);
+            pnlGrid.TabIndex = 0;
+            // 
+            // dgvStudent
+            // 
+            dgvStudent.AllowUserToResizeColumns = false;
+            dgvStudent.AllowUserToResizeRows = false;
+            dgvStudent.ColumnHeadersHeight = 29;
+            dgvStudent.Dock = DockStyle.Fill;
+            dgvStudent.Location = new Point(16, 12);
+            dgvStudent.Name = "dgvStudent";
+            dgvStudent.RowHeadersWidth = 51;
+            dgvStudent.Size = new Size(1019, 578);
+            dgvStudent.TabIndex = 0;
+            dgvStudent.CellClick += dgvStudent_CellClick;
             // 
             // pnLeft
             // 
-            pnLeft.Controls.Add(label1);
-            pnLeft.Controls.Add(lblAddress);
-            pnLeft.Controls.Add(lblPhone);
-            pnLeft.Controls.Add(lblGender);
-            pnLeft.Controls.Add(lblEmail);
-            pnLeft.Controls.Add(lblDob);
-            pnLeft.Controls.Add(lblLastname);
-            pnLeft.Controls.Add(lblFirstname);
-            pnLeft.Controls.Add(lblID);
-            pnLeft.Controls.Add(lblEmailInfo);
-            pnLeft.Controls.Add(lblAddressInfo);
-            pnLeft.Controls.Add(lblPhoneInfo);
-            pnLeft.Controls.Add(lblGenderInfo);
-            pnLeft.Controls.Add(lblDobInfo);
-            pnLeft.Controls.Add(lblLastnameInfo);
-            pnLeft.Controls.Add(lblFirstnameInfo);
-            pnLeft.Controls.Add(lblIDInfo);
+            pnLeft.BackColor = Color.White;
             pnLeft.Controls.Add(picStudent);
+            pnLeft.Controls.Add(lblIDInfo);
+            pnLeft.Controls.Add(lblFirstnameInfo);
+            pnLeft.Controls.Add(lblLastnameInfo);
+            pnLeft.Controls.Add(lblDobInfo);
+            pnLeft.Controls.Add(lblGenderInfo);
+            pnLeft.Controls.Add(lblPhoneInfo);
+            pnLeft.Controls.Add(lblAddressInfo);
+            pnLeft.Controls.Add(lblEmailInfo);
+            pnLeft.Controls.Add(lblID);
+            pnLeft.Controls.Add(lblFirstname);
+            pnLeft.Controls.Add(lblLastname);
+            pnLeft.Controls.Add(lblDob);
+            pnLeft.Controls.Add(lblGender);
+            pnLeft.Controls.Add(lblPhone);
+            pnLeft.Controls.Add(lblAddress);
+            pnLeft.Controls.Add(lblEmail);
+            pnLeft.Controls.Add(label1);
             pnLeft.Dock = DockStyle.Left;
             pnLeft.Location = new Point(0, 0);
             pnLeft.Name = "pnLeft";
-            pnLeft.Size = new Size(290, 630);
-            pnLeft.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(120, 303);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 25);
-            label1.TabIndex = 17;
-            // 
-            // lblAddress
-            // 
-            lblAddress.AutoSize = true;
-            lblAddress.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAddress.Location = new Point(152, 480);
-            lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(0, 25);
-            lblAddress.TabIndex = 16;
-            // 
-            // lblPhone
-            // 
-            lblPhone.AutoSize = true;
-            lblPhone.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPhone.Location = new Point(152, 449);
-            lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(0, 25);
-            lblPhone.TabIndex = 15;
-            // 
-            // lblGender
-            // 
-            lblGender.AutoSize = true;
-            lblGender.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGender.Location = new Point(152, 413);
-            lblGender.Name = "lblGender";
-            lblGender.Size = new Size(0, 25);
-            lblGender.TabIndex = 14;
-            // 
-            // lblEmail
-            // 
-            lblEmail.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmail.Location = new Point(76, 517);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(190, 69);
-            lblEmail.TabIndex = 14;
-            // 
-            // lblDob
-            // 
-            lblDob.AutoSize = true;
-            lblDob.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDob.Location = new Point(152, 380);
-            lblDob.Name = "lblDob";
-            lblDob.Size = new Size(0, 25);
-            lblDob.TabIndex = 13;
-            // 
-            // lblLastname
-            // 
-            lblLastname.AutoSize = true;
-            lblLastname.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLastname.Location = new Point(152, 342);
-            lblLastname.Name = "lblLastname";
-            lblLastname.Size = new Size(0, 25);
-            lblLastname.TabIndex = 12;
-            // 
-            // lblFirstname
-            // 
-            lblFirstname.AutoSize = true;
-            lblFirstname.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFirstname.Location = new Point(152, 306);
-            lblFirstname.Name = "lblFirstname";
-            lblFirstname.Size = new Size(0, 25);
-            lblFirstname.TabIndex = 11;
-            // 
-            // lblID
-            // 
-            lblID.AutoSize = true;
-            lblID.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblID.Location = new Point(152, 268);
-            lblID.Name = "lblID";
-            lblID.Size = new Size(0, 25);
-            lblID.TabIndex = 10;
-            // 
-            // lblEmailInfo
-            // 
-            lblEmailInfo.AutoSize = true;
-            lblEmailInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEmailInfo.Location = new Point(12, 517);
-            lblEmailInfo.Name = "lblEmailInfo";
-            lblEmailInfo.Size = new Size(58, 25);
-            lblEmailInfo.TabIndex = 9;
-            lblEmailInfo.Text = "Email";
-            // 
-            // lblAddressInfo
-            // 
-            lblAddressInfo.AutoSize = true;
-            lblAddressInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAddressInfo.Location = new Point(12, 480);
-            lblAddressInfo.Name = "lblAddressInfo";
-            lblAddressInfo.Size = new Size(80, 25);
-            lblAddressInfo.TabIndex = 8;
-            lblAddressInfo.Text = "Address";
-            // 
-            // lblPhoneInfo
-            // 
-            lblPhoneInfo.AutoSize = true;
-            lblPhoneInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPhoneInfo.Location = new Point(12, 449);
-            lblPhoneInfo.Name = "lblPhoneInfo";
-            lblPhoneInfo.Size = new Size(66, 25);
-            lblPhoneInfo.TabIndex = 7;
-            lblPhoneInfo.Text = "Phone";
-            // 
-            // lblGenderInfo
-            // 
-            lblGenderInfo.AutoSize = true;
-            lblGenderInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGenderInfo.Location = new Point(12, 413);
-            lblGenderInfo.Name = "lblGenderInfo";
-            lblGenderInfo.Size = new Size(74, 25);
-            lblGenderInfo.TabIndex = 6;
-            lblGenderInfo.Text = "Gender";
-            // 
-            // lblDobInfo
-            // 
-            lblDobInfo.AutoSize = true;
-            lblDobInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDobInfo.Location = new Point(12, 380);
-            lblDobInfo.Name = "lblDobInfo";
-            lblDobInfo.Size = new Size(122, 25);
-            lblDobInfo.TabIndex = 5;
-            lblDobInfo.Text = "Date of birth";
-            // 
-            // lblLastnameInfo
-            // 
-            lblLastnameInfo.AutoSize = true;
-            lblLastnameInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLastnameInfo.Location = new Point(12, 342);
-            lblLastnameInfo.Name = "lblLastnameInfo";
-            lblLastnameInfo.Size = new Size(93, 25);
-            lblLastnameInfo.TabIndex = 4;
-            lblLastnameInfo.Text = "Lastname";
-            // 
-            // lblFirstnameInfo
-            // 
-            lblFirstnameInfo.AutoSize = true;
-            lblFirstnameInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFirstnameInfo.Location = new Point(12, 306);
-            lblFirstnameInfo.Name = "lblFirstnameInfo";
-            lblFirstnameInfo.Size = new Size(95, 25);
-            lblFirstnameInfo.TabIndex = 3;
-            lblFirstnameInfo.Text = "Firstname";
-            // 
-            // lblIDInfo
-            // 
-            lblIDInfo.AutoSize = true;
-            lblIDInfo.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblIDInfo.Location = new Point(12, 268);
-            lblIDInfo.Name = "lblIDInfo";
-            lblIDInfo.Size = new Size(31, 25);
-            lblIDInfo.TabIndex = 2;
-            lblIDInfo.Text = "ID";
+            pnLeft.Size = new Size(404, 598);
+            pnLeft.TabIndex = 1;
             // 
             // picStudent
             // 
-            picStudent.Location = new Point(26, 21);
+            picStudent.BorderStyle = BorderStyle.FixedSingle;
+            picStudent.Location = new Point(45, 20);
             picStudent.Name = "picStudent";
             picStudent.Size = new Size(200, 226);
-            picStudent.TabIndex = 1;
+            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            picStudent.TabIndex = 0;
             picStudent.TabStop = false;
             // 
-            // pnFunction
+            // lblID - VALUE (để trống, code sẽ gán)
+            lblID.AutoSize = true;
+            lblID.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblID.ForeColor = Color.FromArgb(10, 61, 120);
+            lblID.Location = new Point(130, 260);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(100, 23);
+            lblID.TabIndex = 6;
+            lblID.Text = "";
+
+            // lblIDInfo - TIÊU ĐỀ cố định
+            lblIDInfo.AutoSize = true;
+            lblIDInfo.Font = new Font("Segoe UI", 9.5F);
+            lblIDInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblIDInfo.Location = new Point(16, 260);
+            lblIDInfo.Name = "lblIDInfo";
+            lblIDInfo.Size = new Size(100, 23);
+            lblIDInfo.TabIndex = 14;
+            lblIDInfo.Text = "Student ID:";
+
+            // lblFirstname - VALUE
+            lblFirstname.AutoSize = true;
+            lblFirstname.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblFirstname.ForeColor = Color.FromArgb(10, 61, 120);
+            lblFirstname.Location = new Point(130, 294);
+            lblFirstname.Name = "lblFirstname";
+            lblFirstname.Size = new Size(100, 23);
+            lblFirstname.TabIndex = 7;
+            lblFirstname.Text = "";
+
+            // lblFirstnameInfo - TIÊU ĐỀ
+            lblFirstnameInfo.AutoSize = true;
+            lblFirstnameInfo.Font = new Font("Segoe UI", 9.5F);
+            lblFirstnameInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblFirstnameInfo.Location = new Point(16, 294);
+            lblFirstnameInfo.Name = "lblFirstnameInfo";
+            lblFirstnameInfo.Size = new Size(100, 23);
+            lblFirstnameInfo.TabIndex = 15;
+            lblFirstnameInfo.Text = "First Name:";
+
+            // lblLastname - VALUE
+            lblLastname.AutoSize = true;
+            lblLastname.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblLastname.ForeColor = Color.FromArgb(10, 61, 120);
+            lblLastname.Location = new Point(130, 328);
+            lblLastname.Name = "lblLastname";
+            lblLastname.Size = new Size(100, 23);
+            lblLastname.TabIndex = 8;
+            lblLastname.Text = "";
+
+            // lblLastnameInfo - TIÊU ĐỀ
+            lblLastnameInfo.AutoSize = true;
+            lblLastnameInfo.Font = new Font("Segoe UI", 9.5F);
+            lblLastnameInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblLastnameInfo.Location = new Point(16, 328);
+            lblLastnameInfo.Name = "lblLastnameInfo";
+            lblLastnameInfo.Size = new Size(100, 23);
+            lblLastnameInfo.TabIndex = 16;
+            lblLastnameInfo.Text = "Last Name:";
+
+            // lblDob - VALUE
+            lblDob.AutoSize = true;
+            lblDob.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblDob.ForeColor = Color.FromArgb(10, 61, 120);
+            lblDob.Location = new Point(130, 362);
+            lblDob.Name = "lblDob";
+            lblDob.Size = new Size(100, 23);
+            lblDob.TabIndex = 9;
+            lblDob.Text = "";
+
+            // lblDobInfo - TIÊU ĐỀ
+            lblDobInfo.AutoSize = true;
+            lblDobInfo.Font = new Font("Segoe UI", 9.5F);
+            lblDobInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblDobInfo.Location = new Point(16, 362);
+            lblDobInfo.Name = "lblDobInfo";
+            lblDobInfo.Size = new Size(100, 23);
+            lblDobInfo.TabIndex = 17;
+            lblDobInfo.Text = "Date of Birth:";
+
+            // lblGender - VALUE
+            lblGender.AutoSize = true;
+            lblGender.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblGender.ForeColor = Color.FromArgb(10, 61, 120);
+            lblGender.Location = new Point(130, 396);
+            lblGender.Name = "lblGender";
+            lblGender.Size = new Size(100, 23);
+            lblGender.TabIndex = 10;
+            lblGender.Text = "";
+
+            // lblGenderInfo - TIÊU ĐỀ
+            lblGenderInfo.AutoSize = true;
+            lblGenderInfo.Font = new Font("Segoe UI", 9.5F);
+            lblGenderInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblGenderInfo.Location = new Point(16, 396);
+            lblGenderInfo.Name = "lblGenderInfo";
+            lblGenderInfo.Size = new Size(100, 23);
+            lblGenderInfo.TabIndex = 18;
+            lblGenderInfo.Text = "Gender:";
+
+            // lblPhone - VALUE
+            lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblPhone.ForeColor = Color.FromArgb(10, 61, 120);
+            lblPhone.Location = new Point(130, 430);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(100, 23);
+            lblPhone.TabIndex = 11;
+            lblPhone.Text = "";
+
+            // lblPhoneInfo - TIÊU ĐỀ
+            lblPhoneInfo.AutoSize = true;
+            lblPhoneInfo.Font = new Font("Segoe UI", 9.5F);
+            lblPhoneInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblPhoneInfo.Location = new Point(16, 430);
+            lblPhoneInfo.Name = "lblPhoneInfo";
+            lblPhoneInfo.Size = new Size(100, 23);
+            lblPhoneInfo.TabIndex = 19;
+            lblPhoneInfo.Text = "Phone:";
+
+            // lblAddress - VALUE
+            lblAddress.AutoSize = true;
+            lblAddress.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblAddress.ForeColor = Color.FromArgb(10, 61, 120);
+            lblAddress.Location = new Point(130, 464);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(100, 23);
+            lblAddress.TabIndex = 12;
+            lblAddress.Text = "";
+
+            // lblAddressInfo - TIÊU ĐỀ
+            lblAddressInfo.AutoSize = true;
+            lblAddressInfo.Font = new Font("Segoe UI", 9.5F);
+            lblAddressInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblAddressInfo.Location = new Point(16, 464);
+            lblAddressInfo.Name = "lblAddressInfo";
+            lblAddressInfo.Size = new Size(100, 23);
+            lblAddressInfo.TabIndex = 20;
+            lblAddressInfo.Text = "Address:";
+
+            // lblEmail - VALUE
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblEmail.ForeColor = Color.FromArgb(10, 61, 120);
+            lblEmail.Location = new Point(130, 498);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(100, 23);
+            lblEmail.TabIndex = 13;
+            lblEmail.Text = "";
+
+            // lblEmailInfo - TIÊU ĐỀ
+            lblEmailInfo.AutoSize = true;
+            lblEmailInfo.Font = new Font("Segoe UI", 9.5F);
+            lblEmailInfo.ForeColor = Color.FromArgb(80, 80, 90);
+            lblEmailInfo.Location = new Point(16, 498);
+            lblEmailInfo.Name = "lblEmailInfo";
+            lblEmailInfo.Size = new Size(100, 23);
+            lblEmailInfo.TabIndex = 21;
+            lblEmailInfo.Text = "Email:";
             // 
-            pnFunction.Controls.Add(btnExport);
-            pnFunction.Controls.Add(btnViewScore);
-            pnFunction.Controls.Add(btnEdit);
-            pnFunction.Controls.Add(lblTotal);
-            pnFunction.Controls.Add(btnRefresh);
-            pnFunction.Controls.Add(btAdd);
-            pnFunction.Dock = DockStyle.Bottom;
-            pnFunction.Location = new Point(0, 636);
-            pnFunction.Name = "pnFunction";
-            pnFunction.Size = new Size(1455, 157);
-            pnFunction.TabIndex = 3;
+            // label1
             // 
-            // btnExport
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 17;
             // 
-            btnExport.Location = new Point(1094, 13);
-            btnExport.Name = "btnExport";
-            btnExport.Size = new Size(124, 40);
-            btnExport.TabIndex = 7;
-            btnExport.Text = "Export";
-            btnExport.UseVisualStyleBackColor = true;
+            // pnlBottom
             // 
-            // btnViewScore
+            pnlBottom.BackColor = Color.White;
+            pnlBottom.Controls.Add(btAdd);
+            pnlBottom.Controls.Add(btnEdit);
+            pnlBottom.Controls.Add(btnViewScore);
+            pnlBottom.Controls.Add(btnExport);
+            pnlBottom.Controls.Add(lblTotal);
+            pnlBottom.Controls.Add(pnlPagination);
+            pnlBottom.Dock = DockStyle.Bottom;
+            pnlBottom.Location = new Point(0, 734);
+            pnlBottom.Name = "pnlBottom";
+            pnlBottom.Padding = new Padding(24, 12, 24, 12);
+            pnlBottom.Size = new Size(1455, 68);
+            pnlBottom.TabIndex = 1;
             // 
-            btnViewScore.Location = new Point(960, 13);
-            btnViewScore.Name = "btnViewScore";
-            btnViewScore.Size = new Size(124, 40);
-            btnViewScore.TabIndex = 6;
-            btnViewScore.Text = "View Score";
-            btnViewScore.UseVisualStyleBackColor = true;
-            btnViewScore.Click += btnViewScore_Click;
+            // btAdd
+            // 
+            btAdd.BackColor = Color.FromArgb(10, 61, 120);
+            btAdd.Cursor = Cursors.Hand;
+            btAdd.FlatAppearance.BorderSize = 0;
+            btAdd.FlatStyle = FlatStyle.Flat;
+            btAdd.Font = new Font("Segoe UI Semibold", 9.5F);
+            btAdd.ForeColor = Color.White;
+            btAdd.Location = new Point(24, 13);
+            btAdd.Name = "btAdd";
+            btAdd.Size = new Size(120, 42);
+            btAdd.TabIndex = 0;
+            btAdd.Text = "＋  Add ";
+            btAdd.UseVisualStyleBackColor = false;
+            btAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(692, 13);
+            btnEdit.BackColor = Color.White;
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 9.5F);
+            btnEdit.ForeColor = Color.FromArgb(60, 70, 85);
+            btnEdit.Location = new Point(154, 13);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 5;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Size = new Size(134, 42);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "✎  Edit / Delete";
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
+            // 
+            // btnViewScore
+            // 
+            btnViewScore.BackColor = Color.White;
+            btnViewScore.Cursor = Cursors.Hand;
+            btnViewScore.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnViewScore.FlatStyle = FlatStyle.Flat;
+            btnViewScore.Font = new Font("Segoe UI", 9.5F);
+            btnViewScore.ForeColor = Color.FromArgb(60, 70, 85);
+            btnViewScore.Location = new Point(294, 13);
+            btnViewScore.Name = "btnViewScore";
+            btnViewScore.Size = new Size(120, 42);
+            btnViewScore.TabIndex = 2;
+            btnViewScore.Text = "★  View Score";
+            btnViewScore.UseVisualStyleBackColor = false;
+            btnViewScore.Click += btnViewScore_Click;
+            // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.White;
+            btnExport.Cursor = Cursors.Hand;
+            btnExport.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnExport.FlatStyle = FlatStyle.Flat;
+            btnExport.Font = new Font("Segoe UI", 9.5F);
+            btnExport.ForeColor = Color.FromArgb(60, 70, 85);
+            btnExport.Location = new Point(424, 13);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 42);
+            btnExport.TabIndex = 3;
+            btnExport.Text = "⭳  Export";
+            btnExport.UseVisualStyleBackColor = false;
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(294, 13);
+            lblTotal.Font = new Font("Segoe UI", 9.5F);
+            lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
+            lblTotal.Location = new Point(530, 22);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(100, 20);
+            lblTotal.Size = new Size(122, 21);
             lblTotal.TabIndex = 4;
-            lblTotal.Text = "Total Student:";
+            lblTotal.Text = "Total Students: 0";
             // 
-            // btnRefresh
+            // pnlPagination
             // 
-            btnRefresh.Location = new Point(822, 13);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 2;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
+            pnlPagination.Controls.Add(cboPageSize);
+            pnlPagination.Controls.Add(btnFirst);
+            pnlPagination.Controls.Add(btnPrev);
+            pnlPagination.Controls.Add(lblPageInfo);
+            pnlPagination.Controls.Add(btnNext);
+            pnlPagination.Controls.Add(btnLast);
+            pnlPagination.Dock = DockStyle.Right;
+            pnlPagination.Location = new Point(1051, 12);
+            pnlPagination.Name = "pnlPagination";
+            pnlPagination.Size = new Size(380, 44);
+            pnlPagination.TabIndex = 5;
             // 
-            // sqlCommand1
+            // cboPageSize
             // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
+            cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPageSize.Font = new Font("Segoe UI", 9.5F);
+            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Name = "cboPageSize";
+            cboPageSize.Size = new Size(60, 29);
+            cboPageSize.TabIndex = 0;
+            // 
+            // btnFirst
+            // 
+            btnFirst.Font = new Font("Segoe UI", 9F);
+            btnFirst.BackColor = Color.White;
+            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
+            btnFirst.FlatStyle = FlatStyle.Flat;
+            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnFirst.Cursor = Cursors.Hand;
+            btnFirst.Location = new Point(80, 17);
+            btnFirst.Name = "btnFirst";
+            btnFirst.Size = new Size(36, 32);
+            btnFirst.TabIndex = 1;
+            btnFirst.Text = "|◀";
+            // 
+            // btnPrev
+            // 
+            btnPrev.Font = new Font("Segoe UI", 9F);
+            btnPrev.BackColor = Color.White;
+            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
+            btnPrev.FlatStyle = FlatStyle.Flat;
+            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnPrev.Cursor = Cursors.Hand;
+            btnPrev.Location = new Point(120, 17);
+            btnPrev.Name = "btnPrev";
+            btnPrev.Size = new Size(36, 32);
+            btnPrev.TabIndex = 2;
+            btnPrev.Text = "◀";
+            // 
+            // lblPageInfo
+            // 
+            lblPageInfo.Font = new Font("Segoe UI", 9.5F);
+            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Name = "lblPageInfo";
+            lblPageInfo.Size = new Size(120, 20);
+            lblPageInfo.TabIndex = 3;
+            lblPageInfo.Text = "Page 1 of 1";
+            lblPageInfo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnNext
+            // 
+            btnNext.Font = new Font("Segoe UI", 9F);
+            btnNext.BackColor = Color.White;
+            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnNext.Cursor = Cursors.Hand;
+            btnNext.Location = new Point(290, 17);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(36, 32);
+            btnNext.TabIndex = 4;
+            btnNext.Text = "▶";
+            // 
+            // btnLast
+            // 
+            btnLast.Font = new Font("Segoe UI", 9F);
+            btnLast.BackColor = Color.White;
+            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
+            btnLast.FlatStyle = FlatStyle.Flat;
+            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnLast.Cursor = Cursors.Hand;
+            btnLast.Location = new Point(330, 17);
+            btnLast.Name = "btnLast";
+            btnLast.Size = new Size(36, 32);
+            btnLast.TabIndex = 5;
+            btnLast.Text = "▶|";
             // 
             // f_ListStudent
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1455, 793);
-            Controls.Add(pnMainDataGridView);
-            Controls.Add(pnFunction);
+            ClientSize = new Size(1455, 802);
+            Controls.Add(pnlBody);
+            Controls.Add(pnlBottom);
+            Controls.Add(pnlToolbar);
+            Controls.Add(pnlHeader);
+            Font = new Font("Segoe UI", 9.5F);
             Name = "f_ListStudent";
-            Text = "Student Management";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Student Management — Academic System";
             Load += ManageStudent_Load;
             Shown += f_ListStudent_Shown;
+            pnlHeader.ResumeLayout(false);
+            pnlToolbar.ResumeLayout(false);
+            pnlToolbar.PerformLayout();
+            pnlBody.ResumeLayout(false);
+            pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvStudent).EndInit();
-            pnMainDataGridView.ResumeLayout(false);
-            pnMainDataGridView.PerformLayout();
             pnLeft.ResumeLayout(false);
-            pnLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
-            pnFunction.ResumeLayout(false);
-            pnFunction.PerformLayout();
+            pnlBottom.ResumeLayout(false);
+            pnlBottom.PerformLayout();
+            pnlPagination.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgvStudent;
-        private Button btAdd;
-        private Panel pnMainDataGridView;
-        private Panel pnFunction;
-        private PictureBox picStudent;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn Lastname;
-        private DataGridViewTextBoxColumn Firstname;
-        private DataGridViewTextBoxColumn Dob;
-        private DataGridViewTextBoxColumn Gender;
-        private DataGridViewTextBoxColumn Phone;
-        private DataGridViewTextBoxColumn Address;
-        private DataGridViewTextBoxColumn Hometown;
-        private DataGridViewTextBoxColumn Email;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Button btnRefresh;
-        private Panel pnLeft;
-        private Label lblIDInfo;
-        private Label lblFirstnameInfo;
-        private Label lblDobInfo;
-        private Label lblLastnameInfo;
-        private Label lblAddressInfo;
-        private Label lblPhoneInfo;
-        private Label lblGenderInfo;
-        private Label lblEmailInfo;
-        private Label lblAddress;
-        private Label lblPhone;
-        private Label lblGender;
-        private Label lblEmail;
-        private Label lblDob;
-        private Label lblLastname;
-        private Label lblFirstname;
-        private Label lblID;
-        private Label label1;
-        private ComboBox cboGender;
-        private ComboBox cboSort;
-        private TextBox txtSearch;
-        private Label lblTotal;
-        private Button btnEdit;
-        private Button btnViewScore;
-        private Button btnExport;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblSubtitle;
+
+        private System.Windows.Forms.Panel pnlToolbar;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cboSort;
+        private System.Windows.Forms.ComboBox cboGender;
+        private System.Windows.Forms.Button btnRefresh;
+
+        private System.Windows.Forms.Panel pnlBody;
+        private System.Windows.Forms.Panel pnLeft;
+        private System.Windows.Forms.PictureBox picStudent;
+        private System.Windows.Forms.Label lblIDInfo;
+        private System.Windows.Forms.Label lblFirstnameInfo;
+        private System.Windows.Forms.Label lblLastnameInfo;
+        private System.Windows.Forms.Label lblDobInfo;
+        private System.Windows.Forms.Label lblGenderInfo;
+        private System.Windows.Forms.Label lblPhoneInfo;
+        private System.Windows.Forms.Label lblAddressInfo;
+        private System.Windows.Forms.Label lblEmailInfo;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblFirstname;
+        private System.Windows.Forms.Label lblLastname;
+        private System.Windows.Forms.Label lblDob;
+        private System.Windows.Forms.Label lblGender;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.Panel pnlGrid;
+        private System.Windows.Forms.DataGridView dgvStudent;
+
+        private System.Windows.Forms.Panel pnlBottom;
+        private System.Windows.Forms.Button btAdd;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnViewScore;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Label lblTotal;
+
+        private System.Windows.Forms.Panel pnlPagination;
+        private System.Windows.Forms.ComboBox cboPageSize;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label lblPageInfo;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
     }
 }

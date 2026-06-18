@@ -314,6 +314,28 @@ namespace LoginForm
         {
             OpenForm(new f_Request());
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Bạn có chắc muốn đăng xuất không?",
+                "Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // 1. Clear session
+                Globals.ClearSession();
+
+                // 2. Mở lại Login form
+                f_LoginForm login = new f_LoginForm();
+                login.Show();
+
+                // 3. Đóng form hiện tại
+                this.Close();
+            }
+        }
     }
 
 }

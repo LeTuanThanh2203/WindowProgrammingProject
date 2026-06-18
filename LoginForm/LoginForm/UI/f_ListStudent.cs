@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Project_Group6;
 using Project_Group6.UI;
 using ProjectMonHoc;
@@ -17,9 +17,10 @@ namespace LoginForm
 
         My_DB db = new My_DB();
         private bool isLoaded = false;
+        private PaginationHelper _pager;
+
         public f_ListStudent()
         {
-
             InitializeComponent();
         }
 
@@ -40,6 +41,21 @@ namespace LoginForm
             cboSort.Items.Add("ID Asc");
             cboSort.Items.Add("ID Desc");
             cboSort.SelectedIndex = 0;
+
+            _pager = new PaginationHelper(
+                pageTable => {
+                    dgvStudent.DataSource = pageTable;
+                    if (dgvStudent.Columns["Picture"] != null)
+                        dgvStudent.Columns["Picture"].Visible = false;
+                },
+                lblPageInfo,
+                lblTotal,
+                btnFirst,
+                btnPrev,
+                btnNext,
+                btnLast,
+                cboPageSize
+            );
 
             isLoaded = true;
             btnViewScore.Enabled = false;
@@ -187,17 +203,8 @@ namespace LoginForm
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
 
-                dgvStudent.DataSource = dt;
-
-                if (dgvStudent.Columns["Picture"] != null)
-                    dgvStudent.Columns["Picture"].Visible = false;
-
-                lblTotal.Text = "Total Students: " + dt.Rows.Count;
-
-                dgvStudent.AllowUserToAddRows = false;
-                dgvStudent.RowHeadersVisible = false;
-                dgvStudent.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgvStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                UIStyleHelper.StyleDataGridView(dgvStudent);
+                _pager.SetData(dt);
 
                 // Reset labels
                 lblID.Text = lblFirstname.Text = lblLastname.Text = "";

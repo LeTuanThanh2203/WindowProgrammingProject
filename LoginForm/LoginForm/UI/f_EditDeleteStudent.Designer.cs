@@ -1,4 +1,4 @@
-﻿namespace Project_Group6.UI
+namespace Project_Group6.UI
 {
     partial class f_EditDeleteStudent
     {
@@ -15,286 +15,466 @@
 
         private void InitializeComponent()
         {
-            // Left – list panel
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             pnlSearch = new Panel();
-            cboGender = new ComboBox();
             cboSort = new ComboBox();
+            cboGender = new ComboBox();
             txtSearch = new TextBox();
             dgvStudents = new DataGridView();
-
-            // Right – edit panel
             panel2 = new Panel();
             pnlFormHeader = new Panel();
             lblFormTitle = new Label();
-
-            // Photo
             lblPhotoHint = new Label();
             picStudent = new PictureBox();
             btnChooseImage = new Button();
-
-            // Fields (match logic code names exactly)
-            label1 = new Label(); // ID
+            label1 = new Label();
             txtID = new TextBox();
-            label2 = new Label(); // Last name
+            label2 = new Label();
             txtFirstName = new TextBox();
-            label3 = new Label(); // First name
+            label3 = new Label();
             txtLastName = new TextBox();
-            label4 = new Label(); // DOB
+            label4 = new Label();
             dtpDob = new DateTimePicker();
-            label5 = new Label(); // Gender
+            label5 = new Label();
             cboGenderChoose = new ComboBox();
-            label6 = new Label(); // Phone
+            label6 = new Label();
             txtPhone = new TextBox();
-            label7 = new Label(); // Address
+            label7 = new Label();
             txtAddress = new TextBox();
-            label9 = new Label(); // Email
+            label9 = new Label();
             txtEmail = new TextBox();
-
-            // Buttons
             pnlButtons = new Panel();
             btnUpdate = new Button();
             btnDelete = new Button();
             btnQuit = new Button();
-
-            // ── Begin init ────────────────────────────────────────────
             panel1.SuspendLayout();
             pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
             panel2.SuspendLayout();
+            pnlFormHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
             pnlButtons.SuspendLayout();
             SuspendLayout();
-
-            // ══ LEFT PANEL ════════════════════════════════════════════
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(pnlSearch);
+            panel1.Controls.Add(dgvStudents);
             panel1.Dock = DockStyle.Left;
-            panel1.Width = 700;
-            panel1.BackColor = System.Drawing.Color.White;
-            panel1.Controls.AddRange(new Control[] { pnlSearch, dgvStudents });
-
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(700, 720);
+            panel1.TabIndex = 1;
+            // 
+            // pnlSearch
+            // 
+            pnlSearch.BackColor = Color.FromArgb(245, 247, 250);
+            pnlSearch.Controls.Add(cboSort);
+            pnlSearch.Controls.Add(cboGender);
+            pnlSearch.Controls.Add(txtSearch);
             pnlSearch.Dock = DockStyle.Top;
-            pnlSearch.Height = 52;
-            pnlSearch.BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+            pnlSearch.Location = new Point(0, 0);
+            pnlSearch.Name = "pnlSearch";
             pnlSearch.Padding = new Padding(8, 10, 8, 8);
-            pnlSearch.Controls.AddRange(new Control[] { cboSort, cboGender, txtSearch });
-
-            cboSort.Location = new System.Drawing.Point(8, 12);
-            cboSort.Size = new System.Drawing.Size(120, 28);
+            pnlSearch.Size = new Size(700, 52);
+            pnlSearch.TabIndex = 0;
+            // 
+            // cboSort
+            // 
             cboSort.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboSort.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            cboSort.Font = new Font("Segoe UI", 9.5F);
+            cboSort.Location = new Point(8, 12);
+            cboSort.Name = "cboSort";
+            cboSort.Size = new Size(120, 29);
+            cboSort.TabIndex = 0;
             cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
-
-            cboGender.Location = new System.Drawing.Point(136, 12);
-            cboGender.Size = new System.Drawing.Size(100, 28);
+            // 
+            // cboGender
+            // 
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboGender.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            cboGender.Font = new Font("Segoe UI", 9.5F);
+            cboGender.Location = new Point(136, 12);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(100, 29);
+            cboGender.TabIndex = 1;
             cboGender.SelectedIndexChanged += cboGender_SelectedIndexChanged;
-
-            txtSearch.Location = new System.Drawing.Point(244, 12);
-            txtSearch.Size = new System.Drawing.Size(444, 28);
-            txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Segoe UI", 9.5F);
+            txtSearch.Location = new Point(244, 12);
+            txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search by ID, name, email, phone...";
+            txtSearch.Size = new Size(444, 29);
+            txtSearch.TabIndex = 2;
             txtSearch.TextChanged += txtSearch_TextChanged;
-
-            dgvStudents.Dock = DockStyle.Fill;
+            // 
+            // dgvStudents
+            // 
             dgvStudents.AllowUserToAddRows = false;
+            dgvStudents.AllowUserToResizeColumns = false;
+            dgvStudents.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(246, 249, 253);
+            dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvStudents.BackgroundColor = Color.White;
+            dgvStudents.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(10, 61, 120);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStudents.Dock = DockStyle.Fill;
+            dgvStudents.EnableHeadersVisualStyles = false;
+            dgvStudents.Font = new Font("Segoe UI", 9F);
+            dgvStudents.Location = new Point(0, 0);
+            dgvStudents.MultiSelect = false;
+            dgvStudents.Name = "dgvStudents";
             dgvStudents.ReadOnly = true;
             dgvStudents.RowHeadersVisible = false;
-            dgvStudents.MultiSelect = false;
-            dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudents.BackgroundColor = System.Drawing.Color.White;
-            dgvStudents.BorderStyle = BorderStyle.None;
-            dgvStudents.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dgvStudents.RowHeadersWidth = 51;
             dgvStudents.RowTemplate.Height = 36;
-            dgvStudents.EnableHeadersVisualStyles = false;
-            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
-            dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            dgvStudents.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            dgvStudents.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(246, 249, 253);
+            dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStudents.Size = new Size(700, 720);
+            dgvStudents.TabIndex = 1;
             dgvStudents.CellClick += dgvStudents_CellClick;
-
-            // ══ RIGHT PANEL ═══════════════════════════════════════════
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(245, 247, 250);
+            panel2.Controls.Add(pnlFormHeader);
+            panel2.Controls.Add(lblPhotoHint);
+            panel2.Controls.Add(picStudent);
+            panel2.Controls.Add(btnChooseImage);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(txtID);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(txtFirstName);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(txtLastName);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(dtpDob);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(cboGenderChoose);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(txtPhone);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(txtAddress);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(txtEmail);
+            panel2.Controls.Add(pnlButtons);
             panel2.Dock = DockStyle.Fill;
-            panel2.BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
-
-            // Header strip
-            pnlFormHeader.Dock = DockStyle.Top;
-            pnlFormHeader.Height = 52;
-            pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            panel2.Location = new Point(700, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(580, 720);
+            panel2.TabIndex = 0;
+            // 
+            // pnlFormHeader
+            // 
+            pnlFormHeader.BackColor = Color.FromArgb(10, 61, 120);
             pnlFormHeader.Controls.Add(lblFormTitle);
-
-            lblFormTitle.Text = "Edit / Delete Student";
-            lblFormTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
-            lblFormTitle.ForeColor = System.Drawing.Color.White;
-            lblFormTitle.Location = new System.Drawing.Point(20, 14);
+            pnlFormHeader.Dock = DockStyle.Top;
+            pnlFormHeader.Location = new Point(0, 0);
+            pnlFormHeader.Name = "pnlFormHeader";
+            pnlFormHeader.Size = new Size(580, 52);
+            pnlFormHeader.TabIndex = 0;
+            // 
+            // lblFormTitle
+            // 
             lblFormTitle.AutoSize = true;
-
-            // Photo section on the right panel
-            lblPhotoHint.Text = "Student Photo";
-            lblPhotoHint.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
-            lblPhotoHint.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
-            lblPhotoHint.Location = new System.Drawing.Point(20, 66);
+            lblFormTitle.Font = new Font("Segoe UI Semibold", 13F);
+            lblFormTitle.ForeColor = Color.White;
+            lblFormTitle.Location = new Point(20, 14);
+            lblFormTitle.Name = "lblFormTitle";
+            lblFormTitle.Size = new Size(222, 30);
+            lblFormTitle.TabIndex = 0;
+            lblFormTitle.Text = "Edit / Delete Student";
+            // 
+            // lblPhotoHint
+            // 
             lblPhotoHint.AutoSize = true;
-
-            picStudent.Location = new System.Drawing.Point(20, 92);
-            picStudent.Size = new System.Drawing.Size(130, 160);
-            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            lblPhotoHint.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblPhotoHint.ForeColor = Color.FromArgb(80, 80, 90);
+            lblPhotoHint.Location = new Point(20, 66);
+            lblPhotoHint.Name = "lblPhotoHint";
+            lblPhotoHint.Size = new Size(116, 21);
+            lblPhotoHint.TabIndex = 1;
+            lblPhotoHint.Text = "Student Photo";
+            // 
+            // picStudent
+            // 
+            picStudent.BackColor = Color.FromArgb(235, 240, 248);
             picStudent.BorderStyle = BorderStyle.FixedSingle;
-            picStudent.BackColor = System.Drawing.Color.FromArgb(235, 240, 248);
-
-            btnChooseImage.Text = "Edit Photo";
-            btnChooseImage.Location = new System.Drawing.Point(20, 262);
-            btnChooseImage.Size = new System.Drawing.Size(130, 36);
-            btnChooseImage.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            btnChooseImage.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
-            btnChooseImage.ForeColor = System.Drawing.Color.White;
-            btnChooseImage.FlatStyle = FlatStyle.Flat;
-            btnChooseImage.FlatAppearance.BorderSize = 0;
+            picStudent.Location = new Point(20, 92);
+            picStudent.Name = "picStudent";
+            picStudent.Size = new Size(130, 160);
+            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            picStudent.TabIndex = 2;
+            picStudent.TabStop = false;
+            // 
+            // btnChooseImage
+            // 
+            btnChooseImage.BackColor = Color.FromArgb(10, 61, 120);
             btnChooseImage.Cursor = Cursors.Hand;
+            btnChooseImage.FlatAppearance.BorderSize = 0;
+            btnChooseImage.FlatStyle = FlatStyle.Flat;
+            btnChooseImage.Font = new Font("Segoe UI", 9.5F);
+            btnChooseImage.ForeColor = Color.White;
+            btnChooseImage.Location = new Point(20, 262);
+            btnChooseImage.Name = "btnChooseImage";
+            btnChooseImage.Size = new Size(130, 36);
+            btnChooseImage.TabIndex = 3;
+            btnChooseImage.Text = "Edit Photo";
+            btnChooseImage.UseVisualStyleBackColor = false;
             btnChooseImage.Click += btnEditImage_Click;
-
-            // Fields – column right of photo
-            int lblX = 170, fldX = 320, rowH = 48, startY = 66;
-
-            SetupField(label1, "Student ID:", lblX, startY + rowH * 0);
-            txtID.Location = new System.Drawing.Point(fldX, startY + rowH * 0 - 2);
-            txtID.Size = new System.Drawing.Size(220, 27);
-            txtID.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            txtID.ReadOnly = true;  // ID is not editable per logic
-            txtID.BackColor = System.Drawing.Color.FromArgb(235, 240, 248);
-
-            SetupField(label2, "Last Name:", lblX, startY + rowH * 1);
-            txtFirstName.Location = new System.Drawing.Point(fldX, startY + rowH * 1 - 2);
-            txtFirstName.Size = new System.Drawing.Size(220, 27);
-            txtFirstName.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            // 
+            // label1
+            // 
+            label1.Text = "Student ID:";
+            label1.Location = new Point(180, 71);
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.5F);
+            label1.ForeColor = Color.FromArgb(80, 80, 90);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 4;
+            // 
+            // txtID
+            // 
+            txtID.BackColor = Color.FromArgb(235, 240, 248);
+            txtID.Font = new Font("Segoe UI", 9.5F);
+            txtID.Location = new Point(320, 66);
+            txtID.Name = "txtID";
+            txtID.ReadOnly = true;
+            txtID.Size = new Size(220, 29);
+            txtID.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.Text = "First Name:";
+            label2.Location = new Point(180, 115);
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.5F);
+            label2.ForeColor = Color.FromArgb(80, 80, 90);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 23);
+            label2.TabIndex = 6;
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Font = new Font("Segoe UI", 9.5F);
+            txtFirstName.Location = new Point(320, 110);
             txtFirstName.Name = "txtFirstName";
-
-            SetupField(label3, "First Name:", lblX, startY + rowH * 2);
-            txtLastName.Location = new System.Drawing.Point(fldX, startY + rowH * 2 - 2);
-            txtLastName.Size = new System.Drawing.Size(220, 27);
-            txtLastName.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtFirstName.Size = new Size(220, 29);
+            txtFirstName.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.Text = "Last Name:";
+            label3.Location = new Point(180, 159);
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9.5F);
+            label3.ForeColor = Color.FromArgb(80, 80, 90);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 8;
+            // 
+            // txtLastName
+            // 
+            txtLastName.Font = new Font("Segoe UI", 9.5F);
+            txtLastName.Location = new Point(320, 154);
             txtLastName.Name = "txtLastName";
-
-            SetupField(label4, "Date of Birth:", lblX, startY + rowH * 3);
-            dtpDob.Location = new System.Drawing.Point(fldX, startY + rowH * 3 - 2);
-            dtpDob.Size = new System.Drawing.Size(180, 27);
-            dtpDob.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtLastName.Size = new Size(220, 29);
+            txtLastName.TabIndex = 9;
+            // 
+            // label4
+            // 
+            label4.Text = "Date of Birth:";
+            label4.Location = new Point(180, 203);
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.5F);
+            label4.ForeColor = Color.FromArgb(80, 80, 90);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 23);
+            label4.TabIndex = 10;
+            // 
+            // dtpDob
+            // 
+            dtpDob.Font = new Font("Segoe UI", 9.5F);
             dtpDob.Format = DateTimePickerFormat.Short;
-
-            SetupField(label5, "Gender:", lblX, startY + rowH * 4);
-            cboGenderChoose.Location = new System.Drawing.Point(fldX, startY + rowH * 4 - 2);
-            cboGenderChoose.Size = new System.Drawing.Size(120, 28);
+            dtpDob.Location = new Point(320, 198);
+            dtpDob.Name = "dtpDob";
+            dtpDob.Size = new Size(180, 29);
+            dtpDob.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.Text = "Gender:";
+            label5.Location = new Point(180, 247);
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9.5F);
+            label5.ForeColor = Color.FromArgb(80, 80, 90);
+            label5.Name = "label5";
+            label5.Size = new Size(100, 23);
+            label5.TabIndex = 12;
+            // 
+            // cboGenderChoose
+            // 
             cboGenderChoose.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboGenderChoose.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-
-            SetupField(label6, "Phone:", lblX, startY + rowH * 5);
-            txtPhone.Location = new System.Drawing.Point(fldX, startY + rowH * 5 - 2);
-            txtPhone.Size = new System.Drawing.Size(220, 27);
-            txtPhone.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-
-            SetupField(label7, "Address:", lblX, startY + rowH * 6);
-            txtAddress.Location = new System.Drawing.Point(fldX, startY + rowH * 6 - 2);
-            txtAddress.Size = new System.Drawing.Size(220, 27);
-            txtAddress.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-
-            SetupField(label9, "Email:", lblX, startY + rowH * 7);
-            txtEmail.Location = new System.Drawing.Point(fldX, startY + rowH * 7 - 2);
-            txtEmail.Size = new System.Drawing.Size(220, 27);
-            txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-
-            panel2.Controls.AddRange(new Control[]
-            {
-                pnlFormHeader,
-                lblPhotoHint, picStudent, btnChooseImage,
-                label1, txtID,
-                label2, txtFirstName, label3, txtLastName,
-                label4, dtpDob,
-                label5, cboGenderChoose, label6, txtPhone,
-                label7, txtAddress, label9, txtEmail,
-                pnlButtons
-            });
-
-            // ── Button panel ──────────────────────────────────────────
+            cboGenderChoose.Font = new Font("Segoe UI", 9.5F);
+            cboGenderChoose.Location = new Point(320, 242);
+            cboGenderChoose.Name = "cboGenderChoose";
+            cboGenderChoose.Size = new Size(120, 29);
+            cboGenderChoose.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.Text = "Phone:";
+            label6.Location = new Point(180, 291);
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9.5F);
+            label6.ForeColor = Color.FromArgb(80, 80, 90);
+            label6.Name = "label6";
+            label6.Size = new Size(100, 23);
+            label6.TabIndex = 14;
+            // 
+            // txtPhone
+            // 
+            txtPhone.Font = new Font("Segoe UI", 9.5F);
+            txtPhone.Location = new Point(320, 286);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(220, 29);
+            txtPhone.TabIndex = 15;
+            // 
+            // label7
+            // 
+            label7.Text = "Address:";
+            label7.Location = new Point(180, 335);
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.5F);
+            label7.ForeColor = Color.FromArgb(80, 80, 90);
+            label7.Name = "label7";
+            label7.Size = new Size(100, 23);
+            label7.TabIndex = 16;
+            // 
+            // txtAddress
+            // 
+            txtAddress.Font = new Font("Segoe UI", 9.5F);
+            txtAddress.Location = new Point(320, 330);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(220, 29);
+            txtAddress.TabIndex = 17;
+            // 
+            // label9
+            // 
+            label9.Text = "Email:";
+            label9.Location = new Point(180, 379);
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.5F);
+            label9.ForeColor = Color.FromArgb(80, 80, 90);
+            label9.Name = "label9";
+            label9.Size = new Size(100, 23);
+            label9.TabIndex = 18;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Font = new Font("Segoe UI", 9.5F);
+            txtEmail.Location = new Point(320, 374);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(220, 29);
+            txtEmail.TabIndex = 19;
+            // 
+            // pnlButtons
+            // 
+            pnlButtons.BackColor = Color.White;
+            pnlButtons.Controls.Add(btnUpdate);
+            pnlButtons.Controls.Add(btnDelete);
+            pnlButtons.Controls.Add(btnQuit);
             pnlButtons.Dock = DockStyle.Bottom;
-            pnlButtons.Height = 68;
-            pnlButtons.BackColor = System.Drawing.Color.White;
-            pnlButtons.Controls.AddRange(new Control[] { btnUpdate, btnDelete, btnQuit });
-
-            StylePrimaryBtn(btnUpdate, "Save Changes", 16);
-            StyleDangerBtn(btnDelete, "Delete", 162);
-            StyleSecondaryBtn(btnQuit, "Cancel", 292);
+            pnlButtons.Location = new Point(0, 652);
+            pnlButtons.Name = "pnlButtons";
+            pnlButtons.Size = new Size(580, 68);
+            pnlButtons.TabIndex = 20;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Text = "Update";
+            btnUpdate.Location = new Point(24, 13);
+            btnUpdate.Size = new Size(130, 42);
+            btnUpdate.Font = new Font("Segoe UI Semibold", 9.5F);
+            btnUpdate.BackColor = Color.FromArgb(10, 61, 120);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.Cursor = Cursors.Hand;
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.TabIndex = 0;
             btnUpdate.Click += btnUpdate_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Text = "Delete";
+            btnDelete.Location = new Point(178, 13);
+            btnDelete.Size = new Size(112, 42);
+            btnDelete.Font = new Font("Segoe UI Semibold", 9.5F);
+            btnDelete.BackColor = Color.FromArgb(180, 30, 30);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.Name = "btnDelete";
+            btnDelete.TabIndex = 1;
             btnDelete.Click += btnDelete_Click;
+            // 
+            // btnQuit
+            // 
+            btnQuit.Text = "Cancel";
+            btnQuit.Location = new Point(310, 13);
+            btnQuit.Size = new Size(110, 42);
+            btnQuit.Font = new Font("Segoe UI", 9.5F);
+            btnQuit.BackColor = Color.White;
+            btnQuit.ForeColor = Color.FromArgb(60, 70, 85);
+            btnQuit.FlatStyle = FlatStyle.Flat;
+            btnQuit.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnQuit.FlatAppearance.BorderSize = 1;
+            btnQuit.Cursor = Cursors.Hand;
+            btnQuit.Name = "btnQuit";
+            btnQuit.TabIndex = 2;
             btnQuit.Click += btnCancel_Click;
-
-            // ── Form ──────────────────────────────────────────────────
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            // 
+            // f_EditDeleteStudent
+            // 
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1280, 720);
-            Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            BackColor = Color.FromArgb(245, 247, 250);
+            ClientSize = new Size(1280, 720);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Font = new Font("Segoe UI", 9.5F);
+            Name = "f_EditDeleteStudent";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Manage Students — Academic Management";
-            BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
             Load += ManageStudent_Load;
             Shown += f_ListStudent_Shown;
-
-            Controls.AddRange(new Control[] { panel2, panel1 });
-
             panel1.ResumeLayout(false);
             pnlSearch.ResumeLayout(false);
+            pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            pnlFormHeader.ResumeLayout(false);
+            pnlFormHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
             pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
-
-        private void SetupField(Label lbl, string text, int x, int y)
-        {
-            lbl.Text = text;
-            lbl.Location = new System.Drawing.Point(x, y + 5);
-            lbl.AutoSize = true;
-            lbl.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            lbl.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
-        }
-
-        private void StylePrimaryBtn(Button btn, string text, int left)
-        {
-            btn.Text = text; btn.Location = new System.Drawing.Point(left, 13);
-            btn.Size = new System.Drawing.Size(130, 42);
-            btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
-            btn.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
-            btn.ForeColor = System.Drawing.Color.White;
-            btn.FlatStyle = FlatStyle.Flat; btn.FlatAppearance.BorderSize = 0;
-            btn.Cursor = Cursors.Hand;
-        }
-
-        private void StyleDangerBtn(Button btn, string text, int left)
-        {
-            btn.Text = text; btn.Location = new System.Drawing.Point(left, 13);
-            btn.Size = new System.Drawing.Size(112, 42);
-            btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
-            btn.BackColor = System.Drawing.Color.FromArgb(180, 30, 30);
-            btn.ForeColor = System.Drawing.Color.White;
-            btn.FlatStyle = FlatStyle.Flat; btn.FlatAppearance.BorderSize = 0;
-            btn.Cursor = Cursors.Hand;
-        }
-
-        private void StyleSecondaryBtn(Button btn, string text, int left)
-        {
-            btn.Text = text; btn.Location = new System.Drawing.Point(left, 13);
-            btn.Size = new System.Drawing.Size(110, 42);
-            btn.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            btn.BackColor = System.Drawing.Color.White;
-            btn.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btn.FlatAppearance.BorderSize = 1; btn.Cursor = Cursors.Hand;
-        }
-
         #endregion
 
         private Panel panel1, pnlSearch;

@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
 using System;
 using System.Data;
@@ -444,4 +444,63 @@ public class Student
             FROM Student
             GROUP BY LEFT(ID, 2)
             ORDER BY EnrollmentYear");
+
+    // ================= ADDITIONAL STATISTICS =================
+    public int TotalCoursesCount()
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+                var cmd = new SqlCommand("SELECT COUNT(*) FROM Course", db.getConnection);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        catch { return 0; }
+    }
+
+    public int TotalClassesCount()
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+                var cmd = new SqlCommand("SELECT COUNT(*) FROM Class", db.getConnection);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        catch { return 0; }
+    }
+
+    public int TotalEnrollmentsCount()
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+                var cmd = new SqlCommand("SELECT COUNT(*) FROM DKMH", db.getConnection);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        catch { return 0; }
+    }
+
+    public DataTable GetGradeDistribution() =>
+        ExecuteQuery(@"
+            SELECT Overview, COUNT(*) AS Total
+            FROM Score
+            WHERE Overview IS NOT NULL
+            GROUP BY Overview");
+
+    public DataTable GetTopStudentsByGPA() =>
+        ExecuteQuery(@"
+            SELECT TOP 5 
+                ID, 
+                FirstName + ' ' + LastName AS StudentName, 
+                dbo.fn_GetGPA(ID) AS GPA
+            FROM Student
+            ORDER BY GPA DESC");
 }

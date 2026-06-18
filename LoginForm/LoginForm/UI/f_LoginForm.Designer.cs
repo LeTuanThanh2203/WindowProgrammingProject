@@ -114,13 +114,13 @@
             linklbl_Register.Anchor = AnchorStyles.None;
             linklbl_Register.AutoSize = true;
             linklbl_Register.Cursor = Cursors.Hand;
-            linklbl_Register.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linklbl_Register.LinkBehavior = LinkBehavior.HoverUnderline;
-            linklbl_Register.LinkColor = Color.Navy;
+            linklbl_Register.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            linklbl_Register.LinkBehavior = LinkBehavior.AlwaysUnderline;
+            linklbl_Register.LinkColor = Color.White;
             linklbl_Register.Location = new Point(467, 147);
             linklbl_Register.Margin = new Padding(4, 0, 4, 0);
             linklbl_Register.Name = "linklbl_Register";
-            linklbl_Register.Size = new Size(103, 38);
+            linklbl_Register.Size = new Size(105, 38);
             linklbl_Register.TabIndex = 10;
             linklbl_Register.TabStop = true;
             linklbl_Register.Text = "Signup";
@@ -197,6 +197,7 @@
             // pnWelcome
             // 
             pnWelcome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnWelcome.BackColor = Color.FromArgb(10, 61, 120);
             pnWelcome.Controls.Add(pnWelcomeText);
             pnWelcome.Controls.Add(pnWelcomeTitle);
             pnWelcome.Location = new Point(35, 217);
@@ -207,6 +208,7 @@
             // pnWelcomeText
             // 
             pnWelcomeText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnWelcomeText.BackColor = Color.FromArgb(10, 61, 120);
             pnWelcomeText.Controls.Add(lblWelcomeText2);
             pnWelcomeText.Controls.Add(lblWelcomeText);
             pnWelcomeText.Controls.Add(lblRegisterAnswer);
@@ -244,7 +246,7 @@
             // 
             lblRegisterAnswer.Anchor = AnchorStyles.None;
             lblRegisterAnswer.AutoSize = true;
-            lblRegisterAnswer.BackColor = Color.DeepSkyBlue;
+            lblRegisterAnswer.BackColor = Color.FromArgb(10, 61, 120);
             lblRegisterAnswer.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRegisterAnswer.ForeColor = Color.White;
             lblRegisterAnswer.Location = new Point(79, 147);
@@ -256,6 +258,7 @@
             // pnWelcomeTitle
             // 
             pnWelcomeTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnWelcomeTitle.BackColor = Color.FromArgb(10, 61, 120);
             pnWelcomeTitle.Controls.Add(lblWelcome);
             pnWelcomeTitle.Location = new Point(0, 1);
             pnWelcomeTitle.Name = "pnWelcomeTitle";
@@ -305,12 +308,13 @@
             // 
             bt_Login.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             bt_Login.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            bt_Login.BackColor = Color.FromArgb(0, 123, 255);
+            bt_Login.BackColor = Color.FromArgb(0, 68, 147);
             bt_Login.BackgroundImageLayout = ImageLayout.None;
             bt_Login.Cursor = Cursors.Hand;
             bt_Login.FlatAppearance.BorderSize = 0;
             bt_Login.FlatStyle = FlatStyle.Flat;
             bt_Login.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bt_Login.ForeColor = Color.White;
             bt_Login.Location = new Point(109, 517);
             bt_Login.Margin = new Padding(4, 3, 4, 3);
             bt_Login.Name = "bt_Login";

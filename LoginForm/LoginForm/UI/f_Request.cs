@@ -1,4 +1,4 @@
-﻿using LoginForm;
+using LoginForm;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -7,10 +7,9 @@ namespace Project_Group6
 {
     public partial class f_Request : Form
     {
-        ConfirmationRequest _request =
-            new ConfirmationRequest();
-
-        string currentMSSV = Globals.Username;
+        private readonly ConfirmationRequest _request = new ConfirmationRequest();
+        private readonly string currentMSSV = Globals.Username;
+        private LoginForm.PaginationHelper _pager;
 
         public f_Request()
         {
@@ -21,10 +20,35 @@ namespace Project_Group6
         }
 
         // ================= LOAD FORM =================
-        private void f_Request_Load(
-            object sender,
-            EventArgs e)
+        private void f_Request_Load(object sender, EventArgs e)
         {
+            // Style grid
+            LoginForm.UIStyleHelper.StyleDataGridView(dataGridView1);
+
+            // Initialize pagination helper
+            _pager = new LoginForm.PaginationHelper(
+                pageTable =>
+                {
+                    dataGridView1.Rows.Clear();
+                    foreach (DataRow row in pageTable.Rows)
+                    {
+                        dataGridView1.Rows.Add(
+                            row["ConfirmationName"].ToString(),
+                            row["QueueNumber"].ToString(),
+                            row["Quantity"].ToString(),
+                            row["Status"].ToString() // "Done" or "Pending"
+                        );
+                    }
+                },
+                lblPageInfo,
+                lblTotal,
+                btnFirst,
+                btnPrev,
+                btnNext,
+                btnLast,
+                cboPageSize
+            );
+
             LoadConfirmationNames();
             LoadQuantity();
             LoadRequests();
@@ -54,39 +78,12 @@ namespace Project_Group6
         // ================= LOAD REQUESTS =================
         private void LoadRequests()
         {
-            DataTable dt =
-                _request.GetRequestsByMSSV(currentMSSV);
-
-            dataGridView1.Rows.Clear();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                dataGridView1.Rows.Add(
-                    row["ConfirmationName"].ToString(),
-                    row["QueueNumber"].ToString(),
-                    row["Quantity"].ToString(),
-                    row["Status"].ToString()); // "Done" hoặc "Pending"
-            }
-
-            // Style
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.ReadOnly = true;
-            dataGridView1.MultiSelect = false;
-            dataGridView1.SelectionMode =
-                DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.RowTemplate.Height = 35;
-            dataGridView1.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.BackgroundColor =
-                System.Drawing.Color.White;
-            dataGridView1.RowHeadersVisible = false;
+            DataTable dt = _request.GetRequestsByMSSV(currentMSSV);
+            _pager.SetData(dt);
         }
 
         // ================= ADD =================
-        private void btn_Add_Click(
-            object sender,
-            EventArgs e)
+        private void btn_Add_Click(object sender, EventArgs e)
         {
             if (cbo_ConfirmationName.SelectedItem == null)
             {
@@ -101,12 +98,8 @@ namespace Project_Group6
             var newRequest = new ConfirmationRequest
             {
                 MSSV = currentMSSV,
-                ConfirmationName =
-                    cbo_ConfirmationName
-                    .SelectedItem.ToString(),
-                Quantity =
-                    Convert.ToInt32(
-                        cbo_Quantity.SelectedItem),
+                ConfirmationName = cbo_ConfirmationName.SelectedItem.ToString(),
+                Quantity = Convert.ToInt32(cbo_Quantity.SelectedItem),
                 Status = 0 // Pending
             };
 

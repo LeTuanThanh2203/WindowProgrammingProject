@@ -326,7 +326,7 @@ namespace LoginForm
             // 
             // pnLogo
             // 
-            pnLogo.BackColor = Color.DodgerBlue;
+            pnLogo.BackColor = Color.FromArgb(10, 61, 120);
             pnLogo.Controls.Add(pictureBox1);
             pnLogo.Location = new Point(0, 0);
             pnLogo.Name = "pnLogo";

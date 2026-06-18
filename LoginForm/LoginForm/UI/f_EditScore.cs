@@ -1,4 +1,4 @@
-﻿using Project_Group6.Models;
+using Project_Group6.Models;
 using System;
 using System.Data;
 using System.Drawing;
@@ -11,6 +11,7 @@ namespace LoginForm
     {
         private readonly Score _score = new();
         private DataTable _currentTable;
+        private PaginationHelper _pager;
 
         public f_EditScore()
         {
@@ -22,7 +23,7 @@ namespace LoginForm
             cboSemester.SelectedIndexChanged += Filter_Changed;
             btnAdd.Click += btnAdd_Click;
             btnReset.Click += btnReset_Click;
-            btnExport.Click += btnExport_Click; // FIX: nút Export trước đây không được wiring nên không hoạt động
+   
 
             dgvStudent.CellEndEdit += dgvStudent_CellEndEdit;
         }
@@ -30,6 +31,23 @@ namespace LoginForm
         // ================= LOAD =================
         private void f_EditScore_Load(object sender, EventArgs e)
         {
+            _pager = new PaginationHelper(
+                pageTable => {
+                    dgvStudent.DataSource = pageTable;
+                    LockNonScoreColumns();
+                },
+                lblPageInfo,
+                lblTotal,
+                btnFirst,
+                btnPrev,
+                btnNext,
+                btnLast,
+                cboPageSize
+            );
+
+            UIStyleHelper.StyleDataGridView(dgvStudent);
+            dgvStudent.ReadOnly = false;
+
             LoadClasses();
             LoadAcademicYears();
             LoadSemesters();
@@ -81,8 +99,7 @@ namespace LoginForm
         private void RefreshGrid()
         {
             _currentTable = _score.GetAllScore();
-            dgvStudent.DataSource = _currentTable;
-            LockNonScoreColumns();
+            _pager.SetData(_currentTable);
         }
 
         private void LockNonScoreColumns()
@@ -158,8 +175,7 @@ namespace LoginForm
             }
 
             _currentTable = dt;
-            dgvStudent.DataSource = dt;
-            LockNonScoreColumns();
+            _pager.SetData(dt);
         }
 
         // ================= SAVE =================
@@ -217,8 +233,6 @@ namespace LoginForm
             RefreshGrid();
             ApplyFilter();
         }
-
-        private void btnExport_Click(object sender, EventArgs e) { }
 
         // ================= RESET =================
         private void btnReset_Click(object sender, EventArgs e)

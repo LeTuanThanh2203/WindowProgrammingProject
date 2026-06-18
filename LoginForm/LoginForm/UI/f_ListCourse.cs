@@ -1,4 +1,4 @@
-﻿using LoginForm;
+using LoginForm;
 using Project_Group6.Models;
 using System;
 using System.Data;
@@ -10,6 +10,7 @@ namespace LoginForm
     {
         private readonly Course _course = new();
         private bool _isLoaded = false;
+        private PaginationHelper _pager;
 
         public f_ListCourse()
         {
@@ -36,6 +37,19 @@ namespace LoginForm
             });
             cboSort.SelectedIndex = 0;
 
+            _pager = new PaginationHelper(
+                pageTable => {
+                    dgvCourse.DataSource = pageTable;
+                },
+                lblPageInfo,
+                lblTotal,
+                btnFirst,
+                btnPrev,
+                btnNext,
+                btnLast,
+                cboPageSize
+            );
+
             _isLoaded = true;
             LoadCourse();
         }
@@ -61,8 +75,9 @@ namespace LoginForm
                 _ => "CourseID ASC"
             };
 
-            dgvCourse.DataSource = dv.ToTable();
-            lblTotal.Text = $"Total Course: {_course.TotalCourse()}";
+            DataTable sortedTable = dv.ToTable();
+            UIStyleHelper.StyleDataGridView(dgvCourse);
+            _pager.SetData(sortedTable);
         }
 
         // ================= SEARCH =================

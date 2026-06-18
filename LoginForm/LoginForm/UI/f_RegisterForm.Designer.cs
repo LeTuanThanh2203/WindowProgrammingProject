@@ -98,6 +98,7 @@ namespace LoginForm
             lbl_Username.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lbl_Username.AutoSize = true;
             lbl_Username.Font = new Font("Segoe UI", 16.2F);
+            lbl_Username.ForeColor = Color.Black;
             lbl_Username.Location = new Point(52, 146);
             lbl_Username.Margin = new Padding(4, 0, 4, 0);
             lbl_Username.Name = "lbl_Username";
@@ -141,9 +142,9 @@ namespace LoginForm
             // bt_OTP
             // 
             bt_OTP.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            bt_OTP.Location = new Point(579, 2);
+            bt_OTP.Location = new Point(579, 0);
             bt_OTP.Name = "bt_OTP";
-            bt_OTP.Size = new Size(126, 27);
+            bt_OTP.Size = new Size(126, 33);
             bt_OTP.TabIndex = 35;
             bt_OTP.Text = "Send";
             bt_OTP.UseVisualStyleBackColor = true;
@@ -189,16 +190,17 @@ namespace LoginForm
             // 
             btn_Register.Anchor = AnchorStyles.Top;
             btn_Register.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btn_Register.BackColor = Color.FromArgb(0, 123, 255);
+            btn_Register.BackColor = Color.FromArgb(0, 68, 147);
             btn_Register.BackgroundImageLayout = ImageLayout.None;
             btn_Register.Cursor = Cursors.Hand;
             btn_Register.FlatAppearance.BorderSize = 0;
             btn_Register.FlatStyle = FlatStyle.Flat;
             btn_Register.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Register.Location = new Point(183, 650);
+            btn_Register.ForeColor = Color.White;
+            btn_Register.Location = new Point(451, 640);
             btn_Register.Margin = new Padding(4, 3, 4, 3);
             btn_Register.Name = "btn_Register";
-            btn_Register.Size = new Size(465, 67);
+            btn_Register.Size = new Size(252, 58);
             btn_Register.TabIndex = 38;
             btn_Register.Text = "Sign up";
             btn_Register.UseVisualStyleBackColor = false;
@@ -208,14 +210,15 @@ namespace LoginForm
             // 
             bt_Cancel.Anchor = AnchorStyles.Top;
             bt_Cancel.AutoSize = true;
-            bt_Cancel.BackColor = Color.Transparent;
+            bt_Cancel.BackColor = Color.FromArgb(238, 0, 0);
             bt_Cancel.Cursor = Cursors.Hand;
             bt_Cancel.FlatStyle = FlatStyle.Flat;
             bt_Cancel.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bt_Cancel.Location = new Point(183, 728);
+            bt_Cancel.ForeColor = Color.White;
+            bt_Cancel.Location = new Point(153, 640);
             bt_Cancel.Margin = new Padding(4, 3, 4, 3);
             bt_Cancel.Name = "bt_Cancel";
-            bt_Cancel.Size = new Size(465, 63);
+            bt_Cancel.Size = new Size(252, 58);
             bt_Cancel.TabIndex = 39;
             bt_Cancel.Text = "Cancel";
             bt_Cancel.UseVisualStyleBackColor = false;

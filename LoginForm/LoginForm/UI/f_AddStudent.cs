@@ -26,6 +26,7 @@ namespace LoginForm
         public f_AddStudent()
         {
             InitializeComponent();
+            SetupLayout();
         }
 
         // =======================
@@ -368,6 +369,105 @@ Student Management System";
             { MessageBox.Show("Invalid date of birth!"); return false; }
 
             return true;
+        }
+
+
+        private void SetupLayout()
+        {
+            const int LBL_X = 36;
+            const int CTL_X = 200;
+            const int ROW_H = 72;
+            const int LBL_DY = 4;
+            const int CTL_H = 38;
+            const int FULL_W = 500;
+            const int HALF_W = 236;
+            const int GAP = 28;
+            int y = 20;
+
+            // Row 0 — Student ID
+            SetupField(label1, "Student ID", LBL_X, y + LBL_DY);
+            txtID.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtID.Location = new System.Drawing.Point(CTL_X, y);
+            txtID.Size = new System.Drawing.Size(FULL_W, CTL_H);
+            txtID.MaxLength = 20;
+            txtID.TabIndex = 1;
+            y += ROW_H;
+
+            // Row 1 — First Name | Last Name
+            SetupField(lblFirstName, "First Name", LBL_X, y + LBL_DY);
+            txtFirstName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtFirstName.Location = new System.Drawing.Point(CTL_X, y);
+            txtFirstName.Size = new System.Drawing.Size(HALF_W, CTL_H);
+            txtFirstName.TabIndex = 3;
+
+            int col2X = CTL_X + HALF_W + GAP;
+            lblLastName.Text = "Last Name";
+            lblLastName.Location = new System.Drawing.Point(col2X, y + LBL_DY);
+            lblLastName.AutoSize = true;
+            lblLastName.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblLastName.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
+            txtLastName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtLastName.Location = new System.Drawing.Point(col2X + 90, y);
+            txtLastName.Size = new System.Drawing.Size(HALF_W - 90, CTL_H);
+            txtLastName.TabIndex = 5;
+            y += ROW_H;
+
+            // Row 2 — Date of Birth | Gender
+            SetupField(label4, "Date of Birth", LBL_X, y + LBL_DY);
+            dtpDob.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dtpDob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            dtpDob.Location = new System.Drawing.Point(CTL_X, y);
+            dtpDob.Size = new System.Drawing.Size(HALF_W, CTL_H);
+            dtpDob.TabIndex = 7;
+
+            label5.Text = "Gender";
+            label5.Location = new System.Drawing.Point(col2X, y + LBL_DY);
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            label5.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
+            cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cboGender.Font = new System.Drawing.Font("Segoe UI", 10F);
+            cboGender.Location = new System.Drawing.Point(col2X + 72, y);
+            cboGender.Size = new System.Drawing.Size(HALF_W - 72, CTL_H);
+            cboGender.TabIndex = 9;
+            y += ROW_H;
+
+            // Row 3 — Phone
+            SetupField(label6, "Phone", LBL_X, y + LBL_DY);
+            txtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtPhone.Location = new System.Drawing.Point(CTL_X, y);
+            txtPhone.Size = new System.Drawing.Size(HALF_W, CTL_H);
+            txtPhone.MaxLength = 15;
+            txtPhone.TabIndex = 11;
+            y += ROW_H;
+
+            // Row 4 — Address
+            SetupField(label7, "Address", LBL_X, y + LBL_DY);
+            txtAddress.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtAddress.Location = new System.Drawing.Point(CTL_X, y);
+            txtAddress.Size = new System.Drawing.Size(FULL_W, CTL_H);
+            txtAddress.TabIndex = 13;
+            y += ROW_H;
+
+            // Row 5 — Email (full width)
+            SetupField(label9, "Email", LBL_X, y + LBL_DY);
+            txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtEmail.Location = new System.Drawing.Point(CTL_X, y);
+            txtEmail.Size = new System.Drawing.Size(FULL_W, CTL_H);
+            txtEmail.Name = "txtEmail"; txtEmail.TabIndex = 15;
+
+           
+
+
+        }
+
+        private void SetupField(System.Windows.Forms.Label lbl, string text, int x, int y)
+        {
+            lbl.Text = text;
+            lbl.Location = new System.Drawing.Point(x, y);
+            lbl.AutoSize = true;
+            lbl.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lbl.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
         }
     }
 }

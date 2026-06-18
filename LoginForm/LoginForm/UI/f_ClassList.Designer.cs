@@ -1,16 +1,9 @@
-﻿namespace Project_Group6
+namespace Project_Group6
 {
     partial class f_ClassList
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,187 +15,343 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            pnBottom = new Panel();
-            btnEdit = new Button();
-            btnAdd = new Button();
-            btnRefresh = new Button();
-            lblTotal = new Label();
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            pnlToolbar = new Panel();
+            txtSearch = new TextBox();
             cboSort = new ComboBox();
             cboGender = new ComboBox();
-            txtSearch = new TextBox();
-            panel2 = new Panel();
+            btnRefresh = new Button();
+            pnlGrid = new Panel();
             dgvClassList = new DataGridView();
-            pnMain = new Panel();
-            panel1 = new Panel();
-            pnBottom.SuspendLayout();
-            panel2.SuspendLayout();
+            pnlBottom = new Panel();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            lblTotal = new Label();
+            pnlPagination = new Panel();
+            cboPageSize = new ComboBox();
+            btnFirst = new Button();
+            btnPrev = new Button();
+            lblPageInfo = new Label();
+            btnNext = new Button();
+            btnLast = new Button();
+            pnlHeader.SuspendLayout();
+            pnlToolbar.SuspendLayout();
+            pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClassList).BeginInit();
-            pnMain.SuspendLayout();
-            panel1.SuspendLayout();
+            pnlBottom.SuspendLayout();
+            pnlPagination.SuspendLayout();
             SuspendLayout();
             // 
-            // pnBottom
+            // pnlHeader
             // 
-            pnBottom.Controls.Add(btnEdit);
-            pnBottom.Controls.Add(btnAdd);
-            pnBottom.Controls.Add(btnRefresh);
-            pnBottom.Controls.Add(lblTotal);
-            pnBottom.Dock = DockStyle.Bottom;
-            pnBottom.Location = new Point(0, 762);
-            pnBottom.Name = "pnBottom";
-            pnBottom.Size = new Size(1231, 82);
-            pnBottom.TabIndex = 16;
+            pnlHeader.BackColor = Color.FromArgb(10, 61, 120);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(lblSubtitle);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(1231, 80);
+            pnlHeader.TabIndex = 3;
             // 
-            // btnEdit
+            // lblTitle
             // 
-            btnEdit.Anchor = AnchorStyles.Top;
-            btnEdit.Location = new Point(439, 25);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 13;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(24, 14);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(400, 30);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Class Management";
             // 
-            // btnAdd
+            // lblSubtitle
             // 
-            btnAdd.Anchor = AnchorStyles.Top;
-            btnAdd.Location = new Point(228, 25);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(124, 40);
-            btnAdd.TabIndex = 10;
-            btnAdd.Text = "Add ";
-            btnAdd.UseVisualStyleBackColor = true;
+            lblSubtitle.Font = new Font("Segoe UI", 9.5F);
+            lblSubtitle.ForeColor = Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new Point(26, 46);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(400, 20);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "University Academic Management System";
             // 
-            // btnRefresh
+            // pnlToolbar
             // 
-            btnRefresh.Anchor = AnchorStyles.Top;
-            btnRefresh.Location = new Point(649, 25);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 11;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            // 
-            // lblTotal
-            // 
-            lblTotal.Anchor = AnchorStyles.Top;
-            lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(36, 25);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(82, 20);
-            lblTotal.TabIndex = 12;
-            lblTotal.Text = "Total Class:";
-            // 
-            // cboSort
-            // 
-            cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(54, 21);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(101, 28);
-            cboSort.TabIndex = 8;
-            // 
-            // cboGender
-            // 
-            cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(152, 21);
-            cboGender.Name = "cboGender";
-            cboGender.Size = new Size(97, 28);
-            cboGender.TabIndex = 9;
+            pnlToolbar.BackColor = Color.White;
+            pnlToolbar.Controls.Add(txtSearch);
+            pnlToolbar.Controls.Add(cboSort);
+            pnlToolbar.Controls.Add(cboGender);
+            pnlToolbar.Controls.Add(btnRefresh);
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Location = new Point(0, 80);
+            pnlToolbar.Name = "pnlToolbar";
+            pnlToolbar.Padding = new Padding(16, 12, 16, 8);
+            pnlToolbar.Size = new Size(1231, 56);
+            pnlToolbar.TabIndex = 2;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(255, 22);
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Font = new Font("Segoe UI", 9.5F);
+            txtSearch.Location = new Point(16, 14);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(1210, 27);
-            txtSearch.TabIndex = 7;
+            txtSearch.PlaceholderText = "Search by Class ID, Course, Year...";
+            txtSearch.Size = new Size(320, 29);
+            txtSearch.TabIndex = 0;
             // 
-            // panel2
+            // cboSort
             // 
-            panel2.Controls.Add(cboSort);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1231, 57);
-            panel2.TabIndex = 15;
+            cboSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSort.Font = new Font("Segoe UI", 9.5F);
+            cboSort.Location = new Point(352, 13);
+            cboSort.Name = "cboSort";
+            cboSort.Size = new Size(160, 29);
+            cboSort.TabIndex = 1;
+            // 
+            // cboGender
+            // 
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.Font = new Font("Segoe UI", 9.5F);
+            cboGender.Location = new Point(528, 13);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(140, 29);
+            cboGender.TabIndex = 2;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.White;
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 9.5F);
+            btnRefresh.ForeColor = Color.FromArgb(60, 70, 85);
+            btnRefresh.Location = new Point(684, 11);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(100, 32);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "↺  Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
+            // 
+            // pnlGrid
+            // 
+            pnlGrid.BackColor = Color.FromArgb(245, 247, 250);
+            pnlGrid.Controls.Add(dgvClassList);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Location = new Point(0, 136);
+            pnlGrid.Name = "pnlGrid";
+            pnlGrid.Padding = new Padding(16, 12, 16, 8);
+            pnlGrid.Size = new Size(1231, 640);
+            pnlGrid.TabIndex = 0;
             // 
             // dgvClassList
             // 
-            dgvClassList.AllowUserToAddRows = false;
-            dgvClassList.AllowUserToDeleteRows = false;
             dgvClassList.AllowUserToResizeColumns = false;
             dgvClassList.AllowUserToResizeRows = false;
-            dgvClassList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvClassList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvClassList.BackgroundColor = SystemColors.Control;
-            dgvClassList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClassList.Location = new Point(33, 3);
+            dgvClassList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvClassList.ColumnHeadersHeight = 29;
+            dgvClassList.Dock = DockStyle.Fill;
+            dgvClassList.Location = new Point(16, 12);
             dgvClassList.Name = "dgvClassList";
-            dgvClassList.ReadOnly = true;
-            dgvClassList.RowHeadersVisible = false;
             dgvClassList.RowHeadersWidth = 51;
-            dgvClassList.Size = new Size(1183, 695);
-            dgvClassList.TabIndex = 6;
+            dgvClassList.Size = new Size(1199, 620);
+            dgvClassList.TabIndex = 0;
             // 
-            // pnMain
+            // pnlBottom
             // 
-            pnMain.Controls.Add(cboGender);
-            pnMain.Controls.Add(txtSearch);
-            pnMain.Controls.Add(panel2);
-            pnMain.Controls.Add(panel1);
-            pnMain.Controls.Add(pnBottom);
-            pnMain.Dock = DockStyle.Fill;
-            pnMain.Location = new Point(0, 0);
-            pnMain.Name = "pnMain";
-            pnMain.Size = new Size(1231, 844);
-            pnMain.TabIndex = 11;
+            pnlBottom.BackColor = Color.White;
+            pnlBottom.Controls.Add(btnAdd);
+            pnlBottom.Controls.Add(btnEdit);
+            pnlBottom.Controls.Add(lblTotal);
+            pnlBottom.Controls.Add(pnlPagination);
+            pnlBottom.Dock = DockStyle.Bottom;
+            pnlBottom.Location = new Point(0, 776);
+            pnlBottom.Name = "pnlBottom";
+            pnlBottom.Padding = new Padding(24, 12, 24, 12);
+            pnlBottom.Size = new Size(1231, 68);
+            pnlBottom.TabIndex = 1;
             // 
-            // panel1
+            // btnAdd
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(dgvClassList);
-            panel1.Location = new Point(3, 55);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1225, 701);
-            panel1.TabIndex = 14;
+            btnAdd.BackColor = Color.FromArgb(10, 61, 120);
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI Semibold", 9.5F);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(24, 13);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(130, 42);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "＋  Add Class";
+            btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.White;
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 9.5F);
+            btnEdit.ForeColor = Color.FromArgb(60, 70, 85);
+            btnEdit.Location = new Point(168, 13);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(130, 42);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "✎  Edit / Delete";
+            btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.Font = new Font("Segoe UI", 9.5F);
+            lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
+            lblTotal.Location = new Point(312, 22);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(98, 21);
+            lblTotal.TabIndex = 2;
+            lblTotal.Text = "Total Class: 0";
+            // 
+            // pnlPagination
+            // 
+            pnlPagination.Controls.Add(cboPageSize);
+            pnlPagination.Controls.Add(btnFirst);
+            pnlPagination.Controls.Add(btnPrev);
+            pnlPagination.Controls.Add(lblPageInfo);
+            pnlPagination.Controls.Add(btnNext);
+            pnlPagination.Controls.Add(btnLast);
+            pnlPagination.Dock = DockStyle.Right;
+            pnlPagination.Location = new Point(827, 12);
+            pnlPagination.Name = "pnlPagination";
+            pnlPagination.Size = new Size(380, 44);
+            pnlPagination.TabIndex = 3;
+            // 
+            // cboPageSize
+            // 
+            cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPageSize.Font = new Font("Segoe UI", 9.5F);
+            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Name = "cboPageSize";
+            cboPageSize.Size = new Size(60, 29);
+            cboPageSize.TabIndex = 0;
+            // 
+            // btnFirst
+            // 
+            btnFirst.Location = new Point(80, 17);
+            btnFirst.Name = "btnFirst";
+            btnFirst.Size = new Size(36, 32);
+            btnFirst.TabIndex = 1;
+            btnFirst.Text = "|◀";
+            btnFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
+            btnFirst.BackColor = System.Drawing.Color.White;
+            btnFirst.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnFirst.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
+            // 
+            // btnPrev
+            // 
+            btnPrev.Location = new Point(120, 17);
+            btnPrev.Name = "btnPrev";
+            btnPrev.Size = new Size(36, 32);
+            btnPrev.TabIndex = 2;
+            btnPrev.Text = "◀";
+            btnPrev.Font = new System.Drawing.Font("Segoe UI", 9F);
+            btnPrev.BackColor = System.Drawing.Color.White;
+            btnPrev.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnPrev.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
+            // 
+            // lblPageInfo
+            // 
+            lblPageInfo.Font = new Font("Segoe UI", 9.5F);
+            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Name = "lblPageInfo";
+            lblPageInfo.Size = new Size(120, 20);
+            lblPageInfo.TabIndex = 3;
+            lblPageInfo.Text = "Page 1 of 1";
+            lblPageInfo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnNext
+            // 
+            btnNext.Location = new Point(290, 17);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(36, 32);
+            btnNext.TabIndex = 4;
+            btnNext.Text = "▶";
+            btnNext.Font = new System.Drawing.Font("Segoe UI", 9F);
+            btnNext.BackColor = System.Drawing.Color.White;
+            btnNext.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnNext.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            // 
+            // btnLast
+            // 
+            btnLast.Location = new Point(330, 17);
+            btnLast.Name = "btnLast";
+            btnLast.Size = new Size(36, 32);
+            btnLast.TabIndex = 5;
+            btnLast.Text = "▶|";
+            btnLast.Font = new System.Drawing.Font("Segoe UI", 9F);
+            btnLast.BackColor = System.Drawing.Color.White;
+            btnLast.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnLast.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
             // 
             // f_ClassList
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1231, 844);
-            Controls.Add(pnMain);
+            Controls.Add(pnlGrid);
+            Controls.Add(pnlBottom);
+            Controls.Add(pnlToolbar);
+            Controls.Add(pnlHeader);
+            Font = new Font("Segoe UI", 9.5F);
             Name = "f_ClassList";
-            Text = "f_ClassList";
-            pnBottom.ResumeLayout(false);
-            pnBottom.PerformLayout();
-            panel2.ResumeLayout(false);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Class Management — Academic System";
+            pnlHeader.ResumeLayout(false);
+            pnlToolbar.ResumeLayout(false);
+            pnlToolbar.PerformLayout();
+            pnlGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvClassList).EndInit();
-            pnMain.ResumeLayout(false);
-            pnMain.PerformLayout();
-            panel1.ResumeLayout(false);
+            pnlBottom.ResumeLayout(false);
+            pnlBottom.PerformLayout();
+            pnlPagination.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnBottom;
-        private Button btnEdit;
-        private Button btnAdd;
-        private Button btnRefresh;
-        private Label lblTotal;
-        private ComboBox cboSort;
-        private ComboBox cboGender;
-        private TextBox txtSearch;
-        private Panel panel2;
-        private DataGridView dgvClassList;
-        private Panel pnMain;
-        private Panel panel1;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblSubtitle;
+
+        private System.Windows.Forms.Panel pnlToolbar;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cboSort;
+        private System.Windows.Forms.ComboBox cboGender;
+        private System.Windows.Forms.Button btnRefresh;
+
+        private System.Windows.Forms.Panel pnlGrid;
+        private System.Windows.Forms.DataGridView dgvClassList;
+
+        private System.Windows.Forms.Panel pnlBottom;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Label lblTotal;
+
+        private System.Windows.Forms.Panel pnlPagination;
+        private System.Windows.Forms.ComboBox cboPageSize;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label lblPageInfo;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
     }
 }

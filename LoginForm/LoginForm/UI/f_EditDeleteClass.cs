@@ -1,4 +1,4 @@
-﻿using Project_Group6.Models;
+using Project_Group6.Models;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ namespace Project_Group6
             btnQuit.Click += btnQuit_Click;
             txtSearch.TextChanged += txtSearch_TextChanged;
             cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
-            dgvCourse.CellClick += dgvCourse_CellClick;
+            dgvClass.CellClick += dgvClass_CellClick;
             cbo_CourseName.SelectedIndexChanged += cbo_CourseName_SelectedIndexChanged;
         }
 
@@ -110,7 +110,7 @@ namespace Project_Group6
                 _ => "ClassID ASC"
             };
 
-            dgvCourse.DataSource = dv.ToTable();
+            dgvClass.DataSource = dv.ToTable();
             FormatGrid();
             ClearForm();
         }
@@ -118,21 +118,15 @@ namespace Project_Group6
         // ================= FORMAT GRID =================
         private void FormatGrid()
         {
-            dgvCourse.AllowUserToAddRows = false;
-            dgvCourse.RowHeadersVisible = false;
-            dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCourse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvCourse.RowTemplate.Height = 35;
-            dgvCourse.BackgroundColor = System.Drawing.Color.White;
-            dgvCourse.BorderStyle = BorderStyle.None;
+            LoginForm.UIStyleHelper.StyleDataGridView(dgvClass);
         }
 
         // ================= CLICK GRID =================
-        private void dgvCourse_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvClass_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            var row = dgvCourse.Rows[e.RowIndex];
+            var row = dgvClass.Rows[e.RowIndex];
 
             lbl_ClassIDAuto.Text = row.Cells["ClassID"].Value?.ToString();
             lbl_AcademicYearAuto.Text = row.Cells["AcademicYear"].Value?.ToString();
