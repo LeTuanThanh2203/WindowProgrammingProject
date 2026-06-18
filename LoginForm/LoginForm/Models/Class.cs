@@ -8,31 +8,33 @@ using System.Windows.Forms;
 public class Class
 {
     // ================= PROPERTIES =================
-    // Theo schema: ClassID, CourseCode, ClassName, Semester,
-    //              AcademicYear, NumberOfStudent, Manager
-    // KHÔNG còn: HomeroomTeacher (đổi thành Manager)
+    // Theo schema: ClassID, CourseID, Semester, AcademicYear,
+    //              Capacity, CurrentStudents, Room, Schedule
+    // Semester values: 'Semester 1' | 'Semester 2' | 'Summer'
     public string ClassID { get; set; }
-    public string CourseCode { get; set; }
-    public string ClassName { get; set; }
-    public int Semester { get; set; }
+    public string CourseID { get; set; }
+    public string Semester { get; set; }
     public string AcademicYear { get; set; }
-    public int NumberOfStudent { get; set; }
-    public string Manager { get; set; }
+    public int Capacity { get; set; }
+    public int CurrentStudents { get; set; }
+    public string Room { get; set; }
+    public string Schedule { get; set; }
 
     // ================= CONSTRUCTORS =================
     public Class() { }
 
-    public Class(string classID, string courseCode, string className,
-                 int semester, string academicYear,
-                 int numberOfStudent, string manager)
+    public Class(string classID, string courseID, string semester,
+                 string academicYear, int capacity, int currentStudents,
+                 string room, string schedule)
     {
         ClassID = classID;
-        CourseCode = courseCode;
-        ClassName = className;
+        CourseID = courseID;
         Semester = semester;
         AcademicYear = academicYear;
-        NumberOfStudent = numberOfStudent;
-        Manager = manager;
+        Capacity = capacity;
+        CurrentStudents = currentStudents;
+        Room = room;
+        Schedule = schedule;
     }
 
     // ================= HELPERS =================
@@ -74,56 +76,52 @@ public class Class
     private static Class MapFromReader(SqlDataReader reader) => new Class
     {
         ClassID = reader["ClassID"].ToString(),
-        CourseCode = reader["CourseCode"].ToString().Trim(),
-        ClassName = reader["ClassName"].ToString(),
-        Semester = Convert.ToInt32(reader["Semester"]),
+        CourseID = reader["CourseID"].ToString(),
+        Semester = reader["Semester"].ToString(),
         AcademicYear = reader["AcademicYear"].ToString(),
-        NumberOfStudent = reader["NumberOfStudent"] == DBNull.Value
-                            ? 0 : Convert.ToInt32(reader["NumberOfStudent"]),
-        Manager = reader["Manager"]?.ToString()
+        Capacity = Convert.ToInt32(reader["Capacity"]),
+        CurrentStudents = reader["CurrentStudents"] == DBNull.Value
+                              ? 0
+                              : Convert.ToInt32(reader["CurrentStudents"]),
+        Room = reader["Room"]?.ToString(),
+        Schedule = reader["Schedule"]?.ToString()
     };
+
+    private void AddClassParams(SqlCommand cmd)
+    {
+        cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = ClassID;
+        cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = CourseID;
+        cmd.Parameters.Add("@semester", SqlDbType.NVarChar, 20).Value = Semester;
+        cmd.Parameters.Add("@academicYear", SqlDbType.VarChar, 20).Value = AcademicYear;
+        cmd.Parameters.Add("@capacity", SqlDbType.Int).Value = Capacity;
+        cmd.Parameters.Add("@room", SqlDbType.NVarChar, 50).Value = (object)Room ?? DBNull.Value;
+        cmd.Parameters.Add("@schedule", SqlDbType.NVarChar, 200).Value = (object)Schedule ?? DBNull.Value;
+    }
 
     // ================= ADD =================
     public bool AddClassroom() =>
         ExecuteNonQuery(@"
             INSERT INTO Class
-                (ClassID, CourseCode, ClassName, Semester,
-                 AcademicYear, NumberOfStudent, Manager)
+                (ClassID, CourseID, Semester, AcademicYear,
+                 Capacity, CurrentStudents, Room, Schedule)
             VALUES
-                (@classID, @courseCode, @className, @semester,
-                 @academicYear, @numberOfStudent, @manager)",
-            cmd =>
-            {
-                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = ClassID;
-                cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = CourseCode;
-                cmd.Parameters.Add("@className", SqlDbType.VarChar, 100).Value = ClassName;
-                cmd.Parameters.Add("@semester", SqlDbType.Int).Value = Semester;
-                cmd.Parameters.Add("@academicYear", SqlDbType.VarChar, 20).Value = AcademicYear;
-                cmd.Parameters.Add("@numberOfStudent", SqlDbType.Int).Value = NumberOfStudent;
-                cmd.Parameters.Add("@manager", SqlDbType.VarChar, 100).Value = (object)Manager ?? DBNull.Value;
-            });
+                (@classID, @courseID, @semester, @academicYear,
+                 @capacity, 0, @room, @schedule)",
+            AddClassParams);
 
     // ================= EDIT =================
+    // CurrentStudents KHÔNG sửa trực tiếp — do trigger TR_DKMH_Insert/Delete quản lý.
     public bool EditClassroom() =>
         ExecuteNonQuery(@"
             UPDATE Class SET
-                CourseCode      = @courseCode,
-                ClassName       = @className,
-                Semester        = @semester,
-                AcademicYear    = @academicYear,
-                NumberOfStudent = @numberOfStudent,
-                Manager         = @manager
+                CourseID     = @courseID,
+                Semester     = @semester,
+                AcademicYear = @academicYear,
+                Capacity     = @capacity,
+                Room         = @room,
+                Schedule     = @schedule
             WHERE ClassID = @classID",
-            cmd =>
-            {
-                cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = ClassID;
-                cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = CourseCode;
-                cmd.Parameters.Add("@className", SqlDbType.VarChar, 100).Value = ClassName;
-                cmd.Parameters.Add("@semester", SqlDbType.Int).Value = Semester;
-                cmd.Parameters.Add("@academicYear", SqlDbType.VarChar, 20).Value = AcademicYear;
-                cmd.Parameters.Add("@numberOfStudent", SqlDbType.Int).Value = NumberOfStudent;
-                cmd.Parameters.Add("@manager", SqlDbType.VarChar, 100).Value = (object)Manager ?? DBNull.Value;
-            });
+            AddClassParams);
 
     // ================= DELETE =================
     public static bool DeleteClassroom(string classID)
@@ -164,10 +162,26 @@ public class Class
         return list;
     }
 
+    // GET ALL with JOIN Course (dùng cho DataGridView)
+    public DataTable GetAllClassrooms() =>
+        ExecuteQuery(@"
+            SELECT cl.ClassID,
+                   cl.CourseID,
+                   co.CourseName,
+                   co.Credits,
+                   cl.Semester,
+                   cl.AcademicYear,
+                   cl.Capacity,
+                   cl.CurrentStudents,
+                   cl.Room,
+                   cl.Schedule
+            FROM Class cl
+            JOIN Course co ON cl.CourseID = co.CourseID
+            ORDER BY cl.ClassID");
+
     // ================= GET BY ID =================
     public Class GetClassByID(string classID)
     {
-        Class c = null;
         try
         {
             using (var db = new My_DB())
@@ -178,23 +192,33 @@ public class Class
                 cmd.Parameters.Add("@classID", SqlDbType.VarChar, 20).Value = classID;
 
                 using var reader = cmd.ExecuteReader();
-                if (reader.Read())
-                    c = MapFromReader(reader);
+                return reader.Read() ? MapFromReader(reader) : null;
             }
         }
-        catch { }
-        return c;
+        catch { return null; }
     }
 
     // ================= SEARCH =================
     public DataTable SearchClassrooms(string keyword) =>
         ExecuteQuery(@"
-            SELECT * FROM Class
-            WHERE ClassID       LIKE @kw
-               OR CourseCode    LIKE @kw
-               OR ClassName     LIKE @kw
-               OR AcademicYear  LIKE @kw
-               OR Manager       LIKE @kw",
+            SELECT cl.ClassID,
+                   cl.CourseID,
+                   co.CourseName,
+                   cl.Semester,
+                   cl.AcademicYear,
+                   cl.Capacity,
+                   cl.CurrentStudents,
+                   cl.Room,
+                   cl.Schedule
+            FROM Class cl
+            JOIN Course co ON cl.CourseID = co.CourseID
+            WHERE cl.ClassID      LIKE @kw
+               OR cl.CourseID     LIKE @kw
+               OR co.CourseName   LIKE @kw
+               OR cl.Semester     LIKE @kw
+               OR cl.AcademicYear LIKE @kw
+               OR cl.Room         LIKE @kw
+               OR cl.Schedule     LIKE @kw",
             cmd => cmd.Parameters.AddWithValue("@kw", $"%{keyword}%"));
 
     // ================= FILTER =================
@@ -202,15 +226,39 @@ public class Class
         ExecuteQuery(@"
             SELECT * FROM Class
             WHERE AcademicYear = @year
-            ORDER BY ClassID",
-            cmd => cmd.Parameters.AddWithValue("@year", academicYear));
+            ORDER BY Semester, ClassID",
+            cmd => cmd.Parameters.Add("@year", SqlDbType.VarChar, 20).Value = academicYear);
 
-    public DataTable GetClassesByCourseCode(string courseCode) =>
+    public DataTable GetClassesByCourseID(string courseID) =>
         ExecuteQuery(@"
             SELECT * FROM Class
-            WHERE CourseCode = @courseCode
+            WHERE CourseID = @courseID
             ORDER BY AcademicYear, Semester",
-            cmd => cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = courseCode);
+            cmd => cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = courseID);
+
+    // Filter theo cả AcademicYear lẫn Semester (dùng khi người dùng chọn cả 2 combo)
+    public DataTable GetClassesByYearAndSemester(string academicYear, string semester) =>
+        ExecuteQuery(@"
+            SELECT cl.ClassID,
+                   cl.CourseID,
+                   co.CourseName,
+                   co.Credits,
+                   cl.Semester,
+                   cl.AcademicYear,
+                   cl.Capacity,
+                   cl.CurrentStudents,
+                   cl.Room,
+                   cl.Schedule
+            FROM Class cl
+            JOIN Course co ON cl.CourseID = co.CourseID
+            WHERE cl.AcademicYear = @year
+              AND cl.Semester     = @semester
+            ORDER BY cl.ClassID",
+            cmd =>
+            {
+                cmd.Parameters.Add("@year", SqlDbType.VarChar, 20).Value = academicYear;
+                cmd.Parameters.Add("@semester", SqlDbType.NVarChar, 20).Value = semester;
+            });
 
     public DataTable GetDistinctAcademicYears() =>
         ExecuteQuery(@"
@@ -218,12 +266,42 @@ public class Class
             FROM Class
             ORDER BY AcademicYear DESC");
 
+    // Trả về danh sách Semester riêng biệt có trong DB
+    // Kết quả có thể là: 'Semester 1', 'Semester 2', 'Summer'
+    public DataTable GetDistinctSemesters() =>
+        ExecuteQuery(@"
+            SELECT DISTINCT Semester
+            FROM Class
+            ORDER BY
+                CASE Semester
+                    WHEN 'Semester 1' THEN 1
+                    WHEN 'Semester 2' THEN 2
+                    WHEN 'Summer'     THEN 3
+                    ELSE 4
+                END");
+
+    // Trả về Semester riêng biệt theo năm học cụ thể
+    public DataTable GetSemestersByYear(string academicYear) =>
+        ExecuteQuery(@"
+            SELECT DISTINCT Semester
+            FROM Class
+            WHERE AcademicYear = @year
+            ORDER BY
+                CASE Semester
+                    WHEN 'Semester 1' THEN 1
+                    WHEN 'Semester 2' THEN 2
+                    WHEN 'Summer'     THEN 3
+                    ELSE 4
+                END",
+            cmd => cmd.Parameters.Add("@year", SqlDbType.VarChar, 20).Value = academicYear);
+
     // ================= FOR COMBOBOX =================
     public DataTable GetClassesForCombo() =>
         ExecuteQuery(@"
             SELECT ClassID,
-                   ClassID + ' - ' + ClassName AS ClassDisplay
-            FROM Class
+                   ClassID + ' - ' + co.CourseName AS ClassDisplay
+            FROM Class cl
+            JOIN Course co ON cl.CourseID = co.CourseID
             ORDER BY ClassID");
 
     // ================= STATS =================
@@ -241,7 +319,7 @@ public class Class
         catch { return 0; }
     }
 
-    public int TotalStudentsAllClasses()
+    public int TotalCapacity()
     {
         try
         {
@@ -249,7 +327,22 @@ public class Class
             {
                 db.openConnection();
                 var cmd = new SqlCommand(
-                    "SELECT ISNULL(SUM(NumberOfStudent), 0) FROM Class", db.getConnection);
+                    "SELECT ISNULL(SUM(Capacity), 0) FROM Class", db.getConnection);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+        catch { return 0; }
+    }
+
+    public int TotalCurrentStudents()
+    {
+        try
+        {
+            using (var db = new My_DB())
+            {
+                db.openConnection();
+                var cmd = new SqlCommand(
+                    "SELECT ISNULL(SUM(CurrentStudents), 0) FROM Class", db.getConnection);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }

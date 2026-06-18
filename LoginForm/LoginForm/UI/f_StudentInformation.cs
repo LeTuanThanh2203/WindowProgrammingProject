@@ -2,7 +2,6 @@
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LoginForm;
-using ProjectMonHoc;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,8 @@ namespace Project_Group6
 {
     public partial class f_StudentInformation : Form
     {
-        private readonly string currentMSSV = Globals.Username;
+        // Schema mới: currentID thay currentMSSV
+        private readonly string currentID = Globals.Username;
 
         public f_StudentInformation()
         {
@@ -23,23 +23,23 @@ namespace Project_Group6
             LoadStudentInfo();
             LoadFilters();
 
-            // Gắn event SAU LoadFilters để tránh trigger khi đang load
             cboAcademicYear.SelectedIndexChanged += Filter_Changed;
             cboSemester.SelectedIndexChanged += Filter_Changed;
 
-            // Ẩn chart sau khi gắn event
             chartScore.Visible = false;
         }
 
         // ================= THÔNG TIN SINH VIÊN =================
         private void LoadStudentInfo()
         {
-            Student student = new Student().GetStudentByID(currentMSSV);
+            // Schema mới: GetStudentByID nhận ID
+            Student student = new Student().GetStudentByID(currentID);
             if (student == null) return;
 
-            lblID.Text = student.MSSV;
-            lblFirstname.Text = student.Fname;
-            lblLastname.Text = student.Lname;
+            // Schema mới: ID, FirstName, LastName, Address (không có Hometown)
+            lblID.Text = student.ID;
+            lblFirstname.Text = student.FirstName;
+            lblLastname.Text = student.LastName;
             lblDob.Text = student.Dob.ToString("dd/MM/yyyy");
             lblGender.Text = student.Gender;
             lblPhone.Text = student.Phone;
@@ -48,8 +48,7 @@ namespace Project_Group6
 
             if (student.Picture != null && student.Picture.Length > 0)
             {
-                MemoryStream ms = new MemoryStream(student.Picture);
-                picStudent.Image = Image.FromStream(ms);
+                picStudent.Image = Image.FromStream(new MemoryStream(student.Picture));
                 picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             else
@@ -61,23 +60,24 @@ namespace Project_Group6
         // ================= LOAD COMBOBOX =================
         private void LoadFilters()
         {
-            Student student = new Student();
-            DataTable dt = student.GetAcademicYearsByMSSV(currentMSSV);
+            // Schema mới: AcademicYear lấy từ bảng Class (DKMH không còn cột AcademicYear)
+            // Dùng GetDistinctAcademicYears() từ Class model
+            var dt = new Class().GetDistinctAcademicYears();
 
             cboAcademicYear.Items.Clear();
             cboAcademicYear.Items.Add("-- Select Year --");
             foreach (DataRow row in dt.Rows)
-                cboAcademicYear.Items.Add(row["AcademicYear"].ToString());
+                cboAcademicYear.Items.Add(row[0].ToString());
             cboAcademicYear.SelectedIndex = 0;
 
+            // Schema mới: Semester là NVARCHAR(20)
             cboSemester.Items.Clear();
             cboSemester.Items.Add("-- Select Semester --");
-            cboSemester.Items.Add("Semester 1");
-            cboSemester.Items.Add("Semester 2");
+            cboSemester.Items.Add("HK1");
+            cboSemester.Items.Add("HK2");
             cboSemester.Items.Add("Summer");
             cboSemester.SelectedIndex = 0;
 
-            // Ẩn chart khi mới mở form
             chartScore.Series = Array.Empty<ISeries>();
         }
 
@@ -103,17 +103,13 @@ namespace Project_Group6
         private void LoadChart()
         {
             string selectedYear = cboAcademicYear.SelectedItem.ToString();
-
-            string sem = cboSemester.SelectedItem.ToString();
-            int semesterValue;
-            if (sem.Contains("1")) semesterValue = 1;
-            else if (sem.Contains("2")) semesterValue = 2;
-            else semesterValue = 3;
+            // Schema mới: Semester là string (HK1/HK2/Summer)
+            string semester = cboSemester.SelectedItem.ToString();
 
             Score score = new Score();
-            DataTable dt = score.GetScoreByFilter(currentMSSV, selectedYear, semesterValue);
+            // GetScoreByFilter nhận (id, academicYear, semester string)
+            DataTable dt = score.GetScoreByFilter(currentID, selectedYear, semester);
 
-            // Không có data → ẩn chart hẳn
             if (dt == null || dt.Rows.Count == 0)
             {
                 chartScore.Visible = false;
@@ -127,34 +123,37 @@ namespace Project_Group6
             {
                 courseNames.Add(row["CourseName"].ToString());
                 double total = row["TotalScore"] == DBNull.Value
-                    ? 0
-                    : Convert.ToDouble(row["TotalScore"]);
+                    ? 0 : Convert.ToDouble(row["TotalScore"]);
                 totalVals.Add(total);
             }
 
             chartScore.Series = new ISeries[]
             {
-        new ColumnSeries<double>
-        {
-            Name   = "Total Score",
-            Values = totalVals,
-            Fill   = new SolidColorPaint(SKColors.SteelBlue)
-        }
+                new ColumnSeries<double>
+                {
+                    Name   = "Total Score",
+                    Values = totalVals,
+                    Fill   = new SolidColorPaint(SKColors.SteelBlue)
+                }
             };
 
             chartScore.XAxes = new[]
             {
-        new Axis { Labels = courseNames, LabelsRotation = -25, TextSize = 11, Name = "Course" }
-    };
+                new Axis
+                {
+                    Labels          = courseNames,
+                    LabelsRotation  = -25,
+                    TextSize        = 11,
+                    Name            = "Course"
+                }
+            };
 
             chartScore.YAxes = new[]
             {
-        new Axis { MinLimit = 0, MaxLimit = 10, Name = "Score" }
-    };
+                new Axis { MinLimit = 0, MaxLimit = 10, Name = "Score" }
+            };
 
-            // Có data → hiện chart
             chartScore.Visible = true;
         }
-
     }
 }

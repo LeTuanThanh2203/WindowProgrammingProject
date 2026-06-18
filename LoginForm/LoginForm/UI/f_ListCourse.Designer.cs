@@ -2,211 +2,202 @@
 {
     partial class f_ListCourse
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            cboGender = new ComboBox();
-            cboSort = new ComboBox();
+            // ── Controls ──────────────────────────────────────────────
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+
+            pnlToolbar = new Panel();
             txtSearch = new TextBox();
-            dgvCourse = new DataGridView();
-            pnMain = new Panel();
-            panel2 = new Panel();
-            panel1 = new Panel();
-            pnBottom = new Panel();
-            btnEdit = new Button();
-            btnAdd = new Button();
+            cboSort = new ComboBox();
             btnRefresh = new Button();
+
+            pnlGrid = new Panel();
+            dgvCourse = new DataGridView();
+
+            pnlBottom = new Panel();
+            btnAdd = new Button();
+            btnEdit = new Button();
             lblTotal = new Label();
+
+            // ── Suspend ───────────────────────────────────────────────
+            pnlHeader.SuspendLayout();
+            pnlToolbar.SuspendLayout();
+            pnlGrid.SuspendLayout();
+            pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
-            pnMain.SuspendLayout();
-            panel1.SuspendLayout();
-            pnBottom.SuspendLayout();
             SuspendLayout();
-            // 
-            // cboGender
-            // 
-            cboGender.FormattingEnabled = true;
-            cboGender.Location = new Point(152, 21);
-            cboGender.Name = "cboGender";
-            cboGender.Size = new Size(97, 28);
-            cboGender.TabIndex = 9;
-            // 
-            // cboSort
-            // 
-            cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(36, 21);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(101, 28);
-            cboSort.TabIndex = 8;
-            // 
+
+            // ── Header ────────────────────────────────────────────────
+            pnlHeader.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 80;
+            pnlHeader.Controls.AddRange(new Control[] { lblTitle, lblSubtitle });
+
+            lblTitle.AutoSize = false;
+            lblTitle.Text = "Course Management";
+            lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 16F);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Location = new System.Drawing.Point(24, 14);
+            lblTitle.Size = new System.Drawing.Size(400, 30);
+
+            lblSubtitle.AutoSize = false;
+            lblSubtitle.Text = "University Academic Management System";
+            lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new System.Drawing.Point(26, 46);
+            lblSubtitle.Size = new System.Drawing.Size(400, 20);
+
+            // ── Toolbar ───────────────────────────────────────────────
+            pnlToolbar.BackColor = System.Drawing.Color.White;
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Height = 56;
+            pnlToolbar.Padding = new Padding(16, 12, 16, 8);
+            pnlToolbar.Controls.AddRange(new Control[] { txtSearch, cboSort, btnRefresh });
+
             // txtSearch
-            // 
-            txtSearch.Location = new Point(255, 22);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(713, 27);
-            txtSearch.TabIndex = 7;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
+            txtSearch.Location = new System.Drawing.Point(16, 14);
+            txtSearch.Size = new System.Drawing.Size(320, 27);
+            txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtSearch.PlaceholderText = "Search by ID, name, description…";
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+
+            // cboSort
+            cboSort.Location = new System.Drawing.Point(352, 13);
+            cboSort.Size = new System.Drawing.Size(160, 28);
+            cboSort.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            cboSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSort.FlatStyle = FlatStyle.Flat;
+
+            // btnRefresh
+            btnRefresh.Location = new System.Drawing.Point(528, 11);
+            btnRefresh.Size = new System.Drawing.Size(100, 32);
+            btnRefresh.Text = "↺  Refresh";
+            btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            btnRefresh.BackColor = System.Drawing.Color.White;
+            btnRefresh.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnRefresh.FlatAppearance.BorderSize = 1;
+            btnRefresh.Cursor = Cursors.Hand;
+
+            // ── Grid panel ────────────────────────────────────────────
+            pnlGrid.BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Padding = new Padding(16, 12, 16, 8);
+            pnlGrid.Controls.Add(dgvCourse);
+
             // dgvCourse
-            // 
+            dgvCourse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
+                             | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCourse.Location = new System.Drawing.Point(16, 12);
+            dgvCourse.Size = new System.Drawing.Size(1040, 540);
+            dgvCourse.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             dgvCourse.AllowUserToAddRows = false;
             dgvCourse.AllowUserToDeleteRows = false;
-            dgvCourse.AllowUserToResizeColumns = false;
+            dgvCourse.AllowUserToResizeColumns = true;
             dgvCourse.AllowUserToResizeRows = false;
-            dgvCourse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCourse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvCourse.BackgroundColor = SystemColors.Control;
+            dgvCourse.BackgroundColor = System.Drawing.Color.White;
+            dgvCourse.BorderStyle = BorderStyle.None;
             dgvCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCourse.Location = new Point(9, 3);
-            dgvCourse.Name = "dgvCourse";
+            dgvCourse.MultiSelect = false;
             dgvCourse.ReadOnly = true;
             dgvCourse.RowHeadersVisible = false;
-            dgvCourse.RowHeadersWidth = 51;
-            dgvCourse.Size = new Size(1059, 569);
-            dgvCourse.TabIndex = 6;
-            dgvCourse.CellDoubleClick += dgvCourse_CellDoubleClick;
-            // 
-            // pnMain
-            // 
-            pnMain.Controls.Add(cboSort);
-            pnMain.Controls.Add(cboGender);
-            pnMain.Controls.Add(txtSearch);
-            pnMain.Controls.Add(panel2);
-            pnMain.Controls.Add(panel1);
-            pnMain.Controls.Add(pnBottom);
-            pnMain.Dock = DockStyle.Fill;
-            pnMain.Location = new Point(0, 0);
-            pnMain.Name = "pnMain";
-            pnMain.Size = new Size(1083, 718);
-            pnMain.TabIndex = 10;
-            // 
-            // panel2
-            // 
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1083, 49);
-            panel2.TabIndex = 15;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(dgvCourse);
-            panel1.Location = new Point(3, 55);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1077, 575);
-            panel1.TabIndex = 14;
-            // 
-            // pnBottom
-            // 
-            pnBottom.Controls.Add(btnEdit);
-            pnBottom.Controls.Add(btnAdd);
-            pnBottom.Controls.Add(btnRefresh);
-            pnBottom.Controls.Add(lblTotal);
-            pnBottom.Dock = DockStyle.Bottom;
-            pnBottom.Location = new Point(0, 636);
-            pnBottom.Name = "pnBottom";
-            pnBottom.Size = new Size(1083, 82);
-            pnBottom.TabIndex = 16;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Anchor = AnchorStyles.Top;
-            btnEdit.Location = new Point(432, 15);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(124, 40);
-            btnEdit.TabIndex = 13;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEditDelete_Click;
-            // 
+            dgvCourse.RowTemplate.Height = 36;
+            dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCourse.GridColor = System.Drawing.Color.FromArgb(230, 232, 236);
+            dgvCourse.ColumnHeadersDefaultCellStyle.Font =
+                new System.Drawing.Font("Segoe UI Semibold", 9F);
+            dgvCourse.ColumnHeadersDefaultCellStyle.BackColor =
+                System.Drawing.Color.FromArgb(10, 61, 120);
+            dgvCourse.ColumnHeadersDefaultCellStyle.ForeColor =
+                System.Drawing.Color.White;
+            dgvCourse.EnableHeadersVisualStyles = false;
+
+            // ── Bottom panel ──────────────────────────────────────────
+            pnlBottom.BackColor = System.Drawing.Color.White;
+            pnlBottom.Dock = DockStyle.Bottom;
+            pnlBottom.Height = 68;
+            pnlBottom.Padding = new Padding(24, 12, 24, 12);
+            pnlBottom.Controls.AddRange(new Control[] { btnAdd, btnEdit, lblTotal });
+
             // btnAdd
-            // 
-            btnAdd.Anchor = AnchorStyles.Top;
-            btnAdd.Location = new Point(302, 15);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(124, 40);
-            btnAdd.TabIndex = 10;
-            btnAdd.Text = "Add ";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAddCourse_Click;
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Anchor = AnchorStyles.Top;
-            btnRefresh.Location = new Point(562, 15);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(124, 40);
-            btnRefresh.TabIndex = 11;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
+            btnAdd.Location = new System.Drawing.Point(24, 14);
+            btnAdd.Size = new System.Drawing.Size(130, 42);
+            btnAdd.Text = "＋  Add Course";
+            btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btnAdd.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            btnAdd.ForeColor = System.Drawing.Color.White;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.Cursor = Cursors.Hand;
+
+            // btnEdit
+            btnEdit.Location = new System.Drawing.Point(168, 14);
+            btnEdit.Size = new System.Drawing.Size(130, 42);
+            btnEdit.Text = "✎  Edit / Delete";
+            btnEdit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            btnEdit.BackColor = System.Drawing.Color.White;
+            btnEdit.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btnEdit.FlatAppearance.BorderSize = 1;
+            btnEdit.Cursor = Cursors.Hand;
+
             // lblTotal
-            // 
-            lblTotal.Anchor = AnchorStyles.Top;
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(36, 20);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(94, 20);
-            lblTotal.TabIndex = 12;
-            lblTotal.Text = "Total Course:";
-            // 
-            // f_ListCourse
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            lblTotal.Location = new System.Drawing.Point(320, 22);
+            lblTotal.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblTotal.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
+            lblTotal.Text = "Total Course: 0";
+
+            // ── Form ──────────────────────────────────────────────────
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1083, 718);
-            Controls.Add(pnMain);
-            Name = "f_ListCourse";
-            Text = "List Course";
-            Load += f_ManageCourse_Load;
+            ClientSize = new System.Drawing.Size(1083, 760);
+            Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            MinimumSize = new System.Drawing.Size(900, 600);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Course Management — Academic System";
+            BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+
+            Controls.AddRange(new Control[] { pnlGrid, pnlBottom, pnlToolbar, pnlHeader });
+
+            pnlHeader.ResumeLayout(false);
+            pnlToolbar.ResumeLayout(false);
+            pnlGrid.ResumeLayout(false);
+            pnlBottom.ResumeLayout(false);
+            pnlBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).EndInit();
-            pnMain.ResumeLayout(false);
-            pnMain.PerformLayout();
-            panel1.ResumeLayout(false);
-            pnBottom.ResumeLayout(false);
-            pnBottom.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private ComboBox cboGender;
-        private ComboBox cboSort;
+        // ── Field declarations ────────────────────────────────────────
+        private Panel pnlHeader, pnlToolbar, pnlGrid, pnlBottom;
+        private Label lblTitle, lblSubtitle;
         private TextBox txtSearch;
+        private ComboBox cboSort;
+        private Button btnRefresh;
         private DataGridView dgvCourse;
-        private Panel pnMain;
+        private Button btnAdd;
         private Button btnEdit;
         private Label lblTotal;
-        private Button btnRefresh;
-        private Button btnAdd;
-        private Panel panel1;
-        private Panel pnBottom;
-        private Panel panel2;
     }
 }

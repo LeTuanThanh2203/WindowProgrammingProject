@@ -2,221 +2,254 @@
 {
     partial class f_AddClass
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            cbo_CourseName = new ComboBox();
+            // ── Controls ──────────────────────────────────────────────
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            pnlBody = new Panel();
+            grpClassInfo = new GroupBox();
+
+            // Course
             lbl_NameCourse = new Label();
-            lbl_ClassIDAuto = new Label();
-            btnQuit = new Button();
-            btnClear = new Button();
-            btn_AddCourse = new Button();
+            cbo_CourseName = new ComboBox();
+
+            // Class ID (auto)
             lbl_ClassID = new Label();
-            lbl_HomeroomTeacher = new Label();
-            txt_ClassCourse = new TextBox();
-            lbl_ClassName = new Label();
-            lbl_AcademicYear = new Label();
-            lbl_AcademicYearAuto = new Label();
-            txt_HomeroomTeacher = new TextBox();
+            lbl_ClassIDAuto = new Label();
+
+            // Semester
             label2 = new Label();
             cboSemester = new ComboBox();
+
+            // Academic Year (auto)
+            lbl_AcademicYear = new Label();
+            lbl_AcademicYearAuto = new Label();
+
+            // Capacity
+            lblCapacity = new Label();
+            txt_Capacity = new TextBox();
+
+            // Room
+            lblRoom = new Label();
+            txt_Room = new TextBox();
+
+            // Schedule
+            lblSchedule = new Label();
+            txt_Schedule = new TextBox();
+
+            // Buttons
+            pnlButtons = new Panel();
+            btn_AddCourse = new Button();
+            btnClear = new Button();
+            btnQuit = new Button();
+
+            // ── Header panel ──────────────────────────────────────────
+            pnlHeader.SuspendLayout();
+            pnlBody.SuspendLayout();
+            grpClassInfo.SuspendLayout();
+            pnlButtons.SuspendLayout();
             SuspendLayout();
-            // 
-            // cbo_CourseName
-            // 
-            cbo_CourseName.FormattingEnabled = true;
-            cbo_CourseName.Location = new Point(183, 68);
-            cbo_CourseName.Name = "cbo_CourseName";
-            cbo_CourseName.Size = new Size(419, 28);
-            cbo_CourseName.TabIndex = 64;
-            // 
-            // lbl_NameCourse
-            // 
-            lbl_NameCourse.AutoSize = true;
-            lbl_NameCourse.Location = new Point(38, 68);
-            lbl_NameCourse.Name = "lbl_NameCourse";
-            lbl_NameCourse.Size = new Size(101, 20);
-            lbl_NameCourse.TabIndex = 63;
-            lbl_NameCourse.Text = "Course Name:";
-            // 
-            // lbl_ClassIDAuto
-            // 
-            lbl_ClassIDAuto.AutoSize = true;
-            lbl_ClassIDAuto.Location = new Point(183, 117);
-            lbl_ClassIDAuto.Name = "lbl_ClassIDAuto";
-            lbl_ClassIDAuto.Size = new Size(0, 20);
-            lbl_ClassIDAuto.TabIndex = 58;
-            // 
-            // btnQuit
-            // 
-            btnQuit.Location = new Point(442, 352);
-            btnQuit.Name = "btnQuit";
-            btnQuit.Size = new Size(136, 44);
-            btnQuit.TabIndex = 55;
-            btnQuit.Text = "Cancel";
-            btnQuit.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            btnClear.Location = new Point(254, 352);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(136, 44);
-            btnClear.TabIndex = 54;
-            btnClear.Text = "Reset";
-            btnClear.UseVisualStyleBackColor = true;
-            // 
-            // btn_AddCourse
-            // 
-            btn_AddCourse.Location = new Point(73, 352);
-            btn_AddCourse.Name = "btn_AddCourse";
-            btn_AddCourse.Size = new Size(127, 44);
-            btn_AddCourse.TabIndex = 53;
-            btn_AddCourse.Text = "Add Course";
-            btn_AddCourse.UseVisualStyleBackColor = true;
-            // 
-            // lbl_ClassID
-            // 
-            lbl_ClassID.AutoSize = true;
-            lbl_ClassID.Location = new Point(38, 117);
-            lbl_ClassID.Name = "lbl_ClassID";
-            lbl_ClassID.Size = new Size(64, 20);
-            lbl_ClassID.TabIndex = 49;
-            lbl_ClassID.Text = "Class ID:";
-            // 
-            // lbl_HomeroomTeacher
-            // 
-            lbl_HomeroomTeacher.AutoSize = true;
-            lbl_HomeroomTeacher.Location = new Point(38, 262);
-            lbl_HomeroomTeacher.Name = "lbl_HomeroomTeacher";
-            lbl_HomeroomTeacher.Size = new Size(107, 20);
-            lbl_HomeroomTeacher.TabIndex = 47;
-            lbl_HomeroomTeacher.Text = "Name Teacher:";
-            // 
-            // txt_ClassCourse
-            // 
-            txt_ClassCourse.Location = new Point(183, 207);
-            txt_ClassCourse.Name = "txt_ClassCourse";
-            txt_ClassCourse.Size = new Size(419, 27);
-            txt_ClassCourse.TabIndex = 46;
-            // 
-            // lbl_ClassName
-            // 
-            lbl_ClassName.AutoSize = true;
-            lbl_ClassName.Location = new Point(38, 207);
-            lbl_ClassName.Name = "lbl_ClassName";
-            lbl_ClassName.Size = new Size(89, 20);
-            lbl_ClassName.TabIndex = 45;
-            lbl_ClassName.Text = "Name Class:";
-            // 
-            // lbl_AcademicYear
-            // 
-            lbl_AcademicYear.AutoSize = true;
-            lbl_AcademicYear.Location = new Point(490, 166);
-            lbl_AcademicYear.Name = "lbl_AcademicYear";
-            lbl_AcademicYear.Size = new Size(40, 20);
-            lbl_AcademicYear.TabIndex = 60;
-            lbl_AcademicYear.Text = "Year:";
-            // 
-            // lbl_AcademicYearAuto
-            // 
-            lbl_AcademicYearAuto.AutoSize = true;
-            lbl_AcademicYearAuto.Location = new Point(578, 166);
-            lbl_AcademicYearAuto.Name = "lbl_AcademicYearAuto";
-            lbl_AcademicYearAuto.Size = new Size(0, 20);
-            lbl_AcademicYearAuto.TabIndex = 65;
-            // 
-            // txt_HomeroomTeacher
-            // 
-            txt_HomeroomTeacher.Location = new Point(183, 259);
-            txt_HomeroomTeacher.Name = "txt_HomeroomTeacher";
-            txt_HomeroomTeacher.Size = new Size(419, 27);
-            txt_HomeroomTeacher.TabIndex = 66;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(38, 158);
-            label2.Name = "label2";
-            label2.Size = new Size(73, 20);
-            label2.TabIndex = 67;
-            label2.Text = "Semester:";
-            // 
-            // cboSemester
-            // 
-            cboSemester.FormattingEnabled = true;
-            cboSemester.Location = new Point(183, 158);
-            cboSemester.Name = "cboSemester";
-            cboSemester.Size = new Size(112, 28);
-            cboSemester.TabIndex = 68;
-            // 
-            // f_AddClass
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+
+            // pnlHeader
+            pnlHeader.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 80;
+            pnlHeader.Padding = new Padding(24, 0, 0, 0);
+            pnlHeader.Controls.AddRange(new Control[] { lblTitle, lblSubtitle });
+
+            // lblTitle
+            lblTitle.AutoSize = false;
+            lblTitle.Text = "Add New Class";
+            lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 16F);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Location = new System.Drawing.Point(24, 14);
+            lblTitle.Size = new System.Drawing.Size(400, 30);
+
+            // lblSubtitle
+            lblSubtitle.AutoSize = false;
+            lblSubtitle.Text = "University Academic Management System";
+            lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new System.Drawing.Point(26, 46);
+            lblSubtitle.Size = new System.Drawing.Size(400, 20);
+
+            // ── Body panel ────────────────────────────────────────────
+            pnlBody.BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+            pnlBody.Dock = DockStyle.Fill;
+            pnlBody.Padding = new Padding(24, 20, 24, 12);
+            pnlBody.Controls.Add(grpClassInfo);
+
+            // ── GroupBox ──────────────────────────────────────────────
+            grpClassInfo.Text = "Class Information";
+            grpClassInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            grpClassInfo.ForeColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            grpClassInfo.BackColor = System.Drawing.Color.White;
+            grpClassInfo.Location = new System.Drawing.Point(24, 20);
+            grpClassInfo.Size = new System.Drawing.Size(640, 310);
+            grpClassInfo.Padding = new Padding(16, 16, 16, 16);
+            grpClassInfo.Controls.AddRange(new Control[]
+            {
+                lbl_NameCourse, cbo_CourseName,
+                lbl_ClassID, lbl_ClassIDAuto,
+                label2, cboSemester,
+                lbl_AcademicYear, lbl_AcademicYearAuto,
+                lblCapacity, txt_Capacity,
+                lblRoom, txt_Room,
+                lblSchedule, txt_Schedule
+            });
+
+            int lblX = 20, fldX = 200, rowH = 44, startY = 28;
+
+            // Row 0 – Course
+            SetLabel(lbl_NameCourse, "Course:", lblX, startY + rowH * 0);
+            cbo_CourseName.Location = new System.Drawing.Point(fldX, startY + rowH * 0 - 3);
+            cbo_CourseName.Size = new System.Drawing.Size(420, 28);
+            cbo_CourseName.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_CourseName.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+
+            // Row 1 – Class ID (readonly label)
+            SetLabel(lbl_ClassID, "Class ID:", lblX, startY + rowH * 1);
+            lbl_ClassIDAuto.Location = new System.Drawing.Point(fldX, startY + rowH * 1);
+            lbl_ClassIDAuto.Size = new System.Drawing.Size(300, 24);
+            lbl_ClassIDAuto.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            lbl_ClassIDAuto.ForeColor = System.Drawing.Color.FromArgb(10, 61, 120);
+
+            // Row 2 – Semester + Academic Year side-by-side
+            SetLabel(label2, "Semester:", lblX, startY + rowH * 2);
+            cboSemester.Location = new System.Drawing.Point(fldX, startY + rowH * 2 - 3);
+            cboSemester.Size = new System.Drawing.Size(140, 28);
+            cboSemester.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSemester.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+
+            SetLabel(lbl_AcademicYear, "Academic Year:", fldX + 160, startY + rowH * 2);
+            lbl_AcademicYearAuto.Location = new System.Drawing.Point(fldX + 160 + 120, startY + rowH * 2);
+            lbl_AcademicYearAuto.Size = new System.Drawing.Size(120, 24);
+            lbl_AcademicYearAuto.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            lbl_AcademicYearAuto.ForeColor = System.Drawing.Color.FromArgb(10, 61, 120);
+
+            // Row 3 – Capacity
+            SetLabel(lblCapacity, "Capacity:", lblX, startY + rowH * 3);
+            txt_Capacity.Location = new System.Drawing.Point(fldX, startY + rowH * 3 - 2);
+            txt_Capacity.Size = new System.Drawing.Size(100, 27);
+            txt_Capacity.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txt_Capacity.MaxLength = 4;
+
+            // Row 4 – Room
+            SetLabel(lblRoom, "Room:", lblX, startY + rowH * 4);
+            txt_Room.Location = new System.Drawing.Point(fldX, startY + rowH * 4 - 2);
+            txt_Room.Size = new System.Drawing.Size(200, 27);
+            txt_Room.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+
+            // Row 5 – Schedule
+            SetLabel(lblSchedule, "Schedule:", lblX, startY + rowH * 5);
+            txt_Schedule.Location = new System.Drawing.Point(fldX, startY + rowH * 5 - 2);
+            txt_Schedule.Size = new System.Drawing.Size(420, 27);
+            txt_Schedule.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+
+            // ── Button panel ──────────────────────────────────────────
+            pnlButtons.BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+            pnlButtons.Dock = DockStyle.Bottom;
+            pnlButtons.Height = 68;
+            pnlButtons.Padding = new Padding(24, 12, 24, 12);
+            pnlButtons.Controls.AddRange(new Control[] { btn_AddCourse, btnClear, btnQuit });
+
+            StylePrimaryBtn(btn_AddCourse, "Add Class", 0);
+            StyleSecondaryBtn(btnClear, "Reset", 148);
+            StyleSecondaryBtn(btnQuit, "Cancel", 284);
+
+            // ── Form ──────────────────────────────────────────────────
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(683, 456);
-            Controls.Add(cboSemester);
-            Controls.Add(label2);
-            Controls.Add(txt_HomeroomTeacher);
-            Controls.Add(lbl_AcademicYearAuto);
-            Controls.Add(cbo_CourseName);
-            Controls.Add(lbl_NameCourse);
-            Controls.Add(lbl_AcademicYear);
-            Controls.Add(lbl_ClassIDAuto);
-            Controls.Add(btnQuit);
-            Controls.Add(btnClear);
-            Controls.Add(btn_AddCourse);
-            Controls.Add(lbl_ClassID);
-            Controls.Add(lbl_HomeroomTeacher);
-            Controls.Add(txt_ClassCourse);
-            Controls.Add(lbl_ClassName);
-            Name = "f_AddClass";
-            Text = "f_AddClass";
+            ClientSize = new System.Drawing.Size(688, 480);
+            Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Add New Class — Academic Management";
+            BackColor = System.Drawing.Color.FromArgb(245, 247, 250);
+
+            Controls.AddRange(new Control[] { pnlButtons, pnlBody, pnlHeader });
+
+            pnlHeader.ResumeLayout(false);
+            pnlBody.ResumeLayout(false);
+            grpClassInfo.ResumeLayout(false);
+            pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
+        // ── Helpers ───────────────────────────────────────────────────
+        private void SetLabel(Label lbl, string text, int x, int y)
+        {
+            lbl.Text = text;
+            lbl.Location = new System.Drawing.Point(x, y + 4);
+            lbl.AutoSize = true;
+            lbl.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lbl.ForeColor = System.Drawing.Color.FromArgb(80, 80, 90);
+        }
+
+        private void StylePrimaryBtn(Button btn, string text, int left)
+        {
+            btn.Text = text;
+            btn.Location = new System.Drawing.Point(left, 10);
+            btn.Size = new System.Drawing.Size(130, 42);
+            btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F);
+            btn.BackColor = System.Drawing.Color.FromArgb(10, 61, 120);
+            btn.ForeColor = System.Drawing.Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Cursor = Cursors.Hand;
+        }
+
+        private void StyleSecondaryBtn(Button btn, string text, int left)
+        {
+            btn.Text = text;
+            btn.Location = new System.Drawing.Point(left, 10);
+            btn.Size = new System.Drawing.Size(120, 42);
+            btn.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            btn.BackColor = System.Drawing.Color.White;
+            btn.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
+            btn.FlatAppearance.BorderSize = 1;
+            btn.Cursor = Cursors.Hand;
+        }
+
         #endregion
 
-        private TextBox txt_Week;
-        private Label lbl_Week;
-        private ComboBox cbo_CourseName;
+        // ── Field declarations ────────────────────────────────────────
+        private Panel pnlHeader, pnlBody, pnlButtons;
+        private Label lblTitle, lblSubtitle;
+        private GroupBox grpClassInfo;
         private Label lbl_NameCourse;
-        private Label lbl_ClassIDAuto;
-        private Button btnQuit;
-        private Button btnClear;
-        private Button btn_AddCourse;
-        private TextBox txt_TheoryPeriod;
+        private ComboBox cbo_CourseName;
         private Label lbl_ClassID;
-        private Label lbl_HomeroomTeacher;
-        private TextBox txt_ClassCourse;
-        private Label lbl_ClassName;
-        private Label lbl_AcademicYear;
-        private Label lbl_AcademicYearAuto;
-        private TextBox txt_HomeroomTeacher;
+        private Label lbl_ClassIDAuto;
         private Label label2;
         private ComboBox cboSemester;
+        private Label lbl_AcademicYear;
+        private Label lbl_AcademicYearAuto;
+        private Label lblCapacity;
+        private TextBox txt_Capacity;
+        private Label lblRoom;
+        private TextBox txt_Room;
+        private Label lblSchedule;
+        private TextBox txt_Schedule;
+        private Button btn_AddCourse;
+        private Button btnClear;
+        private Button btnQuit;
     }
 }

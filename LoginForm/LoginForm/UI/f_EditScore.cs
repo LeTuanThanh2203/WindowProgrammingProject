@@ -21,8 +21,9 @@ namespace LoginForm
             cboAcademicYear.SelectedIndexChanged += Filter_Changed;
             cboSemester.SelectedIndexChanged += Filter_Changed;
             btnAdd.Click += btnAdd_Click;
-            btnReset.Click += btnReset_Click;   // sửa đúng
-                                                // btnExport để sau
+            btnReset.Click += btnReset_Click;
+            btnExport.Click += btnExport_Click; // FIX: nút Export trước đây không được wiring nên không hoạt động
+
             dgvStudent.CellEndEdit += dgvStudent_CellEndEdit;
         }
 
@@ -38,6 +39,7 @@ namespace LoginForm
         // ================= SETUP =================
         private void LoadClasses()
         {
+            // GetAllClasses() trong Score JOIN Course, trả về ClassID + ClassDisplay
             var dt = _score.GetAllClasses();
 
             var allRow = dt.NewRow();
@@ -56,6 +58,7 @@ namespace LoginForm
             cboAcademicYear.Items.Clear();
             cboAcademicYear.Items.Add("-- All --");
 
+            // AcademicYear lấy từ bảng Class (Score không có cột này)
             var dt = new Class().GetDistinctAcademicYears();
             foreach (DataRow row in dt.Rows)
                 cboAcademicYear.Items.Add(row[0].ToString());
@@ -67,9 +70,10 @@ namespace LoginForm
         {
             cboSemester.Items.Clear();
             cboSemester.Items.Add("-- All --");
-            cboSemester.Items.Add("1");
-            cboSemester.Items.Add("2");
-            cboSemester.Items.Add("3");
+            // Schema mới: Semester là NVARCHAR(20)
+            cboSemester.Items.Add("HK1");
+            cboSemester.Items.Add("HK2");
+            cboSemester.Items.Add("Summer");
             cboSemester.SelectedIndex = 0;
         }
 
@@ -90,8 +94,6 @@ namespace LoginForm
                 bool isEditable = col.Name == "Process Grade"
                                || col.Name == "Final Grade";
                 col.ReadOnly = !isEditable;
-
-                // Căn giữa header và cell
                 col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
@@ -105,21 +107,23 @@ namespace LoginForm
         // ================= FILTER =================
         private void Filter_Changed(object sender, EventArgs e) => ApplyFilter();
 
-        private void dgvStudent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void dgvStudent_DataBindingComplete(
+            object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewRow row in dgvStudent.Rows)
             {
                 if (row.IsNewRow) continue;
+
+                // Schema mới: cột tên "Grade" (Overview từ trigger)
                 string grade = row.Cells["Grade"].Value?.ToString() ?? "";
                 var cell = row.Cells["Grade"];
 
                 (cell.Style.BackColor, cell.Style.ForeColor) = grade switch
                 {
-                    "A+" or "A" => (Color.FromArgb(0, 180, 0), Color.White),
-                    "B+" or "B" => (Color.FromArgb(100, 200, 100), Color.Black),
-                    "C+" or "C" => (Color.FromArgb(255, 200, 0), Color.Black),
-                    "D+" or "D" => (Color.FromArgb(255, 140, 0), Color.White),
-                    "F" => (Color.FromArgb(220, 50, 50), Color.White),
+                    "Excellent" => (Color.FromArgb(0, 180, 0), Color.White),
+                    "Good" => (Color.FromArgb(100, 200, 100), Color.Black),
+                    "Pass" => (Color.FromArgb(255, 200, 0), Color.Black),
+                    "Fail" => (Color.FromArgb(220, 50, 50), Color.White),
                     _ => (Color.White, Color.Black)
                 };
             }
@@ -133,7 +137,8 @@ namespace LoginForm
 
             bool filterClass = !string.IsNullOrEmpty(classID);
             bool filterYear = academicYear != "-- All --" && !string.IsNullOrEmpty(academicYear);
-            bool filterSem = int.TryParse(semStr, out int semester);
+            // Schema mới: Semester là string (HK1/HK2/Summer)
+            bool filterSem = semStr != "-- All --" && !string.IsNullOrEmpty(semStr);
 
             DataTable dt = filterClass
                 ? _score.GetScoreByClass(classID)
@@ -147,7 +152,7 @@ namespace LoginForm
                     query = query.Where(r => r["AcademicYear"].ToString() == academicYear);
 
                 if (filterSem)
-                    query = query.Where(r => r.Field<int>("Semester") == semester);
+                    query = query.Where(r => r["Semester"].ToString() == semStr);
 
                 dt = query.Any() ? query.CopyToDataTable() : dt.Clone();
             }
@@ -162,8 +167,7 @@ namespace LoginForm
         {
             dgvStudent.EndEdit();
 
-            int successCount = 0;
-            int failCount = 0;
+            int successCount = 0, failCount = 0;
 
             foreach (DataGridViewRow row in dgvStudent.Rows)
             {
@@ -176,13 +180,13 @@ namespace LoginForm
                     continue;
 
                 bool midOk = decimal.TryParse(midVal,
-                                 System.Globalization.NumberStyles.Any,
-                                 System.Globalization.CultureInfo.InvariantCulture,
-                                 out decimal midterm);
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out decimal midterm);
                 bool finalOk = decimal.TryParse(finalVal,
-                                 System.Globalization.NumberStyles.Any,
-                                 System.Globalization.CultureInfo.InvariantCulture,
-                                 out decimal final);
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out decimal final);
 
                 if (!midOk || !finalOk || midterm < 0 || midterm > 10 || final < 0 || final > 10)
                 {
@@ -190,12 +194,11 @@ namespace LoginForm
                     continue;
                 }
 
+                // Schema mới: Score PK = (ID, ClassID) — không có Semester/AcademicYear
                 var s = new Score
                 {
-                    MSSV = row.Cells["MSSV"].Value?.ToString(),
+                    ID = row.Cells["ID"].Value?.ToString(),    // thay MSSV
                     ClassID = row.Cells["ClassID"].Value?.ToString(),
-                    Semester = Convert.ToInt32(row.Cells["Semester"].Value),
-                    AcademicYear = row.Cells["AcademicYear"].Value?.ToString(),
                     MidtermScore = midterm,
                     FinalScore = final
                 };
@@ -214,7 +217,7 @@ namespace LoginForm
             RefreshGrid();
             ApplyFilter();
         }
-        // ================= EXPORT (chưa làm) =================
+
         private void btnExport_Click(object sender, EventArgs e) { }
 
         // ================= RESET =================
@@ -223,30 +226,22 @@ namespace LoginForm
             if (dgvStudent.CurrentRow == null) return;
 
             var row = dgvStudent.CurrentRow;
-            string mssv = row.Cells["MSSV"].Value?.ToString();
+            // Schema mới: cột ID thay MSSV
+            string id = row.Cells["ID"].Value?.ToString();
             string classID = row.Cells["ClassID"].Value?.ToString();
-            int semester = Convert.ToInt32(row.Cells["Semester"].Value);
-            string acadYear = row.Cells["AcademicYear"].Value?.ToString();
 
-            if (string.IsNullOrEmpty(mssv))
+            if (string.IsNullOrEmpty(id))
             {
                 MessageBox.Show("Select a row first!");
                 return;
             }
 
             if (MessageBox.Show(
-                    $"Reset score for {mssv} - {classID}?",
-                    "Confirm",
-                    MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    $"Reset score for {id} - {classID}?",
+                    "Confirm", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
 
-            var s = new Score
-            {
-                MSSV = mssv,
-                ClassID = classID,
-                Semester = semester,
-                AcademicYear = acadYear
-            };
+            var s = new Score { ID = id, ClassID = classID };
 
             if (s.ResetScore())
             {
@@ -266,7 +261,6 @@ namespace LoginForm
 
             var cell = dgvStudent.Rows[e.RowIndex].Cells[e.ColumnIndex];
             string val = cell.Value?.ToString() ?? "";
-
             if (val == "") return;
 
             bool valid = decimal.TryParse(val,
@@ -287,20 +281,21 @@ namespace LoginForm
                 cell.Style.ForeColor = Color.Black;
                 cell.ErrorText = "";
 
+                // TotalScore là computed column — chỉ preview, không ghi
                 var row = dgvStudent.Rows[e.RowIndex];
                 bool midOk = decimal.TryParse(
-                                 row.Cells["Process Grade"].Value?.ToString(),
-                                 System.Globalization.NumberStyles.Any,
-                                 System.Globalization.CultureInfo.InvariantCulture,
-                                 out decimal mid);
+                    row.Cells["Process Grade"].Value?.ToString(),
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out decimal mid);
                 bool finOk = decimal.TryParse(
-                                 row.Cells["Final Grade"].Value?.ToString(),
-                                 System.Globalization.NumberStyles.Any,
-                                 System.Globalization.CultureInfo.InvariantCulture,
-                                 out decimal fin);
+                    row.Cells["Final Grade"].Value?.ToString(),
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out decimal fin);
 
+                // Preview tổng: 40% giữa kỳ + 60% cuối kỳ (theo trigger TR_Score_Update)
                 if (midOk && finOk && dgvStudent.Columns.Contains("Total Grade"))
-                    row.Cells["Total Grade"].Value = Math.Round((mid + fin) / 2, 2);
+                    row.Cells["Total Grade"].Value =
+                        Math.Round(mid * 0.4m + fin * 0.6m, 2);
             }
         }
     }

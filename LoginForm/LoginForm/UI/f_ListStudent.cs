@@ -37,8 +37,8 @@ namespace LoginForm
 
             cboSort.Items.Add("Name A-Z");
             cboSort.Items.Add("Name Z-A");
-            cboSort.Items.Add("MSSV Asc");
-            cboSort.Items.Add("MSSV Desc");
+            cboSort.Items.Add("ID Asc");
+            cboSort.Items.Add("ID Desc");
             cboSort.SelectedIndex = 0;
 
             isLoaded = true;
@@ -70,7 +70,7 @@ namespace LoginForm
                     dgvStudent.Rows[e.RowIndex];
 
                 lblID.Text =
-          row.Cells["MSSV"].Value.ToString();
+          row.Cells["ID"].Value.ToString();
 
                 lblFirstname.Text =
                     row.Cells["FirstName"].Value.ToString();
@@ -156,7 +156,7 @@ namespace LoginForm
 
                 if (!string.IsNullOrEmpty(keyword))
                 {
-                    query += @" AND (CAST(MSSV AS NVARCHAR) LIKE @search
+                    query += @" AND (CAST(ID AS NVARCHAR) LIKE @search
                         OR FirstName LIKE @search
                         OR LastName LIKE @search)";
                 }
@@ -168,8 +168,8 @@ namespace LoginForm
 
                 if (sort == "Name A-Z") query += " ORDER BY FirstName ASC";
                 else if (sort == "Name Z-A") query += " ORDER BY FirstName DESC";
-                else if (sort == "MSSV Asc") query += " ORDER BY MSSV ASC";
-                else if (sort == "MSSV Desc") query += " ORDER BY MSSV DESC";
+                else if (sort == "ID Asc") query += " ORDER BY ID ASC";
+                else if (sort == "ID Desc") query += " ORDER BY ID DESC";
 
                 // ✅ Mở connection thủ công
                 SqlConnection conn = db.getConnection;
@@ -275,7 +275,7 @@ namespace LoginForm
         private void btnViewScore_Click(object sender, EventArgs e)
         {
             string mssv =
-                dgvStudent.CurrentRow.Cells["MSSV"].Value.ToString();
+                dgvStudent.CurrentRow.Cells["ID"].Value.ToString();
 
             f_ScoreView frm = new f_ScoreView(mssv);
             frm.ShowDialog();

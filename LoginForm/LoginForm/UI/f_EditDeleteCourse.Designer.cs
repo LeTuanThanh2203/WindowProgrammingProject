@@ -28,358 +28,334 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            // ── Controls ──────────────────────────────────────────────
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+
+            pnlBody = new Panel();
+
+            // Course list (left card)
+            grpCourseList = new GroupBox();
+            lblSortCaption = new Label();
             cboSort = new ComboBox();
             txtSearch = new TextBox();
             dgvCourse = new DataGridView();
-            panel2 = new Panel();
-            txt_Week = new TextBox();
-            lbl_Week = new Label();
-            txt_CourseCode = new TextBox();
-            lbl_CourseCode = new Label();
-            btnRefresh = new Button();
-            btnQuit = new Button();
-            btnDelete = new Button();
-            btnUpdate = new Button();
+
+            // Course details (right card)
+            grpCourseDetails = new GroupBox();
+            lbl_IDCourse = new Label();
+            txt_IDCourse = new TextBox();
+            lbl_NameCourse = new Label();
+            txt_NameCourse = new TextBox();
+            lbl_Credits = new Label();
+            txt_Credits = new TextBox();
+            lbl_Theory = new Label();
+            txt_TheoryPeriod = new TextBox();
             lbl_Practical = new Label();
             txt_PracticalPeriod = new TextBox();
-            lbl_Theory = new Label();
-            txt_CreditHour = new TextBox();
-            label3 = new Label();
-            txt_Overview = new TextBox();
-            lbl_Overview = new Label();
-            txt_TheoryPeriod = new TextBox();
-            lbl_Period = new Label();
-            cbo_PrerequisiteCourse = new ComboBox();
+            lbl_TotalPeriod = new Label();
+            txt_TotalPeriod = new TextBox();
+            chk_IsRequired = new CheckBox();
             lbl_PrerequisiteCourse = new Label();
-            txt_NameCourse = new TextBox();
-            txt_IDCourse = new TextBox();
-            label2 = new Label();
-            lbl_IDCourse = new Label();
-            panel1.SuspendLayout();
+            cbo_PrerequisiteCourse = new ComboBox();
+            lbl_Description = new Label();
+            txt_Description = new TextBox();
+
+            // Footer buttons
+            pnlButtons = new Panel();
+            btnUpdate = new Button();
+            btnDelete = new Button();
+            btnRefresh = new Button();
+            btnQuit = new Button();
+
+            pnlHeader.SuspendLayout();
+            pnlBody.SuspendLayout();
+            grpCourseList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourse).BeginInit();
-            panel2.SuspendLayout();
+            grpCourseDetails.SuspendLayout();
+            pnlButtons.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(cboSort);
-            panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(dgvCourse);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(677, 702);
-            panel1.TabIndex = 49;
-            // 
-            // cboSort
-            // 
+
+            // ── Header ────────────────────────────────────────────────
+            pnlHeader.BackColor = Color.FromArgb(10, 61, 120);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 80;
+            pnlHeader.Controls.AddRange(new Control[] { lblTitle, lblSubtitle });
+
+            lblTitle.Text = "Manage Courses";
+            lblTitle.Font = new Font("Segoe UI Semibold", 16F);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(24, 14);
+            lblTitle.AutoSize = true;
+
+            lblSubtitle.Text = "University Academic Management System";
+            lblSubtitle.Font = new Font("Segoe UI", 9.5F);
+            lblSubtitle.ForeColor = Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new Point(26, 46);
+            lblSubtitle.AutoSize = true;
+
+            // ── Body ──────────────────────────────────────────────────
+            pnlBody.Dock = DockStyle.Fill;
+            pnlBody.BackColor = Color.FromArgb(245, 247, 250);
+            pnlBody.Padding = new Padding(20, 16, 20, 12);
+            pnlBody.Controls.AddRange(new Control[] { grpCourseDetails, grpCourseList });
+
+            // ── Course list card ──────────────────────────────────────
+            grpCourseList.Text = "Course List";
+            grpCourseList.Font = new Font("Segoe UI Semibold", 9.5F);
+            grpCourseList.ForeColor = Color.FromArgb(10, 61, 120);
+            grpCourseList.BackColor = Color.White;
+            grpCourseList.Dock = DockStyle.Left;
+            grpCourseList.Width = 640;
+            grpCourseList.Margin = new Padding(0, 0, 16, 0);
+            grpCourseList.Padding = new Padding(16, 16, 16, 16);
+            grpCourseList.Controls.AddRange(new Control[] { lblSortCaption, cboSort, txtSearch, dgvCourse });
+
+            lblSortCaption.AutoSize = true;
+            lblSortCaption.Text = "Sort by:";
+            lblSortCaption.Font = new Font("Segoe UI", 9.5F);
+            lblSortCaption.ForeColor = Color.FromArgb(80, 80, 90);
+            lblSortCaption.Location = new Point(16, 32);
+
             cboSort.FormattingEnabled = true;
-            cboSort.Location = new Point(3, 4);
-            cboSort.Name = "cboSort";
-            cboSort.Size = new Size(121, 28);
-            cboSort.TabIndex = 8;
+            cboSort.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSort.Font = new Font("Segoe UI", 9.5F);
+            cboSort.Location = new Point(80, 28);
+            cboSort.Size = new Size(150, 28);
             cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(130, 5);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search";
-            txtSearch.Size = new Size(543, 27);
-            txtSearch.TabIndex = 7;
+
+            txtSearch.PlaceholderText = "Search courses";
+            txtSearch.Font = new Font("Segoe UI", 9.5F);
+            txtSearch.Location = new Point(250, 28);
+            txtSearch.Size = new Size(370, 27);
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
-            // dgvCourse
-            // 
+
             dgvCourse.BackgroundColor = SystemColors.Control;
             dgvCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCourse.Location = new Point(3, 38);
             dgvCourse.MultiSelect = false;
-            dgvCourse.Name = "dgvCourse";
             dgvCourse.ReadOnly = true;
             dgvCourse.RowHeadersVisible = false;
             dgvCourse.RowHeadersWidth = 51;
             dgvCourse.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCourse.Size = new Size(670, 661);
-            dgvCourse.TabIndex = 6;
+            dgvCourse.Location = new Point(16, 74);
+            dgvCourse.Size = new Size(600, 560);
+            dgvCourse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCourse.CellClick += dgvCourse_CellClick;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(txt_Week);
-            panel2.Controls.Add(lbl_Week);
-            panel2.Controls.Add(txt_CourseCode);
-            panel2.Controls.Add(lbl_CourseCode);
-            panel2.Controls.Add(btnRefresh);
-            panel2.Controls.Add(btnQuit);
-            panel2.Controls.Add(btnDelete);
-            panel2.Controls.Add(btnUpdate);
-            panel2.Controls.Add(lbl_Practical);
-            panel2.Controls.Add(txt_PracticalPeriod);
-            panel2.Controls.Add(lbl_Theory);
-            panel2.Controls.Add(txt_CreditHour);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(txt_Overview);
-            panel2.Controls.Add(lbl_Overview);
-            panel2.Controls.Add(txt_TheoryPeriod);
-            panel2.Controls.Add(lbl_Period);
-            panel2.Controls.Add(cbo_PrerequisiteCourse);
-            panel2.Controls.Add(lbl_PrerequisiteCourse);
-            panel2.Controls.Add(txt_NameCourse);
-            panel2.Controls.Add(txt_IDCourse);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(lbl_IDCourse);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(679, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(591, 702);
-            panel2.TabIndex = 68;
-            // 
-            // txt_Week
-            // 
-            txt_Week.Location = new Point(134, 204);
-            txt_Week.Name = "txt_Week";
-            txt_Week.Size = new Size(382, 27);
-            txt_Week.TabIndex = 63;
-            // 
-            // lbl_Week
-            // 
-            lbl_Week.AutoSize = true;
-            lbl_Week.Location = new Point(28, 207);
-            lbl_Week.Name = "lbl_Week";
-            lbl_Week.Size = new Size(48, 20);
-            lbl_Week.TabIndex = 62;
-            lbl_Week.Text = "Week:";
-            // 
-            // txt_CourseCode
-            // 
-            txt_CourseCode.Location = new Point(130, 103);
-            txt_CourseCode.Name = "txt_CourseCode";
-            txt_CourseCode.Size = new Size(382, 27);
-            txt_CourseCode.TabIndex = 59;
-            // 
-            // lbl_CourseCode
-            // 
-            lbl_CourseCode.AutoSize = true;
-            lbl_CourseCode.Location = new Point(27, 106);
-            lbl_CourseCode.Name = "lbl_CourseCode";
-            lbl_CourseCode.Size = new Size(96, 20);
-            lbl_CourseCode.TabIndex = 58;
-            lbl_CourseCode.Text = "Course Code:";
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Location = new Point(307, 580);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(126, 44);
-            btnRefresh.TabIndex = 57;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
-            // btnQuit
-            // 
-            btnQuit.Location = new Point(446, 580);
-            btnQuit.Name = "btnQuit";
-            btnQuit.Size = new Size(126, 44);
-            btnQuit.TabIndex = 56;
-            btnQuit.Text = "Cancel";
-            btnQuit.UseVisualStyleBackColor = true;
-            btnQuit.Click += btnQuit_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(162, 580);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(126, 44);
-            btnDelete.TabIndex = 55;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(27, 580);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(117, 44);
-            btnUpdate.TabIndex = 54;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // lbl_Practical
-            // 
-            lbl_Practical.AutoSize = true;
-            lbl_Practical.Location = new Point(493, 333);
-            lbl_Practical.Name = "lbl_Practical";
-            lbl_Practical.Size = new Size(65, 20);
-            lbl_Practical.TabIndex = 53;
-            lbl_Practical.Text = "Practical";
-            // 
-            // txt_PracticalPeriod
-            // 
-            txt_PracticalPeriod.Location = new Point(430, 326);
-            txt_PracticalPeriod.Name = "txt_PracticalPeriod";
-            txt_PracticalPeriod.Size = new Size(57, 27);
-            txt_PracticalPeriod.TabIndex = 52;
-            // 
-            // lbl_Theory
-            // 
-            lbl_Theory.AutoSize = true;
-            lbl_Theory.Location = new Point(358, 333);
-            lbl_Theory.Name = "lbl_Theory";
-            lbl_Theory.Size = new Size(54, 20);
-            lbl_Theory.TabIndex = 51;
-            lbl_Theory.Text = "Theory";
-            // 
-            // txt_CreditHour
-            // 
-            txt_CreditHour.Location = new Point(122, 330);
-            txt_CreditHour.Name = "txt_CreditHour";
-            txt_CreditHour.Size = new Size(83, 27);
-            txt_CreditHour.TabIndex = 50;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(27, 333);
-            label3.Name = "label3";
-            label3.Size = new Size(89, 20);
-            label3.TabIndex = 49;
-            label3.Text = "Credit Hour:";
-            // 
-            // txt_Overview
-            // 
-            txt_Overview.Location = new Point(27, 400);
-            txt_Overview.Multiline = true;
-            txt_Overview.Name = "txt_Overview";
-            txt_Overview.Size = new Size(531, 126);
-            txt_Overview.TabIndex = 48;
-            // 
-            // lbl_Overview
-            // 
-            lbl_Overview.AutoSize = true;
-            lbl_Overview.Location = new Point(27, 377);
-            lbl_Overview.Name = "lbl_Overview";
-            lbl_Overview.Size = new Size(73, 20);
-            lbl_Overview.TabIndex = 47;
-            lbl_Overview.Text = "Overview:";
-            // 
-            // txt_TheoryPeriod
-            // 
-            txt_TheoryPeriod.Location = new Point(295, 330);
-            txt_TheoryPeriod.Name = "txt_TheoryPeriod";
-            txt_TheoryPeriod.Size = new Size(57, 27);
-            txt_TheoryPeriod.TabIndex = 46;
-            // 
-            // lbl_Period
-            // 
-            lbl_Period.AutoSize = true;
-            lbl_Period.Location = new Point(222, 333);
-            lbl_Period.Name = "lbl_Period";
-            lbl_Period.Size = new Size(54, 20);
-            lbl_Period.TabIndex = 45;
-            lbl_Period.Text = "Period:";
-            // 
-            // cbo_PrerequisiteCourse
-            // 
-            cbo_PrerequisiteCourse.FormattingEnabled = true;
-            cbo_PrerequisiteCourse.Location = new Point(27, 283);
-            cbo_PrerequisiteCourse.Name = "cbo_PrerequisiteCourse";
-            cbo_PrerequisiteCourse.Size = new Size(531, 28);
-            cbo_PrerequisiteCourse.TabIndex = 44;
-            // 
-            // lbl_PrerequisiteCourse
-            // 
-            lbl_PrerequisiteCourse.AutoSize = true;
-            lbl_PrerequisiteCourse.Location = new Point(27, 260);
-            lbl_PrerequisiteCourse.Name = "lbl_PrerequisiteCourse";
-            lbl_PrerequisiteCourse.Size = new Size(139, 20);
-            lbl_PrerequisiteCourse.TabIndex = 43;
-            lbl_PrerequisiteCourse.Text = "Prerequisite Course:";
-            // 
-            // txt_NameCourse
-            // 
-            txt_NameCourse.Location = new Point(132, 151);
-            txt_NameCourse.Name = "txt_NameCourse";
+
+            // ── Course details card ───────────────────────────────────
+            grpCourseDetails.Text = "Course Details";
+            grpCourseDetails.Font = new Font("Segoe UI Semibold", 9.5F);
+            grpCourseDetails.ForeColor = Color.FromArgb(10, 61, 120);
+            grpCourseDetails.BackColor = Color.White;
+            grpCourseDetails.Dock = DockStyle.Fill;
+            grpCourseDetails.Padding = new Padding(16, 16, 16, 16);
+            grpCourseDetails.Controls.AddRange(new Control[]
+            {
+                lbl_IDCourse, txt_IDCourse,
+                lbl_NameCourse, txt_NameCourse,
+                lbl_Credits, txt_Credits,
+                lbl_Theory, txt_TheoryPeriod,
+                lbl_Practical, txt_PracticalPeriod,
+                lbl_TotalPeriod, txt_TotalPeriod,
+                chk_IsRequired,
+                lbl_PrerequisiteCourse, cbo_PrerequisiteCourse,
+                lbl_Description, txt_Description
+            });
+
+            int lblX = 20, fldX = 150, rowH = 46, startY = 28;
+
+            // Row 0 — Course ID
+            SetupField(lbl_IDCourse, "Course ID:", lblX, startY + rowH * 0);
+            txt_IDCourse.Location = new Point(fldX, startY + rowH * 0 - 2);
+            txt_IDCourse.Size = new Size(220, 27);
+            txt_IDCourse.Font = new Font("Segoe UI", 9.5F);
+
+            // Row 1 — Course Name
+            SetupField(lbl_NameCourse, "Course Name:", lblX, startY + rowH * 1);
+            txt_NameCourse.Location = new Point(fldX, startY + rowH * 1 - 2);
             txt_NameCourse.Size = new Size(380, 27);
-            txt_NameCourse.TabIndex = 42;
-            // 
-            // txt_IDCourse
-            // 
-            txt_IDCourse.Location = new Point(130, 55);
-            txt_IDCourse.Name = "txt_IDCourse";
-            txt_IDCourse.Size = new Size(382, 27);
-            txt_IDCourse.TabIndex = 41;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(27, 154);
-            label2.Name = "label2";
-            label2.Size = new Size(101, 20);
-            label2.TabIndex = 40;
-            label2.Text = "Name Course:";
-            // 
-            // lbl_IDCourse
-            // 
-            lbl_IDCourse.AutoSize = true;
-            lbl_IDCourse.Location = new Point(29, 58);
-            lbl_IDCourse.Name = "lbl_IDCourse";
-            lbl_IDCourse.Size = new Size(76, 20);
-            lbl_IDCourse.TabIndex = 39;
-            lbl_IDCourse.Text = "ID Course:";
-            // 
-            // f_EditDeleteCourse
-            // 
+            txt_NameCourse.Font = new Font("Segoe UI", 9.5F);
+            txt_NameCourse.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+
+            // Row 2 — Credits / Theory / Practical
+            SetupField(lbl_Credits, "Credits:", lblX, startY + rowH * 2);
+            txt_Credits.Location = new Point(fldX, startY + rowH * 2 - 2);
+            txt_Credits.Size = new Size(60, 27);
+            txt_Credits.Font = new Font("Segoe UI", 9.5F);
+
+            SetupField(lbl_Theory, "Theory:", lblX + 210, startY + rowH * 2);
+            txt_TheoryPeriod.Location = new Point(fldX + 280, startY + rowH * 2 - 2);
+            txt_TheoryPeriod.Size = new Size(50, 27);
+            txt_TheoryPeriod.Font = new Font("Segoe UI", 9.5F);
+            txt_TheoryPeriod.TextChanged += Period_TextChanged;
+
+            SetupField(lbl_Practical, "Practical:", lblX + 350, startY + rowH * 2);
+            txt_PracticalPeriod.Location = new Point(fldX + 430, startY + rowH * 2 - 2);
+            txt_PracticalPeriod.Size = new Size(50, 27);
+            txt_PracticalPeriod.Font = new Font("Segoe UI", 9.5F);
+            txt_PracticalPeriod.TextChanged += Period_TextChanged;
+
+            // Row 3 — Total Periods (auto-calculated, read-only) / Is Required
+            SetupField(lbl_TotalPeriod, "Total Periods:", lblX, startY + rowH * 3);
+            txt_TotalPeriod.Location = new Point(fldX, startY + rowH * 3 - 2);
+            txt_TotalPeriod.Size = new Size(80, 27);
+            txt_TotalPeriod.Font = new Font("Segoe UI", 9.5F);
+            txt_TotalPeriod.ReadOnly = true;
+            txt_TotalPeriod.BackColor = Color.FromArgb(238, 240, 244);
+
+            chk_IsRequired.Text = "Required course";
+            chk_IsRequired.Font = new Font("Segoe UI", 9.5F);
+            chk_IsRequired.ForeColor = Color.FromArgb(80, 80, 90);
+            chk_IsRequired.AutoSize = true;
+            chk_IsRequired.Location = new Point(lblX + 210, startY + rowH * 3 + 3);
+
+            // Row 4 — Prerequisite
+            SetupField(lbl_PrerequisiteCourse, "Prerequisite Course:", lblX, startY + rowH * 4);
+            cbo_PrerequisiteCourse.FormattingEnabled = true;
+            cbo_PrerequisiteCourse.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo_PrerequisiteCourse.Font = new Font("Segoe UI", 9.5F);
+            cbo_PrerequisiteCourse.Location = new Point(lblX, startY + rowH * 4 + 22);
+            cbo_PrerequisiteCourse.Size = new Size(460, 28);
+            cbo_PrerequisiteCourse.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+
+            // Row 5 — Description
+            SetupField(lbl_Description, "Description:", lblX, startY + rowH * 4 + 60);
+            txt_Description.Multiline = true;
+            txt_Description.Font = new Font("Segoe UI", 9.5F);
+            txt_Description.Location = new Point(lblX, startY + rowH * 4 + 84);
+            txt_Description.Size = new Size(460, 140);
+            txt_Description.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
+            // ── Footer panel ──────────────────────────────────────────
+            pnlButtons.Dock = DockStyle.Bottom;
+            pnlButtons.Height = 68;
+            pnlButtons.BackColor = Color.White;
+            pnlButtons.Padding = new Padding(24, 12, 24, 12);
+            pnlButtons.Controls.AddRange(new Control[] { btnUpdate, btnDelete, btnRefresh, btnQuit });
+
+            StylePrimaryBtn(btnUpdate, "Update", 0);
+            btnUpdate.Click += btnUpdate_Click;
+
+            StyleDangerBtn(btnDelete, "Delete", 148);
+            btnDelete.Click += btnDelete_Click;
+
+            StyleSecondaryBtn(btnRefresh, "Refresh", 296);
+            btnRefresh.Click += btnRefresh_Click;
+
+            StyleSecondaryBtn(btnQuit, "Cancel", 420);
+            btnQuit.Click += btnQuit_Click;
+
+            // ── Form ──────────────────────────────────────────────────
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 702);
-            Controls.Add(panel1);
-            Controls.Add(panel2);
+            ClientSize = new Size(1300, 760);
+            Font = new Font("Segoe UI", 9.5F);
+            BackColor = Color.FromArgb(245, 247, 250);
+            StartPosition = FormStartPosition.CenterScreen;
             Name = "f_EditDeleteCourse";
-            Text = "f_EditDeleteCourse";
+            Text = "Manage Courses — Academic Management";
             Load += f_EditDeleteCourse_Load;
             Shown += f_EditDeleteCourse_Shown;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+
+            Controls.AddRange(new Control[] { pnlButtons, pnlBody, pnlHeader });
+
+            pnlHeader.ResumeLayout(false);
+            grpCourseList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvCourse).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            grpCourseDetails.ResumeLayout(false);
+            grpCourseDetails.PerformLayout();
+            pnlBody.ResumeLayout(false);
+            pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
+        }
+
+        // ── Helpers ───────────────────────────────────────────────────
+        private void SetupField(Label lbl, string text, int x, int y)
+        {
+            lbl.Text = text;
+            lbl.Location = new Point(x, y + 5);
+            lbl.AutoSize = true;
+            lbl.Font = new Font("Segoe UI", 9.5F);
+            lbl.ForeColor = Color.FromArgb(80, 80, 90);
+        }
+
+        private void StylePrimaryBtn(Button btn, string text, int left)
+        {
+            btn.Text = text;
+            btn.Location = new Point(left, 10);
+            btn.Size = new Size(130, 42);
+            btn.Font = new Font("Segoe UI Semibold", 9.5F);
+            btn.BackColor = Color.FromArgb(10, 61, 120);
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Cursor = Cursors.Hand;
+        }
+
+        private void StyleDangerBtn(Button btn, string text, int left)
+        {
+            btn.Text = text;
+            btn.Location = new Point(left, 10);
+            btn.Size = new Size(130, 42);
+            btn.Font = new Font("Segoe UI Semibold", 9.5F);
+            btn.BackColor = Color.FromArgb(192, 57, 57);
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Cursor = Cursors.Hand;
+        }
+
+        private void StyleSecondaryBtn(Button btn, string text, int left)
+        {
+            btn.Text = text;
+            btn.Location = new Point(left, 10);
+            btn.Size = new Size(110, 42);
+            btn.Font = new Font("Segoe UI", 9.5F);
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.FromArgb(60, 70, 85);
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btn.FlatAppearance.BorderSize = 1;
+            btn.Cursor = Cursors.Hand;
         }
 
         #endregion
 
-        private Panel panel1;
-        private ComboBox cboGender;
+        // ── Field declarations ────────────────────────────────────────
+        private Panel pnlHeader, pnlBody, pnlButtons;
+        private Label lblTitle, lblSubtitle;
+
+        private GroupBox grpCourseList;
+        private Label lblSortCaption;
         private ComboBox cboSort;
         private TextBox txtSearch;
         private DataGridView dgvCourse;
-        private Panel panel2;
+
+        private GroupBox grpCourseDetails;
+        private Label lbl_IDCourse;
+        private TextBox txt_IDCourse;
+        private Label lbl_NameCourse;
+        private TextBox txt_NameCourse;
+        private Label lbl_Credits;
+        private TextBox txt_Credits;
+        private Label lbl_Theory;
+        private TextBox txt_TheoryPeriod;
         private Label lbl_Practical;
         private TextBox txt_PracticalPeriod;
-        private Label lbl_Theory;
-        private TextBox txt_CreditHour;
-        private Label label3;
-        private TextBox txt_Overview;
-        private Label lbl_Overview;
-        private TextBox txt_TheoryPeriod;
-        private Label lbl_Period;
-        private ComboBox cbo_PrerequisiteCourse;
+        private Label lbl_TotalPeriod;
+        private TextBox txt_TotalPeriod;
+        private CheckBox chk_IsRequired;
         private Label lbl_PrerequisiteCourse;
-        private TextBox txt_NameCourse;
-        private TextBox txt_IDCourse;
-        private Label label2;
-        private Label lbl_IDCourse;
-        private Button btnQuit;
-        private Button btnDelete;
+        private ComboBox cbo_PrerequisiteCourse;
+        private Label lbl_Description;
+        private TextBox txt_Description;
+
         private Button btnUpdate;
+        private Button btnDelete;
         private Button btnRefresh;
-        private TextBox txt_CourseCode;
-        private Label lbl_CourseCode;
-        private TextBox txt_Week;
-        private Label lbl_Week;
+        private Button btnQuit;
     }
 }

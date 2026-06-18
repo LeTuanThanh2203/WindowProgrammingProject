@@ -49,8 +49,8 @@ namespace LoginForm
 
                 if (sort == "Name A-Z") dv.Sort = "CourseName ASC";
                 else if (sort == "Name Z-A") dv.Sort = "CourseName DESC";
-                else if (sort == "Credit Asc") dv.Sort = "CreditHour ASC";
-                else if (sort == "Credit Desc") dv.Sort = "CreditHour DESC";
+                else if (sort == "Credit Asc") dv.Sort = "Credits ASC";
+                else if (sort == "Credit Desc") dv.Sort = "Credits DESC";
 
                 dgvCourse.DataSource = dv.ToTable();
                 FormatGrid();
@@ -72,20 +72,20 @@ namespace LoginForm
         }
 
         // ======================
-        // PREREQUISITE COMBO  ← bind bằng CourseCode (string)
+        // PREREQUISITE COMBO ← bind bằng CourseID (string), loại trừ chính khoá học đang chọn
         // ======================
-        private void LoadPrerequisiteCourse()
+        private void LoadPrerequisiteCourse(string currentCourseID = "")
         {
-            DataTable table = courseModel.GetPrerequisiteCourse();
+            DataTable table = courseModel.GetPrerequisiteCandidates(currentCourseID ?? "");
 
             DataRow row = table.NewRow();
-            row["CourseCode"] = DBNull.Value;
+            row["CourseID"] = DBNull.Value;
             row["CourseDisplay"] = "-- None --";
             table.Rows.InsertAt(row, 0);
 
             cbo_PrerequisiteCourse.DataSource = table;
             cbo_PrerequisiteCourse.DisplayMember = "CourseDisplay";
-            cbo_PrerequisiteCourse.ValueMember = "CourseCode";   // ← string
+            cbo_PrerequisiteCourse.ValueMember = "CourseID";   // ← string
             cbo_PrerequisiteCourse.SelectedIndex = 0;
         }
 
@@ -98,24 +98,43 @@ namespace LoginForm
 
             DataGridViewRow row = dgvCourse.Rows[e.RowIndex];
 
-            txt_IDCourse.Text = row.Cells["CourseID"].Value.ToString();
-            txt_CourseCode.Text = row.Cells["CourseCode"].Value.ToString().Trim();
+            txt_IDCourse.Text = row.Cells["CourseID"].Value.ToString().Trim();
             txt_NameCourse.Text = row.Cells["CourseName"].Value.ToString();
-            txt_CreditHour.Text = row.Cells["CreditHour"].Value.ToString();
-            txt_TheoryPeriod.Text = row.Cells["TheoryPeriod"].Value.ToString();
-            txt_PracticalPeriod.Text = row.Cells["PracticalPeriod"].Value.ToString();
-            txt_Week.Text = row.Cells["Week"].Value.ToString();
-            txt_Overview.Text = row.Cells["Overview"].Value == DBNull.Value
+            txt_Credits.Text = row.Cells["Credits"].Value.ToString();
+            txt_TheoryPeriod.Text = row.Cells["TheoryPeriods"].Value.ToString();
+            txt_PracticalPeriod.Text = row.Cells["PracticePeriods"].Value.ToString();
+            txt_TotalPeriod.Text = row.Cells["TotalPeriods"].Value.ToString();
+            chk_IsRequired.Checked = row.Cells["IsRequired"].Value != DBNull.Value &&
+                                      Convert.ToBoolean(row.Cells["IsRequired"].Value);
+            txt_Description.Text = row.Cells["Description"].Value == DBNull.Value
                                         ? ""
-                                        : row.Cells["Overview"].Value.ToString();
+                                        : row.Cells["Description"].Value.ToString();
             txt_IDCourse.Enabled = false;
 
-            // Prerequisite — so sánh bằng CourseCode string
-            object prereq = row.Cells["PrerequisiteCourseCode"].Value;
+            // Nạp lại danh sách tiên quyết, loại trừ chính khoá học đang chọn
+            LoadPrerequisiteCourse(txt_IDCourse.Text);
+
+            object prereq = row.Cells["PrerequisiteID"].Value;
             if (prereq != DBNull.Value && prereq != null)
                 cbo_PrerequisiteCourse.SelectedValue = prereq.ToString().Trim();
             else
                 cbo_PrerequisiteCourse.SelectedIndex = 0;
+        }
+
+        // ======================
+        // AUTO-CALC TOTAL PERIODS (TheoryPeriods + PracticePeriods)
+        // ======================
+        private void Period_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txt_TheoryPeriod.Text, out int theory) &&
+                int.TryParse(txt_PracticalPeriod.Text, out int practical))
+            {
+                txt_TotalPeriod.Text = (theory + practical).ToString();
+            }
+            else
+            {
+                txt_TotalPeriod.Text = "";
+            }
         }
 
         // ======================
@@ -125,35 +144,42 @@ namespace LoginForm
         {
             try
             {
-                if (!int.TryParse(txt_CreditHour.Text, out int creditHour) ||
-                    !int.TryParse(txt_TheoryPeriod.Text, out int theoryPeriod) ||
-                    !int.TryParse(txt_PracticalPeriod.Text, out int practicalPeriod) ||
-                    !int.TryParse(txt_Week.Text, out int week))
+                if (string.IsNullOrWhiteSpace(txt_IDCourse.Text))
+                {
+                    MessageBox.Show("Select a course to update!");
+                    return;
+                }
+
+                if (!int.TryParse(txt_Credits.Text, out int credits) ||
+                    !int.TryParse(txt_TheoryPeriod.Text, out int theoryPeriods) ||
+                    !int.TryParse(txt_PracticalPeriod.Text, out int practicePeriods))
                 {
                     MessageBox.Show("Numeric fields must be valid numbers!");
                     return;
                 }
 
-                string prereqCode = null;
+                int totalPeriods = theoryPeriods + practicePeriods;
+
+                string prereqID = null;
                 if (cbo_PrerequisiteCourse.SelectedValue != null &&
                     cbo_PrerequisiteCourse.SelectedValue != DBNull.Value)
                 {
                     string val = cbo_PrerequisiteCourse.SelectedValue.ToString().Trim();
                     if (val != "")
-                        prereqCode = val;
+                        prereqID = val;
                 }
 
                 Course c = new Course
                 {
-                    CourseID = Convert.ToInt32(txt_IDCourse.Text.Trim()),
-                    CourseCode = txt_CourseCode.Text.Trim(),
+                    CourseID = txt_IDCourse.Text.Trim(),
                     CourseName = txt_NameCourse.Text.Trim(),
-                    CreditHour = creditHour,
-                    TheoryPeriod = theoryPeriod,
-                    PracticalPeriod = practicalPeriod,
-                    Overview = txt_Overview.Text.Trim(),
-                    PrerequisiteCourseCode = prereqCode,   // ← string
-                    Week = week
+                    Credits = credits,
+                    TotalPeriods = totalPeriods,
+                    TheoryPeriods = theoryPeriods,
+                    PracticePeriods = practicePeriods,
+                    PrerequisiteID = prereqID,           // ← string
+                    IsRequired = chk_IsRequired.Checked,
+                    Description = txt_Description.Text.Trim()
                 };
 
                 if (c.EditCourse())
@@ -173,7 +199,7 @@ namespace LoginForm
         }
 
         // ======================
-        // DELETE (không đổi)
+        // DELETE
         // ======================
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -186,7 +212,7 @@ namespace LoginForm
             if (MessageBox.Show("Delete this course?", "Confirm",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                bool ok = Course.DelCourse(Convert.ToInt32(txt_IDCourse.Text));
+                bool ok = Course.DelCourse(txt_IDCourse.Text.Trim());
                 MessageBox.Show(ok ? "Deleted!" : "Delete failed!");
                 if (ok) LoadData();
             }
@@ -212,13 +238,13 @@ namespace LoginForm
         private void ClearForm()
         {
             txt_IDCourse.Clear();
-            txt_CourseCode.Clear();
             txt_NameCourse.Clear();
-            txt_CreditHour.Clear();
+            txt_Credits.Clear();
             txt_TheoryPeriod.Clear();
             txt_PracticalPeriod.Clear();
-            txt_Week.Clear();
-            txt_Overview.Clear();
+            txt_TotalPeriod.Clear();
+            chk_IsRequired.Checked = false;
+            txt_Description.Clear();
             cbo_PrerequisiteCourse.SelectedIndex = 0;
             txt_IDCourse.Enabled = true;
         }

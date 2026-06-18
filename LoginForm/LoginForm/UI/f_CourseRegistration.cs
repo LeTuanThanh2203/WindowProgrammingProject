@@ -1,5 +1,4 @@
-﻿using Project_Group6.Models;
-using System;
+﻿using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -7,9 +6,9 @@ namespace LoginForm
 {
     public partial class f_CourseRegistration : Form
     {
-        private readonly Student student = new();
-        private string currentMSSV = Globals.Username;
-        private string academicYear;
+        private readonly Student _student = new();
+        // Schema mới: currentID thay currentMSSV
+        private string currentID = Globals.Username;
 
         public f_CourseRegistration()
         {
@@ -24,33 +23,30 @@ namespace LoginForm
         // ================= LOAD =================
         private void f_CourseRegistration_Load(object sender, EventArgs e)
         {
-            int y = DateTime.Now.Month >= 9
-                  ? DateTime.Now.Year
-                  : DateTime.Now.Year - 1;
+            // Schema mới: DKMH chỉ có (ID, ClassID, RegisterDate)
+            // Semester và AcademicYear lấy từ bảng Class qua JOIN
+            // Nên DataPropertyName bind theo cột trả về từ GetUnRegisteredCourses/GetRegisteredCourses
 
-            academicYear = $"{y}-{y + 1}";
-
-            lblAcademicYearRegister.Text = academicYear;
-            lblAcademicYearUnRegister.Text = academicYear;
-
-            // Set DataPropertyName 1 lần duy nhất
+            // Unregistered grid columns
             txtClassIDUnRegister.DataPropertyName = "ClassID";
-            txtClassNameUnRegister.DataPropertyName = "ClassName";
             txtCourseNameUnRegister.DataPropertyName = "CourseName";
-            txtManagerNameUnRegister.DataPropertyName = "Manager";
-            txtCreditHourUnRegister.DataPropertyName = "CreditHour";
-            txtPrerequisiteCourseUnRegister.DataPropertyName = "Prerequisite Course";
+            txtCreditUnRegister.DataPropertyName = "Credits";
             txtSemesterUnRegister.DataPropertyName = "Semester";
-            txtWeekUnRegister.DataPropertyName = "Week";
+            txtAcademicYearUnRegister.DataPropertyName = "AcademicYear";
+            txtCapacityUnRegister.DataPropertyName = "Capacity";
+            txtCurrentStudentsUnRegister.DataPropertyName = "CurrentStudents";
+            txtRoomUnRegister.DataPropertyName = "Room";
+            txtScheduleUnRegister.DataPropertyName = "Schedule";
 
+            // Registered grid columns
             txtClassIDRegister.DataPropertyName = "ClassID";
-            txtClassNameRegister.DataPropertyName = "ClassName";
             txtCourseNameRegister.DataPropertyName = "CourseName";
-            txtManagerNameRegister.DataPropertyName = "Manager";
-            txtCreditHourRegister.DataPropertyName = "CreditHour";
-            txtPrerequisiteCourseRegister.DataPropertyName = "Prerequisite Course";
+            txtCreditRegister.DataPropertyName = "Credits";
             txtSemesterRegister.DataPropertyName = "Semester";
-            txtWeekRegister.DataPropertyName = "Week";
+            txtAcademicYearRegister.DataPropertyName = "AcademicYear";
+            txtRoomRegister.DataPropertyName = "Room";
+            txtScheduleRegister.DataPropertyName = "Schedule";
+            txtRegisterDateRegister.DataPropertyName = "RegisterDate";
 
             LoadCourse();
         }
@@ -58,28 +54,17 @@ namespace LoginForm
         // ================= LOAD DATA =================
         private void LoadCourse()
         {
-            dgvUnRegistereCourse.DataSource =
-                student.GetUnRegisteredCourses(currentMSSV, academicYear);
-
-            dgvRegistereCourse.DataSource =
-                student.GetRegisteredCourses(currentMSSV, academicYear);
+            // Schema mới: không cần truyền academicYear
+            dgvUnRegistereCourse.DataSource = _student.GetUnRegisteredCourses(currentID);
+            dgvRegistereCourse.DataSource = _student.GetRegisteredCourses(currentID);
         }
 
-        // ================= HELPER LẤY ClassID + Semester =================
-        private (string classID, int semester) GetRowInfo(
-            DataGridView dgv, int rowIndex)
+        // ================= HELPER LẤY ClassID TỪ ROW =================
+        private string GetClassID(DataGridView dgv, int rowIndex)
         {
             if (dgv.Rows[rowIndex].DataBoundItem is not DataRowView item)
-                return (null, 0);
-
-            string classID = item["ClassID"]?.ToString().Trim();
-
-            int sem = 1;
-            if (item.Row.Table.Columns.Contains("Semester")
-             && item["Semester"] != DBNull.Value)
-                sem = Convert.ToInt32(item["Semester"]);
-
-            return (classID, sem);
+                return null;
+            return item["ClassID"]?.ToString().Trim();
         }
 
         // ================= CLICK REGISTER =================
@@ -89,16 +74,16 @@ namespace LoginForm
             if (e.RowIndex < 0) return;
             if (dgvUnRegistereCourse.Columns[e.ColumnIndex].Name != "btnRegister") return;
 
-            var (classID, semester) = GetRowInfo(dgvUnRegistereCourse, e.RowIndex);
+            string classID = GetClassID(dgvUnRegistereCourse, e.RowIndex);
             if (string.IsNullOrEmpty(classID)) return;
 
-            var result = Student.RegisterCourse(
-                currentMSSV, classID, semester, academicYear);
+            // Schema mới: RegisterCourse chỉ nhận (id, classID)
+            // TR_CheckDuplicate + TR_CheckCapacity ở SQL Server xử lý validation
+            var result = Student.RegisterCourse(currentID, classID);
 
             MessageBox.Show(result.message);
 
-            if (result.success)
-                LoadCourse();
+            if (result.success) LoadCourse();
         }
 
         // ================= CLICK UNREGISTER =================
@@ -108,16 +93,15 @@ namespace LoginForm
             if (e.RowIndex < 0) return;
             if (dgvRegistereCourse.Columns[e.ColumnIndex].Name != "btnUnRegister") return;
 
-            var (classID, semester) = GetRowInfo(dgvRegistereCourse, e.RowIndex);
+            string classID = GetClassID(dgvRegistereCourse, e.RowIndex);
             if (string.IsNullOrEmpty(classID)) return;
 
-            var result = Student.CancelCourse(
-                currentMSSV, classID, semester, academicYear);
+            // Schema mới: CancelCourse chỉ nhận (id, classID)
+            var result = Student.CancelCourse(currentID, classID);
 
             MessageBox.Show(result.message);
 
-            if (result.success)
-                LoadCourse();
+            if (result.success) LoadCourse();
         }
 
         // ================= SEARCH =================
@@ -125,16 +109,16 @@ namespace LoginForm
         {
             string kw = txtUnRegistereSearch.Text.Trim();
             dgvUnRegistereCourse.DataSource = string.IsNullOrEmpty(kw)
-                ? student.GetUnRegisteredCourses(currentMSSV, academicYear)
-                : student.SearchUnRegisteredCourses(currentMSSV, academicYear, kw);
+                ? _student.GetUnRegisteredCourses(currentID)
+                : _student.SearchUnRegisteredCourses(currentID, kw);
         }
 
         private void txtRegistereSearch_TextChanged(object sender, EventArgs e)
         {
             string kw = txtRegistereSearch.Text.Trim();
             dgvRegistereCourse.DataSource = string.IsNullOrEmpty(kw)
-                ? student.GetRegisteredCourses(currentMSSV, academicYear)
-                : student.SearchRegisteredCourses(currentMSSV, academicYear, kw);
+                ? _student.GetRegisteredCourses(currentID)
+                : _student.SearchRegisteredCourses(currentID, kw);
         }
     }
 }

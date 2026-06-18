@@ -9,35 +9,33 @@ namespace Project_Group6.Models
     internal class Course
     {
         // ================= PROPERTIES =================
-        // Theo schema: CourseID, CourseCode, CourseName, CreditHour,
-        //              TheoryPeriod, PracticalPeriod, Overview,
-        //              PrerequisiteCourseCode, Week
-        // KHÔNG còn: Semester, PrerequisiteCourseID
-        public int CourseID { get; set; }
-        public string CourseCode { get; set; }
+        // Đồng bộ đầy đủ với SQL schema
+        public string CourseID { get; set; }
         public string CourseName { get; set; }
-        public int CreditHour { get; set; }
-        public int TheoryPeriod { get; set; }
-        public int PracticalPeriod { get; set; }
-        public string Overview { get; set; }
-        public string PrerequisiteCourseCode { get; set; } // CHAR(10), nullable
-        public int Week { get; set; }
+        public int Credits { get; set; }
+        public int TotalPeriods { get; set; }
+        public int TheoryPeriods { get; set; }
+        public int PracticePeriods { get; set; }
+        public string PrerequisiteID { get; set; }   // NULL nếu không có môn tiên quyết
+        public bool IsRequired { get; set; }          // BIT: true = bắt buộc
+        public string Description { get; set; }
 
+        // ================= CONSTRUCTORS =================
         public Course() { }
 
-        public Course(int courseID, string courseCode, string courseName,
-            int creditHour, int theoryPeriod, int practicalPeriod,
-            string overview, string prerequisiteCourseCode, int week)
+        public Course(string courseID, string courseName, int credits,
+                      int totalPeriods, int theoryPeriods, int practicePeriods,
+                      string prerequisiteID, bool isRequired, string description)
         {
             CourseID = courseID;
-            CourseCode = courseCode;
             CourseName = courseName;
-            CreditHour = creditHour;
-            TheoryPeriod = theoryPeriod;
-            PracticalPeriod = practicalPeriod;
-            Overview = overview;
-            PrerequisiteCourseCode = prerequisiteCourseCode;
-            Week = week;
+            Credits = credits;
+            TotalPeriods = totalPeriods;
+            TheoryPeriods = theoryPeriods;
+            PracticePeriods = practicePeriods;
+            PrerequisiteID = prerequisiteID;
+            IsRequired = isRequired;
+            Description = description;
         }
 
         // ================= HELPERS =================
@@ -78,50 +76,67 @@ namespace Project_Group6.Models
 
         private void AddCourseParams(SqlCommand cmd)
         {
-            cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = CourseCode;
-            cmd.Parameters.Add("@courseName", SqlDbType.NVarChar, 100).Value = CourseName;
-            cmd.Parameters.Add("@creditHour", SqlDbType.Int).Value = CreditHour;
-            cmd.Parameters.Add("@theoryPeriod", SqlDbType.Int).Value = TheoryPeriod;
-            cmd.Parameters.Add("@practicalPeriod", SqlDbType.Int).Value = PracticalPeriod;
-            cmd.Parameters.Add("@overview", SqlDbType.NVarChar, 500).Value = (object)Overview ?? DBNull.Value;
-            cmd.Parameters.Add("@prerequisiteCourseCode", SqlDbType.Char, 10).Value = (object)PrerequisiteCourseCode ?? DBNull.Value;
-            cmd.Parameters.Add("@week", SqlDbType.Int).Value = Week;
+            cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = CourseID;
+            cmd.Parameters.Add("@courseName", SqlDbType.NVarChar, 200).Value = CourseName;
+            cmd.Parameters.Add("@credits", SqlDbType.Int).Value = Credits;
+            cmd.Parameters.Add("@totalPeriods", SqlDbType.Int).Value = TotalPeriods;
+            cmd.Parameters.Add("@theoryPeriods", SqlDbType.Int).Value = TheoryPeriods;
+            cmd.Parameters.Add("@practicePeriods", SqlDbType.Int).Value = PracticePeriods;
+            cmd.Parameters.Add("@prerequisiteID", SqlDbType.VarChar, 20).Value =
+                string.IsNullOrEmpty(PrerequisiteID) ? (object)DBNull.Value : PrerequisiteID;
+            cmd.Parameters.Add("@isRequired", SqlDbType.Bit).Value = IsRequired;
+            cmd.Parameters.Add("@description", SqlDbType.NVarChar, 500).Value =
+                (object)Description ?? DBNull.Value;
         }
 
+        private static Course MapFromReader(SqlDataReader reader) => new Course
+        {
+            CourseID = reader["CourseID"].ToString(),
+            CourseName = reader["CourseName"].ToString(),
+            Credits = Convert.ToInt32(reader["Credits"]),
+            TotalPeriods = Convert.ToInt32(reader["TotalPeriods"]),
+            TheoryPeriods = Convert.ToInt32(reader["TheoryPeriods"]),
+            PracticePeriods = Convert.ToInt32(reader["PracticePeriods"]),
+            PrerequisiteID = reader["PrerequisiteID"] != DBNull.Value
+                                  ? reader["PrerequisiteID"].ToString()
+                                  : null,
+            IsRequired = reader["IsRequired"] != DBNull.Value &&
+                              Convert.ToBoolean(reader["IsRequired"]),
+            Description = reader["Description"] != DBNull.Value
+                                  ? reader["Description"].ToString()
+                                  : null
+        };
+
         // ================= ADD =================
+        // Trigger TR_Course_CheckPeriods kiểm tra TheoryPeriods + PracticePeriods = TotalPeriods.
+        // Trigger TR_Course_CheckPrerequisite kiểm tra không tự tham chiếu / vòng lặp.
         public bool AddCourse() =>
             ExecuteNonQuery(@"
                 INSERT INTO Course
-                    (CourseCode, CourseName, CreditHour,
-                     TheoryPeriod, PracticalPeriod, Overview,
-                     PrerequisiteCourseCode, Week)
+                    (CourseID, CourseName, Credits, TotalPeriods, TheoryPeriods,
+                     PracticePeriods, PrerequisiteID, IsRequired, Description)
                 VALUES
-                    (@courseCode, @courseName, @creditHour,
-                     @theoryPeriod, @practicalPeriod, @overview,
-                     @prerequisiteCourseCode, @week)",
+                    (@courseID, @courseName, @credits, @totalPeriods, @theoryPeriods,
+                     @practicePeriods, @prerequisiteID, @isRequired, @description)",
                 AddCourseParams);
 
         // ================= EDIT =================
         public bool EditCourse() =>
             ExecuteNonQuery(@"
                 UPDATE Course SET
-                    CourseCode             = @courseCode,
-                    CourseName             = @courseName,
-                    CreditHour             = @creditHour,
-                    TheoryPeriod           = @theoryPeriod,
-                    PracticalPeriod        = @practicalPeriod,
-                    Overview               = @overview,
-                    PrerequisiteCourseCode = @prerequisiteCourseCode,
-                    Week                   = @week
+                    CourseName      = @courseName,
+                    Credits         = @credits,
+                    TotalPeriods    = @totalPeriods,
+                    TheoryPeriods   = @theoryPeriods,
+                    PracticePeriods = @practicePeriods,
+                    PrerequisiteID  = @prerequisiteID,
+                    IsRequired      = @isRequired,
+                    Description     = @description
                 WHERE CourseID = @courseID",
-                cmd =>
-                {
-                    cmd.Parameters.Add("@courseID", SqlDbType.Int).Value = CourseID;
-                    AddCourseParams(cmd);
-                });
+                AddCourseParams);
 
         // ================= DELETE =================
-        public static bool DelCourse(int courseID)
+        public static bool DelCourse(string courseID)
         {
             try
             {
@@ -131,7 +146,7 @@ namespace Project_Group6.Models
                     var cmd = new SqlCommand(
                         "DELETE FROM Course WHERE CourseID = @courseID",
                         db.getConnection);
-                    cmd.Parameters.Add("@courseID", SqlDbType.Int).Value = courseID;
+                    cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = courseID;
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -139,13 +154,27 @@ namespace Project_Group6.Models
         }
 
         // ================= GET ALL =================
+        // Join với chính nó để lấy tên môn tiên quyết (dùng cho DataGridView)
         public DataTable GetCourse() =>
-            ExecuteQuery("SELECT * FROM Course ORDER BY CourseCode");
+            ExecuteQuery(@"
+                SELECT
+                    c.CourseID,
+                    c.CourseName,
+                    c.Credits,
+                    c.TotalPeriods,
+                    c.TheoryPeriods,
+                    c.PracticePeriods,
+                    c.PrerequisiteID,
+                    p.CourseName  AS PrerequisiteName,
+                    c.IsRequired,
+                    c.Description
+                FROM Course c
+                LEFT JOIN Course p ON c.PrerequisiteID = p.CourseID
+                ORDER BY c.CourseID");
 
         // ================= GET BY ID =================
-        public Course GetCourseByID(int courseID)
+        public Course GetCourseByID(string courseID)
         {
-            Course course = null;
             try
             {
                 using (var db = new My_DB())
@@ -154,80 +183,64 @@ namespace Project_Group6.Models
                     var cmd = new SqlCommand(
                         "SELECT * FROM Course WHERE CourseID = @courseID",
                         db.getConnection);
-                    cmd.Parameters.Add("@courseID", SqlDbType.Int).Value = courseID;
+                    cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = courseID;
 
                     using var reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                        course = MapFromReader(reader);
+                    return reader.Read() ? MapFromReader(reader) : null;
                 }
             }
-            catch { }
-            return course;
+            catch { return null; }
         }
-
-        // ================= GET BY CODE =================
-        public Course GetCourseByCode(string courseCode)
-        {
-            Course course = null;
-            try
-            {
-                using (var db = new My_DB())
-                {
-                    db.openConnection();
-                    var cmd = new SqlCommand(
-                        "SELECT * FROM Course WHERE CourseCode = @courseCode",
-                        db.getConnection);
-                    cmd.Parameters.Add("@courseCode", SqlDbType.Char, 10).Value = courseCode;
-
-                    using var reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                        course = MapFromReader(reader);
-                }
-            }
-            catch { }
-            return course;
-        }
-
-        private static Course MapFromReader(SqlDataReader reader) => new Course
-        {
-            CourseID = Convert.ToInt32(reader["CourseID"]),
-            CourseCode = reader["CourseCode"].ToString().Trim(),
-            CourseName = reader["CourseName"].ToString(),
-            CreditHour = Convert.ToInt32(reader["CreditHour"]),
-            TheoryPeriod = Convert.ToInt32(reader["TheoryPeriod"]),
-            PracticalPeriod = Convert.ToInt32(reader["PracticalPeriod"]),
-            Overview = reader["Overview"]?.ToString(),
-            PrerequisiteCourseCode = reader["PrerequisiteCourseCode"] != DBNull.Value
-                                        ? reader["PrerequisiteCourseCode"].ToString().Trim()
-                                        : null,
-            Week = Convert.ToInt32(reader["Week"])
-        };
 
         // ================= SEARCH =================
         public DataTable SearchCourse(string keyword) =>
             ExecuteQuery(@"
-                SELECT * FROM Course
-                WHERE CourseCode LIKE @kw
-                   OR CourseName LIKE @kw
-                   OR Overview   LIKE @kw",
+                SELECT
+                    c.CourseID,
+                    c.CourseName,
+                    c.Credits,
+                    c.TotalPeriods,
+                    c.TheoryPeriods,
+                    c.PracticePeriods,
+                    c.PrerequisiteID,
+                    p.CourseName AS PrerequisiteName,
+                    c.IsRequired,
+                    c.Description
+                FROM Course c
+                LEFT JOIN Course p ON c.PrerequisiteID = p.CourseID
+                WHERE c.CourseID     LIKE @kw
+                   OR c.CourseName   LIKE @kw
+                   OR c.Description  LIKE @kw
+                   OR p.CourseName   LIKE @kw",
                 cmd => cmd.Parameters.AddWithValue("@kw", $"%{keyword}%"));
 
         // ================= FOR COMBOBOX =================
-        // Trả về CourseCode + CourseName để bind combobox prerequisite
-        public DataTable GetPrerequisiteCourse() =>
-            ExecuteQuery(@"
-                SELECT CourseCode,
-                       RTRIM(CourseCode) + ' - ' + CourseName AS CourseDisplay
-                FROM Course
-                ORDER BY CourseCode");
-
         public DataTable GetCoursesForCombo() =>
             ExecuteQuery(@"
-                SELECT CourseCode,
-                       RTRIM(CourseCode) + ' - ' + CourseName AS CourseDisplay,
-                       CreditHour
+                SELECT CourseID,
+                       CourseID + ' - ' + CourseName AS CourseDisplay,
+                       Credits
                 FROM Course
-                ORDER BY CourseCode");
+                ORDER BY CourseID");
+
+        // Chỉ lấy môn có thể làm tiên quyết cho @courseID
+        // (loại chính nó và các môn mà @courseID là tiên quyết của chúng)
+        public DataTable GetPrerequisiteCandidates(string courseID) =>
+            ExecuteQuery(@"
+                SELECT CourseID,
+                       CourseID + ' - ' + CourseName AS CourseDisplay
+                FROM Course
+                WHERE CourseID <> @courseID
+                  AND PrerequisiteID <> @courseID OR PrerequisiteID IS NULL
+                ORDER BY CourseID",
+                cmd => cmd.Parameters.Add("@courseID", SqlDbType.VarChar, 20).Value = courseID);
+
+        // ================= FILTER =================
+        public DataTable GetRequiredCourses() =>
+            ExecuteQuery("SELECT * FROM Course WHERE IsRequired = 1 ORDER BY CourseID");
+
+        public DataTable GetElectiveCourses() =>
+            ExecuteQuery("SELECT * FROM Course WHERE IsRequired = 0 ORDER BY CourseID");
 
         // ================= TOTAL =================
         public int TotalCourse()

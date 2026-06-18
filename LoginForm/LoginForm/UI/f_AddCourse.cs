@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Project_Group6.Models;
+﻿using Project_Group6.Models;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -8,106 +7,142 @@ namespace LoginForm
 {
     public partial class f_AddCourse : Form
     {
+        private readonly Course _course = new();
+
         public f_AddCourse()
         {
             InitializeComponent();
-            LoadPrerequisiteCourse();
+            this.Load += f_AddCourse_Load;
+            btn_AddCourse.Click += btn_AddCourse_Click;
+            btnClear.Click += btnClear_Click;
+            bt_Cancel.Click += bt_Cancel_Click;
         }
 
-        private void LoadPrerequisiteCourse()
+        // ================= LOAD =================
+        private void f_AddCourse_Load(object sender, EventArgs e)
         {
-            Course course = new Course();
-            DataTable table = course.GetPrerequisiteCourse();
-
-            // Thêm dòng "-- None --" với CourseCode = null/empty
-            DataRow row = table.NewRow();
-            row["CourseCode"] = DBNull.Value;
-            row["CourseDisplay"] = "-- None --";
-            table.Rows.InsertAt(row, 0);
-
-            cbo_PrerequisiteCourse.DataSource = table;
-            cbo_PrerequisiteCourse.DisplayMember = "CourseDisplay";
-            cbo_PrerequisiteCourse.ValueMember = "CourseCode";   // ← string, không phải int
-            cbo_PrerequisiteCourse.SelectedIndex = 0;
+            LoadPrerequisiteCombo();
         }
 
+        // ================= LOAD PREREQUISITE COMBO =================
+        private void LoadPrerequisiteCombo()
+        {
+            DataTable dt = _course.GetCoursesForCombo();
+
+            // Thêm dòng "-- None --" đầu tiên
+            DataRow none = dt.NewRow();
+            none["CourseID"] = DBNull.Value;
+            none["CourseDisplay"] = "-- None --";
+            dt.Rows.InsertAt(none, 0);
+
+            cbo_Prerequisite.DataSource = dt;
+            cbo_Prerequisite.DisplayMember = "CourseDisplay";
+            cbo_Prerequisite.ValueMember = "CourseID";
+            cbo_Prerequisite.SelectedIndex = 0;
+        }
+
+        // ================= ADD =================
         private void btn_AddCourse_Click(object sender, EventArgs e)
         {
-            // VALIDATION
-            if (txt_NameCourse.Text.Trim() == "")
+            // --- Validate CourseID ---
+            if (string.IsNullOrWhiteSpace(txt_CourseID.Text))
             {
-                MessageBox.Show("Please enter course name!");
-                return;
-            }
-            if (!int.TryParse(txt_CreditHour.Text, out int creditHour))
-            {
-                MessageBox.Show("Credit hour must be a number!");
-                return;
-            }
-            if (!int.TryParse(txt_TheoryPeriod.Text, out int theoryPeriod))
-            {
-                MessageBox.Show("Theory period must be a number!");
-                return;
-            }
-            if (!int.TryParse(txt_PracticalPeriod.Text, out int practicalPeriod))
-            {
-                MessageBox.Show("Practical period must be a number!");
-                return;
-            }
-            if (!int.TryParse(txt_Week.Text, out int week))
-            {
-                MessageBox.Show("Week must be a number!");
+                MessageBox.Show("Please enter Course ID!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_CourseID.Focus();
                 return;
             }
 
-            // PREREQUISITE — lấy CourseCode (string), null nếu chọn None
-            string prereqCode = null;
-            if (cbo_PrerequisiteCourse.SelectedValue != null &&
-                cbo_PrerequisiteCourse.SelectedValue != DBNull.Value)
+            // --- Validate CourseName ---
+            if (string.IsNullOrWhiteSpace(txt_NameCourse.Text))
             {
-                string val = cbo_PrerequisiteCourse.SelectedValue.ToString().Trim();
-                if (val != "")
-                    prereqCode = val;
+                MessageBox.Show("Please enter Course Name!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_NameCourse.Focus();
+                return;
             }
 
-            Course course = new Course
+            // --- Validate Credits ---
+            if (!int.TryParse(txt_Credits.Text, out int credits) || credits <= 0)
             {
-                CourseCode = txt_CourseCode.Text.Trim(),
+                MessageBox.Show("Credits must be a positive number!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_Credits.Focus();
+                return;
+            }
+
+            // --- Period fields (optional, default 0) ---
+            int.TryParse(txt_TotalPeriods.Text, out int total);
+            int.TryParse(txt_TheoryPeriods.Text, out int theory);
+            int.TryParse(txt_PracticePeriods.Text, out int practice);
+
+            // --- Validate periods nếu người dùng nhập ---
+            if ((total > 0 || theory > 0 || practice > 0)
+             && theory + practice != total && total > 0)
+            {
+                MessageBox.Show(
+                    "Theory + Practice periods must equal Total periods!",
+                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_TheoryPeriods.Focus();
+                return;
+            }
+
+            // --- Prerequisite (nullable string) ---
+            string prereqID = null;
+            if (cbo_Prerequisite.SelectedValue != null
+             && cbo_Prerequisite.SelectedValue != DBNull.Value)
+            {
+                string val = cbo_Prerequisite.SelectedValue.ToString().Trim();
+                if (!string.IsNullOrEmpty(val)) prereqID = val;
+            }
+
+            var course = new Course
+            {
+                CourseID = txt_CourseID.Text.Trim().ToUpper(),
                 CourseName = txt_NameCourse.Text.Trim(),
-                CreditHour = creditHour,
-                TheoryPeriod = theoryPeriod,
-                PracticalPeriod = practicalPeriod,
-                Overview = txt_Overview.Text.Trim(),
-                PrerequisiteCourseCode = prereqCode,   // ← string
-                Week = week
+                Credits = credits,
+                TotalPeriods = total,
+                TheoryPeriods = theory,
+                PracticePeriods = practice,
+                PrerequisiteID = prereqID,
+                IsRequired = chk_IsRequired.Checked,
+                Description = string.IsNullOrWhiteSpace(txt_Description.Text)
+                                      ? null
+                                      : txt_Description.Text.Trim()
             };
 
-            if (course.AddCourse())
+            bool ok = course.AddCourse();
+
+            MessageBox.Show(
+                ok ? "Course added successfully!" : "Failed to add course.\nCourse ID may already exist.",
+                "Add Course",
+                MessageBoxButtons.OK,
+                ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+
+            if (ok)
             {
-                MessageBox.Show("Add Course Successfully!");
                 ClearForm();
                 this.Close();
             }
-            else
-            {
-                MessageBox.Show("Add Course Failed!");
-            }
         }
+
+        // ================= CLEAR =================
+        private void btnClear_Click(object sender, EventArgs e) => ClearForm();
 
         private void ClearForm()
         {
+            txt_CourseID.Clear();
             txt_NameCourse.Clear();
-            txt_CourseCode.Clear();
-            txt_CreditHour.Clear();
-            txt_TheoryPeriod.Clear();
-            txt_PracticalPeriod.Clear();
-            txt_Overview.Clear();
-            txt_Week.Clear();
-            cbo_PrerequisiteCourse.SelectedIndex = 0;
+            txt_Credits.Clear();
+            txt_TotalPeriods.Clear();
+            txt_TheoryPeriods.Clear();
+            txt_PracticePeriods.Clear();
+            txt_Description.Clear();
+            chk_IsRequired.Checked = false;
+            cbo_Prerequisite.SelectedIndex = 0;
+            txt_CourseID.Focus();
         }
 
         private void bt_Cancel_Click(object sender, EventArgs e) => this.Close();
-
-        private void btnClear_Click(object sender, EventArgs e) => ClearForm();
     }
 }
