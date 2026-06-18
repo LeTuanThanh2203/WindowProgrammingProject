@@ -22,6 +22,7 @@ namespace LoginForm
         public f_ListStudent()
         {
             InitializeComponent();
+            dgvStudent.CellDoubleClick += dgvStudent_CellDoubleClick;
         }
 
         // =========================
@@ -263,7 +264,14 @@ namespace LoginForm
             editdeleteStudent.ShowDialog();
         
         }
-
+        private void dgvStudent_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                new f_EditDeleteStudent().ShowDialog();
+        
+            }
+        }
 
         public void OpenAddStudent()
         {
