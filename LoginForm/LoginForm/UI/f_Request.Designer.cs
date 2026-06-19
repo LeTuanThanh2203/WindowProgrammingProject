@@ -311,7 +311,7 @@ namespace Project_Group6
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.ColumnHeadersHeight = 29;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { txtConfirmationNameData, txtQueueNumberData, txtQuantityData, txtStatusData });
+            //dataGridView1.Columns.AddRange(new DataGridViewColumn[] { txtConfirmationNameData, txtQueueNumberData, txtQuantityData, txtStatusData });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(16, 46);
             dataGridView1.Name = "dataGridView1";

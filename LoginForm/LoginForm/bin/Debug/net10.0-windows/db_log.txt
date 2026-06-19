@@ -6541,3 +6541,195 @@
 [19/06/2026 1:54:03 SA] WARNING: Connection Leak Detected
 [19/06/2026 1:54:03 SA] Connection Opened
 [19/06/2026 1:54:03 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:26 SA] Connection Opened
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:27 SA] Connection Opened
+[19/06/2026 7:52:27 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:32 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:37 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:42 SA] Connection Opened
+[19/06/2026 7:52:42 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:52:44 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:53:21 SA] Connection Opened
+[19/06/2026 7:53:22 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:53:28 SA] Connection Opened
+[19/06/2026 7:53:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:53:34 SA] Connection Opened
+[19/06/2026 7:53:34 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:31 SA] Connection Opened
+[19/06/2026 7:54:31 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] Connection Opened
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:54:40 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:55:59 SA] Connection Opened
+[19/06/2026 7:56:00 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:00 SA] Connection Opened
+[19/06/2026 7:56:00 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:41 SA] Connection Opened
+[19/06/2026 7:56:43 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] Connection Opened
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:56:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:06 SA] Connection Opened
+[19/06/2026 7:57:06 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:13 SA] Connection Opened
+[19/06/2026 7:57:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:14 SA] Connection Opened
+[19/06/2026 7:57:14 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:23 SA] Connection Opened
+[19/06/2026 7:57:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:54 SA] Connection Opened
+[19/06/2026 7:57:54 SA] WARNING: Connection Leak Detected
+[19/06/2026 7:57:58 SA] Connection Opened
+[19/06/2026 7:57:58 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:28 SA] Connection Opened
+[19/06/2026 8:00:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:00:29 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:01:01 SA] Connection Opened
+[19/06/2026 8:01:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:01:01 SA] Connection Opened
+[19/06/2026 8:01:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:01:08 SA] Connection Opened
+[19/06/2026 8:01:08 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:01:08 SA] Connection Opened
+[19/06/2026 8:01:08 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:03:54 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:01 SA] Connection Opened
+[19/06/2026 8:07:01 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:02 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:10 SA] Connection Opened
+[19/06/2026 8:07:10 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:07:47 SA] Connection Opened
+[19/06/2026 8:07:47 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] Connection Opened
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:08:23 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:23 SA] Connection Opened
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] Connection Opened
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:24 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:28 SA] Connection Opened
+[19/06/2026 8:09:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:09:28 SA] Connection Opened
+[19/06/2026 8:09:28 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:15:35 SA] Connection Opened
+[19/06/2026 8:15:35 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:15:35 SA] Connection Opened
+[19/06/2026 8:15:35 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] Connection Opened
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:12 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:22 SA] Connection Opened
+[19/06/2026 8:25:22 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:25:22 SA] Connection Opened
+[19/06/2026 8:25:22 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:12 SA] Connection Opened
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] Connection Opened
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:13 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:33 SA] Connection Opened
+[19/06/2026 8:33:33 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:35 SA] Connection Opened
+[19/06/2026 8:33:35 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:53 SA] Connection Opened
+[19/06/2026 8:33:53 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:54 SA] Connection Opened
+[19/06/2026 8:33:54 SA] WARNING: Connection Leak Detected
+[19/06/2026 8:33:54 SA] Connection Opened
+[19/06/2026 8:33:54 SA] WARNING: Connection Leak Detected
