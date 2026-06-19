@@ -106,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -123,6 +123,19 @@
               "ViewState": "AgIAAAUAAAAAAAAAAAAkwBcAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-18T18:47:53.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "f_ListStudent.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListStudent.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
+              "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T17:46:01.301Z",
               "EditorCaption": ""
             },
             {
@@ -167,24 +180,11 @@
               "Title": "f_ListStudent.cs [Design]",
               "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs [Design]*",
-              "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs [Design]*",
+              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs [Design]",
+              "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-18T12:58:42.318Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "f_ListStudent.cs",
-              "DocumentMoniker": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs",
-              "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListStudent.cs",
-              "ToolTip": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListStudent.cs*",
-              "RelativeToolTip": "LoginForm\\UI\\f_ListStudent.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T17:46:01.301Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
