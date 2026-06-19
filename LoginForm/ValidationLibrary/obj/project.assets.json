@@ -8,19 +8,24 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\gigabyte\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "projectUniqueName": "D:\\Môi trường Lập trình\\VS\\WinProject\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "projectName": "ValidationLibrary",
-      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\obj\\",
+      "projectPath": "D:\\Môi trường Lập trình\\VS\\WinProject\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "packagesPath": "C:\\Users\\gigabyte\\.nuget\\packages\\",
+      "outputPath": "D:\\Môi trường Lập trình\\VS\\WinProject\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gigabyte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
