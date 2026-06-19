@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+using FontAwesome.Sharp;
 
 namespace LoginForm
 {
@@ -44,11 +44,7 @@ namespace LoginForm
             btnApprove = new IconButton();
             btnStudent = new IconButton();
             btnOverview = new IconButton();
-            progressAI = new ProgressBar();
-            lblAIStatus = new Label();
-            label1 = new Label();
-            btnAskAI = new Button();
-            txtAI = new TextBox();
+            btnLogout = new IconButton();
             pnLogo = new Panel();
             pictureBox1 = new PictureBox();
             pnBody = new Panel();
@@ -91,11 +87,7 @@ namespace LoginForm
             pnMenu.Controls.Add(btnApprove);
             pnMenu.Controls.Add(btnStudent);
             pnMenu.Controls.Add(btnOverview);
-            pnMenu.Controls.Add(progressAI);
-            pnMenu.Controls.Add(lblAIStatus);
-            pnMenu.Controls.Add(label1);
-            pnMenu.Controls.Add(btnAskAI);
-            pnMenu.Controls.Add(txtAI);
+            pnMenu.Controls.Add(btnLogout);
             pnMenu.Location = new Point(3, 150);
             pnMenu.Name = "pnMenu";
             pnMenu.Size = new Size(304, 825);
@@ -158,7 +150,7 @@ namespace LoginForm
             lblUser.AutoSize = true;
             lblUser.Dock = DockStyle.Bottom;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 765);
+            lblUser.Location = new Point(0, 725);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(65, 28);
             lblUser.TabIndex = 0;
@@ -186,7 +178,7 @@ namespace LoginForm
             lblRole.AutoSize = true;
             lblRole.Dock = DockStyle.Bottom;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.Location = new Point(0, 793);
+            lblRole.Location = new Point(0, 753);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(62, 28);
             lblRole.TabIndex = 1;
@@ -277,52 +269,30 @@ namespace LoginForm
             btnOverview.UseVisualStyleBackColor = false;
             btnOverview.Click += btnOverview_Click;
             // 
-            // progressAI
+            // btnLogout
             // 
-            progressAI.Location = new Point(6, 751);
-            progressAI.Name = "progressAI";
-            progressAI.Size = new Size(281, 10);
-            progressAI.TabIndex = 0;
-            progressAI.Visible = false;
-            // 
-            // lblAIStatus
-            // 
-            lblAIStatus.AutoSize = true;
-            lblAIStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAIStatus.Location = new Point(7, 455);
-            lblAIStatus.Name = "lblAIStatus";
-            lblAIStatus.Size = new Size(0, 20);
-            lblAIStatus.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(7, 635);
-            label1.Name = "label1";
-            label1.Size = new Size(215, 28);
-            label1.TabIndex = 4;
-            label1.Text = "AI Navigation Support";
-            // 
-            // btnAskAI
-            // 
-            btnAskAI.Location = new Point(193, 767);
-            btnAskAI.Name = "btnAskAI";
-            btnAskAI.Size = new Size(94, 29);
-            btnAskAI.TabIndex = 0;
-            btnAskAI.Text = "Ask";
-            btnAskAI.UseVisualStyleBackColor = true;
-            btnAskAI.Click += btnAskAI_Click;
-            // 
-            // txtAI
-            // 
-            txtAI.Location = new Point(7, 665);
-            txtAI.MaxLength = 50;
-            txtAI.Multiline = true;
-            txtAI.Name = "txtAI";
-            txtAI.PlaceholderText = "What do you want to do?";
-            txtAI.Size = new Size(280, 90);
-            txtAI.TabIndex = 0;
+            btnLogout.BackColor = Color.FromArgb(10, 61, 120);
+            btnLogout.Cursor = Cursors.Hand;
+            btnLogout.Dock = DockStyle.Bottom;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Segoe UI", 9.5F);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.IconChar = IconChar.SignOutAlt;
+            btnLogout.IconColor = Color.White;
+            btnLogout.IconFont = IconFont.Auto;
+            btnLogout.IconSize = 20;
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(0, 781);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(12, 0, 0, 0);
+            btnLogout.Size = new Size(300, 40);
+            btnLogout.TabIndex = 14;
+            btnLogout.Text = "  Logout";
+            btnLogout.TextAlign = ContentAlignment.MiddleLeft;
+            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // pnLogo
             // 
@@ -451,11 +421,6 @@ namespace LoginForm
 
         private Label lblRole;
         private Label lblUser;
-        private TextBox txtAI;
-        private Button btnAskAI;
-        private Label label1;
-        private ProgressBar progressAI;
-        private Label lblAIStatus;
         private PictureBox pictureBox1;
         private Panel pnTop;
         private Button btnClose;
@@ -472,5 +437,6 @@ namespace LoginForm
         private IconButton btnInformation;
         private IconButton btnClass;
         private IconButton btnConfirmationRequest;
+        private IconButton btnLogout;
     }
 }

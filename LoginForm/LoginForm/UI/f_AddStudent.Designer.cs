@@ -36,6 +36,11 @@ namespace LoginForm
             txtAddress = new TextBox();
             label9 = new Label();
             txtEmail = new TextBox();
+            lblValidateID = new Label();
+            lblValidateFirstName = new Label();
+            lblValidateLastName = new Label();
+            lblValidatePhone = new Label();
+            lblValidateEmail = new Label();
             pnlLeft = new Panel();
             lblPhotoHint = new Label();
             picStudent = new PictureBox();
@@ -117,6 +122,11 @@ namespace LoginForm
             pnlRight.Controls.Add(txtAddress);
             pnlRight.Controls.Add(label9);
             pnlRight.Controls.Add(txtEmail);
+            pnlRight.Controls.Add(lblValidateID);
+            pnlRight.Controls.Add(lblValidateFirstName);
+            pnlRight.Controls.Add(lblValidateLastName);
+            pnlRight.Controls.Add(lblValidatePhone);
+            pnlRight.Controls.Add(lblValidateEmail);
             pnlRight.Dock = DockStyle.Fill;
             pnlRight.Location = new Point(300, 0);
             pnlRight.Name = "pnlRight";
@@ -235,6 +245,61 @@ namespace LoginForm
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(100, 30);
             txtEmail.TabIndex = 15;
+            // 
+            // lblValidateID
+            // 
+            lblValidateID.AutoSize = true;
+            lblValidateID.Font = new Font("Segoe UI", 8.5F);
+            lblValidateID.ForeColor = Color.Red;
+            lblValidateID.Location = new Point(0, 0);
+            lblValidateID.Name = "lblValidateID";
+            lblValidateID.Size = new Size(0, 19);
+            lblValidateID.TabIndex = 20;
+            lblValidateID.Text = "";
+            // 
+            // lblValidateFirstName
+            // 
+            lblValidateFirstName.AutoSize = true;
+            lblValidateFirstName.Font = new Font("Segoe UI", 8.5F);
+            lblValidateFirstName.ForeColor = Color.Red;
+            lblValidateFirstName.Location = new Point(0, 0);
+            lblValidateFirstName.Name = "lblValidateFirstName";
+            lblValidateFirstName.Size = new Size(0, 19);
+            lblValidateFirstName.TabIndex = 21;
+            lblValidateFirstName.Text = "";
+            // 
+            // lblValidateLastName
+            // 
+            lblValidateLastName.AutoSize = true;
+            lblValidateLastName.Font = new Font("Segoe UI", 8.5F);
+            lblValidateLastName.ForeColor = Color.Red;
+            lblValidateLastName.Location = new Point(0, 0);
+            lblValidateLastName.Name = "lblValidateLastName";
+            lblValidateLastName.Size = new Size(0, 19);
+            lblValidateLastName.TabIndex = 22;
+            lblValidateLastName.Text = "";
+            // 
+            // lblValidatePhone
+            // 
+            lblValidatePhone.AutoSize = true;
+            lblValidatePhone.Font = new Font("Segoe UI", 8.5F);
+            lblValidatePhone.ForeColor = Color.Red;
+            lblValidatePhone.Location = new Point(0, 0);
+            lblValidatePhone.Name = "lblValidatePhone";
+            lblValidatePhone.Size = new Size(0, 19);
+            lblValidatePhone.TabIndex = 23;
+            lblValidatePhone.Text = "";
+            // 
+            // lblValidateEmail
+            // 
+            lblValidateEmail.AutoSize = true;
+            lblValidateEmail.Font = new Font("Segoe UI", 8.5F);
+            lblValidateEmail.ForeColor = Color.Red;
+            lblValidateEmail.Location = new Point(0, 0);
+            lblValidateEmail.Name = "lblValidateEmail";
+            lblValidateEmail.Size = new Size(0, 19);
+            lblValidateEmail.TabIndex = 24;
+            lblValidateEmail.Text = "";
             // 
             // pnlLeft
             // 
@@ -405,6 +470,8 @@ namespace LoginForm
         private System.Windows.Forms.Button btnChooseImage;
         private System.Windows.Forms.Label label1, lblFirstName, lblLastName,
                                              label4, label5, label6, label7, label9;
+        private System.Windows.Forms.Label lblValidateID, lblValidateFirstName,
+                                             lblValidateLastName, lblValidatePhone, lblValidateEmail;
         private System.Windows.Forms.TextBox txtID, txtFirstName, txtLastName,
                                                   txtPhone, txtAddress, txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDob;

@@ -173,46 +173,46 @@ namespace LoginForm
         {
             OpenForm(new f_StudentInformation());
         }
-        private async void btnAskAI_Click(
-    object sender,
-    EventArgs e)
-        {
-            try
-            {
-                // UI loading
-                progressAI.Visible = true;
+    //    private async void btnAskAI_Click(
+    //object sender,
+    //EventArgs e)
+    //    {
+    //        try
+    //        {
+    //            // UI loading
+    //            progressAI.Visible = true;
 
-                progressAI.Style =
-                    ProgressBarStyle.Marquee;
+    //            progressAI.Style =
+    //                ProgressBarStyle.Marquee;
 
-                lblAIStatus.Text =
-                    "AI is thinking...";
+    //            lblAIStatus.Text =
+    //                "AI is thinking...";
 
-                btnAskAI.Enabled = false;
+    //            btnAskAI.Enabled = false;
 
-                AIService ai =
-                    new AIService();
+    //            AIService ai =
+    //                new AIService();
 
-                string command =
-                    await ai.AskAI(
-                        txtAI.Text);
+    //            string command =
+    //                await ai.AskAI(
+    //                    txtAI.Text);
 
-                ExecuteCommand(command);
+    //            ExecuteCommand(command);
 
-                lblAIStatus.Text =
-                    "Done";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                progressAI.Visible = false;
+    //            lblAIStatus.Text =
+    //                "Done";
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            MessageBox.Show(ex.Message);
+    //        }
+    //        finally
+    //        {
+    //            progressAI.Visible = false;
 
-                btnAskAI.Enabled = true;
-            }
-        }
+    //            btnAskAI.Enabled = true;
+    //        }
+    //    }
 
 
         private void ExecuteCommand(
@@ -336,6 +336,8 @@ namespace LoginForm
                 this.Close();
             }
         }
+
+      
     }
 
 }

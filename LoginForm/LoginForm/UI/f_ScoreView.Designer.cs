@@ -183,7 +183,7 @@ namespace Project_Group6
             txtSearch.Location = new Point(475, 28);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search by course or semester";
-            txtSearch.Size = new Size(1032, 29);
+            txtSearch.Size = new Size(357, 29);
             txtSearch.TabIndex = 4;
             // 
             // dgvScore
@@ -201,7 +201,7 @@ namespace Project_Group6
             dgvScore.ReadOnly = true;
             dgvScore.RowHeadersVisible = false;
             dgvScore.RowHeadersWidth = 51;
-            dgvScore.Size = new Size(1536, 1148);
+            dgvScore.Size = new Size(820, 598);
             dgvScore.TabIndex = 0;
             // 
             // grpProfile
@@ -469,8 +469,8 @@ namespace Project_Group6
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             ClientSize = new Size(1200, 800);
-            Controls.Add(pnFunction);
             Controls.Add(pnlBody);
+            Controls.Add(pnFunction);
             Controls.Add(pnlHeader);
             Font = new Font("Segoe UI", 9.5F);
             Name = "f_ScoreView";

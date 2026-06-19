@@ -1,4 +1,4 @@
-﻿using AForge.Video;
+using AForge.Video;
 using AForge.Video.DirectShow;
 using Microsoft.Data.SqlClient;
 using Project_Group6;
@@ -42,6 +42,13 @@ namespace LoginForm
             SetupSuggestionBox();
 
             picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            // Wire up real-time validation
+            txtID.TextChanged += txtID_Validate;
+            txtFirstName.TextChanged += txtFirstName_Validate;
+            txtLastName.TextChanged += txtLastName_Validate;
+            txtPhone.TextChanged += txtPhone_Validate;
+            txtEmail.TextChanged += txtEmail_Validate;
         }
 
         // =======================
@@ -136,6 +143,70 @@ namespace LoginForm
         // =======================
         private void btnQuit_Click(object sender, EventArgs e) => this.Close();
 
+        // =======================
+        // REAL-TIME VALIDATION
+        // =======================
+        private void SetValidate(Label lbl, string msg, Color color)
+        {
+            lbl.Text = msg;
+            lbl.ForeColor = color;
+        }
+
+        private void txtID_Validate(object sender, EventArgs e)
+        {
+            string val = txtID.Text.Trim();
+            if (val == "")
+                SetValidate(lblValidateID, "Student ID is required", Color.Red);
+            else if (!ValidateData.IsValidMSSV(val))
+                SetValidate(lblValidateID, "ID can only contain letters and numbers", Color.Red);
+            else
+                SetValidate(lblValidateID, "✓ Valid", Color.Green);
+        }
+
+        private void txtFirstName_Validate(object sender, EventArgs e)
+        {
+            string val = txtFirstName.Text.Trim();
+            if (val == "")
+                SetValidate(lblValidateFirstName, "First name is required", Color.Red);
+            else if (!ValidateData.IsValidName(val))
+                SetValidate(lblValidateFirstName, "First name cannot contain numbers", Color.Red);
+            else
+                SetValidate(lblValidateFirstName, "✓ Valid", Color.Green);
+        }
+
+        private void txtLastName_Validate(object sender, EventArgs e)
+        {
+            string val = txtLastName.Text.Trim();
+            if (val == "")
+                SetValidate(lblValidateLastName, "Last name is required", Color.Red);
+            else if (!ValidateData.IsValidName(val))
+                SetValidate(lblValidateLastName, "Last name cannot contain numbers", Color.Red);
+            else
+                SetValidate(lblValidateLastName, "✓ Valid", Color.Green);
+        }
+
+        private void txtPhone_Validate(object sender, EventArgs e)
+        {
+            string val = txtPhone.Text.Trim();
+            if (val == "")
+                SetValidate(lblValidatePhone, "Phone number is required", Color.Red);
+            else if (!ValidateData.IsValidPhone(val))
+                SetValidate(lblValidatePhone, "Phone must contain digits only", Color.Red);
+            else
+                SetValidate(lblValidatePhone, "✓ Valid", Color.Green);
+        }
+
+        private void txtEmail_Validate(object sender, EventArgs e)
+        {
+            string val = txtEmail.Text.Trim();
+            if (val == "")
+                SetValidate(lblValidateEmail, "Email is required", Color.Red);
+            else if (!ValidateData.IsValidEmail(val))
+                SetValidate(lblValidateEmail, "Invalid email address", Color.Red);
+            else
+                SetValidate(lblValidateEmail, "✓ Valid", Color.Green);
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtID.Clear();
@@ -149,6 +220,13 @@ namespace LoginForm
             studentImage = null;
             suggestionBox.Visible = false;
             suggestionBox.Items.Clear();
+
+            // Clear validate labels
+            lblValidateID.Text = "";
+            lblValidateFirstName.Text = "";
+            lblValidateLastName.Text = "";
+            lblValidatePhone.Text = "";
+            lblValidateEmail.Text = "";
         }
 
         private void btnChooseImage_Click(object sender, EventArgs e)
@@ -455,6 +533,28 @@ Student Management System";
             txtEmail.Location = new System.Drawing.Point(CTL_X, y);
             txtEmail.Size = new System.Drawing.Size(FULL_W, CTL_H);
             txtEmail.Name = "txtEmail"; txtEmail.TabIndex = 15;
+
+            // ── Validation label offsets (below each control)
+            const int VAL_DY = 42;   // distance below the top of a row
+
+            // Recalculate y positions for each row (y was mutated above, re-derive)
+            int baseY = 20;
+            // Row 0 validate — below txtID
+            lblValidateID.Location       = new System.Drawing.Point(CTL_X, baseY + VAL_DY);
+            baseY += ROW_H;
+            // Row 1 validate — below txtFirstName / txtLastName
+            lblValidateFirstName.Location = new System.Drawing.Point(CTL_X, baseY + VAL_DY);
+            lblValidateLastName.Location  = new System.Drawing.Point(col2X + 90, baseY + VAL_DY);
+            baseY += ROW_H;
+            // Row 2 — no text validate needed (DatePicker/Gender)
+            baseY += ROW_H;
+            // Row 3 validate — below txtPhone
+            lblValidatePhone.Location    = new System.Drawing.Point(CTL_X, baseY + VAL_DY);
+            baseY += ROW_H;
+            // Row 4 — no validate for Address
+            baseY += ROW_H;
+            // Row 5 validate — below txtEmail
+            lblValidateEmail.Location    = new System.Drawing.Point(CTL_X, baseY + VAL_DY);
 
            
 
