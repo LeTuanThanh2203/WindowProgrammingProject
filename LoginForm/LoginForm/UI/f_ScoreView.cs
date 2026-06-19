@@ -11,7 +11,7 @@ namespace Project_Group6
     {
         private readonly string _mssv;
         private readonly Score score = new Score();
-
+        private DataTable _scoreTable;
         public f_ScoreView(string mssv)
         {
             InitializeComponent();
@@ -23,6 +23,11 @@ namespace Project_Group6
             cboSort.Items.AddRange(new object[] { "Academic Year", "Semester", "Course Name" });
             cboOverviewFilter.Items.AddRange(new object[] { "All", "Excellent", "Good", "Pass", "Fail" });
             cboOverviewFilter.SelectedIndex = 0;
+
+
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
+            cboOverviewFilter.SelectedIndexChanged += cboOverviewFilter_SelectedIndexChanged;
+            txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void f_Score_Load(object sender, EventArgs e)
@@ -67,8 +72,8 @@ namespace Project_Group6
         // =========================
         private void LoadScores()
         {
-            DataTable dt = score.GetScoreByStudent(_mssv);
-            dgvScore.DataSource = dt;
+            _scoreTable = score.GetScoreByStudent(_mssv);
+            dgvScore.DataSource = _scoreTable;
 
             // ID / StudentName / ClassID / CourseID đã hiển thị ở panel bên trái
             // (lblID, lblFirstname...) nên ẩn đi trong bảng cho gọn
@@ -107,6 +112,68 @@ namespace Project_Group6
                 "Pass" => Color.DarkOrange,
                 _ => Color.Red
             };
+        }
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_scoreTable == null) return;
+
+            DataView dv = _scoreTable.DefaultView;
+
+            switch (cboSort.SelectedItem.ToString())
+            {
+                case "Academic Year":
+                    dv.Sort = "AcademicYear DESC";
+                    break;
+
+                case "Semester":
+                    dv.Sort = "Semester DESC";
+                    break;
+
+                case "Course Name":
+                    dv.Sort = "CourseName ASC";
+                    break;
+            }
+
+            dgvScore.DataSource = dv.ToTable();
+        }
+        private void cboOverviewFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+        private void ApplyFilter()
+        {
+            if (_scoreTable == null) return;
+
+            string gradeFilter = cboOverviewFilter.SelectedItem?.ToString();
+            string searchText = txtSearch.Text.Trim().Replace("'", "''");
+
+            string filter = "";
+
+            // FILTER GRADE
+            if (gradeFilter != null && gradeFilter != "All")
+            {
+                filter = $"Grade = '{gradeFilter}'";
+            }
+
+            // SEARCH COURSE NAME
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                string searchFilter = $"CourseName LIKE '%{searchText}%'";
+
+                if (string.IsNullOrEmpty(filter))
+                    filter = searchFilter;
+                else
+                    filter += $" AND {searchFilter}";
+            }
+
+            DataView dv = _scoreTable.DefaultView;
+            dv.RowFilter = filter;
+
+            dgvScore.DataSource = dv;
         }
     }
 }

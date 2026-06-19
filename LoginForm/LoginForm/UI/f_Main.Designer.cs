@@ -33,6 +33,9 @@ namespace LoginForm
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
             pnMenu = new Panel();
+            btnExport = new IconButton();
+            btnContact = new IconButton();
+            btnAssign = new IconButton();
             btnConfirmationRequest = new IconButton();
             btnClass = new IconButton();
             btnInformation = new IconButton();
@@ -68,7 +71,7 @@ namespace LoginForm
             pnSidebar.Dock = DockStyle.Left;
             pnSidebar.Location = new Point(0, 0);
             pnSidebar.Name = "pnSidebar";
-            pnSidebar.Size = new Size(311, 978);
+            pnSidebar.Size = new Size(305, 1102);
             pnSidebar.TabIndex = 0;
             // 
             // pnMenu
@@ -76,6 +79,9 @@ namespace LoginForm
             pnMenu.BackColor = Color.Transparent;
             pnMenu.BackgroundImageLayout = ImageLayout.None;
             pnMenu.BorderStyle = BorderStyle.Fixed3D;
+            pnMenu.Controls.Add(btnExport);
+            pnMenu.Controls.Add(btnContact);
+            pnMenu.Controls.Add(btnAssign);
             pnMenu.Controls.Add(btnConfirmationRequest);
             pnMenu.Controls.Add(btnClass);
             pnMenu.Controls.Add(btnInformation);
@@ -90,9 +96,59 @@ namespace LoginForm
             pnMenu.Controls.Add(btnLogout);
             pnMenu.Location = new Point(3, 150);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(304, 825);
+            pnMenu.Size = new Size(304, 949);
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.Transparent;
+            btnExport.Dock = DockStyle.Top;
+            btnExport.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnExport.IconChar = IconChar.Print;
+            btnExport.IconColor = Color.Black;
+            btnExport.IconFont = IconFont.Auto;
+            btnExport.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExport.Location = new Point(0, 836);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(300, 76);
+            btnExport.TabIndex = 17;
+            btnExport.Text = "Export";
+            btnExport.UseVisualStyleBackColor = false;
+            // 
+            // btnContact
+            // 
+            btnContact.BackColor = Color.Transparent;
+            btnContact.Dock = DockStyle.Top;
+            btnContact.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnContact.IconChar = IconChar.Phone;
+            btnContact.IconColor = Color.Black;
+            btnContact.IconFont = IconFont.Auto;
+            btnContact.ImageAlign = ContentAlignment.MiddleLeft;
+            btnContact.Location = new Point(0, 760);
+            btnContact.Name = "btnContact";
+            btnContact.Size = new Size(300, 76);
+            btnContact.TabIndex = 16;
+            btnContact.Text = "Contact";
+            btnContact.UseVisualStyleBackColor = false;
+            btnContact.Click += btnContact_Click;
+            // 
+            // btnAssign
+            // 
+            btnAssign.BackColor = Color.Transparent;
+            btnAssign.Dock = DockStyle.Top;
+            btnAssign.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAssign.IconChar = IconChar.NetworkWired;
+            btnAssign.IconColor = Color.Black;
+            btnAssign.IconFont = IconFont.Auto;
+            btnAssign.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAssign.Location = new Point(0, 684);
+            btnAssign.Name = "btnAssign";
+            btnAssign.Size = new Size(300, 76);
+            btnAssign.TabIndex = 15;
+            btnAssign.Text = "Assign ";
+            btnAssign.UseVisualStyleBackColor = false;
+            btnAssign.Click += btnAssign_Click;
             // 
             // btnConfirmationRequest
             // 
@@ -150,7 +206,7 @@ namespace LoginForm
             lblUser.AutoSize = true;
             lblUser.Dock = DockStyle.Bottom;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 725);
+            lblUser.Location = new Point(0, 849);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(65, 28);
             lblUser.TabIndex = 0;
@@ -178,7 +234,7 @@ namespace LoginForm
             lblRole.AutoSize = true;
             lblRole.Dock = DockStyle.Bottom;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.Location = new Point(0, 753);
+            lblRole.Location = new Point(0, 877);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(62, 28);
             lblRole.TabIndex = 1;
@@ -283,7 +339,7 @@ namespace LoginForm
             btnLogout.IconFont = IconFont.Auto;
             btnLogout.IconSize = 20;
             btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogout.Location = new Point(0, 781);
+            btnLogout.Location = new Point(0, 905);
             btnLogout.Name = "btnLogout";
             btnLogout.Padding = new Padding(12, 0, 0, 0);
             btnLogout.Size = new Size(300, 40);
@@ -320,7 +376,7 @@ namespace LoginForm
             pnBody.AutoScroll = true;
             pnBody.Location = new Point(311, 48);
             pnBody.Name = "pnBody";
-            pnBody.Size = new Size(1316, 927);
+            pnBody.Size = new Size(1316, 1042);
             pnBody.TabIndex = 1;
             pnBody.MouseDown += pnlTop_MouseDown;
             // 
@@ -329,9 +385,9 @@ namespace LoginForm
             pnTop.Controls.Add(btnClose);
             pnTop.Controls.Add(pnButtonContainer);
             pnTop.Dock = DockStyle.Top;
-            pnTop.Location = new Point(311, 0);
+            pnTop.Location = new Point(305, 0);
             pnTop.Name = "pnTop";
-            pnTop.Size = new Size(1316, 52);
+            pnTop.Size = new Size(1322, 52);
             pnTop.TabIndex = 2;
             pnTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -341,7 +397,7 @@ namespace LoginForm
             btnClose.BackColor = Color.Transparent;
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Location = new Point(1264, 0);
+            btnClose.Location = new Point(1270, 0);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(49, 39);
             btnClose.TabIndex = 15;
@@ -355,7 +411,7 @@ namespace LoginForm
             pnButtonContainer.BackColor = Color.Transparent;
             pnButtonContainer.Controls.Add(btnMaximize);
             pnButtonContainer.Controls.Add(btnMinimize);
-            pnButtonContainer.Location = new Point(1143, 0);
+            pnButtonContainer.Location = new Point(1149, 0);
             pnButtonContainer.Name = "pnButtonContainer";
             pnButtonContainer.Size = new Size(173, 42);
             pnButtonContainer.TabIndex = 16;
@@ -392,7 +448,7 @@ namespace LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1627, 978);
+            ClientSize = new Size(1627, 1102);
             Controls.Add(pnTop);
             Controls.Add(pnBody);
             Controls.Add(pnSidebar);
@@ -438,5 +494,8 @@ namespace LoginForm
         private IconButton btnClass;
         private IconButton btnConfirmationRequest;
         private IconButton btnLogout;
+        private IconButton btnAssign;
+        private IconButton btnContact;
+        private IconButton btnExport;
     }
 }

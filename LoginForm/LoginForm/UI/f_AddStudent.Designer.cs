@@ -130,120 +130,164 @@ namespace LoginForm
             pnlRight.Dock = DockStyle.Fill;
             pnlRight.Location = new Point(300, 0);
             pnlRight.Name = "pnlRight";
-            pnlRight.Padding = new Padding(36, 28, 36, 0);
+            pnlRight.Padding = new Padding(0);
             pnlRight.Size = new Size(740, 488);
             pnlRight.TabIndex = 1;
             // 
             // label1
             // 
-            label1.Location = new Point(0, 0);
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.5F);
+            label1.ForeColor = Color.FromArgb(80, 80, 90);
+            label1.Location = new Point(36, 24);
             label1.Name = "label1";
-            label1.Size = new Size(100, 23);
+            label1.Size = new Size(74, 21);
             label1.TabIndex = 0;
+            label1.Text = "Student ID";
             // 
             // txtID
             // 
-            txtID.Location = new Point(0, 0);
+            txtID.Font = new Font("Segoe UI", 10F);
+            txtID.Location = new Point(200, 20);
+            txtID.MaxLength = 20;
             txtID.Name = "txtID";
-            txtID.Size = new Size(100, 30);
+            txtID.Size = new Size(500, 38);
             txtID.TabIndex = 1;
             // 
             // lblFirstName
             // 
-            lblFirstName.Location = new Point(0, 0);
+            lblFirstName.AutoSize = true;
+            lblFirstName.Font = new Font("Segoe UI", 9.5F);
+            lblFirstName.ForeColor = Color.FromArgb(80, 80, 90);
+            lblFirstName.Location = new Point(36, 96);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(100, 23);
+            lblFirstName.Size = new Size(78, 21);
             lblFirstName.TabIndex = 2;
+            lblFirstName.Text = "First Name";
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(0, 0);
+            txtFirstName.Font = new Font("Segoe UI", 10F);
+            txtFirstName.Location = new Point(200, 92);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(100, 30);
+            txtFirstName.Size = new Size(236, 38);
             txtFirstName.TabIndex = 3;
             // 
             // lblLastName
             // 
-            lblLastName.Location = new Point(0, 0);
+            lblLastName.AutoSize = true;
+            lblLastName.Font = new Font("Segoe UI", 9.5F);
+            lblLastName.ForeColor = Color.FromArgb(80, 80, 90);
+            lblLastName.Location = new Point(464, 96);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(100, 23);
+            lblLastName.Size = new Size(73, 21);
             lblLastName.TabIndex = 4;
+            lblLastName.Text = "Last Name";
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(0, 0);
+            txtLastName.Font = new Font("Segoe UI", 10F);
+            txtLastName.Location = new Point(554, 92);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(100, 30);
+            txtLastName.Size = new Size(146, 38);
             txtLastName.TabIndex = 5;
             // 
             // label4
             // 
-            label4.Location = new Point(0, 0);
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.5F);
+            label4.ForeColor = Color.FromArgb(80, 80, 90);
+            label4.Location = new Point(36, 168);
             label4.Name = "label4";
-            label4.Size = new Size(100, 23);
+            label4.Size = new Size(91, 21);
             label4.TabIndex = 6;
+            label4.Text = "Date of Birth";
             // 
             // dtpDob
             // 
-            dtpDob.Location = new Point(0, 0);
+            dtpDob.Font = new Font("Segoe UI", 10F);
+            dtpDob.Format = DateTimePickerFormat.Short;
+            dtpDob.Location = new Point(200, 164);
             dtpDob.Name = "dtpDob";
-            dtpDob.Size = new Size(200, 30);
+            dtpDob.Size = new Size(236, 38);
             dtpDob.TabIndex = 7;
             // 
             // label5
             // 
-            label5.Location = new Point(0, 0);
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9.5F);
+            label5.ForeColor = Color.FromArgb(80, 80, 90);
+            label5.Location = new Point(464, 168);
             label5.Name = "label5";
-            label5.Size = new Size(100, 23);
+            label5.Size = new Size(50, 21);
             label5.TabIndex = 8;
+            label5.Text = "Gender";
             // 
             // cboGender
             // 
-            cboGender.Location = new Point(0, 0);
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.Font = new Font("Segoe UI", 10F);
+            cboGender.Location = new Point(536, 164);
             cboGender.Name = "cboGender";
-            cboGender.Size = new Size(121, 31);
+            cboGender.Size = new Size(164, 38);
             cboGender.TabIndex = 9;
             // 
             // label6
             // 
-            label6.Location = new Point(0, 0);
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9.5F);
+            label6.ForeColor = Color.FromArgb(80, 80, 90);
+            label6.Location = new Point(36, 240);
             label6.Name = "label6";
-            label6.Size = new Size(100, 23);
+            label6.Size = new Size(44, 21);
             label6.TabIndex = 10;
+            label6.Text = "Phone";
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(0, 0);
+            txtPhone.Font = new Font("Segoe UI", 10F);
+            txtPhone.Location = new Point(200, 236);
+            txtPhone.MaxLength = 15;
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(100, 30);
+            txtPhone.Size = new Size(236, 38);
             txtPhone.TabIndex = 11;
             // 
             // label7
             // 
-            label7.Location = new Point(0, 0);
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.5F);
+            label7.ForeColor = Color.FromArgb(80, 80, 90);
+            label7.Location = new Point(36, 312);
             label7.Name = "label7";
-            label7.Size = new Size(100, 23);
+            label7.Size = new Size(58, 21);
             label7.TabIndex = 12;
+            label7.Text = "Address";
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(0, 0);
+            txtAddress.Font = new Font("Segoe UI", 10F);
+            txtAddress.Location = new Point(200, 308);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(100, 30);
+            txtAddress.Size = new Size(500, 38);
             txtAddress.TabIndex = 13;
             // 
             // label9
             // 
-            label9.Location = new Point(0, 0);
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.5F);
+            label9.ForeColor = Color.FromArgb(80, 80, 90);
+            label9.Location = new Point(36, 384);
             label9.Name = "label9";
-            label9.Size = new Size(100, 23);
+            label9.Size = new Size(40, 21);
             label9.TabIndex = 14;
+            label9.Text = "Email";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(0, 0);
+            txtEmail.Font = new Font("Segoe UI", 10F);
+            txtEmail.Location = new Point(200, 380);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(100, 30);
+            txtEmail.Size = new Size(500, 38);
             txtEmail.TabIndex = 15;
             // 
             // lblValidateID
@@ -251,7 +295,7 @@ namespace LoginForm
             lblValidateID.AutoSize = true;
             lblValidateID.Font = new Font("Segoe UI", 8.5F);
             lblValidateID.ForeColor = Color.Red;
-            lblValidateID.Location = new Point(0, 0);
+            lblValidateID.Location = new Point(200, 62);
             lblValidateID.Name = "lblValidateID";
             lblValidateID.Size = new Size(0, 19);
             lblValidateID.TabIndex = 20;
@@ -262,7 +306,7 @@ namespace LoginForm
             lblValidateFirstName.AutoSize = true;
             lblValidateFirstName.Font = new Font("Segoe UI", 8.5F);
             lblValidateFirstName.ForeColor = Color.Red;
-            lblValidateFirstName.Location = new Point(0, 0);
+            lblValidateFirstName.Location = new Point(200, 134);
             lblValidateFirstName.Name = "lblValidateFirstName";
             lblValidateFirstName.Size = new Size(0, 19);
             lblValidateFirstName.TabIndex = 21;
@@ -273,7 +317,7 @@ namespace LoginForm
             lblValidateLastName.AutoSize = true;
             lblValidateLastName.Font = new Font("Segoe UI", 8.5F);
             lblValidateLastName.ForeColor = Color.Red;
-            lblValidateLastName.Location = new Point(0, 0);
+            lblValidateLastName.Location = new Point(554, 134);
             lblValidateLastName.Name = "lblValidateLastName";
             lblValidateLastName.Size = new Size(0, 19);
             lblValidateLastName.TabIndex = 22;
@@ -284,7 +328,7 @@ namespace LoginForm
             lblValidatePhone.AutoSize = true;
             lblValidatePhone.Font = new Font("Segoe UI", 8.5F);
             lblValidatePhone.ForeColor = Color.Red;
-            lblValidatePhone.Location = new Point(0, 0);
+            lblValidatePhone.Location = new Point(200, 278);
             lblValidatePhone.Name = "lblValidatePhone";
             lblValidatePhone.Size = new Size(0, 19);
             lblValidatePhone.TabIndex = 23;
@@ -295,7 +339,7 @@ namespace LoginForm
             lblValidateEmail.AutoSize = true;
             lblValidateEmail.Font = new Font("Segoe UI", 8.5F);
             lblValidateEmail.ForeColor = Color.Red;
-            lblValidateEmail.Location = new Point(0, 0);
+            lblValidateEmail.Location = new Point(200, 422);
             lblValidateEmail.Name = "lblValidateEmail";
             lblValidateEmail.Size = new Size(0, 19);
             lblValidateEmail.TabIndex = 24;

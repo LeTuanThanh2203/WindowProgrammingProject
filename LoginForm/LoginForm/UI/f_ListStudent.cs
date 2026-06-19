@@ -22,7 +22,7 @@ namespace LoginForm
         public f_ListStudent()
         {
             InitializeComponent();
-            dgvStudent.CellDoubleClick += dgvStudent_CellDoubleClick;
+            dgvContacts.CellDoubleClick += dgvStudent_CellDoubleClick;
         }
 
         // =========================
@@ -30,7 +30,7 @@ namespace LoginForm
         // =========================
         private void ManageStudent_Load(object sender, EventArgs e)
         {
-            dgvStudent.AutoGenerateColumns = true;
+            dgvContacts.AutoGenerateColumns = true;
 
             cboGender.Items.Add("All");
             cboGender.Items.Add("Male");
@@ -45,9 +45,9 @@ namespace LoginForm
 
             _pager = new PaginationHelper(
                 pageTable => {
-                    dgvStudent.DataSource = pageTable;
-                    if (dgvStudent.Columns["Picture"] != null)
-                        dgvStudent.Columns["Picture"].Visible = false;
+                    dgvContacts.DataSource = pageTable;
+                    if (dgvContacts.Columns["Picture"] != null)
+                        dgvContacts.Columns["Picture"].Visible = false;
                 },
                 lblPageInfo,
                 lblTotal,
@@ -84,7 +84,7 @@ namespace LoginForm
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row =
-                    dgvStudent.Rows[e.RowIndex];
+                    dgvContacts.Rows[e.RowIndex];
 
                 lblID.Text =
           row.Cells["ID"].Value.ToString();
@@ -123,14 +123,14 @@ namespace LoginForm
                     MemoryStream ms =
                         new MemoryStream(img);
 
-                    picStudent.Image =
+                    picContact.Image =
                         Image.FromStream(ms);
-                    picStudent.SizeMode =
+                    picContact.SizeMode =
                     PictureBoxSizeMode.StretchImage;
                 }
                 else
                 {
-                    picStudent.Image = null;
+                    picContact.Image = null;
                 }
             }
 
@@ -204,14 +204,14 @@ namespace LoginForm
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
 
-                UIStyleHelper.StyleDataGridView(dgvStudent);
+                UIStyleHelper.StyleDataGridView(dgvContacts);
                 _pager.SetData(dt);
 
                 // Reset labels
                 lblID.Text = lblFirstname.Text = lblLastname.Text = "";
                 lblDob.Text = lblGender.Text = lblPhone.Text = "";
                 lblAddress.Text = lblEmail.Text = "";
-                picStudent.Image = null;
+                picContact.Image = null;
             }
             catch (Exception ex)
             {
@@ -290,7 +290,7 @@ namespace LoginForm
         private void btnViewScore_Click(object sender, EventArgs e)
         {
             string mssv =
-                dgvStudent.CurrentRow.Cells["ID"].Value.ToString();
+                dgvContacts.CurrentRow.Cells["ID"].Value.ToString();
 
             f_ScoreView frm = new f_ScoreView(mssv);
             frm.ShowDialog();

@@ -307,3 +307,6 @@ D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Drawing.NET.dll
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.PDF.NET.dll
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Xceed.Words.NET.dll
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Assign.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ContactManage.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources

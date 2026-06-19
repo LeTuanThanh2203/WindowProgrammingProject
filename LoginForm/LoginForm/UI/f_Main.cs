@@ -62,12 +62,16 @@ namespace LoginForm
 
             btnConfirmationRequest.Visible = false;
 
+            btnAssign.Visible = false;
+
+            btnContact.Visible = false;
+
+            btnExport.Visible = false;
+
             // ADMIN
             if (Globals.Role == "Admin")
             {
                 btnOverview.Visible = true;
-
-                btnStudent.Visible = true;
 
                 btnStudent.Visible = true;
 
@@ -79,6 +83,11 @@ namespace LoginForm
 
                 btnClass.Visible = true;
 
+                btnAssign.Visible = true;
+
+                btnContact.Visible = true;
+                
+                btnExport.Visible = true;
                 OpenForm(new f_Dashboard());
             }
 
@@ -91,7 +100,15 @@ namespace LoginForm
 
                 btnCourse.Visible = true;
 
+                btnClass.Visible = true;
+
                 btnScore.Visible = true;
+
+                btnAssign.Visible = true;
+
+                btnContact.Visible = true;
+
+                btnExport.Visible = true;
                 OpenForm(new f_Dashboard());
             }
 
@@ -101,6 +118,9 @@ namespace LoginForm
                 btnCourseRegistation.Visible = true;
                 btnInformation.Visible = true;
                 btnConfirmationRequest.Visible = true;
+                btnContact.Visible = true;
+
+
             }
         }
 
@@ -173,46 +193,66 @@ namespace LoginForm
         {
             OpenForm(new f_StudentInformation());
         }
-    //    private async void btnAskAI_Click(
-    //object sender,
-    //EventArgs e)
-    //    {
-    //        try
-    //        {
-    //            // UI loading
-    //            progressAI.Visible = true;
 
-    //            progressAI.Style =
-    //                ProgressBarStyle.Marquee;
+        private void btnAssign_Click(
+      object sender,
+      EventArgs e)
+        {
+            OpenForm(new f_Assign());
+        }
 
-    //            lblAIStatus.Text =
-    //                "AI is thinking...";
+        private void btnContact_Click(
+    object sender,
+    EventArgs e)
+        {
+            OpenForm(new f_ContactManage());
+        }
+        private void btnExport_Click(
+    object sender,
+    EventArgs e)
+        {
+            OpenForm(new f_ReportExport());
+        }
+        //    private async void btnAskAI_Click(
+        //object sender,
+        //EventArgs e)
+        //    {
+        //        try
+        //        {
+        //            // UI loading
+        //            progressAI.Visible = true;
 
-    //            btnAskAI.Enabled = false;
+        //            progressAI.Style =
+        //                ProgressBarStyle.Marquee;
 
-    //            AIService ai =
-    //                new AIService();
+        //            lblAIStatus.Text =
+        //                "AI is thinking...";
 
-    //            string command =
-    //                await ai.AskAI(
-    //                    txtAI.Text);
+        //            btnAskAI.Enabled = false;
 
-    //            ExecuteCommand(command);
+        //            AIService ai =
+        //                new AIService();
 
-    //            lblAIStatus.Text =
-    //                "Done";
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show(ex.Message);
-    //        }
-    //        finally
-    //        {
-    //            progressAI.Visible = false;
+        //            string command =
+        //                await ai.AskAI(
+        //                    txtAI.Text);
 
-    //            btnAskAI.Enabled = true;
-    //        }
-    //    }
+        //            ExecuteCommand(command);
+
+        //            lblAIStatus.Text =
+        //                "Done";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            progressAI.Visible = false;
+
+        //            btnAskAI.Enabled = true;
+        //        }
+        //    }
 
 
         private void ExecuteCommand(

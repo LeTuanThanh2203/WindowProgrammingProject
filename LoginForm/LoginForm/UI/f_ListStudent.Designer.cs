@@ -27,9 +27,9 @@ namespace LoginForm
             btnRefresh = new Button();
             pnlBody = new Panel();
             pnlGrid = new Panel();
-            dgvStudent = new DataGridView();
+            dgvContacts = new DataGridView();
             pnLeft = new Panel();
-            picStudent = new PictureBox();
+            picContact = new PictureBox();
             lblIDInfo = new Label();
             lblFirstnameInfo = new Label();
             lblLastnameInfo = new Label();
@@ -64,9 +64,9 @@ namespace LoginForm
             pnlToolbar.SuspendLayout();
             pnlBody.SuspendLayout();
             pnlGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvStudent).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvContacts).BeginInit();
             pnLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picContact).BeginInit();
             pnlBottom.SuspendLayout();
             pnlPagination.SuspendLayout();
             SuspendLayout();
@@ -89,7 +89,7 @@ namespace LoginForm
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(24, 10);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(280, 37);
+            lblTitle.Size = new Size(283, 37);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Student Management";
             // 
@@ -178,7 +178,7 @@ namespace LoginForm
             // pnlGrid
             // 
             pnlGrid.BackColor = Color.FromArgb(245, 247, 250);
-            pnlGrid.Controls.Add(dgvStudent);
+            pnlGrid.Controls.Add(dgvContacts);
             pnlGrid.Dock = DockStyle.Fill;
             pnlGrid.Location = new Point(404, 0);
             pnlGrid.Name = "pnlGrid";
@@ -186,23 +186,23 @@ namespace LoginForm
             pnlGrid.Size = new Size(1051, 598);
             pnlGrid.TabIndex = 0;
             // 
-            // dgvStudent
+            // dgvContacts
             // 
-            dgvStudent.AllowUserToResizeColumns = false;
-            dgvStudent.AllowUserToResizeRows = false;
-            dgvStudent.ColumnHeadersHeight = 29;
-            dgvStudent.Dock = DockStyle.Fill;
-            dgvStudent.Location = new Point(16, 12);
-            dgvStudent.Name = "dgvStudent";
-            dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(1019, 578);
-            dgvStudent.TabIndex = 0;
-            dgvStudent.CellClick += dgvStudent_CellClick;
+            dgvContacts.AllowUserToResizeColumns = false;
+            dgvContacts.AllowUserToResizeRows = false;
+            dgvContacts.ColumnHeadersHeight = 29;
+            dgvContacts.Dock = DockStyle.Fill;
+            dgvContacts.Location = new Point(16, 12);
+            dgvContacts.Name = "dgvContacts";
+            dgvContacts.RowHeadersWidth = 51;
+            dgvContacts.Size = new Size(1019, 578);
+            dgvContacts.TabIndex = 0;
+            dgvContacts.CellClick += dgvStudent_CellClick;
             // 
             // pnLeft
             // 
             pnLeft.BackColor = Color.White;
-            pnLeft.Controls.Add(picStudent);
+            pnLeft.Controls.Add(picContact);
             pnLeft.Controls.Add(lblIDInfo);
             pnLeft.Controls.Add(lblFirstnameInfo);
             pnLeft.Controls.Add(lblLastnameInfo);
@@ -226,175 +226,183 @@ namespace LoginForm
             pnLeft.Size = new Size(404, 598);
             pnLeft.TabIndex = 1;
             // 
-            // picStudent
+            // picContact
             // 
-            picStudent.BorderStyle = BorderStyle.FixedSingle;
-            picStudent.Location = new Point(45, 20);
-            picStudent.Name = "picStudent";
-            picStudent.Size = new Size(200, 226);
-            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
-            picStudent.TabIndex = 0;
-            picStudent.TabStop = false;
+            picContact.BorderStyle = BorderStyle.FixedSingle;
+            picContact.Location = new Point(45, 20);
+            picContact.Name = "picContact";
+            picContact.Size = new Size(200, 226);
+            picContact.SizeMode = PictureBoxSizeMode.StretchImage;
+            picContact.TabIndex = 0;
+            picContact.TabStop = false;
             // 
-            // lblID - VALUE (để trống, code sẽ gán)
-            lblID.AutoSize = true;
-            lblID.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblID.ForeColor = Color.FromArgb(10, 61, 120);
-            lblID.Location = new Point(130, 260);
-            lblID.Name = "lblID";
-            lblID.Size = new Size(100, 23);
-            lblID.TabIndex = 6;
-            lblID.Text = "";
-
-            // lblIDInfo - TIÊU ĐỀ cố định
+            // lblIDInfo
+            // 
             lblIDInfo.AutoSize = true;
             lblIDInfo.Font = new Font("Segoe UI", 9.5F);
             lblIDInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblIDInfo.Location = new Point(16, 260);
             lblIDInfo.Name = "lblIDInfo";
-            lblIDInfo.Size = new Size(100, 23);
+            lblIDInfo.Size = new Size(85, 21);
             lblIDInfo.TabIndex = 14;
             lblIDInfo.Text = "Student ID:";
-
-            // lblFirstname - VALUE
-            lblFirstname.AutoSize = true;
-            lblFirstname.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblFirstname.ForeColor = Color.FromArgb(10, 61, 120);
-            lblFirstname.Location = new Point(130, 294);
-            lblFirstname.Name = "lblFirstname";
-            lblFirstname.Size = new Size(100, 23);
-            lblFirstname.TabIndex = 7;
-            lblFirstname.Text = "";
-
-            // lblFirstnameInfo - TIÊU ĐỀ
+            // 
+            // lblFirstnameInfo
+            // 
             lblFirstnameInfo.AutoSize = true;
             lblFirstnameInfo.Font = new Font("Segoe UI", 9.5F);
             lblFirstnameInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblFirstnameInfo.Location = new Point(16, 294);
             lblFirstnameInfo.Name = "lblFirstnameInfo";
-            lblFirstnameInfo.Size = new Size(100, 23);
+            lblFirstnameInfo.Size = new Size(89, 21);
             lblFirstnameInfo.TabIndex = 15;
             lblFirstnameInfo.Text = "First Name:";
-
-            // lblLastname - VALUE
-            lblLastname.AutoSize = true;
-            lblLastname.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblLastname.ForeColor = Color.FromArgb(10, 61, 120);
-            lblLastname.Location = new Point(130, 328);
-            lblLastname.Name = "lblLastname";
-            lblLastname.Size = new Size(100, 23);
-            lblLastname.TabIndex = 8;
-            lblLastname.Text = "";
-
-            // lblLastnameInfo - TIÊU ĐỀ
+            // 
+            // lblLastnameInfo
+            // 
             lblLastnameInfo.AutoSize = true;
             lblLastnameInfo.Font = new Font("Segoe UI", 9.5F);
             lblLastnameInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblLastnameInfo.Location = new Point(16, 328);
             lblLastnameInfo.Name = "lblLastnameInfo";
-            lblLastnameInfo.Size = new Size(100, 23);
+            lblLastnameInfo.Size = new Size(87, 21);
             lblLastnameInfo.TabIndex = 16;
             lblLastnameInfo.Text = "Last Name:";
-
-            // lblDob - VALUE
-            lblDob.AutoSize = true;
-            lblDob.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblDob.ForeColor = Color.FromArgb(10, 61, 120);
-            lblDob.Location = new Point(130, 362);
-            lblDob.Name = "lblDob";
-            lblDob.Size = new Size(100, 23);
-            lblDob.TabIndex = 9;
-            lblDob.Text = "";
-
-            // lblDobInfo - TIÊU ĐỀ
+            // 
+            // lblDobInfo
+            // 
             lblDobInfo.AutoSize = true;
             lblDobInfo.Font = new Font("Segoe UI", 9.5F);
             lblDobInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblDobInfo.Location = new Point(16, 362);
             lblDobInfo.Name = "lblDobInfo";
-            lblDobInfo.Size = new Size(100, 23);
+            lblDobInfo.Size = new Size(100, 21);
             lblDobInfo.TabIndex = 17;
             lblDobInfo.Text = "Date of Birth:";
-
-            // lblGender - VALUE
-            lblGender.AutoSize = true;
-            lblGender.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblGender.ForeColor = Color.FromArgb(10, 61, 120);
-            lblGender.Location = new Point(130, 396);
-            lblGender.Name = "lblGender";
-            lblGender.Size = new Size(100, 23);
-            lblGender.TabIndex = 10;
-            lblGender.Text = "";
-
-            // lblGenderInfo - TIÊU ĐỀ
+            // 
+            // lblGenderInfo
+            // 
             lblGenderInfo.AutoSize = true;
             lblGenderInfo.Font = new Font("Segoe UI", 9.5F);
             lblGenderInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblGenderInfo.Location = new Point(16, 396);
             lblGenderInfo.Name = "lblGenderInfo";
-            lblGenderInfo.Size = new Size(100, 23);
+            lblGenderInfo.Size = new Size(64, 21);
             lblGenderInfo.TabIndex = 18;
             lblGenderInfo.Text = "Gender:";
-
-            // lblPhone - VALUE
-            lblPhone.AutoSize = true;
-            lblPhone.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblPhone.ForeColor = Color.FromArgb(10, 61, 120);
-            lblPhone.Location = new Point(130, 430);
-            lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(100, 23);
-            lblPhone.TabIndex = 11;
-            lblPhone.Text = "";
-
-            // lblPhoneInfo - TIÊU ĐỀ
+            // 
+            // lblPhoneInfo
+            // 
             lblPhoneInfo.AutoSize = true;
             lblPhoneInfo.Font = new Font("Segoe UI", 9.5F);
             lblPhoneInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblPhoneInfo.Location = new Point(16, 430);
             lblPhoneInfo.Name = "lblPhoneInfo";
-            lblPhoneInfo.Size = new Size(100, 23);
+            lblPhoneInfo.Size = new Size(57, 21);
             lblPhoneInfo.TabIndex = 19;
             lblPhoneInfo.Text = "Phone:";
-
-            // lblAddress - VALUE
-            lblAddress.AutoSize = true;
-            lblAddress.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblAddress.ForeColor = Color.FromArgb(10, 61, 120);
-            lblAddress.Location = new Point(130, 464);
-            lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(100, 23);
-            lblAddress.TabIndex = 12;
-            lblAddress.Text = "";
-
-            // lblAddressInfo - TIÊU ĐỀ
+            // 
+            // lblAddressInfo
+            // 
             lblAddressInfo.AutoSize = true;
             lblAddressInfo.Font = new Font("Segoe UI", 9.5F);
             lblAddressInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblAddressInfo.Location = new Point(16, 464);
             lblAddressInfo.Name = "lblAddressInfo";
-            lblAddressInfo.Size = new Size(100, 23);
+            lblAddressInfo.Size = new Size(69, 21);
             lblAddressInfo.TabIndex = 20;
             lblAddressInfo.Text = "Address:";
-
-            // lblEmail - VALUE
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI Semibold", 9.5F);
-            lblEmail.ForeColor = Color.FromArgb(10, 61, 120);
-            lblEmail.Location = new Point(130, 498);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(100, 23);
-            lblEmail.TabIndex = 13;
-            lblEmail.Text = "";
-
-            // lblEmailInfo - TIÊU ĐỀ
+            // 
+            // lblEmailInfo
+            // 
             lblEmailInfo.AutoSize = true;
             lblEmailInfo.Font = new Font("Segoe UI", 9.5F);
             lblEmailInfo.ForeColor = Color.FromArgb(80, 80, 90);
             lblEmailInfo.Location = new Point(16, 498);
             lblEmailInfo.Name = "lblEmailInfo";
-            lblEmailInfo.Size = new Size(100, 23);
+            lblEmailInfo.Size = new Size(51, 21);
             lblEmailInfo.TabIndex = 21;
             lblEmailInfo.Text = "Email:";
+            // 
+            // lblID
+            // 
+            lblID.AutoSize = true;
+            lblID.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblID.ForeColor = Color.FromArgb(10, 61, 120);
+            lblID.Location = new Point(130, 260);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(0, 21);
+            lblID.TabIndex = 6;
+            // 
+            // lblFirstname
+            // 
+            lblFirstname.AutoSize = true;
+            lblFirstname.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblFirstname.ForeColor = Color.FromArgb(10, 61, 120);
+            lblFirstname.Location = new Point(130, 294);
+            lblFirstname.Name = "lblFirstname";
+            lblFirstname.Size = new Size(0, 21);
+            lblFirstname.TabIndex = 7;
+            // 
+            // lblLastname
+            // 
+            lblLastname.AutoSize = true;
+            lblLastname.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblLastname.ForeColor = Color.FromArgb(10, 61, 120);
+            lblLastname.Location = new Point(130, 328);
+            lblLastname.Name = "lblLastname";
+            lblLastname.Size = new Size(0, 21);
+            lblLastname.TabIndex = 8;
+            // 
+            // lblDob
+            // 
+            lblDob.AutoSize = true;
+            lblDob.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblDob.ForeColor = Color.FromArgb(10, 61, 120);
+            lblDob.Location = new Point(130, 362);
+            lblDob.Name = "lblDob";
+            lblDob.Size = new Size(0, 21);
+            lblDob.TabIndex = 9;
+            // 
+            // lblGender
+            // 
+            lblGender.AutoSize = true;
+            lblGender.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblGender.ForeColor = Color.FromArgb(10, 61, 120);
+            lblGender.Location = new Point(130, 396);
+            lblGender.Name = "lblGender";
+            lblGender.Size = new Size(0, 21);
+            lblGender.TabIndex = 10;
+            // 
+            // lblPhone
+            // 
+            lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblPhone.ForeColor = Color.FromArgb(10, 61, 120);
+            lblPhone.Location = new Point(130, 430);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(0, 21);
+            lblPhone.TabIndex = 11;
+            // 
+            // lblAddress
+            // 
+            lblAddress.AutoSize = true;
+            lblAddress.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblAddress.ForeColor = Color.FromArgb(10, 61, 120);
+            lblAddress.Location = new Point(130, 464);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(0, 21);
+            lblAddress.TabIndex = 12;
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblEmail.ForeColor = Color.FromArgb(10, 61, 120);
+            lblEmail.Location = new Point(130, 498);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(0, 21);
+            lblEmail.TabIndex = 13;
             // 
             // label1
             // 
@@ -518,31 +526,33 @@ namespace LoginForm
             // 
             // btnFirst
             // 
-            btnFirst.Font = new Font("Segoe UI", 9F);
             btnFirst.BackColor = Color.White;
-            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
-            btnFirst.FlatStyle = FlatStyle.Flat;
-            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnFirst.Cursor = Cursors.Hand;
+            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnFirst.FlatStyle = FlatStyle.Flat;
+            btnFirst.Font = new Font("Segoe UI", 9F);
+            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
             btnFirst.Location = new Point(80, 17);
             btnFirst.Name = "btnFirst";
             btnFirst.Size = new Size(36, 32);
             btnFirst.TabIndex = 1;
             btnFirst.Text = "|◀";
+            btnFirst.UseVisualStyleBackColor = false;
             // 
             // btnPrev
             // 
-            btnPrev.Font = new Font("Segoe UI", 9F);
             btnPrev.BackColor = Color.White;
-            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
-            btnPrev.FlatStyle = FlatStyle.Flat;
-            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnPrev.Cursor = Cursors.Hand;
+            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnPrev.FlatStyle = FlatStyle.Flat;
+            btnPrev.Font = new Font("Segoe UI", 9F);
+            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
             btnPrev.Location = new Point(120, 17);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(36, 32);
             btnPrev.TabIndex = 2;
             btnPrev.Text = "◀";
+            btnPrev.UseVisualStyleBackColor = false;
             // 
             // lblPageInfo
             // 
@@ -556,31 +566,33 @@ namespace LoginForm
             // 
             // btnNext
             // 
-            btnNext.Font = new Font("Segoe UI", 9F);
             btnNext.BackColor = Color.White;
-            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
-            btnNext.FlatStyle = FlatStyle.Flat;
-            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnNext.Cursor = Cursors.Hand;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 9F);
+            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
             btnNext.Location = new Point(290, 17);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(36, 32);
             btnNext.TabIndex = 4;
             btnNext.Text = "▶";
+            btnNext.UseVisualStyleBackColor = false;
             // 
             // btnLast
             // 
-            btnLast.Font = new Font("Segoe UI", 9F);
             btnLast.BackColor = Color.White;
-            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
-            btnLast.FlatStyle = FlatStyle.Flat;
-            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnLast.Cursor = Cursors.Hand;
+            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnLast.FlatStyle = FlatStyle.Flat;
+            btnLast.Font = new Font("Segoe UI", 9F);
+            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
             btnLast.Location = new Point(330, 17);
             btnLast.Name = "btnLast";
             btnLast.Size = new Size(36, 32);
             btnLast.TabIndex = 5;
             btnLast.Text = "▶|";
+            btnLast.UseVisualStyleBackColor = false;
             // 
             // f_ListStudent
             // 
@@ -598,13 +610,15 @@ namespace LoginForm
             Load += ManageStudent_Load;
             Shown += f_ListStudent_Shown;
             pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             pnlToolbar.ResumeLayout(false);
             pnlToolbar.PerformLayout();
             pnlBody.ResumeLayout(false);
             pnlGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvStudent).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvContacts).EndInit();
             pnLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
+            pnLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picContact).EndInit();
             pnlBottom.ResumeLayout(false);
             pnlBottom.PerformLayout();
             pnlPagination.ResumeLayout(false);
@@ -625,7 +639,7 @@ namespace LoginForm
 
         private System.Windows.Forms.Panel pnlBody;
         private System.Windows.Forms.Panel pnLeft;
-        private System.Windows.Forms.PictureBox picStudent;
+        private System.Windows.Forms.PictureBox picContact;
         private System.Windows.Forms.Label lblIDInfo;
         private System.Windows.Forms.Label lblFirstnameInfo;
         private System.Windows.Forms.Label lblLastnameInfo;
@@ -645,7 +659,7 @@ namespace LoginForm
         private System.Windows.Forms.Label label1;
 
         private System.Windows.Forms.Panel pnlGrid;
-        private System.Windows.Forms.DataGridView dgvStudent;
+        private System.Windows.Forms.DataGridView dgvContacts;
 
         private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Button btAdd;

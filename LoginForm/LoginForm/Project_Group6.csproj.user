@@ -7,10 +7,19 @@
     <Compile Update="UI\f_AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\f_Assign.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\f_ClassList.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\f_ContactManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\f_EditDeleteClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\f_ReportExport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\f_Request.cs">
