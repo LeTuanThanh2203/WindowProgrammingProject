@@ -232,6 +232,11 @@ namespace LoginForm
                 return;
             }
 
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Invalid email format!");
+                return;
+            }
 
             DialogResult result =
                 MessageBox.Show(
@@ -350,7 +355,11 @@ namespace LoginForm
                 this.Close();
             }
         }
-
+        private bool IsValidEmail(string email)
+        {
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
+        }
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
             f_LoginForm login = new f_LoginForm();

@@ -1,4 +1,4 @@
-﻿namespace LoginForm
+namespace LoginForm
 {
     public partial class f_LoginForm
     {
