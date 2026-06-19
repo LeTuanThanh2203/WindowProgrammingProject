@@ -12,6 +12,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ValidationLibrary;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace LoginForm
 {
@@ -22,6 +25,18 @@ namespace LoginForm
         private List<string> studentList = new List<string>();
         private ListBox suggestionBox = new ListBox();
         private System.Windows.Forms.Timer hideTimer = new System.Windows.Forms.Timer();
+
+        // Address Autocomplete suggestion controls
+        private ListBox addressSuggestionBox = new ListBox();
+        private System.Windows.Forms.Timer addressDebounceTimer = new System.Windows.Forms.Timer();
+        private System.Windows.Forms.Timer addressHideTimer = new System.Windows.Forms.Timer();
+        private static readonly HttpClient httpClient = new HttpClient();
+
+        static f_AddStudent()
+        {
+            // Nominatim requires a user-agent header to accept requests
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "StudentManagementSystem/1.0 (winforms-app)");
+        }
 
         public f_AddStudent()
         {
@@ -40,6 +55,7 @@ namespace LoginForm
 
             LoadStudentID();
             SetupSuggestionBox();
+            SetupAddressSuggestionBox();
 
             picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -135,6 +151,149 @@ namespace LoginForm
             {
                 suggestionBox.Visible = false;
                 suggestionBox.Items.Clear();
+            }
+        }
+
+        // ==========================================
+        // ADDRESS AUTOCOMPLETE LOGIC (NOMINATIM API)
+        // ==========================================
+        private void SetupAddressSuggestionBox()
+        {
+            addressSuggestionBox.Visible = false;
+            addressSuggestionBox.Size = new Size(txtAddress.Width, 150);
+            addressSuggestionBox.Font = txtAddress.Font;
+            addressSuggestionBox.Location = new Point(txtAddress.Left, txtAddress.Bottom);
+            addressSuggestionBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // Place suggestion box on the same parent container so it coordinates correctly
+            txtAddress.Parent.Controls.Add(addressSuggestionBox);
+            addressSuggestionBox.BringToFront();
+
+            txtAddress.TextChanged += txtAddress_TextChanged;
+            txtAddress.Leave += txtAddress_Leave;
+            txtAddress.KeyDown += txtAddress_KeyDown;
+
+            addressSuggestionBox.Click += addressSuggestionBox_Click;
+            addressSuggestionBox.KeyDown += addressSuggestionBox_KeyDown;
+
+            addressDebounceTimer.Interval = 500; // 500ms delay to prevent API request flooding
+            addressDebounceTimer.Tick += AddressDebounceTimer_Tick;
+
+            addressHideTimer.Interval = 200;
+            addressHideTimer.Tick += AddressHideTimer_Tick;
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+            addressDebounceTimer.Stop();
+            addressDebounceTimer.Start();
+        }
+
+        private void txtAddress_Leave(object sender, EventArgs e)
+        {
+            addressHideTimer.Start();
+        }
+
+        private void AddressHideTimer_Tick(object sender, EventArgs e)
+        {
+            addressHideTimer.Stop();
+            if (!addressSuggestionBox.Focused && !txtAddress.Focused)
+            {
+                addressSuggestionBox.Visible = false;
+            }
+        }
+
+        private void txtAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && addressSuggestionBox.Visible && addressSuggestionBox.Items.Count > 0)
+            {
+                addressSuggestionBox.Focus();
+                if (addressSuggestionBox.Items.Count > 0)
+                    addressSuggestionBox.SelectedIndex = 0;
+                e.Handled = true;
+            }
+        }
+
+        private void addressSuggestionBox_Click(object sender, EventArgs e)
+        {
+            SelectAddressSuggestion();
+        }
+
+        private void addressSuggestionBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SelectAddressSuggestion();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                addressSuggestionBox.Visible = false;
+                txtAddress.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void SelectAddressSuggestion()
+        {
+            if (addressSuggestionBox.SelectedItem != null)
+            {
+                // Temporarily unbind TextChanged event to avoid triggering another API fetch
+                txtAddress.TextChanged -= txtAddress_TextChanged;
+                txtAddress.Text = addressSuggestionBox.SelectedItem.ToString();
+                txtAddress.TextChanged += txtAddress_TextChanged;
+
+                addressSuggestionBox.Visible = false;
+                txtAddress.Focus();
+                txtAddress.SelectionStart = txtAddress.Text.Length;
+            }
+        }
+
+        private async void AddressDebounceTimer_Tick(object sender, EventArgs e)
+        {
+            addressDebounceTimer.Stop();
+            string keyword = txtAddress.Text.Trim();
+            if (keyword.Length < 3)
+            {
+                addressSuggestionBox.Visible = false;
+                addressSuggestionBox.Items.Clear();
+                return;
+            }
+
+            try
+            {
+                // Query OpenStreetMap Nominatim API limited to Vietnam country code for accurate student matches
+                string url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(keyword)}&format=json&limit=5&countrycodes=vn";
+                var response = await httpClient.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    using (JsonDocument doc = JsonDocument.Parse(json))
+                    {
+                        addressSuggestionBox.Items.Clear();
+                        var root = doc.RootElement;
+                        if (root.ValueKind == JsonValueKind.Array && root.GetArrayLength() > 0)
+                        {
+                            foreach (var item in root.EnumerateArray())
+                            {
+                                if (item.TryGetProperty("display_name", out var prop))
+                                {
+                                    addressSuggestionBox.Items.Add(prop.GetString());
+                                }
+                            }
+                            addressSuggestionBox.Visible = true;
+                            addressSuggestionBox.BringToFront();
+                        }
+                        else
+                        {
+                            addressSuggestionBox.Visible = false;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // Fail silently to avoid interrupting the user on network error
             }
         }
 

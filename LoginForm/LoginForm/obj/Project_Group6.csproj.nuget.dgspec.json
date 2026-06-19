@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[2.2.5, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "FontAwesome.Sharp": {
               "target": "Package",
               "version": "[6.6.0, )"
@@ -87,6 +91,14 @@
             "Xceed.Words.NET": {
               "target": "Package",
               "version": "[5.2.26166.7850, )"
+            },
+            "itext": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "itext.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.5, )"
             }
           },
           "imports": [

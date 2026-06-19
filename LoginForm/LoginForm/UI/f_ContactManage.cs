@@ -23,7 +23,7 @@ namespace LoginForm
             txtSearch.TextChanged += txtSearch_TextChanged;
 
             // Wire Delete button (btnViewScore có text "Delete" trong designer)
-            btnViewScore.Click += btnDelete_Click;
+            btnDelete.Click += btnDelete_Click;
         }
 
         // ================= LOAD FORM =================

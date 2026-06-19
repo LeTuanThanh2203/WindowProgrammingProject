@@ -21,715 +21,730 @@ namespace LoginForm
 
         private void InitializeComponent()
         {
-            this.pnlHeader = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblSubtitle = new System.Windows.Forms.Label();
-            this.pnlGroupMgr = new System.Windows.Forms.Panel();
-            this.lblGroupMgrTitle = new System.Windows.Forms.Label();
-            this.txtGroupName = new System.Windows.Forms.TextBox();
-            this.btnAddGroup = new System.Windows.Forms.Button();
-            this.pnlToolbar = new System.Windows.Forms.Panel();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblFilterGroup = new System.Windows.Forms.Label();
-            this.cboGroup = new System.Windows.Forms.ComboBox();
-            this.btnDeleteGroup = new System.Windows.Forms.Button();
-            this.pnlGrid = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvContacts = new System.Windows.Forms.DataGridView();
-            this.pnLeft = new System.Windows.Forms.Panel();
-            this.picContact = new System.Windows.Forms.PictureBox();
-            this.btnChooseImage = new System.Windows.Forms.Button();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtFname = new System.Windows.Forms.TextBox();
-            this.lblValidateFirstName = new System.Windows.Forms.Label();
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.txtLname = new System.Windows.Forms.TextBox();
-            this.lblValidateLastName = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpDob = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cboGender = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lblValidatePhone = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.lblContactGroup = new System.Windows.Forms.Label();
-            this.cboContactGroup = new System.Windows.Forms.ComboBox();
-            this.lblValidateID = new System.Windows.Forms.Label();
-            this.pnlBottom = new System.Windows.Forms.Panel();
-            this.btAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnViewScore = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.pnlPagination = new System.Windows.Forms.Panel();
-            this.cboPageSize = new System.Windows.Forms.ComboBox();
-            this.btnFirst = new System.Windows.Forms.Button();
-            this.btnPrev = new System.Windows.Forms.Button();
-            this.lblPageInfo = new System.Windows.Forms.Label();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnLast = new System.Windows.Forms.Button();
-            this.pnlHeader.SuspendLayout();
-            this.pnlGroupMgr.SuspendLayout();
-            this.pnlToolbar.SuspendLayout();
-            this.pnlGrid.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContacts)).BeginInit();
-            this.pnLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picContact)).BeginInit();
-            this.pnlBottom.SuspendLayout();
-            this.pnlPagination.SuspendLayout();
-            this.SuspendLayout();
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            pnlGroupMgr = new Panel();
+            lblGroupMgrTitle = new Label();
+            txtGroupName = new TextBox();
+            btnAddGroup = new Button();
+            pnlToolbar = new Panel();
+            txtSearch = new TextBox();
+            lblFilterGroup = new Label();
+            cboGroup = new ComboBox();
+            btnDeleteGroup = new Button();
+            pnlGrid = new Panel();
+            panel1 = new Panel();
+            dgvContacts = new DataGridView();
+            pnLeft = new Panel();
+            picContact = new PictureBox();
+            btnChooseImage = new Button();
+            lblFirstName = new Label();
+            txtFname = new TextBox();
+            lblValidateFirstName = new Label();
+            lblLastName = new Label();
+            txtLname = new TextBox();
+            lblValidateLastName = new Label();
+            label4 = new Label();
+            dtpDob = new DateTimePicker();
+            label5 = new Label();
+            cboGender = new ComboBox();
+            label6 = new Label();
+            txtPhone = new TextBox();
+            lblValidatePhone = new Label();
+            label9 = new Label();
+            txtEmail = new TextBox();
+            label7 = new Label();
+            txtAddress = new TextBox();
+            lblContactGroup = new Label();
+            cboContactGroup = new ComboBox();
+            lblValidateID = new Label();
+            pnlBottom = new Panel();
+            btAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
+            lblTotal = new Label();
+            pnlPagination = new Panel();
+            cboPageSize = new ComboBox();
+            btnFirst = new Button();
+            btnPrev = new Button();
+            lblPageInfo = new Label();
+            btnNext = new Button();
+            btnLast = new Button();
+            pnlHeader.SuspendLayout();
+            pnlGroupMgr.SuspendLayout();
+            pnlToolbar.SuspendLayout();
+            pnlGrid.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvContacts).BeginInit();
+            pnLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picContact).BeginInit();
+            pnlBottom.SuspendLayout();
+            pnlPagination.SuspendLayout();
+            SuspendLayout();
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(120)))));
-            this.pnlHeader.Controls.Add(this.lblTitle);
-            this.pnlHeader.Controls.Add(this.lblSubtitle);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1100, 72);
-            this.pnlHeader.TabIndex = 0;
+            pnlHeader.BackColor = Color.FromArgb(10, 61, 120);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(lblSubtitle);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 4, 3, 4);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(1257, 96);
+            pnlHeader.TabIndex = 0;
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(20, 8);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(211, 28);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Contact Management";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Semibold", 15F);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(23, 11);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(262, 35);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Contact Management";
             // 
             // lblSubtitle
             // 
-            this.lblSubtitle.AutoSize = true;
-            this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
-            this.lblSubtitle.Location = new System.Drawing.Point(22, 42);
-            this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(149, 15);
-            this.lblSubtitle.TabIndex = 1;
-            this.lblSubtitle.Text = "Manage personal contacts";
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.Font = new Font("Segoe UI", 9F);
+            lblSubtitle.ForeColor = Color.FromArgb(180, 210, 240);
+            lblSubtitle.Location = new Point(25, 56);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(183, 20);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "Manage personal contacts";
             // 
             // pnlGroupMgr
             // 
-            this.pnlGroupMgr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(250)))));
-            this.pnlGroupMgr.Controls.Add(this.lblGroupMgrTitle);
-            this.pnlGroupMgr.Controls.Add(this.txtGroupName);
-            this.pnlGroupMgr.Controls.Add(this.btnAddGroup);
-            this.pnlGroupMgr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlGroupMgr.Location = new System.Drawing.Point(0, 72);
-            this.pnlGroupMgr.Name = "pnlGroupMgr";
-            this.pnlGroupMgr.Padding = new System.Windows.Forms.Padding(16, 8, 16, 8);
-            this.pnlGroupMgr.Size = new System.Drawing.Size(1100, 50);
-            this.pnlGroupMgr.TabIndex = 1;
+            pnlGroupMgr.BackColor = Color.FromArgb(235, 240, 250);
+            pnlGroupMgr.Controls.Add(lblGroupMgrTitle);
+            pnlGroupMgr.Controls.Add(txtGroupName);
+            pnlGroupMgr.Controls.Add(btnAddGroup);
+            pnlGroupMgr.Dock = DockStyle.Top;
+            pnlGroupMgr.Location = new Point(0, 96);
+            pnlGroupMgr.Margin = new Padding(3, 4, 3, 4);
+            pnlGroupMgr.Name = "pnlGroupMgr";
+            pnlGroupMgr.Padding = new Padding(18, 11, 18, 11);
+            pnlGroupMgr.Size = new Size(1257, 67);
+            pnlGroupMgr.TabIndex = 1;
             // 
             // lblGroupMgrTitle
             // 
-            this.lblGroupMgrTitle.AutoSize = true;
-            this.lblGroupMgrTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblGroupMgrTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(120)))));
-            this.lblGroupMgrTitle.Location = new System.Drawing.Point(18, 14);
-            this.lblGroupMgrTitle.Name = "lblGroupMgrTitle";
-            this.lblGroupMgrTitle.Size = new System.Drawing.Size(80, 17);
-            this.lblGroupMgrTitle.TabIndex = 0;
-            this.lblGroupMgrTitle.Text = "New Group:";
+            lblGroupMgrTitle.AutoSize = true;
+            lblGroupMgrTitle.Font = new Font("Segoe UI Semibold", 9.5F);
+            lblGroupMgrTitle.ForeColor = Color.FromArgb(10, 61, 120);
+            lblGroupMgrTitle.Location = new Point(21, 19);
+            lblGroupMgrTitle.Name = "lblGroupMgrTitle";
+            lblGroupMgrTitle.Size = new Size(97, 21);
+            lblGroupMgrTitle.TabIndex = 0;
+            lblGroupMgrTitle.Text = "New Group:";
             // 
             // txtGroupName
             // 
-            this.txtGroupName.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtGroupName.Location = new System.Drawing.Point(110, 11);
-            this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.PlaceholderText = "Group name…";
-            this.txtGroupName.Size = new System.Drawing.Size(220, 24);
-            this.txtGroupName.TabIndex = 1;
+            txtGroupName.Font = new Font("Segoe UI", 9.5F);
+            txtGroupName.Location = new Point(126, 15);
+            txtGroupName.Margin = new Padding(3, 4, 3, 4);
+            txtGroupName.Name = "txtGroupName";
+            txtGroupName.PlaceholderText = "Group name…";
+            txtGroupName.Size = new Size(251, 29);
+            txtGroupName.TabIndex = 1;
             // 
             // btnAddGroup
             // 
-            this.btnAddGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(120)))));
-            this.btnAddGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddGroup.FlatAppearance.BorderSize = 0;
-            this.btnAddGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddGroup.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddGroup.ForeColor = System.Drawing.Color.White;
-            this.btnAddGroup.Location = new System.Drawing.Point(340, 8);
-            this.btnAddGroup.Name = "btnAddGroup";
-            this.btnAddGroup.Size = new System.Drawing.Size(110, 32);
-            this.btnAddGroup.TabIndex = 2;
-            this.btnAddGroup.Text = "＋ Add Group";
-            this.btnAddGroup.UseVisualStyleBackColor = false;
-            this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
+            btnAddGroup.BackColor = Color.FromArgb(10, 61, 120);
+            btnAddGroup.Cursor = Cursors.Hand;
+            btnAddGroup.FlatAppearance.BorderSize = 0;
+            btnAddGroup.FlatStyle = FlatStyle.Flat;
+            btnAddGroup.Font = new Font("Segoe UI Semibold", 9F);
+            btnAddGroup.ForeColor = Color.White;
+            btnAddGroup.Location = new Point(389, 11);
+            btnAddGroup.Margin = new Padding(3, 4, 3, 4);
+            btnAddGroup.Name = "btnAddGroup";
+            btnAddGroup.Size = new Size(126, 43);
+            btnAddGroup.TabIndex = 2;
+            btnAddGroup.Text = "＋ Add Group";
+            btnAddGroup.UseVisualStyleBackColor = false;
+            btnAddGroup.Click += btnAddGroup_Click;
             // 
             // pnlToolbar
             // 
-            this.pnlToolbar.BackColor = System.Drawing.Color.White;
-            this.pnlToolbar.Controls.Add(this.txtSearch);
-            this.pnlToolbar.Controls.Add(this.lblFilterGroup);
-            this.pnlToolbar.Controls.Add(this.cboGroup);
-            this.pnlToolbar.Controls.Add(this.btnDeleteGroup);
-            this.pnlToolbar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlToolbar.Location = new System.Drawing.Point(0, 122);
-            this.pnlToolbar.Name = "pnlToolbar";
-            this.pnlToolbar.Padding = new System.Windows.Forms.Padding(16, 10, 16, 6);
-            this.pnlToolbar.Size = new System.Drawing.Size(1100, 52);
-            this.pnlToolbar.TabIndex = 2;
+            pnlToolbar.BackColor = Color.White;
+            pnlToolbar.Controls.Add(txtSearch);
+            pnlToolbar.Controls.Add(lblFilterGroup);
+            pnlToolbar.Controls.Add(cboGroup);
+            pnlToolbar.Controls.Add(btnDeleteGroup);
+            pnlToolbar.Dock = DockStyle.Top;
+            pnlToolbar.Location = new Point(0, 163);
+            pnlToolbar.Margin = new Padding(3, 4, 3, 4);
+            pnlToolbar.Name = "pnlToolbar";
+            pnlToolbar.Padding = new Padding(18, 13, 18, 8);
+            pnlToolbar.Size = new Size(1257, 69);
+            pnlToolbar.TabIndex = 2;
             // 
             // txtSearch
             // 
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(460, 13);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceholderText = "Search by name, phone, email…";
-            this.txtSearch.Size = new System.Drawing.Size(360, 24);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Font = new Font("Segoe UI", 9.5F);
+            txtSearch.Location = new Point(526, 17);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search by name, phone, email…";
+            txtSearch.Size = new Size(411, 29);
+            txtSearch.TabIndex = 3;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // lblFilterGroup
             // 
-            this.lblFilterGroup.AutoSize = true;
-            this.lblFilterGroup.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFilterGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.lblFilterGroup.Location = new System.Drawing.Point(18, 16);
-            this.lblFilterGroup.Name = "lblFilterGroup";
-            this.lblFilterGroup.Size = new System.Drawing.Size(80, 17);
-            this.lblFilterGroup.TabIndex = 0;
-            this.lblFilterGroup.Text = "Filter Group:";
+            lblFilterGroup.AutoSize = true;
+            lblFilterGroup.Font = new Font("Segoe UI", 9.5F);
+            lblFilterGroup.ForeColor = Color.FromArgb(80, 80, 90);
+            lblFilterGroup.Location = new Point(21, 21);
+            lblFilterGroup.Name = "lblFilterGroup";
+            lblFilterGroup.Size = new Size(96, 21);
+            lblFilterGroup.TabIndex = 0;
+            lblFilterGroup.Text = "Filter Group:";
             // 
             // cboGroup
             // 
-            this.cboGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGroup.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboGroup.Location = new System.Drawing.Point(110, 12);
-            this.cboGroup.Name = "cboGroup";
-            this.cboGroup.Size = new System.Drawing.Size(200, 25);
-            this.cboGroup.TabIndex = 1;
-            this.cboGroup.SelectedIndexChanged += new System.EventHandler(this.cboGroup_SelectedIndexChanged);
+            cboGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGroup.Font = new Font("Segoe UI", 9.5F);
+            cboGroup.Location = new Point(126, 16);
+            cboGroup.Margin = new Padding(3, 4, 3, 4);
+            cboGroup.Name = "cboGroup";
+            cboGroup.Size = new Size(228, 29);
+            cboGroup.TabIndex = 1;
+            cboGroup.SelectedIndexChanged += cboGroup_SelectedIndexChanged;
             // 
             // btnDeleteGroup
             // 
-            this.btnDeleteGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnDeleteGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDeleteGroup.FlatAppearance.BorderSize = 0;
-            this.btnDeleteGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteGroup.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDeleteGroup.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteGroup.Location = new System.Drawing.Point(320, 9);
-            this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(110, 30);
-            this.btnDeleteGroup.TabIndex = 2;
-            this.btnDeleteGroup.Text = "🗑 Del Group";
-            this.btnDeleteGroup.UseVisualStyleBackColor = false;
-            this.btnDeleteGroup.Click += new System.EventHandler(this.btnDeleteGroup_Click);
+            btnDeleteGroup.BackColor = Color.FromArgb(200, 40, 40);
+            btnDeleteGroup.Cursor = Cursors.Hand;
+            btnDeleteGroup.FlatAppearance.BorderSize = 0;
+            btnDeleteGroup.FlatStyle = FlatStyle.Flat;
+            btnDeleteGroup.Font = new Font("Segoe UI", 9F);
+            btnDeleteGroup.ForeColor = Color.White;
+            btnDeleteGroup.Location = new Point(366, 12);
+            btnDeleteGroup.Margin = new Padding(3, 4, 3, 4);
+            btnDeleteGroup.Name = "btnDeleteGroup";
+            btnDeleteGroup.Size = new Size(126, 40);
+            btnDeleteGroup.TabIndex = 2;
+            btnDeleteGroup.Text = "🗑 Del Group";
+            btnDeleteGroup.UseVisualStyleBackColor = false;
+            btnDeleteGroup.Click += btnDeleteGroup_Click;
             // 
             // pnlGrid
             // 
-            this.pnlGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.pnlGrid.Controls.Add(this.panel1);
-            this.pnlGrid.Controls.Add(this.pnLeft);
-            this.pnlGrid.Controls.Add(this.pnlBottom);
-            this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(0, 174);
-            this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Padding = new System.Windows.Forms.Padding(12, 10, 12, 6);
-            this.pnlGrid.Size = new System.Drawing.Size(1100, 586);
-            this.pnlGrid.TabIndex = 3;
+            pnlGrid.BackColor = Color.FromArgb(245, 247, 250);
+            pnlGrid.Controls.Add(panel1);
+            pnlGrid.Controls.Add(pnLeft);
+            pnlGrid.Controls.Add(pnlBottom);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Location = new Point(0, 232);
+            pnlGrid.Margin = new Padding(3, 4, 3, 4);
+            pnlGrid.Name = "pnlGrid";
+            pnlGrid.Padding = new Padding(14, 13, 14, 8);
+            pnlGrid.Size = new Size(1257, 781);
+            pnlGrid.TabIndex = 3;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.dgvContacts);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(392, 10);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10, 8, 10, 6);
-            this.panel1.Size = new System.Drawing.Size(696, 506);
-            this.panel1.TabIndex = 1;
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(dgvContacts);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(448, 13);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(11, 11, 11, 8);
+            panel1.Size = new Size(795, 675);
+            panel1.TabIndex = 1;
             // 
             // dgvContacts
             // 
-            this.dgvContacts.AllowUserToResizeColumns = false;
-            this.dgvContacts.AllowUserToResizeRows = false;
-            this.dgvContacts.ColumnHeadersHeight = 32;
-            this.dgvContacts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvContacts.Location = new System.Drawing.Point(10, 8);
-            this.dgvContacts.Name = "dgvContacts";
-            this.dgvContacts.RowHeadersWidth = 51;
-            this.dgvContacts.Size = new System.Drawing.Size(676, 492);
-            this.dgvContacts.TabIndex = 0;
+            dgvContacts.AllowUserToResizeColumns = false;
+            dgvContacts.AllowUserToResizeRows = false;
+            dgvContacts.ColumnHeadersHeight = 32;
+            dgvContacts.Dock = DockStyle.Fill;
+            dgvContacts.Location = new Point(11, 11);
+            dgvContacts.Margin = new Padding(3, 4, 3, 4);
+            dgvContacts.Name = "dgvContacts";
+            dgvContacts.RowHeadersWidth = 51;
+            dgvContacts.Size = new Size(773, 656);
+            dgvContacts.TabIndex = 0;
             // 
             // pnLeft
             // 
-            this.pnLeft.BackColor = System.Drawing.Color.White;
-            this.pnLeft.Controls.Add(this.picContact);
-            this.pnLeft.Controls.Add(this.btnChooseImage);
-            this.pnLeft.Controls.Add(this.lblFirstName);
-            this.pnLeft.Controls.Add(this.txtFname);
-            this.pnLeft.Controls.Add(this.lblValidateFirstName);
-            this.pnLeft.Controls.Add(this.lblLastName);
-            this.pnLeft.Controls.Add(this.txtLname);
-            this.pnLeft.Controls.Add(this.lblValidateLastName);
-            this.pnLeft.Controls.Add(this.label4);
-            this.pnLeft.Controls.Add(this.dtpDob);
-            this.pnLeft.Controls.Add(this.label5);
-            this.pnLeft.Controls.Add(this.cboGender);
-            this.pnLeft.Controls.Add(this.label6);
-            this.pnLeft.Controls.Add(this.txtPhone);
-            this.pnLeft.Controls.Add(this.lblValidatePhone);
-            this.pnLeft.Controls.Add(this.label9);
-            this.pnLeft.Controls.Add(this.txtEmail);
-            this.pnLeft.Controls.Add(this.label7);
-            this.pnLeft.Controls.Add(this.txtAddress);
-            this.pnLeft.Controls.Add(this.lblContactGroup);
-            this.pnLeft.Controls.Add(this.cboContactGroup);
-            this.pnLeft.Controls.Add(this.lblValidateID);
-            this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnLeft.Location = new System.Drawing.Point(12, 10);
-            this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Padding = new System.Windows.Forms.Padding(16, 12, 16, 8);
-            this.pnLeft.Size = new System.Drawing.Size(380, 506);
-            this.pnLeft.TabIndex = 0;
+            pnLeft.BackColor = Color.White;
+            pnLeft.Controls.Add(picContact);
+            pnLeft.Controls.Add(btnChooseImage);
+            pnLeft.Controls.Add(lblFirstName);
+            pnLeft.Controls.Add(txtFname);
+            pnLeft.Controls.Add(lblValidateFirstName);
+            pnLeft.Controls.Add(lblLastName);
+            pnLeft.Controls.Add(txtLname);
+            pnLeft.Controls.Add(lblValidateLastName);
+            pnLeft.Controls.Add(label4);
+            pnLeft.Controls.Add(dtpDob);
+            pnLeft.Controls.Add(label5);
+            pnLeft.Controls.Add(cboGender);
+            pnLeft.Controls.Add(label6);
+            pnLeft.Controls.Add(txtPhone);
+            pnLeft.Controls.Add(lblValidatePhone);
+            pnLeft.Controls.Add(label9);
+            pnLeft.Controls.Add(txtEmail);
+            pnLeft.Controls.Add(label7);
+            pnLeft.Controls.Add(txtAddress);
+            pnLeft.Controls.Add(lblContactGroup);
+            pnLeft.Controls.Add(cboContactGroup);
+            pnLeft.Controls.Add(lblValidateID);
+            pnLeft.Dock = DockStyle.Left;
+            pnLeft.Location = new Point(14, 13);
+            pnLeft.Margin = new Padding(3, 4, 3, 4);
+            pnLeft.Name = "pnLeft";
+            pnLeft.Padding = new Padding(18, 16, 18, 11);
+            pnLeft.Size = new Size(434, 675);
+            pnLeft.TabIndex = 0;
             // 
             // picContact
             // 
-            this.picContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picContact.Location = new System.Drawing.Point(95, 10);
-            this.picContact.Name = "picContact";
-            this.picContact.Size = new System.Drawing.Size(140, 140);
-            this.picContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picContact.TabIndex = 0;
-            this.picContact.TabStop = false;
+            picContact.BorderStyle = BorderStyle.FixedSingle;
+            picContact.Location = new Point(109, 13);
+            picContact.Margin = new Padding(3, 4, 3, 4);
+            picContact.Name = "picContact";
+            picContact.Size = new Size(160, 186);
+            picContact.SizeMode = PictureBoxSizeMode.StretchImage;
+            picContact.TabIndex = 0;
+            picContact.TabStop = false;
             // 
             // btnChooseImage
             // 
-            this.btnChooseImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(120)))));
-            this.btnChooseImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChooseImage.FlatAppearance.BorderSize = 0;
-            this.btnChooseImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChooseImage.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnChooseImage.ForeColor = System.Drawing.Color.White;
-            this.btnChooseImage.Location = new System.Drawing.Point(73, 158);
-            this.btnChooseImage.Name = "btnChooseImage";
-            this.btnChooseImage.Size = new System.Drawing.Size(184, 34);
-            this.btnChooseImage.TabIndex = 1;
-            this.btnChooseImage.Text = "📷 Upload Photo";
-            this.btnChooseImage.UseVisualStyleBackColor = false;
-            this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
+            btnChooseImage.BackColor = Color.FromArgb(10, 61, 120);
+            btnChooseImage.Cursor = Cursors.Hand;
+            btnChooseImage.FlatAppearance.BorderSize = 0;
+            btnChooseImage.FlatStyle = FlatStyle.Flat;
+            btnChooseImage.Font = new Font("Segoe UI", 9.5F);
+            btnChooseImage.ForeColor = Color.White;
+            btnChooseImage.Location = new Point(83, 211);
+            btnChooseImage.Margin = new Padding(3, 4, 3, 4);
+            btnChooseImage.Name = "btnChooseImage";
+            btnChooseImage.Size = new Size(210, 45);
+            btnChooseImage.TabIndex = 1;
+            btnChooseImage.Text = "📷 Upload Photo";
+            btnChooseImage.UseVisualStyleBackColor = false;
+            btnChooseImage.Click += btnChooseImage_Click;
             // 
             // lblFirstName
             // 
-            this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.lblFirstName.Location = new System.Drawing.Point(16, 208);
-            this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(71, 17);
-            this.lblFirstName.TabIndex = 2;
-            this.lblFirstName.Text = "First Name";
+            lblFirstName.AutoSize = true;
+            lblFirstName.Font = new Font("Segoe UI", 9.5F);
+            lblFirstName.ForeColor = Color.FromArgb(70, 70, 80);
+            lblFirstName.Location = new Point(18, 277);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(86, 21);
+            lblFirstName.TabIndex = 2;
+            lblFirstName.Text = "First Name";
             // 
             // txtFname
             // 
-            this.txtFname.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtFname.Location = new System.Drawing.Point(130, 205);
-            this.txtFname.Name = "txtFname";
-            this.txtFname.Size = new System.Drawing.Size(220, 25);
-            this.txtFname.TabIndex = 3;
+            txtFname.Font = new Font("Segoe UI", 10F);
+            txtFname.Location = new Point(149, 273);
+            txtFname.Margin = new Padding(3, 4, 3, 4);
+            txtFname.Name = "txtFname";
+            txtFname.Size = new Size(251, 30);
+            txtFname.TabIndex = 3;
             // 
             // lblValidateFirstName
             // 
-            this.lblValidateFirstName.AutoSize = true;
-            this.lblValidateFirstName.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValidateFirstName.ForeColor = System.Drawing.Color.Red;
-            this.lblValidateFirstName.Location = new System.Drawing.Point(130, 237);
-            this.lblValidateFirstName.Name = "lblValidateFirstName";
-            this.lblValidateFirstName.Size = new System.Drawing.Size(0, 13);
-            this.lblValidateFirstName.TabIndex = 4;
+            lblValidateFirstName.AutoSize = true;
+            lblValidateFirstName.Font = new Font("Segoe UI", 8F);
+            lblValidateFirstName.ForeColor = Color.Red;
+            lblValidateFirstName.Location = new Point(149, 316);
+            lblValidateFirstName.Name = "lblValidateFirstName";
+            lblValidateFirstName.Size = new Size(0, 19);
+            lblValidateFirstName.TabIndex = 4;
             // 
             // lblLastName
             // 
-            this.lblLastName.AutoSize = true;
-            this.lblLastName.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.lblLastName.Location = new System.Drawing.Point(16, 260);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(70, 17);
-            this.lblLastName.TabIndex = 5;
-            this.lblLastName.Text = "Last Name";
+            lblLastName.AutoSize = true;
+            lblLastName.Font = new Font("Segoe UI", 9.5F);
+            lblLastName.ForeColor = Color.FromArgb(70, 70, 80);
+            lblLastName.Location = new Point(18, 347);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(84, 21);
+            lblLastName.TabIndex = 5;
+            lblLastName.Text = "Last Name";
             // 
             // txtLname
             // 
-            this.txtLname.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLname.Location = new System.Drawing.Point(130, 257);
-            this.txtLname.Name = "txtLname";
-            this.txtLname.Size = new System.Drawing.Size(220, 25);
-            this.txtLname.TabIndex = 6;
+            txtLname.Font = new Font("Segoe UI", 10F);
+            txtLname.Location = new Point(149, 343);
+            txtLname.Margin = new Padding(3, 4, 3, 4);
+            txtLname.Name = "txtLname";
+            txtLname.Size = new Size(251, 30);
+            txtLname.TabIndex = 6;
             // 
             // lblValidateLastName
             // 
-            this.lblValidateLastName.AutoSize = true;
-            this.lblValidateLastName.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValidateLastName.ForeColor = System.Drawing.Color.Red;
-            this.lblValidateLastName.Location = new System.Drawing.Point(130, 289);
-            this.lblValidateLastName.Name = "lblValidateLastName";
-            this.lblValidateLastName.Size = new System.Drawing.Size(0, 13);
-            this.lblValidateLastName.TabIndex = 7;
+            lblValidateLastName.AutoSize = true;
+            lblValidateLastName.Font = new Font("Segoe UI", 8F);
+            lblValidateLastName.ForeColor = Color.Red;
+            lblValidateLastName.Location = new Point(149, 385);
+            lblValidateLastName.Name = "lblValidateLastName";
+            lblValidateLastName.Size = new Size(0, 19);
+            lblValidateLastName.TabIndex = 7;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.label4.Location = new System.Drawing.Point(16, 312);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Date of Birth";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.5F);
+            label4.ForeColor = Color.FromArgb(70, 70, 80);
+            label4.Location = new Point(18, 416);
+            label4.Name = "label4";
+            label4.Size = new Size(97, 21);
+            label4.TabIndex = 8;
+            label4.Text = "Date of Birth";
             // 
             // dtpDob
             // 
-            this.dtpDob.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtpDob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDob.Location = new System.Drawing.Point(130, 309);
-            this.dtpDob.Name = "dtpDob";
-            this.dtpDob.Size = new System.Drawing.Size(220, 25);
-            this.dtpDob.TabIndex = 9;
+            dtpDob.Font = new Font("Segoe UI", 10F);
+            dtpDob.Format = DateTimePickerFormat.Short;
+            dtpDob.Location = new Point(149, 412);
+            dtpDob.Margin = new Padding(3, 4, 3, 4);
+            dtpDob.Name = "dtpDob";
+            dtpDob.Size = new Size(251, 30);
+            dtpDob.TabIndex = 9;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.label5.Location = new System.Drawing.Point(16, 364);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Gender";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9.5F);
+            label5.ForeColor = Color.FromArgb(70, 70, 80);
+            label5.Location = new Point(18, 485);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 21);
+            label5.TabIndex = 10;
+            label5.Text = "Gender";
             // 
             // cboGender
             // 
-            this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGender.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboGender.Location = new System.Drawing.Point(130, 361);
-            this.cboGender.Name = "cboGender";
-            this.cboGender.Size = new System.Drawing.Size(220, 25);
-            this.cboGender.TabIndex = 11;
+            cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboGender.Font = new Font("Segoe UI", 10F);
+            cboGender.Location = new Point(149, 481);
+            cboGender.Margin = new Padding(3, 4, 3, 4);
+            cboGender.Name = "cboGender";
+            cboGender.Size = new Size(251, 31);
+            cboGender.TabIndex = 11;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.label6.Location = new System.Drawing.Point(16, 416);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 17);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Phone";
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9.5F);
+            label6.ForeColor = Color.FromArgb(70, 70, 80);
+            label6.Location = new Point(18, 555);
+            label6.Name = "label6";
+            label6.Size = new Size(54, 21);
+            label6.TabIndex = 12;
+            label6.Text = "Phone";
             // 
             // txtPhone
             // 
-            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPhone.Location = new System.Drawing.Point(130, 413);
-            this.txtPhone.MaxLength = 15;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(220, 25);
-            this.txtPhone.TabIndex = 13;
+            txtPhone.Font = new Font("Segoe UI", 10F);
+            txtPhone.Location = new Point(149, 551);
+            txtPhone.Margin = new Padding(3, 4, 3, 4);
+            txtPhone.MaxLength = 15;
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(251, 30);
+            txtPhone.TabIndex = 13;
             // 
             // lblValidatePhone
             // 
-            this.lblValidatePhone.AutoSize = true;
-            this.lblValidatePhone.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValidatePhone.ForeColor = System.Drawing.Color.Red;
-            this.lblValidatePhone.Location = new System.Drawing.Point(130, 445);
-            this.lblValidatePhone.Name = "lblValidatePhone";
-            this.lblValidatePhone.Size = new System.Drawing.Size(0, 13);
-            this.lblValidatePhone.TabIndex = 14;
+            lblValidatePhone.AutoSize = true;
+            lblValidatePhone.Font = new Font("Segoe UI", 8F);
+            lblValidatePhone.ForeColor = Color.Red;
+            lblValidatePhone.Location = new Point(149, 593);
+            lblValidatePhone.Name = "lblValidatePhone";
+            lblValidatePhone.Size = new Size(0, 19);
+            lblValidatePhone.TabIndex = 14;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.label9.Location = new System.Drawing.Point(16, 468);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 17);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Email";
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.5F);
+            label9.ForeColor = Color.FromArgb(70, 70, 80);
+            label9.Location = new Point(18, 624);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 21);
+            label9.TabIndex = 15;
+            label9.Text = "Email";
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtEmail.Location = new System.Drawing.Point(130, 465);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(220, 25);
-            this.txtEmail.TabIndex = 16;
+            txtEmail.Font = new Font("Segoe UI", 10F);
+            txtEmail.Location = new Point(149, 620);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(251, 30);
+            txtEmail.TabIndex = 16;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.label7.Location = new System.Drawing.Point(16, 520);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 17);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Address";
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.5F);
+            label7.ForeColor = Color.FromArgb(70, 70, 80);
+            label7.Location = new Point(18, 693);
+            label7.Name = "label7";
+            label7.Size = new Size(66, 21);
+            label7.TabIndex = 17;
+            label7.Text = "Address";
             // 
             // txtAddress
             // 
-            this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtAddress.Location = new System.Drawing.Point(130, 517);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(220, 25);
-            this.txtAddress.TabIndex = 18;
+            txtAddress.Font = new Font("Segoe UI", 10F);
+            txtAddress.Location = new Point(149, 689);
+            txtAddress.Margin = new Padding(3, 4, 3, 4);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(251, 30);
+            txtAddress.TabIndex = 18;
             // 
             // lblContactGroup
             // 
-            this.lblContactGroup.AutoSize = true;
-            this.lblContactGroup.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblContactGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(80)))));
-            this.lblContactGroup.Location = new System.Drawing.Point(16, 572);
-            this.lblContactGroup.Name = "lblContactGroup";
-            this.lblContactGroup.Size = new System.Drawing.Size(45, 17);
-            this.lblContactGroup.TabIndex = 19;
-            this.lblContactGroup.Text = "Group";
+            lblContactGroup.AutoSize = true;
+            lblContactGroup.Font = new Font("Segoe UI", 9.5F);
+            lblContactGroup.ForeColor = Color.FromArgb(70, 70, 80);
+            lblContactGroup.Location = new Point(18, 763);
+            lblContactGroup.Name = "lblContactGroup";
+            lblContactGroup.Size = new Size(54, 21);
+            lblContactGroup.TabIndex = 19;
+            lblContactGroup.Text = "Group";
             // 
             // cboContactGroup
             // 
-            this.cboContactGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboContactGroup.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboContactGroup.Location = new System.Drawing.Point(130, 569);
-            this.cboContactGroup.Name = "cboContactGroup";
-            this.cboContactGroup.Size = new System.Drawing.Size(220, 25);
-            this.cboContactGroup.TabIndex = 20;
-            this.cboContactGroup.SelectedIndexChanged += new System.EventHandler(this.cboContactGroup_SelectedIndexChanged);
+            cboContactGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboContactGroup.Font = new Font("Segoe UI", 10F);
+            cboContactGroup.Location = new Point(149, 759);
+            cboContactGroup.Margin = new Padding(3, 4, 3, 4);
+            cboContactGroup.Name = "cboContactGroup";
+            cboContactGroup.Size = new Size(251, 31);
+            cboContactGroup.TabIndex = 20;
+            cboContactGroup.SelectedIndexChanged += cboContactGroup_SelectedIndexChanged;
             // 
             // lblValidateID
             // 
-            this.lblValidateID.AutoSize = true;
-            this.lblValidateID.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValidateID.ForeColor = System.Drawing.Color.Red;
-            this.lblValidateID.Location = new System.Drawing.Point(130, 601);
-            this.lblValidateID.Name = "lblValidateID";
-            this.lblValidateID.Size = new System.Drawing.Size(0, 13);
-            this.lblValidateID.TabIndex = 21;
+            lblValidateID.AutoSize = true;
+            lblValidateID.Font = new Font("Segoe UI", 8F);
+            lblValidateID.ForeColor = Color.Red;
+            lblValidateID.Location = new Point(149, 801);
+            lblValidateID.Name = "lblValidateID";
+            lblValidateID.Size = new Size(0, 19);
+            lblValidateID.TabIndex = 21;
             // 
             // pnlBottom
             // 
-            this.pnlBottom.BackColor = System.Drawing.Color.White;
-            this.pnlBottom.Controls.Add(this.btAdd);
-            this.pnlBottom.Controls.Add(this.btnEdit);
-            this.pnlBottom.Controls.Add(this.btnViewScore);
-            this.pnlBottom.Controls.Add(this.btnExport);
-            this.pnlBottom.Controls.Add(this.lblTotal);
-            this.pnlBottom.Controls.Add(this.pnlPagination);
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(12, 516);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Padding = new System.Windows.Forms.Padding(16, 10, 16, 10);
-            this.pnlBottom.Size = new System.Drawing.Size(1076, 64);
-            this.pnlBottom.TabIndex = 2;
+            pnlBottom.BackColor = Color.White;
+            pnlBottom.Controls.Add(btAdd);
+            pnlBottom.Controls.Add(btnEdit);
+            pnlBottom.Controls.Add(btnDelete);
+            pnlBottom.Controls.Add(lblTotal);
+            pnlBottom.Controls.Add(pnlPagination);
+            pnlBottom.Dock = DockStyle.Bottom;
+            pnlBottom.Location = new Point(14, 688);
+            pnlBottom.Margin = new Padding(3, 4, 3, 4);
+            pnlBottom.Name = "pnlBottom";
+            pnlBottom.Padding = new Padding(18, 13, 18, 13);
+            pnlBottom.Size = new Size(1229, 85);
+            pnlBottom.TabIndex = 2;
             // 
             // btAdd
             // 
-            this.btAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(120)))));
-            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btAdd.FlatAppearance.BorderSize = 0;
-            this.btAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btAdd.ForeColor = System.Drawing.Color.White;
-            this.btAdd.Location = new System.Drawing.Point(18, 12);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(110, 40);
-            this.btAdd.TabIndex = 0;
-            this.btAdd.Text = "＋  Add";
-            this.btAdd.UseVisualStyleBackColor = false;
-            this.btAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btAdd.BackColor = Color.FromArgb(10, 61, 120);
+            btAdd.Cursor = Cursors.Hand;
+            btAdd.FlatAppearance.BorderSize = 0;
+            btAdd.FlatStyle = FlatStyle.Flat;
+            btAdd.Font = new Font("Segoe UI Semibold", 9.5F);
+            btAdd.ForeColor = Color.White;
+            btAdd.Location = new Point(21, 16);
+            btAdd.Margin = new Padding(3, 4, 3, 4);
+            btAdd.Name = "btAdd";
+            btAdd.Size = new Size(126, 53);
+            btAdd.TabIndex = 0;
+            btAdd.Text = "＋  Add";
+            btAdd.UseVisualStyleBackColor = false;
+            btAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.White;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnEdit.Location = new System.Drawing.Point(138, 12);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(110, 40);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "✎  Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            btnEdit.BackColor = Color.White;
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 9.5F);
+            btnEdit.ForeColor = Color.FromArgb(60, 70, 85);
+            btnEdit.Location = new Point(158, 16);
+            btnEdit.Margin = new Padding(3, 4, 3, 4);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(126, 53);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "✎  Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // btnViewScore
+            // btnDelete
             // 
-            this.btnViewScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnViewScore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnViewScore.FlatAppearance.BorderSize = 0;
-            this.btnViewScore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewScore.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnViewScore.ForeColor = System.Drawing.Color.White;
-            this.btnViewScore.Location = new System.Drawing.Point(258, 12);
-            this.btnViewScore.Name = "btnViewScore";
-            this.btnViewScore.Size = new System.Drawing.Size(110, 40);
-            this.btnViewScore.TabIndex = 2;
-            this.btnViewScore.Text = "🗑  Delete";
-            this.btnViewScore.UseVisualStyleBackColor = false;
-            this.btnViewScore.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.White;
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnExport.Location = new System.Drawing.Point(378, 12);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 40);
-            this.btnExport.TabIndex = 3;
-            this.btnExport.Text = "⭳  Export";
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            btnDelete.BackColor = Color.FromArgb(220, 50, 50);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 9.5F);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(295, 16);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(126, 53);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "🗑  Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // lblTotal
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.lblTotal.Location = new System.Drawing.Point(490, 23);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(102, 17);
-            this.lblTotal.TabIndex = 4;
-            this.lblTotal.Text = "Total Records: 0";
+            lblTotal.AutoSize = true;
+            lblTotal.Font = new Font("Segoe UI", 9.5F);
+            lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
+            lblTotal.Location = new Point(560, 31);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(118, 21);
+            lblTotal.TabIndex = 4;
+            lblTotal.Text = "Total Records: 0";
             // 
             // pnlPagination
             // 
-            this.pnlPagination.Controls.Add(this.cboPageSize);
-            this.pnlPagination.Controls.Add(this.btnFirst);
-            this.pnlPagination.Controls.Add(this.btnPrev);
-            this.pnlPagination.Controls.Add(this.lblPageInfo);
-            this.pnlPagination.Controls.Add(this.btnNext);
-            this.pnlPagination.Controls.Add(this.btnLast);
-            this.pnlPagination.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlPagination.Location = new System.Drawing.Point(700, 10);
-            this.pnlPagination.Name = "pnlPagination";
-            this.pnlPagination.Size = new System.Drawing.Size(360, 44);
-            this.pnlPagination.TabIndex = 5;
+            pnlPagination.Controls.Add(cboPageSize);
+            pnlPagination.Controls.Add(btnFirst);
+            pnlPagination.Controls.Add(btnPrev);
+            pnlPagination.Controls.Add(lblPageInfo);
+            pnlPagination.Controls.Add(btnNext);
+            pnlPagination.Controls.Add(btnLast);
+            pnlPagination.Dock = DockStyle.Right;
+            pnlPagination.Location = new Point(800, 13);
+            pnlPagination.Margin = new Padding(3, 4, 3, 4);
+            pnlPagination.Name = "pnlPagination";
+            pnlPagination.Size = new Size(411, 59);
+            pnlPagination.TabIndex = 5;
             // 
             // cboPageSize
             // 
-            this.cboPageSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPageSize.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cboPageSize.Location = new System.Drawing.Point(8, 8);
-            this.cboPageSize.Name = "cboPageSize";
-            this.cboPageSize.Size = new System.Drawing.Size(60, 25);
-            this.cboPageSize.TabIndex = 0;
+            cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPageSize.Font = new Font("Segoe UI", 9.5F);
+            cboPageSize.Location = new Point(9, 11);
+            cboPageSize.Margin = new Padding(3, 4, 3, 4);
+            cboPageSize.Name = "cboPageSize";
+            cboPageSize.Size = new Size(68, 29);
+            cboPageSize.TabIndex = 0;
             // 
             // btnFirst
             // 
-            this.btnFirst.BackColor = System.Drawing.Color.White;
-            this.btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFirst.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFirst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnFirst.Location = new System.Drawing.Point(76, 6);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(36, 32);
-            this.btnFirst.TabIndex = 1;
-            this.btnFirst.Text = "|◀";
-            this.btnFirst.UseVisualStyleBackColor = false;
+            btnFirst.BackColor = Color.White;
+            btnFirst.Cursor = Cursors.Hand;
+            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnFirst.FlatStyle = FlatStyle.Flat;
+            btnFirst.Font = new Font("Segoe UI", 9F);
+            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
+            btnFirst.Location = new Point(87, 8);
+            btnFirst.Margin = new Padding(3, 4, 3, 4);
+            btnFirst.Name = "btnFirst";
+            btnFirst.Size = new Size(41, 43);
+            btnFirst.TabIndex = 1;
+            btnFirst.Text = "|◀";
+            btnFirst.UseVisualStyleBackColor = false;
             // 
             // btnPrev
             // 
-            this.btnPrev.BackColor = System.Drawing.Color.White;
-            this.btnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrev.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrev.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnPrev.Location = new System.Drawing.Point(116, 6);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(36, 32);
-            this.btnPrev.TabIndex = 2;
-            this.btnPrev.Text = "◀";
-            this.btnPrev.UseVisualStyleBackColor = false;
+            btnPrev.BackColor = Color.White;
+            btnPrev.Cursor = Cursors.Hand;
+            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnPrev.FlatStyle = FlatStyle.Flat;
+            btnPrev.Font = new Font("Segoe UI", 9F);
+            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
+            btnPrev.Location = new Point(133, 8);
+            btnPrev.Margin = new Padding(3, 4, 3, 4);
+            btnPrev.Name = "btnPrev";
+            btnPrev.Size = new Size(41, 43);
+            btnPrev.TabIndex = 2;
+            btnPrev.Text = "◀";
+            btnPrev.UseVisualStyleBackColor = false;
             // 
             // lblPageInfo
             // 
-            this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPageInfo.Location = new System.Drawing.Point(158, 10);
-            this.lblPageInfo.Name = "lblPageInfo";
-            this.lblPageInfo.Size = new System.Drawing.Size(100, 20);
-            this.lblPageInfo.TabIndex = 3;
-            this.lblPageInfo.Text = "Page 1 of 1";
-            this.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblPageInfo.Font = new Font("Segoe UI", 9.5F);
+            lblPageInfo.Location = new Point(181, 13);
+            lblPageInfo.Name = "lblPageInfo";
+            lblPageInfo.Size = new Size(114, 27);
+            lblPageInfo.TabIndex = 3;
+            lblPageInfo.Text = "Page 1 of 1";
+            lblPageInfo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.White;
-            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnNext.Location = new System.Drawing.Point(264, 6);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(36, 32);
-            this.btnNext.TabIndex = 4;
-            this.btnNext.Text = "▶";
-            this.btnNext.UseVisualStyleBackColor = false;
+            btnNext.BackColor = Color.White;
+            btnNext.Cursor = Cursors.Hand;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 9F);
+            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
+            btnNext.Location = new Point(302, 8);
+            btnNext.Margin = new Padding(3, 4, 3, 4);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(41, 43);
+            btnNext.TabIndex = 4;
+            btnNext.Text = "▶";
+            btnNext.UseVisualStyleBackColor = false;
             // 
             // btnLast
             // 
-            this.btnLast.BackColor = System.Drawing.Color.White;
-            this.btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLast.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
-            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLast.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLast.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(85)))));
-            this.btnLast.Location = new System.Drawing.Point(304, 6);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(36, 32);
-            this.btnLast.TabIndex = 5;
-            this.btnLast.Text = "▶|";
-            this.btnLast.UseVisualStyleBackColor = false;
+            btnLast.BackColor = Color.White;
+            btnLast.Cursor = Cursors.Hand;
+            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnLast.FlatStyle = FlatStyle.Flat;
+            btnLast.Font = new Font("Segoe UI", 9F);
+            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
+            btnLast.Location = new Point(347, 8);
+            btnLast.Margin = new Padding(3, 4, 3, 4);
+            btnLast.Name = "btnLast";
+            btnLast.Size = new Size(41, 43);
+            btnLast.TabIndex = 5;
+            btnLast.Text = "▶|";
+            btnLast.UseVisualStyleBackColor = false;
             // 
             // f_ContactManage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 760);
-            this.Controls.Add(this.pnlGrid);
-            this.Controls.Add(this.pnlToolbar);
-            this.Controls.Add(this.pnlGroupMgr);
-            this.Controls.Add(this.pnlHeader);
-            this.Name = "f_ContactManage";
-            this.Text = "Contact Management";
-            this.pnlHeader.ResumeLayout(false);
-            this.pnlHeader.PerformLayout();
-            this.pnlGroupMgr.ResumeLayout(false);
-            this.pnlGroupMgr.PerformLayout();
-            this.pnlToolbar.ResumeLayout(false);
-            this.pnlToolbar.PerformLayout();
-            this.pnlGrid.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContacts)).EndInit();
-            this.pnLeft.ResumeLayout(false);
-            this.pnLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picContact)).EndInit();
-            this.pnlBottom.ResumeLayout(false);
-            this.pnlBottom.PerformLayout();
-            this.pnlPagination.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1257, 1013);
+            Controls.Add(pnlGrid);
+            Controls.Add(pnlToolbar);
+            Controls.Add(pnlGroupMgr);
+            Controls.Add(pnlHeader);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "f_ContactManage";
+            Text = "Contact Management";
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
+            pnlGroupMgr.ResumeLayout(false);
+            pnlGroupMgr.PerformLayout();
+            pnlToolbar.ResumeLayout(false);
+            pnlToolbar.PerformLayout();
+            pnlGrid.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvContacts).EndInit();
+            pnLeft.ResumeLayout(false);
+            pnLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picContact).EndInit();
+            pnlBottom.ResumeLayout(false);
+            pnlBottom.PerformLayout();
+            pnlPagination.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -776,8 +791,7 @@ namespace LoginForm
         private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnViewScore;
-        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Panel pnlPagination;
         private System.Windows.Forms.ComboBox cboPageSize;

@@ -1,4 +1,4 @@
-﻿namespace LoginForm
+namespace LoginForm
 {
     partial class f_ForgetPass
     {
@@ -36,6 +36,7 @@
             txt_ReenterPass = new TextBox();
             lbl_Username = new Label();
             lbl_ReenterPass = new Label();
+
             bt_Cancel = new Button();
             bt_OTP = new Button();
             bt_ChangePassword = new Button();
@@ -50,6 +51,9 @@
             btnMaximize = new Button();
             btnClose = new Button();
             pnButtonContainer = new Panel();
+            lbl_CheckUsername = new Label();
+            lbl_CheckPassword = new Label();
+            lbl_CheckReenterPass = new Label();
             pnLeft.SuspendLayout();
             pnRight.SuspendLayout();
             panel2.SuspendLayout();
@@ -71,6 +75,9 @@
             pnLeft.Controls.Add(lbl_OTP);
             pnLeft.Controls.Add(txt_Password);
             pnLeft.Controls.Add(cb_isShowPassword);
+            pnLeft.Controls.Add(lbl_CheckUsername);
+            pnLeft.Controls.Add(lbl_CheckPassword);
+            pnLeft.Controls.Add(lbl_CheckReenterPass);
             pnLeft.Dock = DockStyle.Left;
             pnLeft.Location = new Point(0, 0);
             pnLeft.Name = "pnLeft";
@@ -112,7 +119,7 @@
             // 
             // txt_ReenterPass
             // 
-            txt_ReenterPass.Location = new Point(73, 529);
+            txt_ReenterPass.Location = new Point(73, 535);
             txt_ReenterPass.Margin = new Padding(4, 3, 4, 3);
             txt_ReenterPass.Name = "txt_ReenterPass";
             txt_ReenterPass.Size = new Size(705, 27);
@@ -134,7 +141,7 @@
             // 
             lbl_ReenterPass.AutoSize = true;
             lbl_ReenterPass.Font = new Font("Segoe UI", 16.2F);
-            lbl_ReenterPass.Location = new Point(73, 478);
+            lbl_ReenterPass.Location = new Point(73, 490);
             lbl_ReenterPass.Margin = new Padding(4, 0, 4, 0);
             lbl_ReenterPass.Name = "lbl_ReenterPass";
             lbl_ReenterPass.Size = new Size(239, 38);
@@ -148,7 +155,7 @@
             bt_Cancel.FlatStyle = FlatStyle.Flat;
             bt_Cancel.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
             bt_Cancel.ForeColor = Color.White;
-            bt_Cancel.Location = new Point(118, 636);
+            bt_Cancel.Location = new Point(118, 645);
             bt_Cancel.Margin = new Padding(4, 3, 4, 3);
             bt_Cancel.Name = "bt_Cancel";
             bt_Cancel.Size = new Size(252, 58);
@@ -175,7 +182,7 @@
             bt_ChangePassword.FlatStyle = FlatStyle.Flat;
             bt_ChangePassword.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
             bt_ChangePassword.ForeColor = Color.White;
-            bt_ChangePassword.Location = new Point(420, 636);
+            bt_ChangePassword.Location = new Point(420, 645);
             bt_ChangePassword.Margin = new Padding(4, 3, 4, 3);
             bt_ChangePassword.Name = "bt_ChangePassword";
             bt_ChangePassword.Size = new Size(252, 58);
@@ -225,7 +232,7 @@
             // 
             cb_isShowPassword.AutoSize = true;
             cb_isShowPassword.Font = new Font("Segoe UI", 10.2F);
-            cb_isShowPassword.Location = new Point(73, 573);
+            cb_isShowPassword.Location = new Point(73, 600);
             cb_isShowPassword.Margin = new Padding(4, 3, 4, 3);
             cb_isShowPassword.Name = "cb_isShowPassword";
             cb_isShowPassword.Size = new Size(148, 27);
@@ -312,6 +319,36 @@
             pnButtonContainer.Size = new Size(173, 42);
             pnButtonContainer.TabIndex = 14;
             // 
+            // lbl_CheckUsername
+            // 
+            lbl_CheckUsername.AutoSize = true;
+            lbl_CheckUsername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckUsername.ForeColor = Color.Gray;
+            lbl_CheckUsername.Location = new Point(73, 230);
+            lbl_CheckUsername.Name = "lbl_CheckUsername";
+            lbl_CheckUsername.Size = new Size(0, 28);
+            lbl_CheckUsername.TabIndex = 37;
+            // 
+            // lbl_CheckPassword
+            // 
+            lbl_CheckPassword.AutoSize = true;
+            lbl_CheckPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckPassword.ForeColor = Color.Gray;
+            lbl_CheckPassword.Location = new Point(73, 454);
+            lbl_CheckPassword.Name = "lbl_CheckPassword";
+            lbl_CheckPassword.Size = new Size(0, 28);
+            lbl_CheckPassword.TabIndex = 38;
+            // 
+            // lbl_CheckReenterPass
+            // 
+            lbl_CheckReenterPass.AutoSize = true;
+            lbl_CheckReenterPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CheckReenterPass.ForeColor = Color.Gray;
+            lbl_CheckReenterPass.Location = new Point(73, 565);
+            lbl_CheckReenterPass.Name = "lbl_CheckReenterPass";
+            lbl_CheckReenterPass.Size = new Size(0, 28);
+            lbl_CheckReenterPass.TabIndex = 39;
+            //
             // f_ForgetPass
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -354,5 +391,8 @@
         private Button btnMaximize;
         private Button btnClose;
         private Panel pnButtonContainer;
+        private Label lbl_CheckUsername;
+        private Label lbl_CheckPassword;
+        private Label lbl_CheckReenterPass;
     }
 }

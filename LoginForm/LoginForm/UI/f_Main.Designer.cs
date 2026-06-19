@@ -71,7 +71,7 @@ namespace LoginForm
             pnSidebar.Dock = DockStyle.Left;
             pnSidebar.Location = new Point(0, 0);
             pnSidebar.Name = "pnSidebar";
-            pnSidebar.Size = new Size(305, 1102);
+            pnSidebar.Size = new Size(305, 1005);
             pnSidebar.TabIndex = 0;
             // 
             // pnMenu
@@ -96,7 +96,7 @@ namespace LoginForm
             pnMenu.Controls.Add(btnLogout);
             pnMenu.Location = new Point(3, 150);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(304, 949);
+            pnMenu.Size = new Size(304, 852);
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
             // 
@@ -115,6 +115,7 @@ namespace LoginForm
             btnExport.TabIndex = 17;
             btnExport.Text = "Export";
             btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
             // 
             // btnContact
             // 
@@ -206,7 +207,7 @@ namespace LoginForm
             lblUser.AutoSize = true;
             lblUser.Dock = DockStyle.Bottom;
             lblUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 849);
+            lblUser.Location = new Point(0, 752);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(65, 28);
             lblUser.TabIndex = 0;
@@ -234,7 +235,7 @@ namespace LoginForm
             lblRole.AutoSize = true;
             lblRole.Dock = DockStyle.Bottom;
             lblRole.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.Location = new Point(0, 877);
+            lblRole.Location = new Point(0, 780);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(62, 28);
             lblRole.TabIndex = 1;
@@ -339,7 +340,7 @@ namespace LoginForm
             btnLogout.IconFont = IconFont.Auto;
             btnLogout.IconSize = 20;
             btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogout.Location = new Point(0, 905);
+            btnLogout.Location = new Point(0, 808);
             btnLogout.Name = "btnLogout";
             btnLogout.Padding = new Padding(12, 0, 0, 0);
             btnLogout.Size = new Size(300, 40);
@@ -376,7 +377,7 @@ namespace LoginForm
             pnBody.AutoScroll = true;
             pnBody.Location = new Point(311, 48);
             pnBody.Name = "pnBody";
-            pnBody.Size = new Size(1316, 1042);
+            pnBody.Size = new Size(1316, 957);
             pnBody.TabIndex = 1;
             pnBody.MouseDown += pnlTop_MouseDown;
             // 
@@ -448,7 +449,7 @@ namespace LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1627, 1102);
+            ClientSize = new Size(1627, 1005);
             Controls.Add(pnTop);
             Controls.Add(pnBody);
             Controls.Add(pnSidebar);

@@ -32,11 +32,12 @@
             lblTitle = new Label();
             lblSubtitle = new Label();
             pnlToolbar = new Panel();
-            btnDelete = new Button();
+            label2 = new Label();
+            label1 = new Label();
+            txtSearchCourse = new TextBox();
             txtSearchHR = new TextBox();
             cboHR = new ComboBox();
             cboCourse = new ComboBox();
-            btnAssign = new Button();
             pnlGrid = new Panel();
             dgvAssign = new DataGridView();
             pnlBottom = new Panel();
@@ -48,9 +49,8 @@
             lblPageInfo = new Label();
             btnNext = new Button();
             btnLast = new Button();
-            txtSearchCourse = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            btnDelete = new Button();
+            btnAssign = new Button();
             pnlHeader.SuspendLayout();
             pnlToolbar.SuspendLayout();
             pnlGrid.SuspendLayout();
@@ -77,9 +77,9 @@
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(24, 10);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(283, 37);
+            lblTitle.Size = new Size(281, 37);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Student Management";
+            lblTitle.Text = "Assign Course For HR";
             // 
             // lblSubtitle
             // 
@@ -95,14 +95,14 @@
             // pnlToolbar
             // 
             pnlToolbar.BackColor = Color.White;
+            pnlToolbar.Controls.Add(btnAssign);
+            pnlToolbar.Controls.Add(btnDelete);
             pnlToolbar.Controls.Add(label2);
             pnlToolbar.Controls.Add(label1);
             pnlToolbar.Controls.Add(txtSearchCourse);
-            pnlToolbar.Controls.Add(btnDelete);
             pnlToolbar.Controls.Add(txtSearchHR);
             pnlToolbar.Controls.Add(cboHR);
             pnlToolbar.Controls.Add(cboCourse);
-            pnlToolbar.Controls.Add(btnAssign);
             pnlToolbar.Dock = DockStyle.Top;
             pnlToolbar.Location = new Point(0, 80);
             pnlToolbar.Name = "pnlToolbar";
@@ -110,21 +110,40 @@
             pnlToolbar.Size = new Size(1455, 119);
             pnlToolbar.TabIndex = 5;
             // 
-            // btnDelete
+            // label2
             // 
-            btnDelete.BackColor = Color.White;
-            btnDelete.Cursor = Cursors.Hand;
-            btnDelete.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Font = new Font("Segoe UI", 9.5F);
-            btnDelete.ForeColor = Color.FromArgb(60, 70, 85);
-            btnDelete.Location = new Point(872, 56);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(120, 42);
-            btnDelete.TabIndex = 4;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(10, 61, 120);
+            label2.Location = new Point(21, 54);
+            label2.Name = "label2";
+            label2.Size = new Size(150, 28);
+            label2.TabIndex = 7;
+            label2.Text = "Choose Course";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(10, 61, 120);
+            label1.Location = new Point(22, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(114, 28);
+            label1.TabIndex = 6;
+            label1.Text = "Choose HR";
+            // 
+            // txtSearchCourse
+            // 
+            txtSearchCourse.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchCourse.Font = new Font("Segoe UI", 9.5F);
+            txtSearchCourse.Location = new Point(175, 57);
+            txtSearchCourse.Name = "txtSearchCourse";
+            txtSearchCourse.PlaceholderText = "Search by ID Course";
+            txtSearchCourse.Size = new Size(399, 29);
+            txtSearchCourse.TabIndex = 5;
+            txtSearchCourse.TextChanged += txtSearchCourse_TextChanged;
             // 
             // txtSearchHR
             // 
@@ -154,22 +173,6 @@
             cboCourse.Name = "cboCourse";
             cboCourse.Size = new Size(245, 29);
             cboCourse.TabIndex = 2;
-            // 
-            // btnAssign
-            // 
-            btnAssign.BackColor = Color.FromArgb(10, 61, 120);
-            btnAssign.Cursor = Cursors.Hand;
-            btnAssign.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
-            btnAssign.FlatStyle = FlatStyle.Flat;
-            btnAssign.Font = new Font("Segoe UI Semibold", 9.5F);
-            btnAssign.ForeColor = Color.White;
-            btnAssign.Location = new Point(872, 6);
-            btnAssign.Name = "btnAssign";
-            btnAssign.Size = new Size(120, 42);
-            btnAssign.TabIndex = 3;
-            btnAssign.Text = "Assign";
-            btnAssign.UseVisualStyleBackColor = false;
-            btnAssign.Click += btnAssign_Click;
             // 
             // pnlGrid
             // 
@@ -310,40 +313,37 @@
             btnLast.Text = "▶|";
             btnLast.UseVisualStyleBackColor = false;
             // 
-            // txtSearchCourse
+            // btnDelete
             // 
-            txtSearchCourse.BorderStyle = BorderStyle.FixedSingle;
-            txtSearchCourse.Font = new Font("Segoe UI", 9.5F);
-            txtSearchCourse.Location = new Point(175, 57);
-            txtSearchCourse.Name = "txtSearchCourse";
-            txtSearchCourse.PlaceholderText = "Search by ID Course";
-            txtSearchCourse.Size = new Size(399, 29);
-            txtSearchCourse.TabIndex = 5;
-            txtSearchCourse.TextChanged += txtSearchCourse_TextChanged;
+            btnDelete.BackColor = Color.FromArgb(220, 50, 50);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 9.5F);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(866, 56);
+            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(120, 42);
+            btnDelete.TabIndex = 8;
+            btnDelete.Text = "🗑  Delete";
+            btnDelete.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // btnAssign
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(10, 61, 120);
-            label1.Location = new Point(22, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(114, 28);
-            label1.TabIndex = 6;
-            label1.Text = "Choose HR";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(10, 61, 120);
-            label2.Location = new Point(21, 54);
-            label2.Name = "label2";
-            label2.Size = new Size(150, 28);
-            label2.TabIndex = 7;
-            label2.Text = "Choose Course";
+            btnAssign.BackColor = Color.FromArgb(10, 61, 120);
+            btnAssign.Cursor = Cursors.Hand;
+            btnAssign.FlatAppearance.BorderSize = 0;
+            btnAssign.FlatStyle = FlatStyle.Flat;
+            btnAssign.Font = new Font("Segoe UI Semibold", 9F);
+            btnAssign.ForeColor = Color.White;
+            btnAssign.Location = new Point(866, 7);
+            btnAssign.Margin = new Padding(3, 4, 3, 4);
+            btnAssign.Name = "btnAssign";
+            btnAssign.Size = new Size(120, 42);
+            btnAssign.TabIndex = 9;
+            btnAssign.Text = "✎  Add Group";
+            btnAssign.UseVisualStyleBackColor = false;
             // 
             // f_Assign
             // 
@@ -356,7 +356,7 @@
             Controls.Add(pnlHeader);
             Name = "f_Assign";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "f_Assign";
+            Text = "HR Assign";
             Load += f_Assign_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
@@ -378,10 +378,8 @@
         private Panel pnlToolbar;
         private ComboBox cboHR;
         private ComboBox cboCourse;
-        private Button btnAssign;
         private Panel pnlGrid;
         private DataGridView dgvAssign;
-        private Button btnDelete;
         private Panel pnlBottom;
         private Label lblTotal;
         private Panel pnlPagination;
@@ -395,5 +393,7 @@
         private Label label1;
         private TextBox txtSearchCourse;
         private Label label2;
+        private Button btnDelete;
+        private Button btnAssign;
     }
 }
