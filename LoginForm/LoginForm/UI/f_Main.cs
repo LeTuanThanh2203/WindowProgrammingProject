@@ -9,12 +9,18 @@ using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using FontAwesome.Sharp;
+using Microsoft.Data.SqlClient;
+using ProjectMonHoc;
 
 namespace LoginForm
 {
     public partial class f_Main : Form
     {
         private Form currentForm;
+        private f_ChatBotAI chatBotControl;
+        private bool isAIChatOpen = false;
+        private System.Windows.Forms.Timer slideTimer;
+        private int targetWidth = 0;
 
         [DllImport("user32.DLL")]
         private static extern void ReleaseCapture();
@@ -31,10 +37,21 @@ namespace LoginForm
             
             // Đưa pnTop lên trên cùng để các nút close/min/max đè lên pnBody và các form con
             pnTop.BringToFront();
+            btnAI.BringToFront();
 
             // Thiết lập màu hover của nút toggle trong logo panel
             btnToggleSidebar.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 255, 255, 255);
             btnToggleSidebar.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 255, 255, 255);
+
+            // Thiết lập màu hover cho nút quản lý menu
+            btnMenuManagement.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 230, 230);
+            btnMenuManagement.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 210);
+
+            // Khởi tạo bảng MenuConfig nếu chưa tồn tại
+            MenuConfigDbHelper.InitializeMenuConfigTable();
+
+            // Khởi tạo AI Chatbot
+            InitializeAIChatbot();
         }
 
         private System.Windows.Forms.ToolTip sidebarToolTip;
@@ -70,8 +87,15 @@ namespace LoginForm
             sidebarToolTip.SetToolTip(btnAssign, "Assign");
             sidebarToolTip.SetToolTip(btnContact, "Contact");
             sidebarToolTip.SetToolTip(btnExport, "Export");
+            sidebarToolTip.SetToolTip(btnMenuManagement, "Menu Manage");
             sidebarToolTip.SetToolTip(btnLogout, "Logout");
             sidebarToolTip.SetToolTip(btnToggleSidebar, "Toggle Sidebar");
+            sidebarToolTip.SetToolTip(btnSchedule, "Schedule");
+        }
+
+        public void RefreshMenu()
+        {
+            Permission();
         }
 
         private void Permission()
@@ -89,41 +113,80 @@ namespace LoginForm
             btnAssign.Visible = false;
             btnContact.Visible = false;
             btnExport.Visible = false;
+            btnMenuManagement.Visible = false;
+            btnSchedule.Visible = false;
 
-            // ADMIN
-            if (Globals.Role == "Admin")
+            LoadDynamicMenu();
+        }
+
+        private void LoadDynamicMenu()
+        {
+            string role = Globals.Role;
+            string roleColumn = role switch
             {
-                btnOverview.Visible = true;
-                btnStudent.Visible = true;
-                btnCourse.Visible = true;
-                btnScore.Visible = true;
-                btnApprove.Visible = true;
-                btnClass.Visible = true;
-                btnAssign.Visible = true;
-                btnContact.Visible = true;
-                btnExport.Visible = true;
-                OpenForm(new f_Dashboard());
+                "Admin" => "AllowAdmin",
+                "Manager" => "AllowManager",
+                _ => "AllowUser"
+            };
+
+            // Truy vấn lấy danh sách nút được sắp xếp theo thứ tự hiển thị tăng dần
+            string query = $@"
+                SELECT ButtonName, DisplayName 
+                FROM MenuConfig 
+                WHERE {roleColumn} = 1 
+                ORDER BY DisplayOrder ASC";
+
+            using (My_DB db = new My_DB())
+            {
+                try
+                {
+                    db.openConnection();
+                    using (SqlCommand cmd = new SqlCommand(query, db.getConnection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string btnName = reader["ButtonName"].ToString();
+                                string displayName = reader["DisplayName"].ToString();
+
+                                // Bảo mật: Chỉ Admin mới được hiển thị nút Quản lý menu
+                                if (btnName == "btnMenuManagement" && role != "Admin")
+                                {
+                                    continue;
+                                }
+
+                                Control[] found = pnMenu.Controls.Find(btnName, true);
+                                if (found.Length > 0 && found[0] is IconButton btn)
+                                {
+                                    btn.Visible = true;
+                                    btn.BringToFront();
+
+                                    // Cập nhật tên hiển thị từ Database
+                                    btn.Text = isSidebarCollapsed ? "" : displayName;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading dynamic menu: " + ex.Message, "Menu Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    db.closeConnection();
+                }
             }
-            // MANAGER
-            else if (Globals.Role == "Manager")
+
+            // Mở mặc định form Dashboard nếu được phép
+            if (role == "Admin" || role == "Manager")
             {
-                btnOverview.Visible = true;
-                btnStudent.Visible = true;
-                btnCourse.Visible = true;
-                btnClass.Visible = true;
-                btnScore.Visible = true;
-                btnAssign.Visible = true;
-                btnContact.Visible = true;
-                btnExport.Visible = true;
-                OpenForm(new f_Dashboard());
-            }
-            // USER
-            else if (Globals.Role == "User")
-            {
-                btnCourseRegistation.Visible = true;
-                btnInformation.Visible = true;
-                btnConfirmationRequest.Visible = true;
-                btnContact.Visible = true;
+                Control[] foundOverview = pnMenu.Controls.Find("btnOverview", true);
+                if (foundOverview.Length > 0 && foundOverview[0].Visible)
+                {
+                    OpenForm(new f_Dashboard());
+                }
             }
         }
 
@@ -144,6 +207,7 @@ namespace LoginForm
             
             // Đảm bảo pnTop chứa các nút điều khiển luôn đè lên form con
             pnTop.BringToFront();
+            btnAI.BringToFront();
         }
 
         private void btnStudent_Click(object sender, EventArgs e)
@@ -201,6 +265,16 @@ namespace LoginForm
             OpenForm(new f_ReportExport());
         }
 
+        private void btnMenuManagement_Click(object sender, EventArgs e)
+        {
+            OpenForm(new f_MenuManagement(this));
+        }
+
+        private void btnSchedule_Click(object sender, EventArgs e)
+        {
+            OpenForm(new f_Schedule());
+        }
+
         private void ExecuteCommand(string command)
         {
             command = command.Trim().ToLower();
@@ -231,6 +305,42 @@ namespace LoginForm
                     OpenForm(new f_ListStudent());
                     break;
 
+                case "list_courses":
+                    OpenForm(new f_ListCourse());
+                    break;
+
+                case "course_registration":
+                    OpenForm(new f_CourseRegistration());
+                    break;
+
+                case "score":
+                    OpenForm(new f_EditScore());
+                    break;
+
+                case "class_list":
+                    OpenForm(new f_ClassList());
+                    break;
+
+                case "schedule":
+                    OpenForm(new f_Schedule());
+                    break;
+
+                case "information":
+                    OpenForm(new f_StudentInformation());
+                    break;
+
+                case "assign":
+                    OpenForm(new f_Assign());
+                    break;
+
+                case "contact":
+                    OpenForm(new f_ContactManage());
+                    break;
+
+                case "export":
+                    OpenForm(new f_ReportExport());
+                    break;
+
                 case "exit":
                     Application.Exit();
                     break;
@@ -243,6 +353,15 @@ namespace LoginForm
                         "- approve_account\n" +
                         "- overview\n" +
                         "- list_students\n" +
+                        "- list_courses\n" +
+                        "- course_registration\n" +
+                        "- score\n" +
+                        "- class_list\n" +
+                        "- schedule\n" +
+                        "- information\n" +
+                        "- assign\n" +
+                        "- contact\n" +
+                        "- export\n" +
                         "- help\n" +
                         "- exit");
                     break;
@@ -355,6 +474,7 @@ namespace LoginForm
             UpdateButtonState(btnAssign, collapse ? "" : "Assign ", align, collapse);
             UpdateButtonState(btnContact, collapse ? "" : "Contact", align, collapse);
             UpdateButtonState(btnExport, collapse ? "" : "Export", align, collapse);
+            UpdateButtonState(btnMenuManagement, collapse ? "" : "Menu Manage", align, collapse);
             UpdateButtonState(btnLogout, collapse ? "" : "  Logout", align, collapse);
         }
 
@@ -373,5 +493,114 @@ namespace LoginForm
                 btn.Height = (btn == btnLogout) ? 40 : 76;
             }
         }
+
+        #region AI Chatbot
+
+        private void InitializeAIChatbot()
+        {
+            chatBotControl = new f_ChatBotAI();
+            chatBotControl.Dock = DockStyle.Fill;
+            chatBotControl.CloseRequested += (s, ev) => ToggleAIChat();
+            chatBotControl.CommandReceived += (s, cmd) =>
+            {
+                if (this.InvokeRequired)
+                    this.Invoke(new Action(() => ExecuteCommand(cmd)));
+                else
+                    ExecuteCommand(cmd);
+            };
+            pnAIChat.Controls.Add(chatBotControl);
+
+            // Timer cho slide animation
+            slideTimer = new System.Windows.Forms.Timer();
+            slideTimer.Interval = 12;
+            slideTimer.Tick += SlideTimer_Tick;
+        }
+
+        private void btnAI_Click(object sender, EventArgs e)
+        {
+            ToggleAIChat();
+        }
+
+        private void ToggleAIChat()
+        {
+            if (isAIChatOpen)
+            {
+                // Closing: remove right padding of pnBody so child form expands to full width
+                pnBody.Padding = new Padding(0);
+                
+                // Slide panel out to right
+                targetWidth = 0;
+                slideTimer.Start();
+                
+                // Show the AI chatbot button again
+                btnAI.Visible = true;
+                btnAI.BringToFront();
+            }
+            else
+            {
+                // Opening: add right padding of 390px to pnBody so child form shrinks to make space
+                pnBody.Padding = new Padding(0, 0, 390, 0);
+                
+                // Slide panel in from right
+                pnAIChat.Visible = true;
+                pnAIChat.BringToFront();
+                
+                // Hide the AI chatbot button while chat is open
+                btnAI.Visible = false;
+                
+                // Keep the window top control buttons visible on top
+                pnTop.BringToFront();
+                
+                targetWidth = 390;
+                slideTimer.Start();
+            }
+            // Toggle state flag
+            isAIChatOpen = !isAIChatOpen;
+        }
+
+        private void SlideTimer_Tick(object sender, EventArgs e)
+        {
+            int currentOverlap = this.ClientSize.Width - pnAIChat.Left;
+            int step = 30;
+
+            if (targetWidth > 0)
+            {
+                // Mở: di chuyển panel sang trái
+                if (currentOverlap < targetWidth)
+                {
+                    pnAIChat.Left -= step;
+                    if (this.ClientSize.Width - pnAIChat.Left >= targetWidth)
+                    {
+                        pnAIChat.Left = this.ClientSize.Width - targetWidth;
+                        slideTimer.Stop();
+                    }
+                }
+                else
+                {
+                    slideTimer.Stop();
+                }
+            }
+            else
+            {
+                // Đóng: di chuyển panel sang phải
+                if (pnAIChat.Left < this.ClientSize.Width)
+                {
+                    pnAIChat.Left += step;
+                    if (pnAIChat.Left >= this.ClientSize.Width)
+                    {
+                        pnAIChat.Left = this.ClientSize.Width;
+                        pnAIChat.Visible = false;
+                        slideTimer.Stop();
+                    }
+                }
+                else
+                {
+                    pnAIChat.Visible = false;
+                    slideTimer.Stop();
+                }
+            }
+        }
+
+        #endregion
     }
 }

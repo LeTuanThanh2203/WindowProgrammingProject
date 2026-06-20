@@ -370,3 +370,5 @@ D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Micros
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Assign.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ContactManage.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Schedule.resources
+d:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ChatBotAI.resources

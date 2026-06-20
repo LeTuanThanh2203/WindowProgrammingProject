@@ -33,6 +33,8 @@ namespace LoginForm
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f_Main));
             pnSidebar = new Panel();
             pnMenu = new Panel();
+            btnMenuManagement = new IconButton();
+            btnSchedule = new IconButton();
             btnExport = new IconButton();
             btnContact = new IconButton();
             btnAssign = new IconButton();
@@ -58,6 +60,8 @@ namespace LoginForm
             pnButtonContainer = new Panel();
             btnMaximize = new Button();
             btnMinimize = new Button();
+            btnAI = new Button();
+            pnAIChat = new Panel();
             pnSidebar.SuspendLayout();
             pnMenu.SuspendLayout();
             pnUserPanel.SuspendLayout();
@@ -83,6 +87,8 @@ namespace LoginForm
             pnMenu.AutoScroll = true;
             pnMenu.BackColor = Color.Transparent;
             pnMenu.BackgroundImageLayout = ImageLayout.None;
+            pnMenu.Controls.Add(btnMenuManagement);
+            pnMenu.Controls.Add(btnSchedule);
             pnMenu.Controls.Add(btnExport);
             pnMenu.Controls.Add(btnContact);
             pnMenu.Controls.Add(btnAssign);
@@ -101,6 +107,40 @@ namespace LoginForm
             pnMenu.Size = new Size(305, 721);
             pnMenu.TabIndex = 1;
             pnMenu.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnMenuManagement
+            // 
+            btnMenuManagement.BackColor = Color.Transparent;
+            btnMenuManagement.Dock = DockStyle.Top;
+            btnMenuManagement.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnMenuManagement.IconChar = IconChar.Sliders;
+            btnMenuManagement.IconColor = Color.Black;
+            btnMenuManagement.IconFont = IconFont.Auto;
+            btnMenuManagement.ImageAlign = ContentAlignment.MiddleLeft;
+            btnMenuManagement.Location = new Point(0, 988);
+            btnMenuManagement.Name = "btnMenuManagement";
+            btnMenuManagement.Size = new Size(284, 76);
+            btnMenuManagement.TabIndex = 18;
+            btnMenuManagement.Text = "Menu Manage";
+            btnMenuManagement.UseVisualStyleBackColor = false;
+            btnMenuManagement.Click += btnMenuManagement_Click;
+            // 
+            // btnSchedule
+            // 
+            btnSchedule.BackColor = Color.Transparent;
+            btnSchedule.Dock = DockStyle.Top;
+            btnSchedule.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnSchedule.IconChar = IconChar.CalendarDays;
+            btnSchedule.IconColor = Color.Black;
+            btnSchedule.IconFont = IconFont.Auto;
+            btnSchedule.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSchedule.Location = new Point(0, 912);
+            btnSchedule.Name = "btnSchedule";
+            btnSchedule.Size = new Size(284, 76);
+            btnSchedule.TabIndex = 19;
+            btnSchedule.Text = "Schedule";
+            btnSchedule.UseVisualStyleBackColor = false;
+            btnSchedule.Click += btnSchedule_Click;
             // 
             // btnExport
             // 
@@ -476,13 +516,43 @@ namespace LoginForm
             btnMinimize.UseVisualStyleBackColor = false;
             btnMinimize.Click += btnMinimize_Click;
             // 
+            // btnAI
+            // 
+            btnAI.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAI.BackColor = Color.FromArgb(10, 61, 120);
+            btnAI.Cursor = Cursors.Hand;
+            btnAI.FlatAppearance.BorderSize = 0;
+            btnAI.FlatAppearance.MouseOverBackColor = Color.FromArgb(20, 80, 160);
+            btnAI.FlatStyle = FlatStyle.Flat;
+            btnAI.Font = new Font("Segoe UI", 14F);
+            btnAI.ForeColor = Color.White;
+            btnAI.Location = new Point(1572, 45);
+            btnAI.Name = "btnAI";
+            btnAI.Size = new Size(50, 50);
+            btnAI.TabIndex = 20;
+            btnAI.Text = "🤖";
+            btnAI.UseVisualStyleBackColor = false;
+            btnAI.Click += btnAI_Click;
+            // 
+            // pnAIChat
+            // 
+            pnAIChat.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            pnAIChat.BackColor = Color.White;
+            pnAIChat.Location = new Point(1627, 80);
+            pnAIChat.Name = "pnAIChat";
+            pnAIChat.Size = new Size(390, 925);
+            pnAIChat.TabIndex = 21;
+            pnAIChat.Visible = false;
+            // 
             // f_Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1627, 1005);
-            Controls.Add(pnBody);
             Controls.Add(pnTop);
+            Controls.Add(btnAI);
+            Controls.Add(pnAIChat);
+            Controls.Add(pnBody);
             Controls.Add(pnSidebar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "f_Main";
@@ -531,5 +601,9 @@ namespace LoginForm
         private IconButton btnAssign;
         private IconButton btnContact;
         private IconButton btnExport;
+        private IconButton btnMenuManagement;
+        private IconButton btnSchedule;
+        private Button btnAI;
+        private Panel pnAIChat;
     }
 }

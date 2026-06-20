@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\WindowProgrammingProject\\LoginForm\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\aichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\aichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|d:\\windowprogrammingproject\\loginform\\loginform\\ui\\f_listcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{BDFC795C-DFE9-1A5F-6111-B7570FF95AA3}|LoginForm\\Project_Group6.csproj|solutionrelative:loginform\\ui\\f_listcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -79,6 +87,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AIChatService.cs",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\AIChatService.cs",
+              "RelativeDocumentMoniker": "LoginForm\\AIChatService.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\AIChatService.cs",
+              "RelativeToolTip": "LoginForm\\AIChatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T19:39:08.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "f_Schedule.cs [Design]",
+              "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Schedule.cs",
+              "RelativeDocumentMoniker": "LoginForm\\UI\\f_Schedule.cs",
+              "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Schedule.cs [Design]",
+              "RelativeToolTip": "LoginForm\\UI\\f_Schedule.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T14:23:17.396Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "f_ListCourse.cs [Design]",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ListCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ListCourse.cs",
@@ -90,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "f_RegisterForm.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_RegisterForm.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_RegisterForm.cs",
@@ -98,12 +131,11 @@
               "RelativeToolTip": "LoginForm\\UI\\f_RegisterForm.cs",
               "ViewState": "AgIAABUBAAAAAAAAAADwvx0BAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T21:49:17.081Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T21:49:17.081Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "f_Assign.cs [Design]",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Assign.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_Assign.cs",
@@ -114,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "f_ContactManage.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ContactManage.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ContactManage.cs",
@@ -126,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "f_Dashboard.Designer.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Dashboard.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_Dashboard.Designer.cs",
@@ -138,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "f_Assign.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_Assign.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_Assign.cs",
@@ -150,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "f_ScoreView.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ScoreView.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ScoreView.cs",
@@ -163,19 +195,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "f_ScoreView.cs [Design]",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ScoreView.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_ScoreView.cs",
               "ToolTip": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_ScoreView.cs [Design]",
               "RelativeToolTip": "LoginForm\\UI\\f_ScoreView.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T14:24:44.912Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-06-18T14:24:44.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "f_AddCourse.cs [Design]",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddCourse.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddCourse.cs",
@@ -186,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "f_AddStudent.Designer.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddStudent.Designer.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddStudent.Designer.cs",
@@ -194,12 +225,11 @@
               "RelativeToolTip": "LoginForm\\UI\\f_AddStudent.Designer.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAApwA0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T18:43:43.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T18:43:43.536Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "f_AddClass.cs [Design]",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\UI\\f_AddClass.cs",
               "RelativeDocumentMoniker": "LoginForm\\UI\\f_AddClass.cs",
@@ -210,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Globals.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Helpers\\Globals.cs",
               "RelativeDocumentMoniker": "LoginForm\\Helpers\\Globals.cs",
@@ -222,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Contact.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Contact.cs",
               "RelativeDocumentMoniker": "LoginForm\\Models\\Contact.cs",
@@ -234,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "Class.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Class.cs",
               "RelativeDocumentMoniker": "LoginForm\\Models\\Class.cs",
@@ -246,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Group.cs",
               "DocumentMoniker": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Models\\Group.cs",
               "RelativeDocumentMoniker": "LoginForm\\Models\\Group.cs",
