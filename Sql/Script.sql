@@ -500,6 +500,7 @@ BEGIN
         -- Thang LetterGrade (A/B+/B/C+/C/D/F)
         LetterGrade =
             CASE
+                WHEN s.TotalScore IS NULL THEN NULL
                 WHEN s.TotalScore >= 8.5 THEN 'A'
                 WHEN s.TotalScore >= 8.0 THEN 'B+'
                 WHEN s.TotalScore >= 7.0 THEN 'B'
@@ -513,6 +514,7 @@ BEGIN
         -- 'Excellent' | 'Good' | 'Pass' | 'Fail'
         Overview =
             CASE
+                WHEN s.TotalScore IS NULL THEN NULL
                 WHEN s.TotalScore >= 8.5 THEN N'Excellent'   -- A
                 WHEN s.TotalScore >= 7.0 THEN N'Good'        -- B+, B
                 WHEN s.TotalScore >= 5.0 THEN N'Pass'        -- C+, C, D
@@ -520,8 +522,7 @@ BEGIN
             END
  
     FROM dbo.Score s
-    JOIN inserted i ON s.ID = i.ID AND s.ClassID = i.ClassID
-    WHERE s.TotalScore IS NOT NULL;
+    JOIN inserted i ON s.ID = i.ID AND s.ClassID = i.ClassID;
 END
 GO
  

@@ -11,6 +11,7 @@
           "AForge": "2.2.5",
           "AForge.Video": "2.2.5",
           "AForge.Video.DirectShow": "2.2.5",
+          "BouncyCastle.Cryptography": "2.2.1",
           "EPPlus": "8.0.1",
           "FontAwesome.Sharp": "6.6.0",
           "LiveChartsCore.SkiaSharpView.WinForms": "2.1.0-dev-570",
@@ -862,6 +863,9 @@
         }
       },
       "ValidationLibrary/1.0.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.2.1"
+        },
         "runtime": {
           "ValidationLibrary.dll": {
             "assemblyVersion": "1.0.0.0",

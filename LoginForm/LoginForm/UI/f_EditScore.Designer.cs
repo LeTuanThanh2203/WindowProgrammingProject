@@ -115,7 +115,6 @@ namespace LoginForm
             cboClass.Name = "cboClass";
             cboClass.Size = new Size(320, 29);
             cboClass.TabIndex = 1;
-            cboClass.SelectedIndexChanged += Filter_Changed;
             // 
             // label2
             // 
@@ -136,7 +135,6 @@ namespace LoginForm
             cboAcademicYear.Name = "cboAcademicYear";
             cboAcademicYear.Size = new Size(120, 29);
             cboAcademicYear.TabIndex = 3;
-            cboAcademicYear.SelectedIndexChanged += Filter_Changed;
             // 
             // label3
             // 
@@ -157,7 +155,6 @@ namespace LoginForm
             cboSemester.Name = "cboSemester";
             cboSemester.Size = new Size(120, 29);
             cboSemester.TabIndex = 5;
-            cboSemester.SelectedIndexChanged += Filter_Changed;
             // 
             // pnlGrid
             // 
@@ -227,7 +224,6 @@ namespace LoginForm
             btnReset.TabIndex = 1;
             btnReset.Text = "↺  Reset";
             btnReset.UseVisualStyleBackColor = false;
-            btnReset.Click += btnReset_Click;
             // 
             // btnExport
             // 
@@ -310,7 +306,6 @@ namespace LoginForm
             cboClass.Name = "cboClass";
             cboClass.Size = new Size(320, 29);
             cboClass.TabIndex = 1;
-            cboClass.SelectedIndexChanged += Filter_Changed;
             // 
             // label2
             // 
@@ -331,7 +326,6 @@ namespace LoginForm
             cboAcademicYear.Name = "cboAcademicYear";
             cboAcademicYear.Size = new Size(120, 29);
             cboAcademicYear.TabIndex = 3;
-            cboAcademicYear.SelectedIndexChanged += Filter_Changed;
             // 
             // label3
             // 
@@ -352,7 +346,6 @@ namespace LoginForm
             cboSemester.Name = "cboSemester";
             cboSemester.Size = new Size(120, 29);
             cboSemester.TabIndex = 5;
-            cboSemester.SelectedIndexChanged += Filter_Changed;
             // 
             // pnlGrid
             // 
@@ -422,7 +415,6 @@ namespace LoginForm
             btnReset.TabIndex = 1;
             btnReset.Text = "↺  Reset";
             btnReset.UseVisualStyleBackColor = false;
-            btnReset.Click += btnReset_Click;
             // 
             // btnExport
             // 
@@ -552,7 +544,6 @@ namespace LoginForm
             Name = "f_EditScore";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Score Management Dashboard";
-            Load += f_EditScore_Load;
             pnlHeader.ResumeLayout(false);
             pnlToolbar.ResumeLayout(false);
             pnlToolbar.PerformLayout();

@@ -1182,6 +1182,9 @@
       "ValidationLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.2.1"
+        },
         "compile": {
           "bin/placeholder/ValidationLibrary.dll": {}
         },
@@ -2924,6 +2927,7 @@
       "AForge >= 2.2.5",
       "AForge.Video >= 2.2.5",
       "AForge.Video.DirectShow >= 2.2.5",
+      "BouncyCastle.Cryptography >= 2.2.1",
       "EPPlus >= 8.0.0",
       "FontAwesome.Sharp >= 6.6.0",
       "LiveChartsCore.SkiaSharpView.WinForms >= 2.1.0-dev-570",
@@ -2937,19 +2941,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\PHUOC ANH\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+      "projectUniqueName": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
       "projectName": "Project_Group6",
-      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
+      "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\Project_Group6.csproj",
+      "packagesPath": "C:\\Users\\PHUOC ANH\\.nuget\\packages\\",
+      "outputPath": "D:\\WindowProgrammingProject\\LoginForm\\LoginForm\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PHUOC ANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2957,6 +2966,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2964,8 +2974,8 @@
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
-              "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
+            "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj": {
+              "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj"
             }
           }
         }
@@ -2998,6 +3008,10 @@
           "AForge.Video.DirectShow": {
             "target": "Package",
             "version": "[2.2.5, )"
+          },
+          "BouncyCastle.Cryptography": {
+            "target": "Package",
+            "version": "[2.2.1, )"
           },
           "EPPlus": {
             "target": "Package",

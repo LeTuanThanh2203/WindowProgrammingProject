@@ -339,3 +339,34 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProjec
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.UI.f_ExportReport.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\BouncyCastle.Cryptography.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\EPPlus.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\EPPlus.Interfaces.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.barcodes.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.bouncy-castle-connector.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.forms.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.io.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.kernel.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.layout.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.pdfa.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.pdfua.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.sign.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.styledxmlparser.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.svg.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.bouncy-castle-adapter.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\itext.commons.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Configuration.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Configuration.Json.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.IO.RecyclableMemoryStream.dll
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Assign.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ContactManage.resources
+D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources

@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using ProjectMonHoc;
 using System;
 using System.Data;
@@ -84,8 +84,8 @@ public class Score
     public bool ResetScore() =>
         ExecuteNonQuery(@"
             UPDATE Score SET
-                MidtermScore = NULL,
-                FinalScore   = NULL
+                MidtermScore = 0,
+                FinalScore   = 0
             WHERE ID = @id AND ClassID = @classID",
             AddPKParams);
 

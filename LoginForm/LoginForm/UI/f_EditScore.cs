@@ -189,22 +189,50 @@ namespace LoginForm
             {
                 if (row.IsNewRow) continue;
 
-                string midVal = row.Cells["Process Grade"].Value?.ToString();
-                string finalVal = row.Cells["Final Grade"].Value?.ToString();
+                string midVal = row.Cells["Process Grade"].Value?.ToString()?.Trim() ?? "";
+                string finalVal = row.Cells["Final Grade"].Value?.ToString()?.Trim() ?? "";
 
                 if (string.IsNullOrEmpty(midVal) && string.IsNullOrEmpty(finalVal))
                     continue;
 
-                bool midOk = decimal.TryParse(midVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture,
-                    out decimal midterm);
-                bool finalOk = decimal.TryParse(finalVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture,
-                    out decimal final);
+                decimal? midterm = null;
+                decimal? final = null;
+                bool isMidValid = true;
+                bool isFinalValid = true;
 
-                if (!midOk || !finalOk || midterm < 0 || midterm > 10 || final < 0 || final > 10)
+                if (!string.IsNullOrEmpty(midVal))
+                {
+                    if (decimal.TryParse(midVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal m) ||
+                        decimal.TryParse(midVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out m))
+                    {
+                        if (m >= 0 && m <= 10)
+                            midterm = m;
+                        else
+                            isMidValid = false;
+                    }
+                    else
+                    {
+                        isMidValid = false;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(finalVal))
+                {
+                    if (decimal.TryParse(finalVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal f) ||
+                        decimal.TryParse(finalVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out f))
+                    {
+                        if (f >= 0 && f <= 10)
+                            final = f;
+                        else
+                            isFinalValid = false;
+                    }
+                    else
+                    {
+                        isFinalValid = false;
+                    }
+                }
+
+                if (!isMidValid || !isFinalValid)
                 {
                     failCount++;
                     continue;
@@ -274,13 +302,28 @@ namespace LoginForm
             if (col.Name != "Process Grade" && col.Name != "Final Grade") return;
 
             var cell = dgvStudent.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            string val = cell.Value?.ToString() ?? "";
-            if (val == "") return;
+            string val = cell.Value?.ToString()?.Trim() ?? "";
 
-            bool valid = decimal.TryParse(val,
+            if (val == "")
+            {
+                cell.Style.BackColor = Color.LightYellow;
+                cell.Style.ForeColor = Color.Black;
+                cell.ErrorText = "";
+
+                var row = dgvStudent.Rows[e.RowIndex];
+                if (dgvStudent.Columns.Contains("Total Grade"))
+                    row.Cells["Total Grade"].Value = DBNull.Value;
+                return;
+            }
+
+            bool valid = (decimal.TryParse(val,
+                             System.Globalization.NumberStyles.Any,
+                             System.Globalization.CultureInfo.CurrentCulture,
+                             out decimal d) ||
+                          decimal.TryParse(val,
                              System.Globalization.NumberStyles.Any,
                              System.Globalization.CultureInfo.InvariantCulture,
-                             out decimal d)
+                             out d))
                          && d >= 0 && d <= 10;
 
             if (!valid)
@@ -297,19 +340,33 @@ namespace LoginForm
 
                 // TotalScore là computed column — chỉ preview, không ghi
                 var row = dgvStudent.Rows[e.RowIndex];
-                bool midOk = decimal.TryParse(
-                    row.Cells["Process Grade"].Value?.ToString(),
+
+                string midVal = row.Cells["Process Grade"].Value?.ToString()?.Trim() ?? "";
+                string finVal = row.Cells["Final Grade"].Value?.ToString()?.Trim() ?? "";
+
+                decimal mid = 0;
+                decimal fin = 0;
+
+                bool midOk = !string.IsNullOrEmpty(midVal) && (decimal.TryParse(midVal,
                     System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture, out decimal mid);
-                bool finOk = decimal.TryParse(
-                    row.Cells["Final Grade"].Value?.ToString(),
+                    System.Globalization.CultureInfo.CurrentCulture, out mid) ||
+                    decimal.TryParse(midVal,
                     System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture, out decimal fin);
+                    System.Globalization.CultureInfo.InvariantCulture, out mid));
+
+                bool finOk = !string.IsNullOrEmpty(finVal) && (decimal.TryParse(finVal,
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.CurrentCulture, out fin) ||
+                    decimal.TryParse(finVal,
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out fin));
 
                 // Preview tổng: 40% giữa kỳ + 60% cuối kỳ (theo trigger TR_Score_Update)
                 if (midOk && finOk && dgvStudent.Columns.Contains("Total Grade"))
                     row.Cells["Total Grade"].Value =
                         Math.Round(mid * 0.4m + fin * 0.6m, 2);
+                else if (dgvStudent.Columns.Contains("Total Grade"))
+                    row.Cells["Total Grade"].Value = DBNull.Value;
             }
         }
     }
