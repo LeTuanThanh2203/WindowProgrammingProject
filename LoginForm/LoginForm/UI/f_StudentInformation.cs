@@ -73,8 +73,8 @@ namespace Project_Group6
             // Schema mới: Semester là NVARCHAR(20)
             cboSemester.Items.Clear();
             cboSemester.Items.Add("-- Select Semester --");
-            cboSemester.Items.Add("HK1");
-            cboSemester.Items.Add("HK2");
+            cboSemester.Items.Add("Semester 1");
+            cboSemester.Items.Add("Semester 2");
             cboSemester.Items.Add("Summer");
             cboSemester.SelectedIndex = 0;
 

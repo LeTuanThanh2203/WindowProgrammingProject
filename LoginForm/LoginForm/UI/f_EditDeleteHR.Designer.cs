@@ -1,6 +1,6 @@
-namespace Project_Group6.UI
+namespace LoginForm
 {
-    partial class f_EditDeleteStudent
+    partial class f_EditDeleteHR
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -22,12 +22,12 @@ namespace Project_Group6.UI
             cboSort = new ComboBox();
             cboGender = new ComboBox();
             txtSearch = new TextBox();
-            dgvStudents = new DataGridView();
+            dgvHR = new DataGridView();
             panel2 = new Panel();
             pnlFormHeader = new Panel();
             lblFormTitle = new Label();
             lblPhotoHint = new Label();
-            picStudent = new PictureBox();
+            picHR = new PictureBox();
             btnChooseImage = new Button();
             label1 = new Label();
             txtID = new TextBox();
@@ -51,17 +51,17 @@ namespace Project_Group6.UI
             btnQuit = new Button();
             panel1.SuspendLayout();
             pnlSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHR).BeginInit();
             panel2.SuspendLayout();
             pnlFormHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHR).BeginInit();
             pnlButtons.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(dgvStudents);
+            panel1.Controls.Add(dgvHR);
             panel1.Controls.Add(pnlSearch);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -112,16 +112,16 @@ namespace Project_Group6.UI
             txtSearch.TabIndex = 2;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
-            // dgvStudents
+            // dgvHR
             // 
-            dgvStudents.AllowUserToAddRows = false;
-            dgvStudents.AllowUserToResizeColumns = false;
-            dgvStudents.AllowUserToResizeRows = false;
+            dgvHR.AllowUserToAddRows = false;
+            dgvHR.AllowUserToResizeColumns = false;
+            dgvHR.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(246, 249, 253);
-            dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvStudents.BackgroundColor = Color.White;
-            dgvStudents.BorderStyle = BorderStyle.None;
+            dgvHR.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvHR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvHR.BackgroundColor = Color.White;
+            dgvHR.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(10, 61, 120);
             dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F);
@@ -129,29 +129,29 @@ namespace Project_Group6.UI
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudents.Dock = DockStyle.Fill;
-            dgvStudents.EnableHeadersVisualStyles = false;
-            dgvStudents.Font = new Font("Segoe UI", 9F);
-            dgvStudents.Location = new Point(0, 0);
-            dgvStudents.MultiSelect = false;
-            dgvStudents.Name = "dgvStudents";
-            dgvStudents.ReadOnly = true;
-            dgvStudents.RowHeadersVisible = false;
-            dgvStudents.RowHeadersWidth = 51;
-            dgvStudents.RowTemplate.Height = 36;
-            dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudents.Size = new Size(700, 720);
-            dgvStudents.TabIndex = 1;
-            dgvStudents.CellClick += dgvStudents_CellClick;
+            dgvHR.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvHR.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHR.Dock = DockStyle.Fill;
+            dgvHR.EnableHeadersVisualStyles = false;
+            dgvHR.Font = new Font("Segoe UI", 9F);
+            dgvHR.Location = new Point(0, 52);
+            dgvHR.MultiSelect = false;
+            dgvHR.Name = "dgvHR";
+            dgvHR.ReadOnly = true;
+            dgvHR.RowHeadersVisible = false;
+            dgvHR.RowHeadersWidth = 51;
+            dgvHR.RowTemplate.Height = 36;
+            dgvHR.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvHR.Size = new Size(700, 668);
+            dgvHR.TabIndex = 1;
+            dgvHR.CellClick += dgvHR_CellClick;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(245, 247, 250);
             panel2.Controls.Add(pnlFormHeader);
             panel2.Controls.Add(lblPhotoHint);
-            panel2.Controls.Add(picStudent);
+            panel2.Controls.Add(picHR);
             panel2.Controls.Add(btnChooseImage);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(txtID);
@@ -193,9 +193,9 @@ namespace Project_Group6.UI
             lblFormTitle.ForeColor = Color.White;
             lblFormTitle.Location = new Point(20, 14);
             lblFormTitle.Name = "lblFormTitle";
-            lblFormTitle.Size = new Size(222, 30);
+            lblFormTitle.Size = new Size(174, 30);
             lblFormTitle.TabIndex = 0;
-            lblFormTitle.Text = "Edit / Delete Student";
+            lblFormTitle.Text = "Edit / Delete HR";
             // 
             // lblPhotoHint
             // 
@@ -204,20 +204,20 @@ namespace Project_Group6.UI
             lblPhotoHint.ForeColor = Color.FromArgb(80, 80, 90);
             lblPhotoHint.Location = new Point(20, 66);
             lblPhotoHint.Name = "lblPhotoHint";
-            lblPhotoHint.Size = new Size(116, 21);
+            lblPhotoHint.Size = new Size(78, 21);
             lblPhotoHint.TabIndex = 1;
-            lblPhotoHint.Text = "Student Photo";
+            lblPhotoHint.Text = "HR Photo";
             // 
-            // picStudent
+            // picHR
             // 
-            picStudent.BackColor = Color.FromArgb(235, 240, 248);
-            picStudent.BorderStyle = BorderStyle.FixedSingle;
-            picStudent.Location = new Point(20, 92);
-            picStudent.Name = "picStudent";
-            picStudent.Size = new Size(130, 160);
-            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
-            picStudent.TabIndex = 2;
-            picStudent.TabStop = false;
+            picHR.BackColor = Color.FromArgb(235, 240, 248);
+            picHR.BorderStyle = BorderStyle.FixedSingle;
+            picHR.Location = new Point(20, 92);
+            picHR.Name = "picHR";
+            picHR.Size = new Size(130, 160);
+            picHR.SizeMode = PictureBoxSizeMode.StretchImage;
+            picHR.TabIndex = 2;
+            picHR.TabStop = false;
             // 
             // btnChooseImage
             // 
@@ -237,7 +237,7 @@ namespace Project_Group6.UI
             // 
             // label1
             // 
-            label1.Text = "Student ID:";
+            label1.Text = "HR ID:";
             label1.Location = new Point(180, 71);
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.5F);
@@ -449,7 +449,7 @@ namespace Project_Group6.UI
             btnQuit.TabIndex = 2;
             btnQuit.Click += btnCancel_Click;
             // 
-            // f_EditDeleteStudent
+            // f_EditDeleteHR
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -458,20 +458,20 @@ namespace Project_Group6.UI
             Controls.Add(panel2);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9.5F);
-            Name = "f_EditDeleteStudent";
+            Name = "f_EditDeleteHR";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Manage Students — Academic Management";
-            Load += ManageStudent_Load;
-            Shown += f_ListStudent_Shown;
+            Text = "Manage HRs — Academic Management";
+            Load += ManageHR_Load;
+            Shown += f_ListHR_Shown;
             panel1.ResumeLayout(false);
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHR).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             pnlFormHeader.ResumeLayout(false);
             pnlFormHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHR).EndInit();
             pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -482,10 +482,10 @@ namespace Project_Group6.UI
         private Label lblFormTitle;
         private ComboBox cboGender, cboSort;
         private TextBox txtSearch;
-        private DataGridView dgvStudents;
+        private DataGridView dgvHR;
 
         private Label lblPhotoHint;
-        private PictureBox picStudent;
+        private PictureBox picHR;
         private Button btnChooseImage;
 
         private Label label1, label2, label3, label4, label5, label6, label7, label9;
@@ -494,11 +494,5 @@ namespace Project_Group6.UI
         private ComboBox cboGenderChoose;
 
         private Button btnUpdate, btnDelete, btnQuit;
-
-        // Legacy aliases (kept for designer compatibility — not used in logic)
-        private TextBox txtMSSV => txtID;
-        private TextBox txtHomeTown = new TextBox(); // hidden, not added to Controls
-        private Label label8 = new Label();       // hidden
-        private Label label10 = new Label();       // hidden
     }
 }

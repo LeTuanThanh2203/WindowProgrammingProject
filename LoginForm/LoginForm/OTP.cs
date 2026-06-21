@@ -12,7 +12,7 @@ namespace ProjectMonHoc
             new MailAddress("cutcho384@gmail.com");
 
         // Gmail App Password
-        private const string fromPass = "ysgrsafyyodnceqo";
+        private const string fromPass = "hzfgrrrfhqdfbizv";
 
         // OTP hiện tại
         private string generatedOTP;

@@ -14,10 +14,10 @@ namespace LoginForm
 {
     public partial class f_ListStudent : Form
     {
-
         My_DB db = new My_DB();
         private bool isLoaded = false;
         private PaginationHelper _pager;
+        private readonly ReportExportService _exportService = new ReportExportService();
 
         public f_ListStudent()
         {
@@ -62,71 +62,35 @@ namespace LoginForm
             btnViewScore.Enabled = false;
         }
 
-        // ✅ Gọi LoadData sau khi form đã hiển thị hoàn toàn
         private void f_ListStudent_Shown(object sender, EventArgs e)
         {
             LoadData();
-  
         }
 
         // =========================
-        // LOAD STUDENT
+        // CLICK ROW -> SHOW INFO
         // =========================
-     
-
-        // =========================
-        // CLICK ROW -> SHOW IMAGE
-        // =========================
-        private void dgvStudent_CellClick(
-            object sender,
-            DataGridViewCellEventArgs e)
+        private void dgvStudent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row =
-                    dgvContacts.Rows[e.RowIndex];
+                DataGridViewRow row = dgvContacts.Rows[e.RowIndex];
 
-                lblID.Text =
-          row.Cells["ID"].Value.ToString();
+                lblID.Text = row.Cells["ID"].Value.ToString();
+                lblFirstname.Text = row.Cells["FirstName"].Value.ToString();
+                lblLastname.Text = row.Cells["LastName"].Value.ToString();
+                lblDob.Text = Convert.ToDateTime(row.Cells["Dob"].Value).ToString("dd/MM/yyyy");
+                lblGender.Text = row.Cells["Gender"].Value.ToString();
+                lblPhone.Text = row.Cells["Phone"].Value.ToString();
+                lblAddress.Text = row.Cells["Address"].Value.ToString();
+                lblEmail.Text = row.Cells["Email"].Value.ToString();
 
-                lblFirstname.Text =
-                    row.Cells["FirstName"].Value.ToString();
-
-                lblLastname.Text =
-                    row.Cells["LastName"].Value.ToString();
-
-                lblDob.Text =
-                    Convert.ToDateTime(
-                        row.Cells["Dob"].Value)
-                        .ToString("dd/MM/yyyy");
-
-                lblGender.Text =
-                    row.Cells["Gender"].Value.ToString();
-
-                lblPhone.Text =
-                    row.Cells["Phone"].Value.ToString();
-
-                lblAddress.Text =
-                    row.Cells["Address"].Value.ToString();
-
-                lblEmail.Text =
-                    row.Cells["Email"].Value.ToString();
-
-                // Hien thi anh neu co, neu khong co thi xoa anh cu
-                if (row.Cells["Picture"].Value
-                    != DBNull.Value)
+                if (row.Cells["Picture"].Value != DBNull.Value)
                 {
-                    byte[] img =
-                        (byte[])row.Cells["Picture"]
-                        .Value;
-
-                    MemoryStream ms =
-                        new MemoryStream(img);
-
-                    picContact.Image =
-                        Image.FromStream(ms);
-                    picContact.SizeMode =
-                    PictureBoxSizeMode.StretchImage;
+                    byte[] img = (byte[])row.Cells["Picture"].Value;
+                    MemoryStream ms = new MemoryStream(img);
+                    picContact.Image = Image.FromStream(ms);
+                    picContact.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 else
                 {
@@ -134,32 +98,12 @@ namespace LoginForm
                 }
             }
 
-
             btnViewScore.Enabled = true;
         }
 
-
         // =========================
-        // REFRESH BUTTON
+        // LOAD DATA
         // =========================
-        private void btnRefresh_Click(
-            object sender,
-            EventArgs e)
-        {
-            txtSearch.Text = "";
-            cboGender.SelectedIndex = 0;
-            cboSort.SelectedIndex = 0;
-            LoadData(); // ← thay vì LoadStudent()
-        }
-        private void btnAdd_Click(
-         object sender,
-         EventArgs e)
-        {
-            f_AddStudent addStudent =
-              new f_AddStudent();
-
-            addStudent.ShowDialog();
-        }
         private void LoadData()
         {
             try
@@ -175,20 +119,17 @@ namespace LoginForm
                 {
                     query += @" AND (CAST(ID AS NVARCHAR) LIKE @search
                         OR FirstName LIKE @search
-                        OR LastName LIKE @search)";
+                        OR LastName  LIKE @search)";
                 }
 
                 if (!string.IsNullOrEmpty(gender) && gender != "All")
-                {
                     query += " AND Gender = @gender";
-                }
 
                 if (sort == "Name A-Z") query += " ORDER BY FirstName ASC";
                 else if (sort == "Name Z-A") query += " ORDER BY FirstName DESC";
                 else if (sort == "ID Asc") query += " ORDER BY ID ASC";
                 else if (sort == "ID Desc") query += " ORDER BY ID DESC";
 
-                // ✅ Mở connection thủ công
                 SqlConnection conn = db.getConnection;
                 if (conn.State != ConnectionState.Open)
                     conn.Open();
@@ -219,97 +160,252 @@ namespace LoginForm
             }
         }
 
-        private void txtSearch_TextChanged(
-        object sender,
-        EventArgs e)
+        // =========================
+        // GET EXPORT DATA (dùng chung cho PDF & Excel)
+        // =========================
+        private DataTable GetExportData()
         {
-
-            if (!isLoaded)
+            try
             {
+                string keyword = txtSearch.Text.Trim();
+                string gender = cboGender.SelectedItem?.ToString();
+                string sort = cboSort.SelectedItem?.ToString();
+
+                // Query KHÔNG dùng alias — tránh lỗi "Column does not belong to table"
+                string query = @"SELECT ID, FirstName, LastName, Dob, Gender, Phone, Email, Address
+                                 FROM Student WHERE 1=1";
+
+                if (!string.IsNullOrEmpty(keyword))
+                    query += @" AND (CAST(ID AS NVARCHAR) LIKE @search
+                                OR FirstName LIKE @search
+                                OR LastName  LIKE @search)";
+
+                if (!string.IsNullOrEmpty(gender) && gender != "All")
+                    query += " AND Gender = @gender";
+
+                if (sort == "Name A-Z") query += " ORDER BY FirstName ASC";
+                else if (sort == "Name Z-A") query += " ORDER BY FirstName DESC";
+                else if (sort == "ID Asc") query += " ORDER BY ID ASC";
+                else if (sort == "ID Desc") query += " ORDER BY ID DESC";
+                else query += " ORDER BY ID ASC";
+
+                SqlConnection conn = db.getConnection;
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                if (!string.IsNullOrEmpty(keyword))
+                    cmd.Parameters.AddWithValue("@search", "%" + keyword + "%");
+                if (!string.IsNullOrEmpty(gender) && gender != "All")
+                    cmd.Parameters.AddWithValue("@gender", gender);
+
+                DataTable raw = new DataTable();
+                new SqlDataAdapter(cmd).Fill(raw);
+
+                // Build bảng export với tên cột đẹp + format ngày — tránh alias gây lỗi
+                DataTable export = new DataTable();
+                export.Columns.Add("Student ID", typeof(string));
+                export.Columns.Add("First Name", typeof(string));
+                export.Columns.Add("Last Name", typeof(string));
+                export.Columns.Add("Date of Birth", typeof(string));
+                export.Columns.Add("Gender", typeof(string));
+                export.Columns.Add("Phone", typeof(string));
+                export.Columns.Add("Email", typeof(string));
+                export.Columns.Add("Address", typeof(string));
+
+                foreach (DataRow r in raw.Rows)
+                {
+                    string dob = r["Dob"] != DBNull.Value
+                        ? Convert.ToDateTime(r["Dob"]).ToString("dd/MM/yyyy")
+                        : "";
+
+                    export.Rows.Add(
+                        r["ID"]?.ToString(),
+                        r["FirstName"]?.ToString(),
+                        r["LastName"]?.ToString(),
+                        dob,
+                        r["Gender"]?.ToString(),
+                        r["Phone"]?.ToString(),
+                        r["Email"]?.ToString(),
+                        r["Address"]?.ToString()
+                    );
+                }
+
+                return export;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error preparing data: " + ex.Message);
+                return new DataTable();
+            }
+        }
+
+        // =========================
+        // EXPORT BUTTON
+        // =========================
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            // Lấy thẳng data gốc từ DB, không cần build lại DataTable
+            DataTable exportData = GetRawExportData();
+
+            if (exportData == null || exportData.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to export.", "Notice",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            LoadData();
-        
-        }
-        private void cboGender_SelectedIndexChanged(
-    object sender,
-    EventArgs e)
-        {
-            if (!isLoaded)
+            using (var dlg = new ExportFormatDialog())
             {
-                return;
-            }
+                if (dlg.ShowDialog() != DialogResult.OK) return;
 
-            LoadData();
+                if (dlg.SelectedFormat == "PDF")
+                {
+                    using (var sfd = new SaveFileDialog())
+                    {
+                        sfd.Filter = "PDF Files|*.pdf";
+                        sfd.FileName = "StudentList.pdf";
+                        if (sfd.ShowDialog() != DialogResult.OK) return;
+
+                        try
+                        {
+                            bool ok = _exportService.ExportStudentsToPdf(
+                                exportData, sfd.FileName, Globals.Username);
+                            if (ok)
+                                MessageBox.Show("Export PDF successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Export PDF failed: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    using (var sfd = new SaveFileDialog())
+                    {
+                        sfd.Filter = "Excel Files|*.xlsx";
+                        sfd.FileName = "StudentList.xlsx";
+                        if (sfd.ShowDialog() != DialogResult.OK) return;
+
+                        try
+                        {
+                            bool ok = _exportService.ExportStudentsToExcel(exportData, sfd.FileName);
+                            if (ok)
+                                MessageBox.Show("Export Excel successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Export Excel failed: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
         }
-        private void cboSort_SelectedIndexChanged(
-    object sender,
-    EventArgs e)
+
+        // Thay GetExportData() cũ bằng method này — trả về DataTable với tên cột gốc
+        private DataTable GetRawExportData()
         {
-            if (!isLoaded)
+            try
             {
-                return;
-            }
+                string keyword = txtSearch.Text.Trim();
+                string gender = cboGender.SelectedItem?.ToString();
+                string sort = cboSort.SelectedItem?.ToString();
 
+                string query = @"SELECT ID, FirstName, LastName, Dob, Gender, Phone, Email
+                         FROM Student WHERE 1=1";
+
+                if (!string.IsNullOrEmpty(keyword))
+                    query += @" AND (CAST(ID AS NVARCHAR) LIKE @search
+                        OR FirstName LIKE @search
+                        OR LastName  LIKE @search)";
+
+                if (!string.IsNullOrEmpty(gender) && gender != "All")
+                    query += " AND Gender = @gender";
+
+                if (sort == "Name A-Z") query += " ORDER BY FirstName ASC";
+                else if (sort == "Name Z-A") query += " ORDER BY FirstName DESC";
+                else if (sort == "ID Asc") query += " ORDER BY ID ASC";
+                else if (sort == "ID Desc") query += " ORDER BY ID DESC";
+                else query += " ORDER BY ID ASC";
+
+                SqlConnection conn = db.getConnection;
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                if (!string.IsNullOrEmpty(keyword))
+                    cmd.Parameters.AddWithValue("@search", "%" + keyword + "%");
+                if (!string.IsNullOrEmpty(gender) && gender != "All")
+                    cmd.Parameters.AddWithValue("@gender", gender);
+
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error preparing data: " + ex.Message);
+                return new DataTable();
+            }
+        }
+
+        // =========================
+        // OTHER BUTTONS
+        // =========================
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            cboGender.SelectedIndex = 0;
+            cboSort.SelectedIndex = 0;
             LoadData();
         }
-        private void btnEdit_Click(
-          object sender,
-        EventArgs e)
-        {
-            f_EditDeleteStudent editdeleteStudent =
-              new f_EditDeleteStudent();
 
-            editdeleteStudent.ShowDialog();
-        
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            new f_AddStudent().ShowDialog();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            new f_EditDeleteStudent().ShowDialog();
+        }
+
         private void dgvStudent_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            {
                 new f_EditDeleteStudent().ShowDialog();
-        
-            }
         }
 
-        public void OpenAddStudent()
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            f_AddStudent add =
-                new f_AddStudent();
-
-            add.ShowDialog();
+            if (!isLoaded) return;
+            LoadData();
         }
-        public void OpenEditStudent()
+
+        private void cboGender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            f_EditDeleteStudent edit =
-                new f_EditDeleteStudent();
-
-            edit.ShowDialog();
+            if (!isLoaded) return;
+            LoadData();
         }
+
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) return;
+            LoadData();
+        }
+
         private void btnViewScore_Click(object sender, EventArgs e)
         {
-            string mssv =
-                dgvContacts.CurrentRow.Cells["ID"].Value.ToString();
-
-            f_ScoreView frm = new f_ScoreView(mssv);
-            frm.ShowDialog();
+            string mssv = dgvContacts.CurrentRow.Cells["ID"].Value.ToString();
+            new f_ScoreView(mssv).ShowDialog();
         }
 
-        //private void btnExportWord_Click(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrWhiteSpace(lblID.Text))
-        //    {
-        //        MessageBox.Show("Please select a student first.");
-        //        return;
-        //    }
-
-        //    Print print = new Print();
-
-        //    print.ExportScoreStudent(
-        //        lblID.Text,
-        //        "Semester 1",
-        //        "2025-2026");
-        //}
+        public void OpenAddStudent() => new f_AddStudent().ShowDialog();
+        public void OpenEditStudent() => new f_EditDeleteStudent().ShowDialog();
     }
 }

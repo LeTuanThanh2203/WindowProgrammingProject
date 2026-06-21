@@ -6,21 +6,21 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Project_Group6.UI
+namespace LoginForm
 {
-    public partial class f_EditDeleteStudent : Form
+    public partial class f_EditDeleteHR : Form
     {
         private bool _isLoaded = false;
-        private byte[] studentImage = null;
+        private byte[] hrImage = null;
 
-        public f_EditDeleteStudent()
+        public f_EditDeleteHR()
         {
             InitializeComponent();
         }
 
-        private void ManageStudent_Load(object sender, EventArgs e)
+        private void ManageHR_Load(object sender, EventArgs e)
         {
-            dgvStudents.AutoGenerateColumns = true;
+            dgvHR.AutoGenerateColumns = true;
 
             cboGender.Items.AddRange(new[] { "All", "Male", "Female" });
             cboGender.SelectedIndex = 0;
@@ -28,21 +28,20 @@ namespace Project_Group6.UI
             cboSort.Items.AddRange(new[]
             {
                 "Name A-Z", "Name Z-A",
-                "ID Asc",   "ID Desc"    // đổi "MSSV" → "ID" theo schema
+                "ID Asc",   "ID Desc"
             });
             cboSort.SelectedIndex = 0;
 
             cboGenderChoose.Items.AddRange(new[] { "Male", "Female" });
             cboGenderChoose.SelectedIndex = 0;
 
-            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            picHR.SizeMode = PictureBoxSizeMode.StretchImage;
 
             _isLoaded = true;
         }
 
-        private void f_ListStudent_Shown(object sender, EventArgs e) => LoadData();
+        private void f_ListHR_Shown(object sender, EventArgs e) => LoadData();
 
-        // ================= LOAD DATA =================
         private void LoadData()
         {
             try
@@ -51,8 +50,7 @@ namespace Project_Group6.UI
                 string gender = cboGender.SelectedItem?.ToString();
                 string sort = cboSort.SelectedItem?.ToString();
 
-                // Schema mới: cột ID thay MSSV, không có HomeTown
-                string query = "SELECT * FROM Student WHERE 1=1";
+                string query = "SELECT * FROM HR WHERE 1=1";
 
                 if (!string.IsNullOrEmpty(keyword))
                     query += @" AND (ID LIKE @search
@@ -90,11 +88,11 @@ namespace Project_Group6.UI
 
                     var dt = new DataTable();
                     new SqlDataAdapter(cmd).Fill(dt);
-                    dgvStudents.DataSource = dt;
-                    LoginForm.UIStyleHelper.StyleDataGridView(dgvStudents);
+                    dgvHR.DataSource = dt;
+                    UIStyleHelper.StyleDataGridView(dgvHR);
 
-                    if (dgvStudents.Columns["Picture"] != null)
-                        dgvStudents.Columns["Picture"].Visible = false;
+                    if (dgvHR.Columns["Picture"] != null)
+                        dgvHR.Columns["Picture"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -118,14 +116,12 @@ namespace Project_Group6.UI
             if (_isLoaded) LoadData();
         }
 
-        // ================= CLICK ROW =================
-        private void dgvStudents_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvHR_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            var row = dgvStudents.Rows[e.RowIndex];
+            var row = dgvHR.Rows[e.RowIndex];
 
-            // Schema mới: cột ID thay MSSV
             txtID.Text = row.Cells["ID"].Value?.ToString();
             txtFirstName.Text = row.Cells["FirstName"].Value?.ToString();
             txtLastName.Text = row.Cells["LastName"].Value?.ToString();
@@ -136,80 +132,132 @@ namespace Project_Group6.UI
             cboGenderChoose.Text = row.Cells["Gender"].Value?.ToString();
             txtPhone.Text = row.Cells["Phone"].Value?.ToString();
             txtAddress.Text = row.Cells["Address"].Value?.ToString();
-            // Không còn HomeTown
             txtEmail.Text = row.Cells["Email"].Value?.ToString();
 
-            txtID.Enabled = false;   // Không cho sửa ID
-
-            // Load ảnh
+            // Load photo
             var picCell = row.Cells["Picture"].Value;
             if (picCell != null && picCell != DBNull.Value)
             {
-                byte[] img = (byte[])picCell;
-                picStudent.Image = Image.FromStream(new MemoryStream(img));
+                hrImage = (byte[])picCell;
+                picHR.Image = Image.FromStream(new MemoryStream(hrImage));
             }
             else
             {
-                picStudent.Image = null;
+                picHR.Image = null;
+                hrImage = null;
             }
         }
 
-        // ================= DELETE =================
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtID.Text))
             {
-                MessageBox.Show("Please select a student!");
+                MessageBox.Show("Please select an HR record!");
                 return;
             }
 
             if (MessageBox.Show(
-                    $"Are you sure to delete student {txtID.Text}?",
-                    "Delete Student",
+                    $"Are you sure to delete HR {txtID.Text}?",
+                    "Delete HR",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
 
-            bool ok = Student.DeleteStudent(txtID.Text);
+            string id = txtID.Text.Trim();
 
-            MessageBox.Show(ok ? "Deleted successfully!" : "Delete failed!");
+            bool ok = HR.DeleteHR(id);
+            if (ok)
+            {
+                // Delete corresponding login account
+                try
+                {
+                    using (var db = new My_DB())
+                    {
+                        db.openConnection();
+                        var cmd = new SqlCommand("DELETE FROM DataLoginForm WHERE UserName = @user", db.getConnection);
+                        cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = id;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch { }
 
-            if (ok) LoadData();
+                MessageBox.Show("Deleted successfully!");
+                LoadData();
+                ClearFields();
+            }
+            else
+            {
+                MessageBox.Show("Delete failed! HR might be assigned to courses.");
+            }
         }
 
-        // ================= UPDATE =================
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            var st = new Student
+            if (string.IsNullOrEmpty(txtID.Text))
             {
-                // Schema mới: ID, FirstName, LastName, Address (không có Hometown)
-                ID = txtID.Text,
-                FirstName = txtFirstName.Text,
-                LastName = txtLastName.Text,
-                Dob = dtpDob.Value,
-                Gender = cboGenderChoose.Text,
-                Phone = txtPhone.Text,
-                Address = txtAddress.Text,
-                Email = txtEmail.Text
-            };
-
-            if (picStudent.Image != null)
-            {
-                using var ms = new MemoryStream();
-                picStudent.Image.Save(ms, picStudent.Image.RawFormat);
-                st.Picture = ms.ToArray();
+                MessageBox.Show("Please select an HR record to update!");
+                return;
             }
 
-            bool ok = st.EditStudent();
-            MessageBox.Show(ok ? "Updated successfully!" : "Update failed!");
+            var updatedHr = new HR
+            {
+                ID = txtID.Text,
+                FirstName = txtFirstName.Text.Trim(),
+                LastName = txtLastName.Text.Trim(),
+                Dob = dtpDob.Value,
+                Gender = cboGenderChoose.Text,
+                Phone = txtPhone.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
+                Email = txtEmail.Text.Trim(),
+                Picture = hrImage
+            };
 
-            if (ok) LoadData();
+            bool ok = updatedHr.EditHR();
+            if (ok)
+            {
+                // Also update email in DataLoginForm
+                try
+                {
+                    using (var db = new My_DB())
+                    {
+                        db.openConnection();
+                        var cmd = new SqlCommand("UPDATE DataLoginForm SET Email = @mail WHERE UserName = @user", db.getConnection);
+                        cmd.Parameters.Add("@mail", SqlDbType.VarChar).Value = updatedHr.Email;
+                        cmd.Parameters.Add("@user", SqlDbType.VarChar).Value = updatedHr.ID;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch { }
+
+                MessageBox.Show("Updated successfully!");
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Update failed!");
+            }
         }
 
-        // ================= CANCEL =================
-        private void btnCancel_Click(object sender, EventArgs e) => this.Close();
+        private void ClearFields()
+        {
+            txtID.Clear();
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            txtPhone.Clear();
+            txtAddress.Clear();
+            txtEmail.Clear();
+            dtpDob.Value = DateTime.Now;
+            cboGenderChoose.SelectedIndex = 0;
+            picHR.Image = null;
+            hrImage = null;
+        }
 
-        // ================= EDIT IMAGE =================
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
         private void btnEditImage_Click(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog
@@ -219,9 +267,8 @@ namespace Project_Group6.UI
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                studentImage = File.ReadAllBytes(ofd.FileName);
-                picStudent.Image = Image.FromStream(new MemoryStream(studentImage));
-                MessageBox.Show("Image loaded: " + studentImage.Length + " bytes");
+                hrImage = File.ReadAllBytes(ofd.FileName);
+                picHR.Image = Image.FromStream(new MemoryStream(hrImage));
             }
         }
     }

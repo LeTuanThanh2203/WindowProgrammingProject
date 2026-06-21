@@ -245,198 +245,7 @@ namespace LoginForm
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 9.5F);
             lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
-            lblTotal.Location = new Point(444, 9);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(122, 21);
-            lblTotal.TabIndex = 3;
-            lblTotal.Text = "Total Students: 0";
-            // 
-            // pnlPagination
-            // 
-            pnlPagination.Controls.Add(cboPageSize);
-            pnlPagination.Controls.Add(btnFirst);
-            pnlPagination.Controls.Add(btnPrev);
-            pnlPagination.Controls.Add(lblPageInfo);
-            pnlPagination.Controls.Add(btnNext);
-            pnlPagination.Controls.Add(btnLast);
-            pnlPagination.Dock = DockStyle.Right;
-            pnlPagination.Location = new Point(846, 12);
-            pnlPagination.Name = "pnlPagination";
-            pnlPagination.Size = new Size(380, 44);
-            pnlPagination.TabIndex = 4;
-            // 
-            // cboPageSize
-            // 
-            cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
-            lblSubtitle.TabIndex = 1;
-            lblSubtitle.Text = "University Academic Management System";
-            // 
-            // pnlToolbar
-            // 
-            pnlToolbar.BackColor = Color.White;
-            pnlToolbar.Controls.Add(label1);
-            pnlToolbar.Controls.Add(cboClass);
-            pnlToolbar.Controls.Add(label2);
-            pnlToolbar.Controls.Add(cboAcademicYear);
-            pnlToolbar.Controls.Add(label3);
-            pnlToolbar.Controls.Add(cboSemester);
-            pnlToolbar.Dock = DockStyle.Top;
-            pnlToolbar.Location = new Point(0, 80);
-            pnlToolbar.Name = "pnlToolbar";
-            pnlToolbar.Padding = new Padding(16, 12, 16, 8);
-            pnlToolbar.Size = new Size(1250, 56);
-            pnlToolbar.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 9.5F);
-            label1.ForeColor = Color.FromArgb(80, 80, 90);
-            label1.Location = new Point(16, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Class:";
-            // 
-            // cboClass
-            // 
-            cboClass.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboClass.Font = new Font("Segoe UI", 9.5F);
-            cboClass.Location = new Point(70, 14);
-            cboClass.Name = "cboClass";
-            cboClass.Size = new Size(320, 29);
-            cboClass.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 9.5F);
-            label2.ForeColor = Color.FromArgb(80, 80, 90);
-            label2.Location = new Point(410, 18);
-            label2.Name = "label2";
-            label2.Size = new Size(46, 21);
-            label2.TabIndex = 2;
-            label2.Text = "Year:";
-            // 
-            // cboAcademicYear
-            // 
-            cboAcademicYear.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboAcademicYear.Font = new Font("Segoe UI", 9.5F);
-            cboAcademicYear.Location = new Point(460, 14);
-            cboAcademicYear.Name = "cboAcademicYear";
-            cboAcademicYear.Size = new Size(120, 29);
-            cboAcademicYear.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 9.5F);
-            label3.ForeColor = Color.FromArgb(80, 80, 90);
-            label3.Location = new Point(600, 18);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 21);
-            label3.TabIndex = 4;
-            label3.Text = "Semester:";
-            // 
-            // cboSemester
-            // 
-            cboSemester.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboSemester.Font = new Font("Segoe UI", 9.5F);
-            cboSemester.Location = new Point(680, 14);
-            cboSemester.Name = "cboSemester";
-            cboSemester.Size = new Size(120, 29);
-            cboSemester.TabIndex = 5;
-            // 
-            // pnlGrid
-            // 
-            pnlGrid.BackColor = Color.FromArgb(245, 247, 250);
-            pnlGrid.Controls.Add(dgvStudent);
-            pnlGrid.Dock = DockStyle.Fill;
-            pnlGrid.Location = new Point(0, 136);
-            pnlGrid.Name = "pnlGrid";
-            pnlGrid.Padding = new Padding(16, 12, 16, 8);
-            pnlGrid.Size = new Size(1250, 496);
-            pnlGrid.TabIndex = 0;
-            // 
-            // dgvStudent
-            // 
-            dgvStudent.AllowUserToResizeColumns = false;
-            dgvStudent.AllowUserToResizeRows = false;
-            dgvStudent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvStudent.ColumnHeadersHeight = 29;
-            dgvStudent.Dock = DockStyle.Fill;
-            dgvStudent.Location = new Point(16, 12);
-            dgvStudent.Name = "dgvStudent";
-            dgvStudent.RowHeadersWidth = 51;
-            dgvStudent.Size = new Size(1218, 476);
-            dgvStudent.TabIndex = 0;
-            // 
-            // pnlBottom
-            // 
-            pnlBottom.BackColor = Color.White;
-            pnlBottom.Controls.Add(btnAdd);
-            pnlBottom.Controls.Add(btnReset);
-            pnlBottom.Controls.Add(btnExport);
-            pnlBottom.Controls.Add(lblTotal);
-            pnlBottom.Controls.Add(pnlPagination);
-            pnlBottom.Dock = DockStyle.Bottom;
-            pnlBottom.Location = new Point(0, 632);
-            pnlBottom.Name = "pnlBottom";
-            pnlBottom.Padding = new Padding(24, 12, 24, 12);
-            pnlBottom.Size = new Size(1250, 68);
-            pnlBottom.TabIndex = 1;
-            // 
-            // btnAdd
-            // 
-            btnAdd.BackColor = Color.FromArgb(10, 61, 120);
-            btnAdd.Cursor = Cursors.Hand;
-            btnAdd.FlatAppearance.BorderSize = 0;
-            btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Segoe UI Semibold", 9.5F);
-            btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(24, 6);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(152, 42);
-            btnAdd.TabIndex = 0;
-            btnAdd.Text = "💾  Save Changes";
-            btnAdd.UseVisualStyleBackColor = false;
-            // 
-            // btnReset
-            // 
-            btnReset.BackColor = Color.White;
-            btnReset.Cursor = Cursors.Hand;
-            btnReset.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
-            btnReset.FlatStyle = FlatStyle.Flat;
-            btnReset.Font = new Font("Segoe UI", 9.5F);
-            btnReset.ForeColor = Color.FromArgb(60, 70, 85);
-            btnReset.Location = new Point(182, 7);
-            btnReset.Name = "btnReset";
-            btnReset.Size = new Size(110, 42);
-            btnReset.TabIndex = 1;
-            btnReset.Text = "↺  Reset";
-            btnReset.UseVisualStyleBackColor = false;
-            // 
-            // btnExport
-            // 
-            btnExport.BackColor = Color.White;
-            btnExport.Cursor = Cursors.Hand;
-            btnExport.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
-            btnExport.FlatStyle = FlatStyle.Flat;
-            btnExport.Font = new Font("Segoe UI", 9.5F);
-            btnExport.ForeColor = Color.FromArgb(60, 70, 85);
-            btnExport.Location = new Point(302, 7);
-            btnExport.Name = "btnExport";
-            btnExport.Size = new Size(110, 42);
-            btnExport.TabIndex = 2;
-            btnExport.Text = "⭳  Export";
-            btnExport.UseVisualStyleBackColor = false;
-            // 
-            // lblTotal
-            // 
-            lblTotal.AutoSize = true;
-            lblTotal.Font = new Font("Segoe UI", 9.5F);
-            lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
-            lblTotal.Location = new Point(444, 9);
+            lblTotal.Location = new Point(444, 15);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(122, 21);
             lblTotal.TabIndex = 3;
@@ -460,43 +269,45 @@ namespace LoginForm
             // 
             cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPageSize.Font = new Font("Segoe UI", 9.5F);
-            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Location = new Point(10, 7);
             cboPageSize.Name = "cboPageSize";
             cboPageSize.Size = new Size(60, 29);
             cboPageSize.TabIndex = 0;
             // 
             // btnFirst
             // 
-            btnFirst.Font = new Font("Segoe UI", 9F);
             btnFirst.BackColor = Color.White;
-            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
-            btnFirst.FlatStyle = FlatStyle.Flat;
-            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnFirst.Cursor = Cursors.Hand;
-            btnFirst.Location = new Point(80, 17);
+            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnFirst.FlatStyle = FlatStyle.Flat;
+            btnFirst.Font = new Font("Segoe UI", 9F);
+            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
+            btnFirst.Location = new Point(80, 5);
             btnFirst.Name = "btnFirst";
             btnFirst.Size = new Size(36, 32);
             btnFirst.TabIndex = 1;
             btnFirst.Text = "|◀";
+            btnFirst.UseVisualStyleBackColor = false;
             // 
             // btnPrev
             // 
-            btnPrev.Font = new Font("Segoe UI", 9F);
             btnPrev.BackColor = Color.White;
-            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
-            btnPrev.FlatStyle = FlatStyle.Flat;
-            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnPrev.Cursor = Cursors.Hand;
-            btnPrev.Location = new Point(120, 17);
+            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnPrev.FlatStyle = FlatStyle.Flat;
+            btnPrev.Font = new Font("Segoe UI", 9F);
+            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
+            btnPrev.Location = new Point(120, 5);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(36, 32);
             btnPrev.TabIndex = 2;
             btnPrev.Text = "◀";
+            btnPrev.UseVisualStyleBackColor = false;
             // 
             // lblPageInfo
             // 
             lblPageInfo.Font = new Font("Segoe UI", 9.5F);
-            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Location = new Point(162, 9);
             lblPageInfo.Name = "lblPageInfo";
             lblPageInfo.Size = new Size(120, 20);
             lblPageInfo.TabIndex = 3;
@@ -505,31 +316,33 @@ namespace LoginForm
             // 
             // btnNext
             // 
-            btnNext.Font = new Font("Segoe UI", 9F);
             btnNext.BackColor = Color.White;
-            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
-            btnNext.FlatStyle = FlatStyle.Flat;
-            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnNext.Cursor = Cursors.Hand;
-            btnNext.Location = new Point(290, 17);
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 9F);
+            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
+            btnNext.Location = new Point(290, 5);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(36, 32);
             btnNext.TabIndex = 4;
             btnNext.Text = "▶";
+            btnNext.UseVisualStyleBackColor = false;
             // 
             // btnLast
             // 
-            btnLast.Font = new Font("Segoe UI", 9F);
             btnLast.BackColor = Color.White;
-            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
-            btnLast.FlatStyle = FlatStyle.Flat;
-            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
             btnLast.Cursor = Cursors.Hand;
-            btnLast.Location = new Point(330, 17);
+            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnLast.FlatStyle = FlatStyle.Flat;
+            btnLast.Font = new Font("Segoe UI", 9F);
+            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
+            btnLast.Location = new Point(330, 5);
             btnLast.Name = "btnLast";
             btnLast.Size = new Size(36, 32);
             btnLast.TabIndex = 5;
             btnLast.Text = "▶|";
+            btnLast.UseVisualStyleBackColor = false;
             // 
             // f_EditScore
             // 

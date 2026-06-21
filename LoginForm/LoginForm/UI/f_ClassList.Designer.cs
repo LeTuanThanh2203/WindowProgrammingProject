@@ -231,43 +231,45 @@ namespace Project_Group6
             // 
             cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPageSize.Font = new Font("Segoe UI", 9.5F);
-            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Location = new Point(10, 7);
             cboPageSize.Name = "cboPageSize";
             cboPageSize.Size = new Size(60, 29);
             cboPageSize.TabIndex = 0;
             // 
             // btnFirst
             // 
-            btnFirst.Location = new Point(80, 17);
+            btnFirst.BackColor = Color.White;
+            btnFirst.Cursor = Cursors.Hand;
+            btnFirst.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnFirst.FlatStyle = FlatStyle.Flat;
+            btnFirst.Font = new Font("Segoe UI", 9F);
+            btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
+            btnFirst.Location = new Point(80, 5);
             btnFirst.Name = "btnFirst";
             btnFirst.Size = new Size(36, 32);
             btnFirst.TabIndex = 1;
             btnFirst.Text = "|◀";
-            btnFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnFirst.BackColor = System.Drawing.Color.White;
-            btnFirst.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnFirst.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btnFirst.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnFirst.UseVisualStyleBackColor = false;
             // 
             // btnPrev
             // 
-            btnPrev.Location = new Point(120, 17);
+            btnPrev.BackColor = Color.White;
+            btnPrev.Cursor = Cursors.Hand;
+            btnPrev.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnPrev.FlatStyle = FlatStyle.Flat;
+            btnPrev.Font = new Font("Segoe UI", 9F);
+            btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
+            btnPrev.Location = new Point(120, 5);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(36, 32);
             btnPrev.TabIndex = 2;
             btnPrev.Text = "◀";
-            btnPrev.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnPrev.BackColor = System.Drawing.Color.White;
-            btnPrev.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnPrev.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnPrev.UseVisualStyleBackColor = false;
             // 
             // lblPageInfo
             // 
             lblPageInfo.Font = new Font("Segoe UI", 9.5F);
-            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Location = new Point(162, 9);
             lblPageInfo.Name = "lblPageInfo";
             lblPageInfo.Size = new Size(120, 20);
             lblPageInfo.TabIndex = 3;
@@ -276,31 +278,33 @@ namespace Project_Group6
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(290, 17);
+            btnNext.BackColor = Color.White;
+            btnNext.Cursor = Cursors.Hand;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 9F);
+            btnNext.ForeColor = Color.FromArgb(60, 70, 85);
+            btnNext.Location = new Point(290, 5);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(36, 32);
             btnNext.TabIndex = 4;
             btnNext.Text = "▶";
-            btnNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnNext.BackColor = System.Drawing.Color.White;
-            btnNext.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnNext.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnNext.UseVisualStyleBackColor = false;
             // 
             // btnLast
             // 
-            btnLast.Location = new Point(330, 17);
+            btnLast.BackColor = Color.White;
+            btnLast.Cursor = Cursors.Hand;
+            btnLast.FlatAppearance.BorderColor = Color.FromArgb(200, 205, 215);
+            btnLast.FlatStyle = FlatStyle.Flat;
+            btnLast.Font = new Font("Segoe UI", 9F);
+            btnLast.ForeColor = Color.FromArgb(60, 70, 85);
+            btnLast.Location = new Point(330, 5);
             btnLast.Name = "btnLast";
             btnLast.Size = new Size(36, 32);
             btnLast.TabIndex = 5;
             btnLast.Text = "▶|";
-            btnLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            btnLast.BackColor = System.Drawing.Color.White;
-            btnLast.ForeColor = System.Drawing.Color.FromArgb(60, 70, 85);
-            btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnLast.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(200, 205, 215);
-            btnLast.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnLast.UseVisualStyleBackColor = false;
             // 
             // f_ClassList
             // 

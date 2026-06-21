@@ -62,7 +62,7 @@ namespace LoginForm
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(24, 10);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(270, 37);
+            lblTitle.Size = new Size(272, 37);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Course Management";
             // 
@@ -242,7 +242,7 @@ namespace LoginForm
             // 
             cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPageSize.Font = new Font("Segoe UI", 9.5F);
-            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Location = new Point(10, 7);
             cboPageSize.Name = "cboPageSize";
             cboPageSize.Size = new Size(60, 29);
             cboPageSize.TabIndex = 0;
@@ -255,7 +255,7 @@ namespace LoginForm
             btnFirst.FlatStyle = FlatStyle.Flat;
             btnFirst.Font = new Font("Segoe UI", 9F);
             btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
-            btnFirst.Location = new Point(80, 17);
+            btnFirst.Location = new Point(80, 6);
             btnFirst.Name = "btnFirst";
             btnFirst.Size = new Size(36, 32);
             btnFirst.TabIndex = 1;
@@ -270,7 +270,7 @@ namespace LoginForm
             btnPrev.FlatStyle = FlatStyle.Flat;
             btnPrev.Font = new Font("Segoe UI", 9F);
             btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
-            btnPrev.Location = new Point(120, 17);
+            btnPrev.Location = new Point(120, 6);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(36, 32);
             btnPrev.TabIndex = 2;
@@ -280,7 +280,7 @@ namespace LoginForm
             // lblPageInfo
             // 
             lblPageInfo.Font = new Font("Segoe UI", 9.5F);
-            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Location = new Point(162, 9);
             lblPageInfo.Name = "lblPageInfo";
             lblPageInfo.Size = new Size(120, 20);
             lblPageInfo.TabIndex = 3;
@@ -295,7 +295,7 @@ namespace LoginForm
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 9F);
             btnNext.ForeColor = Color.FromArgb(60, 70, 85);
-            btnNext.Location = new Point(290, 17);
+            btnNext.Location = new Point(290, 6);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(36, 32);
             btnNext.TabIndex = 4;
@@ -310,7 +310,7 @@ namespace LoginForm
             btnLast.FlatStyle = FlatStyle.Flat;
             btnLast.Font = new Font("Segoe UI", 9F);
             btnLast.ForeColor = Color.FromArgb(60, 70, 85);
-            btnLast.Location = new Point(330, 17);
+            btnLast.Location = new Point(330, 6);
             btnLast.Name = "btnLast";
             btnLast.Size = new Size(36, 32);
             btnLast.TabIndex = 5;
@@ -333,6 +333,7 @@ namespace LoginForm
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Course Management — Academic System";
             pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             pnlToolbar.ResumeLayout(false);
             pnlToolbar.PerformLayout();
             pnlGrid.ResumeLayout(false);

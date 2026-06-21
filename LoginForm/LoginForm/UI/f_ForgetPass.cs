@@ -46,8 +46,9 @@ namespace LoginForm
                 lbl_Time.Text =
                     "OTP Expired!";
 
-                // [BUG5] Re-enable nút OTP khi timer hết
+                // Re-enable nút OTP khi timer hết, và trả lại text gốc để có thể gửi lại
                 bt_OTP.Enabled = true;
+                bt_OTP.Text = "⊳  Send";
             }
         }
         private void f_ForgetPass_Load(
@@ -67,7 +68,7 @@ namespace LoginForm
             txt_ReenterPass.TextChanged +=
                 txt_ReenterPass_TextChanged;
 
-            // [BUG4] Dispose timer khi form đóng
+            // Dispose timer khi form đóng
             this.FormClosing += (s, args) =>
             {
                 timer.Stop();
@@ -139,6 +140,18 @@ namespace LoginForm
             string password =
                 txt_Password.Text;
 
+            // Rỗng -> không hiện cảnh báo đỏ ngay khi form vừa load / vừa xóa hết
+            if (password.Length == 0)
+            {
+                lbl_CheckPassword.Text = "";
+                UpdateStrengthBar(0);
+
+                if (txt_ReenterPass.Text.Length > 0)
+                    txt_ReenterPass_TextChanged(txt_ReenterPass, EventArgs.Empty);
+
+                return;
+            }
+
             if (password.Length < 8)
             {
                 lbl_CheckPassword.Text =
@@ -146,6 +159,11 @@ namespace LoginForm
 
                 lbl_CheckPassword.ForeColor =
                     Color.Red;
+
+                UpdateStrengthBar(1);
+
+                if (txt_ReenterPass.Text.Length > 0)
+                    txt_ReenterPass_TextChanged(txt_ReenterPass, EventArgs.Empty);
 
                 return;
             }
@@ -163,21 +181,25 @@ namespace LoginForm
                 Regex.IsMatch(password,
                 @"[\W_]");
 
-            if (hasUpper &&
-                hasLower &&
-                hasNumber &&
-                hasSpecial)
+            int score = (hasUpper ? 1 : 0) + (hasLower ? 1 : 0)
+                      + (hasNumber ? 1 : 0) + (hasSpecial ? 1 : 0);
+
+            UpdateStrengthBar(score);
+
+            if (score == 4)
             {
                 lbl_CheckPassword.Text =
-                    "Strong password";
+                    "✓  Strong password";
 
                 lbl_CheckPassword.ForeColor =
                     Color.Green;
             }
             else
             {
+                // Báo rõ là sẽ KHÔNG được chấp nhận khi submit,
+                // tránh người dùng hiểu nhầm "yếu" vẫn cho qua được
                 lbl_CheckPassword.Text =
-                    "Weak password";
+                    "Weak — must include uppercase, number & symbol";
 
                 lbl_CheckPassword.ForeColor =
                     Color.Orange;
@@ -189,6 +211,22 @@ namespace LoginForm
                 txt_ReenterPass_TextChanged(
                     txt_ReenterPass, EventArgs.Empty);
             }
+        }
+
+        // ── Thanh hiển thị độ mạnh mật khẩu (đồng bộ với bên Register) ────────
+        private void UpdateStrengthBar(int score)
+        {
+            int barWidth = (int)(pnStrengthBar.Width * score / 4.0);
+            Color barColor = score switch
+            {
+                1 => Color.FromArgb(192, 57, 43),   // đỏ   – yếu
+                2 => Color.FromArgb(211, 84, 0),    // cam  – trung bình
+                3 => Color.FromArgb(243, 156, 18),  // vàng – khá
+                4 => Color.FromArgb(59, 109, 17),   // xanh – mạnh
+                _ => Color.Transparent
+            };
+            pnStrengthFill.Width = barWidth;
+            pnStrengthFill.BackColor = barColor;
         }
         private void txt_ReenterPass_TextChanged(
     object sender,
@@ -243,7 +281,7 @@ namespace LoginForm
                 return;
             }
 
-            // [BUG5] Disable ngay để chống spam bấm nhiều lần
+            // Disable ngay để chống spam bấm nhiều lần
             bt_OTP.Enabled = false;
 
             // Hiển thị email đã mã hóa
@@ -269,6 +307,9 @@ namespace LoginForm
                         "OTP Sent!");
 
                     timer.Start();
+
+                    // Đổi text để người dùng biết đã gửi và có thể gửi lại sau khi hết hạn
+                    bt_OTP.Text = "Resend";
                     // bt_OTP giữ disable, sẽ enable lại khi timer hết (Timer_Tick)
                 }
                 else
@@ -276,13 +317,13 @@ namespace LoginForm
                     MessageBox.Show(
                         "Send Failed!");
 
-                    // [BUG5] Gửi thất bại -> enable lại để user thử lại
+                    // Gửi thất bại -> enable lại để user thử lại
                     bt_OTP.Enabled = true;
                 }
             }
             else
             {
-                // [BUG5] User chọn No -> enable lại
+                // User chọn No -> enable lại
                 bt_OTP.Enabled = true;
             }
         }
@@ -364,9 +405,9 @@ namespace LoginForm
 
                 if (!(hasUpper && hasLower && hasNumber && hasSpecial))
                 {
-                    lbl_CheckPassword.Text = "Weak password";
+                    lbl_CheckPassword.Text = "Weak — must include uppercase, number & symbol";
                     lbl_CheckPassword.ForeColor = Color.Orange;
-                    // Vẫn cho phép nếu chỉ là cảnh báo, hoặc coi là invalid tùy quy chuẩn. Ở đây coi như invalid để bắt buộc mật khẩu mạnh.
+                    // Bắt buộc mật khẩu mạnh mới cho đổi
                     isValid = false;
                 }
             }
@@ -428,6 +469,9 @@ namespace LoginForm
 
                 if (result > 0)
                 {
+                    // Dừng timer OTP vì đã đổi mật khẩu thành công, không cần đếm ngược nữa
+                    timer.Stop();
+
                     MessageBox.Show("Password Changed successfully!");
                     f_LoginForm login = new f_LoginForm();
                     login.Show();
@@ -443,7 +487,7 @@ namespace LoginForm
     object sender,
     EventArgs e)
         {
-            // [BUG4] Stop timer trước khi đóng form
+            // Stop timer trước khi đóng form
             timer.Stop();
 
             f_LoginForm login = new f_LoginForm();
@@ -477,7 +521,6 @@ namespace LoginForm
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
     }
 
 }

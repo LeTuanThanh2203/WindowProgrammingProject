@@ -1,7 +1,9 @@
 using Project_Group6.Models;
+using Project_Group6.UI;
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +14,7 @@ namespace LoginForm
         private readonly Score _score = new();
         private DataTable _currentTable;
         private PaginationHelper _pager;
+        private readonly ReportExportService _exportService = new ReportExportService();
 
         public f_EditScore()
         {
@@ -23,9 +26,10 @@ namespace LoginForm
             cboSemester.SelectedIndexChanged += Filter_Changed;
             btnAdd.Click += btnAdd_Click;
             btnReset.Click += btnReset_Click;
-   
+            btnExport.Click += btnExport_Click;      // ← wire export
 
             dgvStudent.CellEndEdit += dgvStudent_CellEndEdit;
+            dgvStudent.DataBindingComplete += dgvStudent_DataBindingComplete;
         }
 
         // ================= LOAD =================
@@ -57,7 +61,6 @@ namespace LoginForm
         // ================= SETUP =================
         private void LoadClasses()
         {
-            // GetAllClasses() trong Score JOIN Course, trả về ClassID + ClassDisplay
             var dt = _score.GetAllClasses();
 
             var allRow = dt.NewRow();
@@ -76,7 +79,6 @@ namespace LoginForm
             cboAcademicYear.Items.Clear();
             cboAcademicYear.Items.Add("-- All --");
 
-            // AcademicYear lấy từ bảng Class (Score không có cột này)
             var dt = new Class().GetDistinctAcademicYears();
             foreach (DataRow row in dt.Rows)
                 cboAcademicYear.Items.Add(row[0].ToString());
@@ -88,7 +90,6 @@ namespace LoginForm
         {
             cboSemester.Items.Clear();
             cboSemester.Items.Add("-- All --");
-            // Schema mới: Semester là NVARCHAR(20)
             cboSemester.Items.Add("HK1");
             cboSemester.Items.Add("HK2");
             cboSemester.Items.Add("Summer");
@@ -108,8 +109,7 @@ namespace LoginForm
 
             foreach (DataGridViewColumn col in dgvStudent.Columns)
             {
-                bool isEditable = col.Name == "Process Grade"
-                               || col.Name == "Final Grade";
+                bool isEditable = col.Name == "Process Grade" || col.Name == "Final Grade";
                 col.ReadOnly = !isEditable;
                 col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -131,7 +131,6 @@ namespace LoginForm
             {
                 if (row.IsNewRow) continue;
 
-                // Schema mới: cột tên "Grade" (Overview từ trigger)
                 string grade = row.Cells["Grade"].Value?.ToString() ?? "";
                 var cell = row.Cells["Grade"];
 
@@ -154,7 +153,6 @@ namespace LoginForm
 
             bool filterClass = !string.IsNullOrEmpty(classID);
             bool filterYear = academicYear != "-- All --" && !string.IsNullOrEmpty(academicYear);
-            // Schema mới: Semester là string (HK1/HK2/Summer)
             bool filterSem = semStr != "-- All --" && !string.IsNullOrEmpty(semStr);
 
             DataTable dt = filterClass
@@ -176,6 +174,117 @@ namespace LoginForm
 
             _currentTable = dt;
             _pager.SetData(dt);
+        }
+
+        // ================= GET EXPORT DATA =================
+        private DataTable GetExportData()
+        {
+            // Dùng _currentTable (đã filter) nhưng bỏ các cột không cần thiết khi in
+            if (_currentTable == null || _currentTable.Rows.Count == 0)
+                return null;
+
+            // Tạo bản sao với tên cột đẹp hơn để xuất
+            string[] skipCols = { };   // Có thể loại trừ cột nào không muốn xuất ở đây
+
+            DataTable exportDt = new DataTable();
+
+            foreach (DataColumn col in _currentTable.Columns)
+            {
+                if (Array.IndexOf(skipCols, col.ColumnName) >= 0) continue;
+                exportDt.Columns.Add(col.ColumnName, col.DataType);
+            }
+
+            foreach (DataRow row in _currentTable.Rows)
+            {
+                DataRow newRow = exportDt.NewRow();
+                foreach (DataColumn col in exportDt.Columns)
+                    newRow[col.ColumnName] = row[col.ColumnName];
+                exportDt.Rows.Add(newRow);
+            }
+
+            return exportDt;
+        }
+
+        // ================= EXPORT =================
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable exportData = GetExportData();
+
+            if (exportData == null || exportData.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to export. Please apply a filter first.",
+                    "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Hỏi format xuất
+            using (var dlg = new ExportFormatDialog())
+            {
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                if (dlg.SelectedFormat == "PDF")
+                {
+                    using (var sfd = new SaveFileDialog())
+                    {
+                        sfd.Filter = "PDF Files|*.pdf";
+                        sfd.FileName = BuildFileName("pdf");
+                        if (sfd.ShowDialog() != DialogResult.OK) return;
+
+                        try
+                        {
+                            bool ok = _exportService.ExportScoresToPdf(
+                                exportData, sfd.FileName, Globals.Username);
+                            if (ok)
+                                MessageBox.Show("Export PDF successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Export PDF failed: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else // Excel
+                {
+                    using (var sfd = new SaveFileDialog())
+                    {
+                        sfd.Filter = "Excel Files|*.xlsx";
+                        sfd.FileName = BuildFileName("xlsx");
+                        if (sfd.ShowDialog() != DialogResult.OK) return;
+
+                        try
+                        {
+                            bool ok = _exportService.ExportScoresToExcel(exportData, sfd.FileName);
+                            if (ok)
+                                MessageBox.Show("Export Excel successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Export Excel failed: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Tạo tên file gợi ý dựa trên filter hiện tại
+        private string BuildFileName(string ext)
+        {
+            string classVal = cboClass.SelectedItem is DataRowView drv
+                ? drv["ClassDisplay"]?.ToString() ?? "All"
+                : "All";
+            string sem = cboSemester.SelectedItem?.ToString() ?? "All";
+            string year = cboAcademicYear.SelectedItem?.ToString() ?? "All";
+
+            // Dọn ký tự không hợp lệ cho tên file
+            classVal = classVal.Replace("--", "").Replace(" ", "_").Trim('_');
+            sem = sem.Replace("--", "").Replace(" ", "").Trim('-');
+            year = year.Replace("--", "").Replace(" ", "").Trim('-');
+
+            return $"Scores_{classVal}_{sem}_{year}.{ext}";
         }
 
         // ================= SAVE =================
@@ -202,46 +311,39 @@ namespace LoginForm
 
                 if (!string.IsNullOrEmpty(midVal))
                 {
-                    if (decimal.TryParse(midVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal m) ||
-                        decimal.TryParse(midVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out m))
+                    if (decimal.TryParse(midVal,
+                            System.Globalization.NumberStyles.Any,
+                            System.Globalization.CultureInfo.CurrentCulture, out decimal m) ||
+                        decimal.TryParse(midVal,
+                            System.Globalization.NumberStyles.Any,
+                            System.Globalization.CultureInfo.InvariantCulture, out m))
                     {
-                        if (m >= 0 && m <= 10)
-                            midterm = m;
-                        else
-                            isMidValid = false;
+                        if (m >= 0 && m <= 10) midterm = m;
+                        else isMidValid = false;
                     }
-                    else
-                    {
-                        isMidValid = false;
-                    }
+                    else isMidValid = false;
                 }
 
                 if (!string.IsNullOrEmpty(finalVal))
                 {
-                    if (decimal.TryParse(finalVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.CurrentCulture, out decimal f) ||
-                        decimal.TryParse(finalVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out f))
+                    if (decimal.TryParse(finalVal,
+                            System.Globalization.NumberStyles.Any,
+                            System.Globalization.CultureInfo.CurrentCulture, out decimal f) ||
+                        decimal.TryParse(finalVal,
+                            System.Globalization.NumberStyles.Any,
+                            System.Globalization.CultureInfo.InvariantCulture, out f))
                     {
-                        if (f >= 0 && f <= 10)
-                            final = f;
-                        else
-                            isFinalValid = false;
+                        if (f >= 0 && f <= 10) final = f;
+                        else isFinalValid = false;
                     }
-                    else
-                    {
-                        isFinalValid = false;
-                    }
+                    else isFinalValid = false;
                 }
 
-                if (!isMidValid || !isFinalValid)
-                {
-                    failCount++;
-                    continue;
-                }
+                if (!isMidValid || !isFinalValid) { failCount++; continue; }
 
-                // Schema mới: Score PK = (ID, ClassID) — không có Semester/AcademicYear
                 var s = new Score
                 {
-                    ID = row.Cells["ID"].Value?.ToString(),    // thay MSSV
+                    ID = row.Cells["ID"].Value?.ToString(),
                     ClassID = row.Cells["ClassID"].Value?.ToString(),
                     MidtermScore = midterm,
                     FinalScore = final
@@ -268,18 +370,12 @@ namespace LoginForm
             if (dgvStudent.CurrentRow == null) return;
 
             var row = dgvStudent.CurrentRow;
-            // Schema mới: cột ID thay MSSV
             string id = row.Cells["ID"].Value?.ToString();
             string classID = row.Cells["ClassID"].Value?.ToString();
 
-            if (string.IsNullOrEmpty(id))
-            {
-                MessageBox.Show("Select a row first!");
-                return;
-            }
+            if (string.IsNullOrEmpty(id)) { MessageBox.Show("Select a row first!"); return; }
 
-            if (MessageBox.Show(
-                    $"Reset score for {id} - {classID}?",
+            if (MessageBox.Show($"Reset score for {id} - {classID}?",
                     "Confirm", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
 
@@ -295,7 +391,7 @@ namespace LoginForm
                 MessageBox.Show("Reset failed!");
         }
 
-        // ================= VALIDATE =================
+        // ================= VALIDATE CELL =================
         private void dgvStudent_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var col = dgvStudent.Columns[e.ColumnIndex];
@@ -338,33 +434,29 @@ namespace LoginForm
                 cell.Style.ForeColor = Color.Black;
                 cell.ErrorText = "";
 
-                // TotalScore là computed column — chỉ preview, không ghi
                 var row = dgvStudent.Rows[e.RowIndex];
-
                 string midVal = row.Cells["Process Grade"].Value?.ToString()?.Trim() ?? "";
                 string finVal = row.Cells["Final Grade"].Value?.ToString()?.Trim() ?? "";
 
-                decimal mid = 0;
-                decimal fin = 0;
+                decimal mid = 0, fin = 0;
+                bool midOk = !string.IsNullOrEmpty(midVal) &&
+                             (decimal.TryParse(midVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.CurrentCulture, out mid) ||
+                              decimal.TryParse(midVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture, out mid));
 
-                bool midOk = !string.IsNullOrEmpty(midVal) && (decimal.TryParse(midVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.CurrentCulture, out mid) ||
-                    decimal.TryParse(midVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture, out mid));
+                bool finOk = !string.IsNullOrEmpty(finVal) &&
+                             (decimal.TryParse(finVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.CurrentCulture, out fin) ||
+                              decimal.TryParse(finVal,
+                                 System.Globalization.NumberStyles.Any,
+                                 System.Globalization.CultureInfo.InvariantCulture, out fin));
 
-                bool finOk = !string.IsNullOrEmpty(finVal) && (decimal.TryParse(finVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.CurrentCulture, out fin) ||
-                    decimal.TryParse(finVal,
-                    System.Globalization.NumberStyles.Any,
-                    System.Globalization.CultureInfo.InvariantCulture, out fin));
-
-                // Preview tổng: 40% giữa kỳ + 60% cuối kỳ (theo trigger TR_Score_Update)
                 if (midOk && finOk && dgvStudent.Columns.Contains("Total Grade"))
-                    row.Cells["Total Grade"].Value =
-                        Math.Round(mid * 0.4m + fin * 0.6m, 2);
+                    row.Cells["Total Grade"].Value = Math.Round(mid * 0.4m + fin * 0.6m, 2);
                 else if (dgvStudent.Columns.Contains("Total Grade"))
                     row.Cells["Total Grade"].Value = DBNull.Value;
             }

@@ -118,8 +118,8 @@ namespace LoginForm
                 ("⚡", "Lệnh", "Bạn có thể thực hiện những lệnh gì?"),
             };
 
-            // Thêm chip dành riêng cho Admin/Manager
-            if (role == "Admin" || role == "Manager")
+            // Thêm chip dành riêng cho Admin/HR
+            if (role == "Admin" || role == "HR")
             {
                 chips.Insert(0, ("👥", "SV mới", "Thêm sinh viên mới vào hệ thống"));
                 chips.Add(("📋", "Duyệt TK", "Mở trang duyệt tài khoản"));

@@ -2,30 +2,17 @@ namespace LoginForm
 {
     partial class f_Assign
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             pnlHeader = new Panel();
@@ -37,16 +24,20 @@ namespace LoginForm
             txtHR_ID = new TextBox();
             lblHR_FirstName = new Label();
             txtHR_FirstName = new TextBox();
+            lblValidateFirstName = new Label();
             lblHR_LastName = new Label();
             txtHR_LastName = new TextBox();
+            lblValidateLastName = new Label();
             lblHR_Dob = new Label();
             dtpHR_Dob = new DateTimePicker();
             lblHR_Gender = new Label();
             cboHR_Gender = new ComboBox();
             lblHR_Phone = new Label();
             txtHR_Phone = new TextBox();
+            lblValidatePhone = new Label();
             lblHR_Email = new Label();
             txtHR_Email = new TextBox();
+            lblValidateEmail = new Label();
             lblHR_Address = new Label();
             txtHR_Address = new TextBox();
             picHR_Photo = new PictureBox();
@@ -128,16 +119,20 @@ namespace LoginForm
             pnlHR.Controls.Add(txtHR_ID);
             pnlHR.Controls.Add(lblHR_FirstName);
             pnlHR.Controls.Add(txtHR_FirstName);
+            pnlHR.Controls.Add(lblValidateFirstName);
             pnlHR.Controls.Add(lblHR_LastName);
             pnlHR.Controls.Add(txtHR_LastName);
+            pnlHR.Controls.Add(lblValidateLastName);
             pnlHR.Controls.Add(lblHR_Dob);
             pnlHR.Controls.Add(dtpHR_Dob);
             pnlHR.Controls.Add(lblHR_Gender);
             pnlHR.Controls.Add(cboHR_Gender);
             pnlHR.Controls.Add(lblHR_Phone);
             pnlHR.Controls.Add(txtHR_Phone);
+            pnlHR.Controls.Add(lblValidatePhone);
             pnlHR.Controls.Add(lblHR_Email);
             pnlHR.Controls.Add(txtHR_Email);
+            pnlHR.Controls.Add(lblValidateEmail);
             pnlHR.Controls.Add(lblHR_Address);
             pnlHR.Controls.Add(txtHR_Address);
             pnlHR.Controls.Add(picHR_Photo);
@@ -178,7 +173,8 @@ namespace LoginForm
             // 
             txtHR_ID.BorderStyle = BorderStyle.FixedSingle;
             txtHR_ID.Font = new Font("Segoe UI", 9.5F);
-            txtHR_ID.Location = new Point(16, 75);
+            txtHR_ID.Location = new Point(16, 72);
+            txtHR_ID.MaxLength = 20;
             txtHR_ID.Name = "txtHR_ID";
             txtHR_ID.Size = new Size(260, 29);
             txtHR_ID.TabIndex = 2;
@@ -188,7 +184,7 @@ namespace LoginForm
             lblHR_FirstName.AutoSize = true;
             lblHR_FirstName.Font = new Font("Segoe UI", 9.5F);
             lblHR_FirstName.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_FirstName.Location = new Point(16, 110);
+            lblHR_FirstName.Location = new Point(16, 108);
             lblHR_FirstName.Name = "lblHR_FirstName";
             lblHR_FirstName.Size = new Size(86, 21);
             lblHR_FirstName.TabIndex = 3;
@@ -198,17 +194,27 @@ namespace LoginForm
             // 
             txtHR_FirstName.BorderStyle = BorderStyle.FixedSingle;
             txtHR_FirstName.Font = new Font("Segoe UI", 9.5F);
-            txtHR_FirstName.Location = new Point(16, 135);
+            txtHR_FirstName.Location = new Point(16, 130);
             txtHR_FirstName.Name = "txtHR_FirstName";
             txtHR_FirstName.Size = new Size(260, 29);
             txtHR_FirstName.TabIndex = 4;
+            // 
+            // lblValidateFirstName
+            // 
+            lblValidateFirstName.AutoSize = true;
+            lblValidateFirstName.Font = new Font("Segoe UI", 8F);
+            lblValidateFirstName.ForeColor = Color.Transparent;
+            lblValidateFirstName.Location = new Point(16, 161);
+            lblValidateFirstName.Name = "lblValidateFirstName";
+            lblValidateFirstName.Size = new Size(0, 19);
+            lblValidateFirstName.TabIndex = 30;
             // 
             // lblHR_LastName
             // 
             lblHR_LastName.AutoSize = true;
             lblHR_LastName.Font = new Font("Segoe UI", 9.5F);
             lblHR_LastName.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_LastName.Location = new Point(16, 170);
+            lblHR_LastName.Location = new Point(16, 184);
             lblHR_LastName.Name = "lblHR_LastName";
             lblHR_LastName.Size = new Size(84, 21);
             lblHR_LastName.TabIndex = 5;
@@ -218,17 +224,27 @@ namespace LoginForm
             // 
             txtHR_LastName.BorderStyle = BorderStyle.FixedSingle;
             txtHR_LastName.Font = new Font("Segoe UI", 9.5F);
-            txtHR_LastName.Location = new Point(16, 195);
+            txtHR_LastName.Location = new Point(16, 206);
             txtHR_LastName.Name = "txtHR_LastName";
             txtHR_LastName.Size = new Size(260, 29);
             txtHR_LastName.TabIndex = 6;
+            // 
+            // lblValidateLastName
+            // 
+            lblValidateLastName.AutoSize = true;
+            lblValidateLastName.Font = new Font("Segoe UI", 8F);
+            lblValidateLastName.ForeColor = Color.Transparent;
+            lblValidateLastName.Location = new Point(16, 237);
+            lblValidateLastName.Name = "lblValidateLastName";
+            lblValidateLastName.Size = new Size(0, 19);
+            lblValidateLastName.TabIndex = 31;
             // 
             // lblHR_Dob
             // 
             lblHR_Dob.AutoSize = true;
             lblHR_Dob.Font = new Font("Segoe UI", 9.5F);
             lblHR_Dob.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_Dob.Location = new Point(16, 250);
+            lblHR_Dob.Location = new Point(16, 264);
             lblHR_Dob.Name = "lblHR_Dob";
             lblHR_Dob.Size = new Size(97, 21);
             lblHR_Dob.TabIndex = 7;
@@ -238,7 +254,7 @@ namespace LoginForm
             // 
             dtpHR_Dob.Font = new Font("Segoe UI", 9.5F);
             dtpHR_Dob.Format = DateTimePickerFormat.Short;
-            dtpHR_Dob.Location = new Point(16, 275);
+            dtpHR_Dob.Location = new Point(16, 286);
             dtpHR_Dob.Name = "dtpHR_Dob";
             dtpHR_Dob.Size = new Size(414, 29);
             dtpHR_Dob.TabIndex = 8;
@@ -248,7 +264,7 @@ namespace LoginForm
             lblHR_Gender.AutoSize = true;
             lblHR_Gender.Font = new Font("Segoe UI", 9.5F);
             lblHR_Gender.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_Gender.Location = new Point(16, 310);
+            lblHR_Gender.Location = new Point(16, 325);
             lblHR_Gender.Name = "lblHR_Gender";
             lblHR_Gender.Size = new Size(61, 21);
             lblHR_Gender.TabIndex = 9;
@@ -259,7 +275,7 @@ namespace LoginForm
             cboHR_Gender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboHR_Gender.Font = new Font("Segoe UI", 9.5F);
             cboHR_Gender.FormattingEnabled = true;
-            cboHR_Gender.Location = new Point(16, 335);
+            cboHR_Gender.Location = new Point(16, 347);
             cboHR_Gender.Name = "cboHR_Gender";
             cboHR_Gender.Size = new Size(414, 29);
             cboHR_Gender.TabIndex = 10;
@@ -269,7 +285,7 @@ namespace LoginForm
             lblHR_Phone.AutoSize = true;
             lblHR_Phone.Font = new Font("Segoe UI", 9.5F);
             lblHR_Phone.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_Phone.Location = new Point(16, 370);
+            lblHR_Phone.Location = new Point(16, 386);
             lblHR_Phone.Name = "lblHR_Phone";
             lblHR_Phone.Size = new Size(54, 21);
             lblHR_Phone.TabIndex = 11;
@@ -279,17 +295,27 @@ namespace LoginForm
             // 
             txtHR_Phone.BorderStyle = BorderStyle.FixedSingle;
             txtHR_Phone.Font = new Font("Segoe UI", 9.5F);
-            txtHR_Phone.Location = new Point(16, 395);
+            txtHR_Phone.Location = new Point(16, 408);
             txtHR_Phone.Name = "txtHR_Phone";
             txtHR_Phone.Size = new Size(414, 29);
             txtHR_Phone.TabIndex = 12;
+            // 
+            // lblValidatePhone
+            // 
+            lblValidatePhone.AutoSize = true;
+            lblValidatePhone.Font = new Font("Segoe UI", 8F);
+            lblValidatePhone.ForeColor = Color.Transparent;
+            lblValidatePhone.Location = new Point(16, 439);
+            lblValidatePhone.Name = "lblValidatePhone";
+            lblValidatePhone.Size = new Size(0, 19);
+            lblValidatePhone.TabIndex = 32;
             // 
             // lblHR_Email
             // 
             lblHR_Email.AutoSize = true;
             lblHR_Email.Font = new Font("Segoe UI", 9.5F);
             lblHR_Email.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_Email.Location = new Point(16, 430);
+            lblHR_Email.Location = new Point(16, 462);
             lblHR_Email.Name = "lblHR_Email";
             lblHR_Email.Size = new Size(48, 21);
             lblHR_Email.TabIndex = 13;
@@ -299,17 +325,27 @@ namespace LoginForm
             // 
             txtHR_Email.BorderStyle = BorderStyle.FixedSingle;
             txtHR_Email.Font = new Font("Segoe UI", 9.5F);
-            txtHR_Email.Location = new Point(16, 455);
+            txtHR_Email.Location = new Point(16, 484);
             txtHR_Email.Name = "txtHR_Email";
             txtHR_Email.Size = new Size(414, 29);
             txtHR_Email.TabIndex = 14;
+            // 
+            // lblValidateEmail
+            // 
+            lblValidateEmail.AutoSize = true;
+            lblValidateEmail.Font = new Font("Segoe UI", 8F);
+            lblValidateEmail.ForeColor = Color.Transparent;
+            lblValidateEmail.Location = new Point(16, 515);
+            lblValidateEmail.Name = "lblValidateEmail";
+            lblValidateEmail.Size = new Size(0, 19);
+            lblValidateEmail.TabIndex = 33;
             // 
             // lblHR_Address
             // 
             lblHR_Address.AutoSize = true;
             lblHR_Address.Font = new Font("Segoe UI", 9.5F);
             lblHR_Address.ForeColor = Color.FromArgb(80, 80, 90);
-            lblHR_Address.Location = new Point(16, 490);
+            lblHR_Address.Location = new Point(16, 538);
             lblHR_Address.Name = "lblHR_Address";
             lblHR_Address.Size = new Size(66, 21);
             lblHR_Address.TabIndex = 15;
@@ -319,7 +355,7 @@ namespace LoginForm
             // 
             txtHR_Address.BorderStyle = BorderStyle.FixedSingle;
             txtHR_Address.Font = new Font("Segoe UI", 9.5F);
-            txtHR_Address.Location = new Point(16, 515);
+            txtHR_Address.Location = new Point(16, 560);
             txtHR_Address.Name = "txtHR_Address";
             txtHR_Address.Size = new Size(414, 29);
             txtHR_Address.TabIndex = 16;
@@ -356,7 +392,7 @@ namespace LoginForm
             btnHR_Add.FlatStyle = FlatStyle.Flat;
             btnHR_Add.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnHR_Add.ForeColor = Color.White;
-            btnHR_Add.Location = new Point(16, 580);
+            btnHR_Add.Location = new Point(16, 630);
             btnHR_Add.Name = "btnHR_Add";
             btnHR_Add.Size = new Size(95, 40);
             btnHR_Add.TabIndex = 19;
@@ -372,7 +408,7 @@ namespace LoginForm
             btnHR_Edit.FlatStyle = FlatStyle.Flat;
             btnHR_Edit.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnHR_Edit.ForeColor = Color.White;
-            btnHR_Edit.Location = new Point(121, 580);
+            btnHR_Edit.Location = new Point(121, 630);
             btnHR_Edit.Name = "btnHR_Edit";
             btnHR_Edit.Size = new Size(95, 40);
             btnHR_Edit.TabIndex = 20;
@@ -388,7 +424,7 @@ namespace LoginForm
             btnHR_Delete.FlatStyle = FlatStyle.Flat;
             btnHR_Delete.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnHR_Delete.ForeColor = Color.White;
-            btnHR_Delete.Location = new Point(226, 580);
+            btnHR_Delete.Location = new Point(226, 630);
             btnHR_Delete.Name = "btnHR_Delete";
             btnHR_Delete.Size = new Size(95, 40);
             btnHR_Delete.TabIndex = 21;
@@ -404,7 +440,7 @@ namespace LoginForm
             btnHR_Clear.FlatStyle = FlatStyle.Flat;
             btnHR_Clear.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
             btnHR_Clear.ForeColor = Color.White;
-            btnHR_Clear.Location = new Point(331, 580);
+            btnHR_Clear.Location = new Point(331, 630);
             btnHR_Clear.Name = "btnHR_Clear";
             btnHR_Clear.Size = new Size(99, 40);
             btnHR_Clear.TabIndex = 22;
@@ -579,7 +615,7 @@ namespace LoginForm
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 9.5F);
             lblTotal.ForeColor = Color.FromArgb(80, 80, 90);
-            lblTotal.Location = new Point(618, 12);
+            lblTotal.Location = new Point(16, 26);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(118, 21);
             lblTotal.TabIndex = 4;
@@ -603,7 +639,7 @@ namespace LoginForm
             // 
             cboPageSize.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPageSize.Font = new Font("Segoe UI", 9.5F);
-            cboPageSize.Location = new Point(10, 19);
+            cboPageSize.Location = new Point(10, 7);
             cboPageSize.Name = "cboPageSize";
             cboPageSize.Size = new Size(60, 29);
             cboPageSize.TabIndex = 0;
@@ -616,7 +652,7 @@ namespace LoginForm
             btnFirst.FlatStyle = FlatStyle.Flat;
             btnFirst.Font = new Font("Segoe UI", 9F);
             btnFirst.ForeColor = Color.FromArgb(60, 70, 85);
-            btnFirst.Location = new Point(80, 17);
+            btnFirst.Location = new Point(80, 5);
             btnFirst.Name = "btnFirst";
             btnFirst.Size = new Size(36, 32);
             btnFirst.TabIndex = 1;
@@ -631,7 +667,7 @@ namespace LoginForm
             btnPrev.FlatStyle = FlatStyle.Flat;
             btnPrev.Font = new Font("Segoe UI", 9F);
             btnPrev.ForeColor = Color.FromArgb(60, 70, 85);
-            btnPrev.Location = new Point(120, 17);
+            btnPrev.Location = new Point(120, 5);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(36, 32);
             btnPrev.TabIndex = 2;
@@ -641,7 +677,7 @@ namespace LoginForm
             // lblPageInfo
             // 
             lblPageInfo.Font = new Font("Segoe UI", 9.5F);
-            lblPageInfo.Location = new Point(162, 22);
+            lblPageInfo.Location = new Point(162, 9);
             lblPageInfo.Name = "lblPageInfo";
             lblPageInfo.Size = new Size(120, 20);
             lblPageInfo.TabIndex = 3;
@@ -656,7 +692,7 @@ namespace LoginForm
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 9F);
             btnNext.ForeColor = Color.FromArgb(60, 70, 85);
-            btnNext.Location = new Point(290, 17);
+            btnNext.Location = new Point(290, 5);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(36, 32);
             btnNext.TabIndex = 4;
@@ -671,7 +707,7 @@ namespace LoginForm
             btnLast.FlatStyle = FlatStyle.Flat;
             btnLast.Font = new Font("Segoe UI", 9F);
             btnLast.ForeColor = Color.FromArgb(60, 70, 85);
-            btnLast.Location = new Point(330, 17);
+            btnLast.Location = new Point(330, 5);
             btnLast.Name = "btnLast";
             btnLast.Size = new Size(36, 32);
             btnLast.TabIndex = 5;
@@ -718,16 +754,20 @@ namespace LoginForm
         private TextBox txtHR_ID;
         private Label lblHR_FirstName;
         private TextBox txtHR_FirstName;
+        private Label lblValidateFirstName;
         private Label lblHR_LastName;
         private TextBox txtHR_LastName;
+        private Label lblValidateLastName;
         private Label lblHR_Dob;
         private DateTimePicker dtpHR_Dob;
         private Label lblHR_Gender;
         private ComboBox cboHR_Gender;
         private Label lblHR_Phone;
         private TextBox txtHR_Phone;
+        private Label lblValidatePhone;
         private Label lblHR_Email;
         private TextBox txtHR_Email;
+        private Label lblValidateEmail;
         private Label lblHR_Address;
         private TextBox txtHR_Address;
         private PictureBox picHR_Photo;

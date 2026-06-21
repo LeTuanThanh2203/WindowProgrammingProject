@@ -125,7 +125,7 @@ namespace LoginForm
             string roleColumn = role switch
             {
                 "Admin" => "AllowAdmin",
-                "Manager" => "AllowManager",
+                "HR" => "AllowManager",
                 _ => "AllowUser"
             };
 
@@ -180,7 +180,7 @@ namespace LoginForm
             }
 
             // Mở mặc định form Dashboard nếu được phép
-            if (role == "Admin" || role == "Manager")
+            if (role == "Admin" || role == "HR")
             {
                 Control[] foundOverview = pnMenu.Controls.Find("btnOverview", true);
                 if (foundOverview.Length > 0 && foundOverview[0].Visible)

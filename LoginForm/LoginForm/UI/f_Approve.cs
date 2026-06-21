@@ -23,7 +23,7 @@ namespace LoginForm
 
             RegisterRole.Items.Clear();
             RegisterRole.Items.Add("User");
-            RegisterRole.Items.Add("Manager");
+            RegisterRole.Items.Add("HR");
             RegisterRole.Items.Add("Admin");
 
             // Setup grids visibility

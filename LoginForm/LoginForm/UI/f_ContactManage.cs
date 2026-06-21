@@ -5,14 +5,22 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Regex = System.Text.RegularExpressions.Regex;
+using RegexOptions = System.Text.RegularExpressions.RegexOptions;
 
 namespace LoginForm
 {
     public partial class f_ContactManage : Form
     {
         private Contact contact = new Contact();
-        private Group group     = new Group();
+        private Group group = new Group();
         private PaginationHelper _pager;
+
+        // Regex dùng chung cho validate tên: chữ cái Unicode (có dấu), khoảng trắng, gạch ngang, nháy đơn
+        private static readonly Regex NameRegex = new Regex(@"^[\p{L}\s'\-]+$", RegexOptions.Compiled);
+
+        // Regex dùng cho validate số điện thoại: chỉ chữ số, cho phép dấu + ở đầu, khoảng trắng, dấu gạch ngang/chấm để ngăn cách
+        private static readonly Regex PhoneRegex = new Regex(@"^\+?[0-9][0-9\s\-\.]{7,14}$", RegexOptions.Compiled);
 
         public f_ContactManage()
         {
@@ -24,6 +32,11 @@ namespace LoginForm
 
             // Wire Delete button (btnViewScore có text "Delete" trong designer)
             btnDelete.Click += btnDelete_Click;
+
+            // Wire validate real-time cho First Name / Last Name / Phone
+            txtFname.TextChanged += txtFname_TextChanged;
+            txtLname.TextChanged += txtLname_TextChanged;
+            txtPhone.TextChanged += txtPhone_TextChanged;
         }
 
         // ================= LOAD FORM =================
@@ -89,15 +102,15 @@ namespace LoginForm
 
             DataTable dt = group.GetGroups();
 
-            cboGroup.DataSource    = dt;
+            cboGroup.DataSource = dt;
             cboGroup.DisplayMember = "Name";
-            cboGroup.ValueMember   = "ID";
+            cboGroup.ValueMember = "ID";
 
             // Clone cho combo form input để tránh chia sẻ DataSource
             DataTable dt2 = dt.Copy();
-            cboContactGroup.DataSource    = dt2;
+            cboContactGroup.DataSource = dt2;
             cboContactGroup.DisplayMember = "Name";
-            cboContactGroup.ValueMember   = "ID";
+            cboContactGroup.ValueMember = "ID";
 
             cboGroup.SelectedIndexChanged += cboGroup_SelectedIndexChanged;
             cboContactGroup.SelectedIndexChanged += cboContactGroup_SelectedIndexChanged;
@@ -125,23 +138,134 @@ namespace LoginForm
             _pager.SetData(contact.SearchContacts(kw));
         }
 
+        // ================= REAL-TIME VALIDATION (First/Last Name & Phone) =====
+
+        private void txtFname_TextChanged(object sender, EventArgs e)
+        {
+            if (txtFname.Text.Trim() == "") { lblValidateFirstName.Text = ""; return; }
+            ValidateNameField(txtFname, lblValidateFirstName, "First name");
+        }
+
+        private void txtLname_TextChanged(object sender, EventArgs e)
+        {
+            if (txtLname.Text.Trim() == "") { lblValidateLastName.Text = ""; return; }
+            ValidateNameField(txtLname, lblValidateLastName, "Last name");
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPhone.Text.Trim() == "") { lblValidatePhone.Text = ""; return; }
+            ValidatePhoneField(txtPhone, lblValidatePhone);
+        }
+
+        /// <summary>
+        /// Hiển thị kết quả check ngay dưới ô nhập, giống style SetCheck của f_ForgetPass /
+        /// f_RegisterForm: đỏ khi lỗi, xanh + dấu ✓ khi hợp lệ.
+        /// </summary>
+        private void SetCheck(Label lbl, bool ok, string msg)
+        {
+            lbl.Text = msg;
+            lbl.ForeColor = ok ? Color.FromArgb(59, 109, 17) : Color.Red;
+        }
+
+        /// <summary>
+        /// Validate tên: bắt buộc nhập, 2-50 ký tự, chỉ chữ cái (có dấu)/khoảng trắng/-/',
+        /// không có khoảng trắng liên tiếp, không bắt đầu/kết thúc bằng - hoặc '.
+        /// </summary>
+        private bool ValidateNameField(TextBox tb, Label lbl, string fieldName)
+        {
+            string value = tb.Text.Trim();
+
+            if (value == "")
+            {
+                SetCheck(lbl, false, $"{fieldName} is required.");
+                return false;
+            }
+            if (value.Length < 2)
+            {
+                SetCheck(lbl, false, "At least 2 characters.");
+                return false;
+            }
+            if (value.Length > 50)
+            {
+                SetCheck(lbl, false, "Maximum 50 characters.");
+                return false;
+            }
+            if (!NameRegex.IsMatch(value))
+            {
+                SetCheck(lbl, false, "Only letters, spaces, - and ' are allowed (no numbers/symbols).");
+                return false;
+            }
+            if (Regex.IsMatch(value, @"\s{2,}"))
+            {
+                SetCheck(lbl, false, "No consecutive spaces.");
+                return false;
+            }
+            if (value.StartsWith("-") || value.StartsWith("'") ||
+                value.EndsWith("-") || value.EndsWith("'"))
+            {
+                SetCheck(lbl, false, "Cannot start or end with - or '.");
+                return false;
+            }
+
+            SetCheck(lbl, true, "✓  Valid");
+            return true;
+        }
+
+        /// <summary>
+        /// Validate số điện thoại: bắt buộc nhập, chỉ chữ số (cho phép + ở đầu, khoảng trắng, - , .),
+        /// không cho phép chữ cái, độ dài hợp lý 8-15 ký tự.
+        /// </summary>
+        private bool ValidatePhoneField(TextBox tb, Label lbl)
+        {
+            string value = tb.Text.Trim();
+
+            if (value == "")
+            {
+                SetCheck(lbl, false, "Phone is required.");
+                return false;
+            }
+            if (Regex.IsMatch(value, @"[a-zA-Z\p{L}]"))
+            {
+                SetCheck(lbl, false, "Phone number cannot contain letters.");
+                return false;
+            }
+            if (!PhoneRegex.IsMatch(value))
+            {
+                SetCheck(lbl, false, "Invalid phone number (8-15 digits).");
+                return false;
+            }
+
+            SetCheck(lbl, true, "✓  Valid");
+            return true;
+        }
+
         // ================= VALIDATE =================
 
         private bool ValidateInput()
         {
-            lblValidateFirstName.Text  = "";
-            lblValidateLastName.Text   = "";
-            lblValidatePhone.Text      = "";
+            lblValidateFirstName.Text = "";
+            lblValidateLastName.Text = "";
+            lblValidatePhone.Text = "";
             bool ok = true;
 
+            // First Name: bắt buộc + đúng định dạng (chỉ chữ cái)
             if (string.IsNullOrWhiteSpace(txtFname.Text))
             { lblValidateFirstName.Text = "First name is required."; ok = false; }
+            else if (!ValidateNameField(txtFname, lblValidateFirstName, "First name"))
+            { ok = false; }
 
+            // Last Name: bắt buộc + đúng định dạng (chỉ chữ cái)
             if (string.IsNullOrWhiteSpace(txtLname.Text))
             { lblValidateLastName.Text = "Last name is required."; ok = false; }
+            else if (!ValidateNameField(txtLname, lblValidateLastName, "Last name"))
+            { ok = false; }
 
+            // Phone: bắt buộc + chỉ chữ số (không chữ cái)
             if (string.IsNullOrWhiteSpace(txtPhone.Text))
             { lblValidatePhone.Text = "Phone is required."; ok = false; }
+            else if (!ValidatePhoneField(txtPhone, lblValidatePhone))
+            { ok = false; }
 
             if (cboContactGroup.SelectedValue == null)
             {
@@ -159,12 +283,12 @@ namespace LoginForm
         {
             txtFname.Clear(); txtLname.Clear();
             txtPhone.Clear(); txtEmail.Clear(); txtAddress.Clear();
-            dtpDob.Value       = DateTime.Today;
+            dtpDob.Value = DateTime.Today;
             cboGender.SelectedIndex = 0;
-            picContact.Image   = null;
+            picContact.Image = null;
             lblValidateFirstName.Text = "";
-            lblValidateLastName.Text  = "";
-            lblValidatePhone.Text     = "";
+            lblValidateLastName.Text = "";
+            lblValidatePhone.Text = "";
         }
 
         // ================= IMAGE HELPER =================
@@ -218,8 +342,10 @@ namespace LoginForm
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (dgvContacts.CurrentRow == null)
-            { MessageBox.Show("Vui lòng chọn một liên hệ để sửa.", "Chưa chọn",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            {
+                MessageBox.Show("Vui lòng chọn một liên hệ để sửa.", "Chưa chọn",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning); return;
+            }
 
             if (!ValidateInput()) return;
 
@@ -261,8 +387,10 @@ namespace LoginForm
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvContacts.CurrentRow == null)
-            { MessageBox.Show("Vui lòng chọn một liên hệ để xóa.", "Chưa chọn",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            {
+                MessageBox.Show("Vui lòng chọn một liên hệ để xóa.", "Chưa chọn",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning); return;
+            }
 
             string name =
                 $"{dgvContacts.CurrentRow.Cells["Fname"].Value} {dgvContacts.CurrentRow.Cells["Lname"].Value}";
@@ -298,10 +426,10 @@ namespace LoginForm
             if (e.RowIndex < 0) return;
             DataGridViewRow row = dgvContacts.Rows[e.RowIndex];
 
-            txtFname.Text   = row.Cells["Fname"].Value?.ToString();
-            txtLname.Text   = row.Cells["Lname"].Value?.ToString();
-            txtPhone.Text   = row.Cells["Phone"].Value?.ToString();
-            txtEmail.Text   = row.Cells["Email"].Value?.ToString();
+            txtFname.Text = row.Cells["Fname"].Value?.ToString();
+            txtLname.Text = row.Cells["Lname"].Value?.ToString();
+            txtPhone.Text = row.Cells["Phone"].Value?.ToString();
+            txtEmail.Text = row.Cells["Email"].Value?.ToString();
             txtAddress.Text = row.Cells["Address"].Value?.ToString();
 
             // Populate DateTimePicker
@@ -341,7 +469,7 @@ namespace LoginForm
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-                ofd.Title  = "Chọn ảnh đại diện";
+                ofd.Title = "Chọn ảnh đại diện";
                 if (ofd.ShowDialog() == DialogResult.OK)
                     picContact.Image = Image.FromFile(ofd.FileName);
             }
@@ -396,7 +524,7 @@ namespace LoginForm
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Filter   = "CSV file|*.csv";
+                sfd.Filter = "CSV file|*.csv";
                 sfd.FileName = $"Contacts_{DateTime.Now:yyyyMMdd_HHmm}.csv";
                 if (sfd.ShowDialog() != DialogResult.OK) return;
 
