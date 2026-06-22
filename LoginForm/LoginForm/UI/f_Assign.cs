@@ -26,6 +26,7 @@ namespace LoginForm
 
         // ── Add-mode state ───────────────────────────────────────────
         private bool _isAddMode = false;
+        private bool _hrLoaded = false;
 
         // ── HR-ID suggestion box ─────────────────────────────────────
         private ListBox hrIdSuggestionBox = new ListBox();
@@ -133,10 +134,11 @@ namespace LoginForm
             HR selectedHr = hr.GetHRByID(id);
             if (selectedHr == null) return;
 
+            _hrLoaded = true;
             ExitAddMode();
 
             txtHR_ID.Text = selectedHr.ID;
-            txtHR_ID.Enabled = false;   // không cho sửa ID của HR đã tồn tại
+            txtHR_ID.Enabled = false;
 
             txtHR_FirstName.Text = selectedHr.FirstName;
             txtHR_LastName.Text = selectedHr.LastName;
@@ -149,7 +151,14 @@ namespace LoginForm
 
             txtHR_Phone.Text = selectedHr.Phone;
             txtHR_Email.Text = selectedHr.Email;
+
+            // Set bằng code (dữ liệu đã có sẵn từ DB) -> không kích hoạt
+            // việc gọi API gợi ý địa chỉ. Chỉ khi user tự gõ mới check.
+            txtHR_Address.TextChanged -= txtAddress_TextChanged;
             txtHR_Address.Text = selectedHr.Address;
+            txtHR_Address.TextChanged += txtAddress_TextChanged;
+            addressSuggestionBox.Visible = false;
+            addressSuggestionBox.Items.Clear();
 
             if (selectedHr.Picture != null && selectedHr.Picture.Length > 0)
             {
@@ -181,7 +190,7 @@ namespace LoginForm
         }
 
         // ════════════════════════════════════════════════════════════
-        // ADD MODE  (đổi nút Add ↔ Save)
+        // ADD MODE  (toggle Add ↔ Save)
         // ════════════════════════════════════════════════════════════
         private void btnHR_Add_Click(object sender, EventArgs e)
         {
@@ -215,43 +224,43 @@ namespace LoginForm
 
             // ── Validation ──
             if (string.IsNullOrEmpty(id))
-            { MessageBox.Show("Vui lòng nhập ID HR.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_ID.Focus(); return; }
+            { MessageBox.Show("Please enter the HR ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_ID.Focus(); return; }
 
             if (!ValidateData.IsValidMSSV(id))
-            { MessageBox.Show("ID HR chỉ được chứa chữ và số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_ID.Focus(); return; }
+            { MessageBox.Show("HR ID must contain letters and numbers only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_ID.Focus(); return; }
 
             if (string.IsNullOrEmpty(fname))
-            { MessageBox.Show("Vui lòng nhập First Name.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
+            { MessageBox.Show("Please enter the First Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
 
             if (!ValidateData.IsValidName(fname))
-            { MessageBox.Show("First Name không được chứa số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
+            { MessageBox.Show("First Name must not contain numbers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
 
             if (string.IsNullOrEmpty(lname))
-            { MessageBox.Show("Vui lòng nhập Last Name.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
+            { MessageBox.Show("Please enter the Last Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
 
             if (!ValidateData.IsValidName(lname))
-            { MessageBox.Show("Last Name không được chứa số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
+            { MessageBox.Show("Last Name must not contain numbers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
 
             if (string.IsNullOrEmpty(phone))
-            { MessageBox.Show("Vui lòng nhập số điện thoại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Phone.Focus(); return; }
+            { MessageBox.Show("Please enter the phone number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Phone.Focus(); return; }
 
             if (!ValidateData.IsValidPhone(phone))
-            { MessageBox.Show("Số điện thoại chỉ được chứa số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Phone.Focus(); return; }
+            { MessageBox.Show("Phone number must contain digits only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Phone.Focus(); return; }
 
             if (string.IsNullOrEmpty(email))
-            { MessageBox.Show("Vui lòng nhập email.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Email.Focus(); return; }
+            { MessageBox.Show("Please enter the email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Email.Focus(); return; }
 
             if (!ValidateData.IsValidEmail(email))
-            { MessageBox.Show("Email không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Email.Focus(); return; }
+            { MessageBox.Show("Invalid email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Email.Focus(); return; }
 
             if (string.IsNullOrEmpty(address))
-            { MessageBox.Show("Vui lòng nhập địa chỉ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Address.Focus(); return; }
+            { MessageBox.Show("Please enter the address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_Address.Focus(); return; }
 
             if (!ValidateData.IsValidBirthDay(dob))
-            { MessageBox.Show("Ngày sinh không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            { MessageBox.Show("Invalid date of birth.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             if (hr.GetHRByID(id) != null)
-            { MessageBox.Show("ID HR đã tồn tại trong hệ thống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); txtHR_ID.Focus(); return; }
+            { MessageBox.Show("An HR with this ID already exists in the system.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); txtHR_ID.Focus(); return; }
 
             byte[] photoBytes = ImageToByteArray(picHR_Photo.Image);
             HR newHr = new HR(id, fname, lname, dob, gender, phone, email, address, photoBytes);
@@ -263,14 +272,14 @@ namespace LoginForm
                 if (accountCreated)
                 {
                     MessageBox.Show(
-                        "Thêm HR và tạo tài khoản đăng nhập thành công!\nThông tin đăng nhập đã được gửi đến: " + email,
-                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "HR added and login account created successfully!\nLogin credentials have been sent to: " + email,
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show(
-                        "Thêm HR thành công, nhưng tạo tài khoản đăng nhập thất bại.",
-                        "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        "HR added successfully, but login account creation failed.",
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 ExitAddMode();
@@ -280,7 +289,7 @@ namespace LoginForm
             }
             else
             {
-                MessageBox.Show("Thêm HR thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to add HR.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -292,7 +301,7 @@ namespace LoginForm
         }
 
         // ════════════════════════════════════════════════════════════
-        // TẠO TÀI KHOẢN ĐĂNG NHẬP CHO HR  (giống f_AddHR)
+        // CREATE LOGIN ACCOUNT FOR HR
         // ════════════════════════════════════════════════════════════
         private bool CreateHRAccount(string id, string email)
         {
@@ -309,7 +318,7 @@ namespace LoginForm
                 checkCmd.Parameters.Add("@user", SqlDbType.VarChar).Value = id;
                 if ((int)checkCmd.ExecuteScalar() > 0)
                 {
-                    MessageBox.Show("Đã tồn tại tài khoản đăng nhập với ID này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("A login account with this ID already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -344,7 +353,7 @@ Academic Management System";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tạo tài khoản HR: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error creating HR account: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -395,8 +404,12 @@ Academic Management System";
 
         private void txtHRID_TextChanged(object sender, EventArgs e)
         {
-            // Chỉ gợi ý khi đang ở Add mode (lúc xem HR có sẵn, ô ID bị khóa)
-            if (!txtHR_ID.Enabled) { hrIdSuggestionBox.Visible = false; return; }
+            // Only show suggestions in Add mode and when no HR has been loaded yet
+            if (!_isAddMode || _hrLoaded)
+            {
+                hrIdSuggestionBox.Visible = false;
+                return;
+            }
 
             string keyword = txtHR_ID.Text.Trim();
             hrIdSuggestionBox.Items.Clear();
@@ -433,16 +446,33 @@ Academic Management System";
             else if (e.KeyCode == Keys.Escape) { hrIdSuggestionBox.Visible = false; txtHR_ID.Focus(); e.Handled = true; }
         }
 
+        /// <summary>
+        /// Người dùng CLICK CHỌN trực tiếp một HR ID có sẵn trong danh sách gợi ý.
+        /// Đây là hành động xác nhận "tôi muốn làm việc với HR đã tồn tại", nên phải
+        /// tự động load dữ liệu HR đó vào form (LoadHRToFields sẽ tự thoát Add-mode,
+        /// disable ô ID...). Nếu người dùng KHÔNG chọn từ list mà chỉ tự gõ tiếp,
+        /// flow này không được gọi -> vẫn giữ nguyên Add-mode (nút vẫn là "Save"
+        /// cho việc tạo HR mới) như yêu cầu.
+        /// </summary>
         private void SelectHRIDSuggestion()
         {
             if (hrIdSuggestionBox.SelectedItem == null) return;
             string selected = hrIdSuggestionBox.SelectedItem.ToString();
-            txtHR_ID.TextChanged -= txtHRID_TextChanged;
-            txtHR_ID.Text = selected.Contains(" - ")
+            string id = selected.Contains(" - ")
                 ? selected[..selected.IndexOf(" - ")].Trim()
                 : selected.Trim();
+
+            txtHR_ID.TextChanged -= txtHRID_TextChanged;
+            txtHR_ID.Text = id;
             txtHR_ID.TextChanged += txtHRID_TextChanged;
+
             hrIdSuggestionBox.Visible = false;
+            hrIdSuggestionBox.Items.Clear();
+
+            // Chọn từ list = chọn HR đã tồn tại -> tự chuyển khỏi Add-mode và
+            // load toàn bộ thông tin HR đó lên form.
+            LoadHRToFields(id);
+
             txtHR_ID.Focus();
             txtHR_ID.SelectionStart = txtHR_ID.Text.Length;
         }
@@ -475,6 +505,10 @@ Academic Management System";
             addressHideTimer.Tick += AddressHideTimer_Tick;
         }
 
+        // Chỉ chạy khi NGƯỜI DÙNG TỰ GÕ vào ô Address. Mọi nơi set Text bằng code
+        // (LoadHRToFields khi load dữ liệu có sẵn, btnHR_Clear_Click khi xóa form)
+        // đều unsubscribe/resubscribe quanh việc set Text, nên sẽ KHÔNG rơi vào đây
+        // -> không gọi API gợi ý khi dữ liệu đã có sẵn, đúng yêu cầu.
         private void txtAddress_TextChanged(object sender, EventArgs e)
         {
             addressDebounceTimer.Stop();
@@ -548,7 +582,7 @@ Academic Management System";
                     addressSuggestionBox.Visible = false;
                 }
             }
-            catch { /* fail silently — no network không nên làm gián đoạn người dùng */ }
+            catch { /* fail silently — no network should not interrupt the user */ }
         }
 
         // ════════════════════════════════════════════════════════════
@@ -612,7 +646,7 @@ Academic Management System";
         {
             string id = txtHR_ID.Text.Trim();
             if (string.IsNullOrEmpty(id))
-            { MessageBox.Show("Vui lòng chọn hoặc nhập ID HR cần chỉnh sửa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            { MessageBox.Show("Please select or enter the HR ID to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             string fname = txtHR_FirstName.Text.Trim();
             string lname = txtHR_LastName.Text.Trim();
@@ -623,27 +657,27 @@ Academic Management System";
             DateTime dob = dtpHR_Dob.Value.Date;
 
             if (string.IsNullOrEmpty(fname))
-            { MessageBox.Show("Vui lòng nhập First Name.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
+            { MessageBox.Show("Please enter the First Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_FirstName.Focus(); return; }
             if (string.IsNullOrEmpty(lname))
-            { MessageBox.Show("Vui lòng nhập Last Name.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
+            { MessageBox.Show("Please enter the Last Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); txtHR_LastName.Focus(); return; }
 
             HR existingHr = hr.GetHRByID(id);
             if (existingHr == null)
-            { MessageBox.Show("Không tìm thấy HR với ID này để cập nhật.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            { MessageBox.Show("No HR found with this ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             byte[] photoBytes = picHR_Photo.Image != null ? ImageToByteArray(picHR_Photo.Image) : existingHr.Picture;
             HR updatedHr = new HR(id, fname, lname, dob, gender, phone, email, address, photoBytes);
 
             if (updatedHr.EditHR())
             {
-                MessageBox.Show("Cập nhật HR thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("HR updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadHRList();
                 LoadHRCombo();
                 LoadHRToFields(id);
             }
             else
             {
-                MessageBox.Show("Cập nhật HR thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to update HR.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -654,27 +688,27 @@ Academic Management System";
         {
             string id = txtHR_ID.Text.Trim();
             if (string.IsNullOrEmpty(id))
-            { MessageBox.Show("Vui lòng chọn hoặc nhập ID HR cần xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            { MessageBox.Show("Please select or enter the HR ID to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             if (hr.GetHRByID(id) == null)
-            { MessageBox.Show("Không tìm thấy HR với ID này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            { MessageBox.Show("No HR found with this ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             var confirm = MessageBox.Show(
-                $"Bạn có chắc chắn muốn xóa HR với ID {id}?",
-                "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                $"Are you sure you want to delete HR with ID: {id}?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
                 if (HR.DeleteHR(id))
                 {
-                    MessageBox.Show("Xóa HR thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("HR deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadHRList();
                     LoadHRCombo();
                     btnHR_Clear_Click(null, null);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa HR thất bại (HR có thể đang được phân công).", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to delete HR (the HR may currently be assigned to a course).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -684,6 +718,7 @@ Academic Management System";
         // ════════════════════════════════════════════════════════════
         private void btnHR_Clear_Click(object sender, EventArgs e)
         {
+            _hrLoaded = false;
             ExitAddMode();
 
             txtHR_ID.Text = "";
@@ -694,7 +729,12 @@ Academic Management System";
             if (cboHR_Gender.Items.Count > 0) cboHR_Gender.SelectedIndex = 0;
             txtHR_Phone.Text = "";
             txtHR_Email.Text = "";
+
+            // Set bằng code -> không kích hoạt gọi API gợi ý address
+            txtHR_Address.TextChanged -= txtAddress_TextChanged;
             txtHR_Address.Text = "";
+            txtHR_Address.TextChanged += txtAddress_TextChanged;
+
             picHR_Photo.Image = null;
 
             ClearValidationLabels();
@@ -720,32 +760,32 @@ Academic Management System";
         // ════════════════════════════════════════════════════════════
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            if (cboHR.SelectedValue == null) { MessageBox.Show("Vui lòng chọn HR hợp lệ."); cboHR.Focus(); return; }
-            if (cboCourse.SelectedValue == null) { MessageBox.Show("Vui lòng chọn môn học hợp lệ."); cboCourse.Focus(); return; }
+            if (cboHR.SelectedValue == null) { MessageBox.Show("Please select a valid HR.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); cboHR.Focus(); return; }
+            if (cboCourse.SelectedValue == null) { MessageBox.Show("Please select a valid course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); cboCourse.Focus(); return; }
 
             string hrid = cboHR.SelectedValue.ToString();
             string courseid = cboCourse.SelectedValue.ToString();
 
-            if (assign.CountAssignedCourses(hrid) >= 5) { MessageBox.Show("HR đã đạt tối đa 5 môn."); return; }
-            if (assign.IsAssigned(hrid, courseid)) { MessageBox.Show("Môn học đã được phân công."); return; }
+            if (assign.CountAssignedCourses(hrid) >= 5) { MessageBox.Show("This HR has already reached the maximum of 5 assigned courses.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            if (assign.IsAssigned(hrid, courseid)) { MessageBox.Show("This course has already been assigned to the selected HR.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             if (assign.InsertAssign(hrid, courseid))
-            { MessageBox.Show("Phân công thành công."); LoadData(); }
+            { MessageBox.Show("Course assigned successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); LoadData(); }
             else
-            { MessageBox.Show("Phân công thất bại."); }
+            { MessageBox.Show("Failed to assign course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvAssign.CurrentRow == null) { MessageBox.Show("Vui lòng chọn phân công."); return; }
+            if (dgvAssign.CurrentRow == null) { MessageBox.Show("Please select an assignment to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             string hrid = dgvAssign.CurrentRow.Cells["ID"].Value.ToString();
             string courseid = dgvAssign.CurrentRow.Cells["CourseID"].Value.ToString();
 
             if (assign.DeleteAssign(hrid, courseid))
-            { MessageBox.Show("Xóa thành công."); LoadData(); }
+            { MessageBox.Show("Assignment deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information); LoadData(); }
             else
-            { MessageBox.Show("Xóa thất bại."); }
+            { MessageBox.Show("Failed to delete assignment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         // ════════════════════════════════════════════════════════════

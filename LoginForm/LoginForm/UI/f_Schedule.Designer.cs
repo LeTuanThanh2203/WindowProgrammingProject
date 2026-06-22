@@ -21,7 +21,6 @@ namespace LoginForm
             lblSubtitle = new Label();
             lblTitle = new Label();
             pnlToolbar = new Panel();
-            btnPrintSchedule = new Button();
             btnNextWeek = new Button();
             btnCurrentWeek = new Button();
             btnPrevWeek = new Button();
@@ -78,7 +77,6 @@ namespace LoginForm
             // pnlToolbar
             // 
             pnlToolbar.BackColor = Color.FromArgb(235, 240, 245);
-            pnlToolbar.Controls.Add(btnPrintSchedule);
             pnlToolbar.Controls.Add(btnNextWeek);
             pnlToolbar.Controls.Add(btnCurrentWeek);
             pnlToolbar.Controls.Add(btnPrevWeek);
@@ -95,22 +93,6 @@ namespace LoginForm
             pnlToolbar.Size = new Size(1314, 87);
             pnlToolbar.TabIndex = 1;
             // 
-            // btnPrintSchedule
-            // 
-            btnPrintSchedule.BackColor = Color.FromArgb(10, 61, 120);
-            btnPrintSchedule.Cursor = Cursors.Hand;
-            btnPrintSchedule.FlatAppearance.BorderSize = 0;
-            btnPrintSchedule.FlatStyle = FlatStyle.Flat;
-            btnPrintSchedule.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            btnPrintSchedule.ForeColor = Color.White;
-            btnPrintSchedule.Location = new Point(1046, 20);
-            btnPrintSchedule.Margin = new Padding(3, 4, 3, 4);
-            btnPrintSchedule.Name = "btnPrintSchedule";
-            btnPrintSchedule.Size = new Size(206, 47);
-            btnPrintSchedule.TabIndex = 9;
-            btnPrintSchedule.Text = "🖨  Print Schedule";
-            btnPrintSchedule.UseVisualStyleBackColor = false;
-            // 
             // btnNextWeek
             // 
             btnNextWeek.BackColor = Color.FromArgb(10, 61, 120);
@@ -119,7 +101,7 @@ namespace LoginForm
             btnNextWeek.FlatStyle = FlatStyle.Flat;
             btnNextWeek.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnNextWeek.ForeColor = Color.White;
-            btnNextWeek.Location = new Point(983, 20);
+            btnNextWeek.Location = new Point(1138, 16);
             btnNextWeek.Margin = new Padding(3, 4, 3, 4);
             btnNextWeek.Name = "btnNextWeek";
             btnNextWeek.Size = new Size(46, 47);
@@ -135,7 +117,7 @@ namespace LoginForm
             btnCurrentWeek.FlatStyle = FlatStyle.Flat;
             btnCurrentWeek.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnCurrentWeek.ForeColor = Color.White;
-            btnCurrentWeek.Location = new Point(869, 20);
+            btnCurrentWeek.Location = new Point(1024, 16);
             btnCurrentWeek.Margin = new Padding(3, 4, 3, 4);
             btnCurrentWeek.Name = "btnCurrentWeek";
             btnCurrentWeek.Size = new Size(109, 47);
@@ -151,7 +133,7 @@ namespace LoginForm
             btnPrevWeek.FlatStyle = FlatStyle.Flat;
             btnPrevWeek.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnPrevWeek.ForeColor = Color.White;
-            btnPrevWeek.Location = new Point(817, 20);
+            btnPrevWeek.Location = new Point(972, 16);
             btnPrevWeek.Margin = new Padding(3, 4, 3, 4);
             btnPrevWeek.Name = "btnPrevWeek";
             btnPrevWeek.Size = new Size(46, 47);
@@ -168,7 +150,7 @@ namespace LoginForm
             cboWeek.Location = new Point(571, 27);
             cboWeek.Margin = new Padding(3, 4, 3, 4);
             cboWeek.Name = "cboWeek";
-            cboWeek.Size = new Size(228, 29);
+            cboWeek.Size = new Size(346, 29);
             cboWeek.TabIndex = 5;
             // 
             // lblWeek
@@ -326,7 +308,6 @@ namespace LoginForm
         private System.Windows.Forms.Button btnPrevWeek;
         private System.Windows.Forms.Button btnCurrentWeek;
         private System.Windows.Forms.Button btnNextWeek;
-        private System.Windows.Forms.Button btnPrintSchedule;
         private System.Windows.Forms.Panel pnlWeekInfo;
         private System.Windows.Forms.Label lblWeekRange;
         private System.Windows.Forms.Panel pnlGridContainer;
