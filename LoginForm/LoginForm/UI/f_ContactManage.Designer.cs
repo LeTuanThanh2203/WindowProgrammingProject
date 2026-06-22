@@ -299,6 +299,7 @@ namespace LoginForm
             pnLeft.Controls.Add(lblContactGroup);
             pnLeft.Controls.Add(cboContactGroup);
             pnLeft.Controls.Add(lblValidateID);
+            pnLeft.AutoScroll = true;
             pnLeft.Dock = DockStyle.Left;
             pnLeft.Location = new Point(14, 13);
             pnLeft.Margin = new Padding(3, 4, 3, 4);
@@ -309,11 +310,12 @@ namespace LoginForm
             // 
             // picContact
             // 
+            // picContact — thu nhỏ để tiết kiệm không gian dọc
             picContact.BorderStyle = BorderStyle.FixedSingle;
-            picContact.Location = new Point(109, 13);
+            picContact.Location = new Point(127, 8);
             picContact.Margin = new Padding(3, 4, 3, 4);
             picContact.Name = "picContact";
-            picContact.Size = new Size(160, 186);
+            picContact.Size = new Size(120, 120);
             picContact.SizeMode = PictureBoxSizeMode.StretchImage;
             picContact.TabIndex = 0;
             picContact.TabStop = false;
@@ -326,10 +328,10 @@ namespace LoginForm
             btnChooseImage.FlatStyle = FlatStyle.Flat;
             btnChooseImage.Font = new Font("Segoe UI", 9.5F);
             btnChooseImage.ForeColor = Color.White;
-            btnChooseImage.Location = new Point(83, 211);
+            btnChooseImage.Location = new Point(100, 136);
             btnChooseImage.Margin = new Padding(3, 4, 3, 4);
             btnChooseImage.Name = "btnChooseImage";
-            btnChooseImage.Size = new Size(210, 45);
+            btnChooseImage.Size = new Size(176, 34);
             btnChooseImage.TabIndex = 1;
             btnChooseImage.Text = "📷 Upload Photo";
             btnChooseImage.UseVisualStyleBackColor = false;
@@ -340,7 +342,7 @@ namespace LoginForm
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 9.5F);
             lblFirstName.ForeColor = Color.FromArgb(70, 70, 80);
-            lblFirstName.Location = new Point(18, 277);
+            lblFirstName.Location = new Point(18, 184);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(86, 21);
             lblFirstName.TabIndex = 2;
@@ -349,7 +351,7 @@ namespace LoginForm
             // txtFname
             // 
             txtFname.Font = new Font("Segoe UI", 10F);
-            txtFname.Location = new Point(149, 273);
+            txtFname.Location = new Point(149, 180);
             txtFname.Margin = new Padding(3, 4, 3, 4);
             txtFname.Name = "txtFname";
             txtFname.Size = new Size(251, 30);
@@ -360,7 +362,7 @@ namespace LoginForm
             lblValidateFirstName.AutoSize = true;
             lblValidateFirstName.Font = new Font("Segoe UI", 8F);
             lblValidateFirstName.ForeColor = Color.Red;
-            lblValidateFirstName.Location = new Point(149, 316);
+            lblValidateFirstName.Location = new Point(149, 213);
             lblValidateFirstName.Name = "lblValidateFirstName";
             lblValidateFirstName.Size = new Size(0, 19);
             lblValidateFirstName.TabIndex = 4;
@@ -370,7 +372,7 @@ namespace LoginForm
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 9.5F);
             lblLastName.ForeColor = Color.FromArgb(70, 70, 80);
-            lblLastName.Location = new Point(18, 347);
+            lblLastName.Location = new Point(18, 238);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(84, 21);
             lblLastName.TabIndex = 5;
@@ -379,7 +381,7 @@ namespace LoginForm
             // txtLname
             // 
             txtLname.Font = new Font("Segoe UI", 10F);
-            txtLname.Location = new Point(149, 343);
+            txtLname.Location = new Point(149, 234);
             txtLname.Margin = new Padding(3, 4, 3, 4);
             txtLname.Name = "txtLname";
             txtLname.Size = new Size(251, 30);
@@ -390,7 +392,7 @@ namespace LoginForm
             lblValidateLastName.AutoSize = true;
             lblValidateLastName.Font = new Font("Segoe UI", 8F);
             lblValidateLastName.ForeColor = Color.Red;
-            lblValidateLastName.Location = new Point(149, 385);
+            lblValidateLastName.Location = new Point(149, 267);
             lblValidateLastName.Name = "lblValidateLastName";
             lblValidateLastName.Size = new Size(0, 19);
             lblValidateLastName.TabIndex = 7;
@@ -400,7 +402,7 @@ namespace LoginForm
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9.5F);
             label4.ForeColor = Color.FromArgb(70, 70, 80);
-            label4.Location = new Point(18, 416);
+            label4.Location = new Point(18, 292);
             label4.Name = "label4";
             label4.Size = new Size(97, 21);
             label4.TabIndex = 8;
@@ -410,7 +412,7 @@ namespace LoginForm
             // 
             dtpDob.Font = new Font("Segoe UI", 10F);
             dtpDob.Format = DateTimePickerFormat.Short;
-            dtpDob.Location = new Point(149, 412);
+            dtpDob.Location = new Point(149, 288);
             dtpDob.Margin = new Padding(3, 4, 3, 4);
             dtpDob.Name = "dtpDob";
             dtpDob.Size = new Size(251, 30);
@@ -421,7 +423,7 @@ namespace LoginForm
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9.5F);
             label5.ForeColor = Color.FromArgb(70, 70, 80);
-            label5.Location = new Point(18, 485);
+            label5.Location = new Point(18, 332);
             label5.Name = "label5";
             label5.Size = new Size(61, 21);
             label5.TabIndex = 10;
@@ -431,7 +433,7 @@ namespace LoginForm
             // 
             cboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             cboGender.Font = new Font("Segoe UI", 10F);
-            cboGender.Location = new Point(149, 481);
+            cboGender.Location = new Point(149, 328);
             cboGender.Margin = new Padding(3, 4, 3, 4);
             cboGender.Name = "cboGender";
             cboGender.Size = new Size(251, 31);
@@ -442,7 +444,7 @@ namespace LoginForm
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9.5F);
             label6.ForeColor = Color.FromArgb(70, 70, 80);
-            label6.Location = new Point(18, 555);
+            label6.Location = new Point(18, 373);
             label6.Name = "label6";
             label6.Size = new Size(54, 21);
             label6.TabIndex = 12;
@@ -451,7 +453,7 @@ namespace LoginForm
             // txtPhone
             // 
             txtPhone.Font = new Font("Segoe UI", 10F);
-            txtPhone.Location = new Point(149, 551);
+            txtPhone.Location = new Point(149, 369);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.MaxLength = 15;
             txtPhone.Name = "txtPhone";
@@ -463,7 +465,7 @@ namespace LoginForm
             lblValidatePhone.AutoSize = true;
             lblValidatePhone.Font = new Font("Segoe UI", 8F);
             lblValidatePhone.ForeColor = Color.Red;
-            lblValidatePhone.Location = new Point(149, 593);
+            lblValidatePhone.Location = new Point(149, 402);
             lblValidatePhone.Name = "lblValidatePhone";
             lblValidatePhone.Size = new Size(0, 19);
             lblValidatePhone.TabIndex = 14;
@@ -473,7 +475,7 @@ namespace LoginForm
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9.5F);
             label9.ForeColor = Color.FromArgb(70, 70, 80);
-            label9.Location = new Point(18, 624);
+            label9.Location = new Point(18, 425);
             label9.Name = "label9";
             label9.Size = new Size(48, 21);
             label9.TabIndex = 15;
@@ -482,7 +484,7 @@ namespace LoginForm
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 10F);
-            txtEmail.Location = new Point(149, 620);
+            txtEmail.Location = new Point(149, 421);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(251, 30);
@@ -493,7 +495,7 @@ namespace LoginForm
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9.5F);
             label7.ForeColor = Color.FromArgb(70, 70, 80);
-            label7.Location = new Point(18, 693);
+            label7.Location = new Point(18, 461);
             label7.Name = "label7";
             label7.Size = new Size(66, 21);
             label7.TabIndex = 17;
@@ -502,7 +504,7 @@ namespace LoginForm
             // txtAddress
             // 
             txtAddress.Font = new Font("Segoe UI", 10F);
-            txtAddress.Location = new Point(149, 689);
+            txtAddress.Location = new Point(149, 457);
             txtAddress.Margin = new Padding(3, 4, 3, 4);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(251, 30);
@@ -513,7 +515,7 @@ namespace LoginForm
             lblContactGroup.AutoSize = true;
             lblContactGroup.Font = new Font("Segoe UI", 9.5F);
             lblContactGroup.ForeColor = Color.FromArgb(70, 70, 80);
-            lblContactGroup.Location = new Point(18, 763);
+            lblContactGroup.Location = new Point(18, 501);
             lblContactGroup.Name = "lblContactGroup";
             lblContactGroup.Size = new Size(54, 21);
             lblContactGroup.TabIndex = 19;
@@ -523,7 +525,7 @@ namespace LoginForm
             // 
             cboContactGroup.DropDownStyle = ComboBoxStyle.DropDownList;
             cboContactGroup.Font = new Font("Segoe UI", 10F);
-            cboContactGroup.Location = new Point(149, 759);
+            cboContactGroup.Location = new Point(149, 497);
             cboContactGroup.Margin = new Padding(3, 4, 3, 4);
             cboContactGroup.Name = "cboContactGroup";
             cboContactGroup.Size = new Size(251, 31);
@@ -535,7 +537,7 @@ namespace LoginForm
             lblValidateID.AutoSize = true;
             lblValidateID.Font = new Font("Segoe UI", 8F);
             lblValidateID.ForeColor = Color.Red;
-            lblValidateID.Location = new Point(149, 801);
+            lblValidateID.Location = new Point(149, 531);
             lblValidateID.Name = "lblValidateID";
             lblValidateID.Size = new Size(0, 19);
             lblValidateID.TabIndex = 21;

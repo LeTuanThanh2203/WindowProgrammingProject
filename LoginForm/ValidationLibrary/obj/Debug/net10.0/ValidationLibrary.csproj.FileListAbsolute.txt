@@ -35,3 +35,4 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProjec
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.pdb
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ref\ValidationLibrary.dll
 D:\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\ValidationLibrary\obj\Debug\net10.0\ValidationLibrary.csproj.AssemblyReference.cache

@@ -102,17 +102,44 @@ namespace LoginForm
 
             DataTable dt = group.GetGroups();
 
-            cboGroup.DataSource = dt;
+            // ---------------------------------------------------------------
+            // ROOT-CAUSE FIX: dùng BindingSource RIÊNG BIỆT cho từng ComboBox.
+            // Nếu cả hai ComboBox dùng chung DataTable (dù là .Copy()),
+            // WinForms BindingContext của Form có thể chia sẻ CurrencyManager
+            // → khi set SelectedIndex trên cboGroup, nó kéo cboContactGroup
+            //   về cùng index → cboContactGroup.SelectedValue luôn trả về
+            //   group đầu tiên ("Công việc") bất kể user chọn gì.
+            // BindingSource tạo ra CurrencyManager hoàn toàn độc lập.
+            // ---------------------------------------------------------------
+
+            // === cboContactGroup: lưu selection CŨ TRƯỚC khi đụng vào cboGroup ===
+            object prevSelected = cboContactGroup.SelectedValue;
+
+            // === cboGroup (filter toolbar): thêm "(All Groups)" ở đầu ===
+            DataTable dtFilter = dt.Copy();
+            DataRow allRow = dtFilter.NewRow();
+            allRow["ID"]   = -1;
+            allRow["Name"] = "(All Groups)";
+            dtFilter.Rows.InsertAt(allRow, 0);
+
+            var bsGroup = new System.Windows.Forms.BindingSource { DataSource = dtFilter };
+            cboGroup.DataSource    = bsGroup;
             cboGroup.DisplayMember = "Name";
-            cboGroup.ValueMember = "ID";
+            cboGroup.ValueMember   = "ID";
+            cboGroup.SelectedIndex = 0;  // "(All Groups)"
 
-            // Clone cho combo form input để tránh chia sẻ DataSource
+            // === cboContactGroup (form input): BindingSource độc lập ===
             DataTable dt2 = dt.Copy();
-            cboContactGroup.DataSource = dt2;
+            var bsContact = new System.Windows.Forms.BindingSource { DataSource = dt2 };
+            cboContactGroup.DataSource    = bsContact;
             cboContactGroup.DisplayMember = "Name";
-            cboContactGroup.ValueMember = "ID";
+            cboContactGroup.ValueMember   = "ID";
 
-            cboGroup.SelectedIndexChanged += cboGroup_SelectedIndexChanged;
+            // Khôi phục selection cũ (ví dụ: sau khi thêm nhóm mới)
+            if (prevSelected != null)
+                cboContactGroup.SelectedValue = prevSelected;
+
+            cboGroup.SelectedIndexChanged      += cboGroup_SelectedIndexChanged;
             cboContactGroup.SelectedIndexChanged += cboContactGroup_SelectedIndexChanged;
         }
 
@@ -122,8 +149,12 @@ namespace LoginForm
         {
             if (cboGroup.SelectedValue == null) return;
             txtSearch.Clear();
+
             int gid = Convert.ToInt32(cboGroup.SelectedValue);
-            _pager.SetData(contact.GetContactsByGroup(gid));
+            if (gid == -1)
+                _pager.SetData(contact.GetContacts());        // "(All Groups)" → load all
+            else
+                _pager.SetData(contact.GetContactsByGroup(gid));
         }
 
         // cboContactGroup (combo trong form nhập) - không filter grid
@@ -324,7 +355,13 @@ namespace LoginForm
                     MessageBox.Show("Thêm liên hệ thành công!", "Thành công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
-                    LoadData();
+
+                    // Reset filter về "(All Groups)" để user thấy contact vừa thêm
+                    cboGroup.SelectedIndexChanged -= cboGroup_SelectedIndexChanged;
+                    cboGroup.SelectedIndex = 0;  // index 0 = "(All Groups)"
+                    cboGroup.SelectedIndexChanged += cboGroup_SelectedIndexChanged;
+
+                    LoadData();  // load all contacts
                 }
                 else
                     MessageBox.Show("Thêm liên hệ thất bại!", "Thất bại",
@@ -369,7 +406,13 @@ namespace LoginForm
                     MessageBox.Show("Cập nhật thành công!", "Thành công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
-                    LoadData();
+
+                    // Reset filter về "(All Groups)" để user thấy contact vừa cập nhật
+                    cboGroup.SelectedIndexChanged -= cboGroup_SelectedIndexChanged;
+                    cboGroup.SelectedIndex = 0;  // index 0 = "(All Groups)"
+                    cboGroup.SelectedIndexChanged += cboGroup_SelectedIndexChanged;
+
+                    LoadData();  // load all contacts
                 }
                 else
                     MessageBox.Show("Cập nhật thất bại!", "Thất bại",

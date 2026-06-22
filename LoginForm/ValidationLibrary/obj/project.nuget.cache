@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "Zahisdu0p+c=",
+  "dgSpecHash": "4Issp7sJXxc=",
   "success": true,
-  "projectFilePath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+  "projectFilePath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\PHUOC ANH\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512"
+    "C:\\Users\\LENOVO\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8xfc-gm6g-vgpv",
-      "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "filePath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "libraryId": "BouncyCastle.Cryptography",
       "targetGraphs": [
         "net10.0"
@@ -23,9 +23,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m44j-cfrm-g8qc",
-      "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "filePath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "libraryId": "BouncyCastle.Cryptography",
       "targetGraphs": [
         "net10.0"
@@ -35,9 +35,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v435-xc8x-wvr9",
-      "projectPath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
+      "filePath": "C:\\Users\\LENOVO\\Desktop\\Study\\Window Programming\\Project\\WindowProgrammingProject\\LoginForm\\ValidationLibrary\\ValidationLibrary.csproj",
       "libraryId": "BouncyCastle.Cryptography",
       "targetGraphs": [
         "net10.0"

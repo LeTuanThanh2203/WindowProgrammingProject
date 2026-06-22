@@ -338,7 +338,6 @@ C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProjec
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.Extensions.Logging.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources
-C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\Project_Group6.UI.f_ExportReport.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\BouncyCastle.Cryptography.dll
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\EPPlus.dll
 D:\WindowProgrammingProject\LoginForm\LoginForm\bin\Debug\net10.0-windows\EPPlus.Interfaces.dll
@@ -372,3 +371,5 @@ D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginF
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ReportExport.resources
 D:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Schedule.resources
 d:\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ChatBotAI.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_ChatBotAI.resources
+C:\Users\LENOVO\Desktop\Study\Window Programming\Project\WindowProgrammingProject\LoginForm\LoginForm\obj\Debug\net10.0-windows\LoginForm.f_Schedule.resources

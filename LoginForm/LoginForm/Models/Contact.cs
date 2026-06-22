@@ -37,7 +37,7 @@ namespace Project_Group6.Models
             cmd.Parameters.AddWithValue("@phone", phone);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@address", address);
-            cmd.Parameters.AddWithValue("@pic", picture);
+            cmd.Parameters.AddWithValue("@pic", (object)picture ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@gid", groupId);
             cmd.Parameters.AddWithValue("@uid", LoginForm.Globals.GlobalUserId);
 
@@ -83,7 +83,7 @@ namespace Project_Group6.Models
             cmd.Parameters.AddWithValue("@phone", phone);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@address", address);
-            cmd.Parameters.AddWithValue("@pic", picture);
+            cmd.Parameters.AddWithValue("@pic", (object)picture ?? DBNull.Value);
             cmd.Parameters.AddWithValue("@gid", groupId);
             cmd.Parameters.AddWithValue("@uid", LoginForm.Globals.GlobalUserId);
 
@@ -116,12 +116,17 @@ namespace Project_Group6.Models
         // ================= GET ALL =================
         public DataTable GetContacts()
         {
+            // Dùng LEFT JOIN (không phải INNER JOIN) để contact vẫn hiển thị
+            // ngay cả khi Group_ID không khớp với bảng Groups (ví dụ nhóm đã bị xóa,
+            // hoặc do lỗi dữ liệu cũ) - tránh hiện tượng "mất" contact khỏi danh sách
+            // ngay sau khi thêm. Lấy c.Group_ID (không phải g.ID) để giá trị luôn
+            // đúng với những gì đang lưu trên contact, dùng để populate lại combo khi sửa.
             string query = @"
                 SELECT c.ID, c.Fname, c.Lname, c.Dob, c.Gender,
                        c.Phone, c.Email, c.Address, c.Picture,
-                       g.Name AS GroupName, g.ID AS Group_ID
+                       g.Name AS GroupName, c.Group_ID AS Group_ID
                 FROM Contact c
-                INNER JOIN Groups g ON c.Group_ID = g.ID
+                LEFT JOIN Groups g ON c.Group_ID = g.ID
                 WHERE c.UserID = @uid
                 ORDER BY c.Fname, c.Lname";
 
@@ -138,12 +143,14 @@ namespace Project_Group6.Models
         // ================= FILTER BY GROUP =================
         public DataTable GetContactsByGroup(int groupId)
         {
+            // Cùng lý do với GetContacts(): dùng LEFT JOIN để không bị ẩn contact,
+            // và lấy c.Group_ID trực tiếp từ bảng Contact.
             string query = @"
                 SELECT c.ID, c.Fname, c.Lname, c.Dob, c.Gender,
                        c.Phone, c.Email, c.Address, c.Picture,
-                       g.Name AS GroupName, g.ID AS Group_ID
+                       g.Name AS GroupName, c.Group_ID AS Group_ID
                 FROM Contact c
-                INNER JOIN Groups g ON c.Group_ID = g.ID
+                LEFT JOIN Groups g ON c.Group_ID = g.ID
                 WHERE c.UserID = @uid AND c.Group_ID = @gid
                 ORDER BY c.Fname, c.Lname";
 
@@ -162,12 +169,14 @@ namespace Project_Group6.Models
         // ================= SEARCH =================
         public DataTable SearchContacts(string keyword)
         {
+            // Cùng lý do với GetContacts(): dùng LEFT JOIN để không bị ẩn contact,
+            // và lấy c.Group_ID trực tiếp từ bảng Contact.
             string query = @"
                 SELECT c.ID, c.Fname, c.Lname, c.Dob, c.Gender,
                        c.Phone, c.Email, c.Address, c.Picture,
-                       g.Name AS GroupName, g.ID AS Group_ID
+                       g.Name AS GroupName, c.Group_ID AS Group_ID
                 FROM Contact c
-                INNER JOIN Groups g ON c.Group_ID = g.ID
+                LEFT JOIN Groups g ON c.Group_ID = g.ID
                 WHERE c.UserID = @uid
                   AND (c.Fname LIKE @kw OR c.Lname LIKE @kw
                     OR c.Phone LIKE @kw OR c.Email LIKE @kw)";
